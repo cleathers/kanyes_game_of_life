@@ -1,0 +1,11 @@
+#container {
+	margin: 50px auto;
+	width: 600px;
+	height: 600px;
+}
+
+#grid {
+	width: 80%;
+	height: 80%;
+	background-color: red;
+}
