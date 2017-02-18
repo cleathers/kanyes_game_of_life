@@ -4,19 +4,37 @@ var Cell = React.createClass({
 	getInitialState: function() {
 		let isAlive = false;
 		let nextState = false;
+		let kanye = '';
+
 		return {
 			isAlive,
 			nextState
 		};
 	},
+	getNewKanye: function() {
+		let num = Math.ceil(Math.random() * 5);
+		return `public/img/kw${num}.jpg`;
+	},
 	onClick: function() {
+		let isAlive = !this.state.isAlive;
+		let kanye = isAlive ? this.getNewKanye() : '';
+
 		this.setState({
-			isAlive: !this.state.isAlive
+			isAlive,
+			kanye
 		});
 	},
 	applyNextState: function() {
+		let kanye = '';
+		if (this.state.isAlive && this.state.nextState) {
+			kanye = this.state.kanye;
+		} else if (!this.state.isAlive && this.state.nextState) {
+			kanye = this.getNewKanye();
+		}
+
 		this.setState({
-			isAlive: this.state.nextState
+			isAlive: this.state.nextState,
+			kanye
 		});
 	},
 	setNextState: function() {
@@ -44,7 +62,11 @@ var Cell = React.createClass({
 		});
 	},
 	render: function() {
-		return <div className={`cell ${this.state.isAlive ? 'alive' : ''}`} onClick={this.onClick}></div>
+		if (this.state.isAlive) {
+			return <img src={this.state.kanye} className="cell alive" onClick={this.onClick} />
+		}
+
+		return <div className="cell" onClick={this.onClick}></div>
 	}
 });
 
