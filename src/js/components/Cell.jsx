@@ -38,22 +38,16 @@ var Cell = React.createClass({
 		});
 	},
 	setNextState: function() {
-		let isAlive;
+		let isAlive = false;
 		var siblingsCount = this.props.getSiblingsCount(this.props.rowNum, this.props.col, this);
 
 		if (this.state.isAlive) { // Any Live Cell
-			if (siblingsCount < 2) {
-				isAlive = false;
-			} else if (siblingsCount === 2 || siblingsCount === 3) {
+			if (siblingsCount === 2 || siblingsCount === 3) {
 				isAlive = true;
-			} else if (siblingsCount > 3) {
-				isAlive = false;
 			}
 		} else { // Any Dead Cell
 			if (siblingsCount === 3) { // generate new cell
 				isAlive = true;
-			} else {
-				isAlive = false;
 			}
 		}
 
