@@ -57,6 +57,8 @@ var Grid = React.createClass({
 	},
 	generateColumns: function(rowNum) {
 		let cols = [];
+		let width = 100 / this.props.cols;
+
 		for (var i = 0; i < this.props.cols; i++) {
 			let id = `row-${rowNum}--col-${i}`;
 			cols.push(<Cell
@@ -64,6 +66,7 @@ var Grid = React.createClass({
 				col={i}
 				ref={id}
 				key={id}
+				width={width}
 				getSiblingsCount={this.getSiblingsCount}
 			/>);
 		}
@@ -72,11 +75,15 @@ var Grid = React.createClass({
 	},
 	generateGrid: function() {
 		let grid = [];
+		let height = 100 / this.props.rows;
 
 		for (var i = 0; i < this.props.rows; i++) {
 			let id = `row-${i}`;
 			grid.push((
-				 <div className="row" key={id}>
+				<div
+					style={{height: `${height}%`}}
+					className="row"
+					key={id}>
 					 {this.generateColumns(i)}
 				 </div>
 			));

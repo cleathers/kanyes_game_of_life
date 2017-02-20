@@ -57,10 +57,19 @@ var Cell = React.createClass({
 	},
 	render: function() {
 		if (this.state.isAlive) {
-			return <img src={this.state.kanye} className="cell alive" onClick={this.onClick} />
+			return <img
+				src={this.state.kanye}
+				style={{width: `${this.props.width}%`}}
+				className="cell alive"
+				onClick={this.onClick}
+			/>
 		}
 
-		return <div className="cell" onClick={this.onClick}></div>
+		return <div
+			className="cell"
+			onClick={this.onClick}
+			style={{width: `${this.props.width}%`}}
+		></div>
 	}
 });
 
