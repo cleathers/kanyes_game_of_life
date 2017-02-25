@@ -73,4 +73,15 @@ var Cell = React.createClass({
 	}
 });
 
+Cell.propTypes = {
+	rowNum: React.PropTypes.number,
+	col: React.PropTypes.number,
+	siblingsCount: React.PropTypes.number,
+	lastState: React.PropTypes.shape({
+		isActive: React.PropTypes.bool,
+		kanye: React.PropTypes.string
+	}),
+	shouldRender: React.PropTypes.bool
+};
+
 module.exports = Cell;

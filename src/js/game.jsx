@@ -64,8 +64,8 @@ var Grid = React.createClass({
 			cols.push(<Cell
 				rowNum={rowNum}
 				col={i}
-				ref={id}
 				key={id}
+				ref={id}
 				width={width}
 				getSiblingsCount={this.getSiblingsCount}
 			/>);
