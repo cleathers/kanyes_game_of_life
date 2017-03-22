@@ -6,39 +6,46 @@ var Cell = require('./components/Cell.jsx');
 
 
 var Grid = React.createClass({
-	// applyNextState: function() {
-	// 	this.state.grid.forEach((row) => {
-	// 		row.forEach((cell) => {
-	// 			cell.setNextState();
-	// 		});
-	// 	});
+	applyNextState: function() {
+		let newGrid = R.clone(this.state.grid);
+		newGrid.forEach((row, rowNum) => {
+			row.forEach((cell, colNum) => {
 
-	// 	this.setState({
-	// 		nextStateSet: true
-	// 	});
+		debugger;
+				let siblingCount = this.getSiblingCount(rowNum, colNum);
+				let isAlive = false;
 
-	// },
-	// componentDidMount: function () {
-	// 	setInterval(() => {
-	// 		if (this.state.isRunning) {
-	// 			this.applyNextState();
-	// 		}
-	// 	}, 2500);
-	// },
-	// componentDidUpdate: function () {
-	// 	if (this.state.isRunning && this.state.nextStateSet) {
-	// 		this.state.grid.forEach((row) => {
-	// 			row.forEach((cell) => {
-	// 				cell.applyNextState();
-	// 			});
-	// 		});
+				if (cell.isAlive) {
+					if (siblingCount === 2 || siblingCount === 3) {
+						isAlive = true;
+					}
+				} else {
+					if (siblingCount === 3) {
+						isAlive = true;
+					}
+				}
 
-	// 		this.setState({
-	// 			nextStateSet: false
-	// 		});
-	// 	}
-	// },
-	//
+				if (isAlive && !cell.isAlive) {
+					cell.kanye = this.getNewKanye();
+				}
+
+				cell.isAlive = isAlive;
+			});
+		});
+
+		debugger;
+
+		this.setState({
+			grid: newGrid
+		});
+	},
+	componentDidMount: function () {
+		setInterval(() => {
+			if (this.state.isRunning) {
+				this.applyNextState();
+			}
+		}, 2500);
+	},
 	getInitialState: function() {
 		return {
 			cols: this.props.cols,
@@ -48,7 +55,7 @@ var Grid = React.createClass({
 		};
 	},
 
-	getSiblingsCount: function (row, col, cell) {
+	getSiblingCount: function (row, col) {
 		let liveSiblings = 0;
 		let grid = this.state.grid;
 		let row1 = grid[row-1] || [];
@@ -63,7 +70,7 @@ var Grid = React.createClass({
 
 		siblings.forEach((sibling) => {
 			if (sibling) {
-				liveSiblings += sibling.state.isAlive ? 1 : 0;
+				liveSiblings += sibling.isAlive ? 1 : 0;
 			}
 		});
 
