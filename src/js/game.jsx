@@ -24,7 +24,7 @@ var Grid = React.createClass({
 				}
 
 				if (isAlive && !cell.isAlive) {
-					cell.kanye = this.getNewKanye();
+					cell.kanye = this.getNewKanyeImg();
 				}
 
 				cell.isAlive = isAlive;
@@ -35,6 +35,7 @@ var Grid = React.createClass({
 			grid: newGrid
 		});
 	},
+
 	componentDidMount: function () {
 		setInterval(() => {
 			if (this.state.isRunning) {
@@ -42,6 +43,7 @@ var Grid = React.createClass({
 			}
 		}, 2000);
 	},
+
 	getInitialState: function() {
 		return {
 			cols: this.props.cols,
@@ -78,11 +80,8 @@ var Grid = React.createClass({
 		let state = this.state || {};
 		let cols = state.cols || this.props.cols;
 
-		R.times(function() {
-			cells.push({
-				isAlive: false,
-				kanye: ''
-			});
+		R.times(() => {
+			cells.push(this.getNewKanye());
 		}, cols);
 
 		return cells;
@@ -101,6 +100,13 @@ var Grid = React.createClass({
 	},
 
 	getNewKanye: function() {
+		return {
+				isAlive: false,
+				kanye: ''
+		};
+	},
+
+	getNewKanyeImg: function() {
 		let num = Math.ceil(Math.random() * 5);
 		return `public/img/kw${num}.jpg`;
 	},
@@ -111,7 +117,7 @@ var Grid = React.createClass({
 		newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
 
 		if (newGrid[rowNum][col].isAlive) {
-			newGrid[rowNum][col].kanye = this.getNewKanye();
+			newGrid[rowNum][col].kanye = this.getNewKanyeImg();
 		} else {
 			newGrid[rowNum][col].kanye = '';
 		}
@@ -135,7 +141,6 @@ var Grid = React.createClass({
 
 		let grid = this.state.grid.reduce((prev, curr, idx) => {
 
-			tots += height;
 			prev.push((
 				<div
 					style={{height: `${height}%`}}
@@ -200,10 +205,7 @@ var Grid = React.createClass({
 		if (lenDiff > 0) {
 			newGrid = newGrid.map((curr) => {
 				R.times(() => {
-					curr.push({
-						isAlive: false,
-						kanye: ''
-					});
+					curr.push(this.getNewKanye());
 				}, lenDiff);
 
 				return curr;
