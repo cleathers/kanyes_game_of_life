@@ -30,9 +30,7 @@ Cell.propTypes = {
 	isAlive: React.PropTypes.bool,
 	kanye: React.PropTypes.string,
 	rowNum: React.PropTypes.number,
-	col: React.PropTypes.number,
-	siblingsCount: React.PropTypes.number,
-	shouldRender: React.PropTypes.bool
+	col: React.PropTypes.number
 };
 
 module.exports = Cell;

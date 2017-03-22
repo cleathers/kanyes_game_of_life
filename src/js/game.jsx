@@ -10,8 +10,6 @@ var Grid = React.createClass({
 		let newGrid = R.clone(this.state.grid);
 		newGrid.forEach((row, rowNum) => {
 			row.forEach((cell, colNum) => {
-
-		debugger;
 				let siblingCount = this.getSiblingCount(rowNum, colNum);
 				let isAlive = false;
 
@@ -33,8 +31,6 @@ var Grid = React.createClass({
 			});
 		});
 
-		debugger;
-
 		this.setState({
 			grid: newGrid
 		});
@@ -44,7 +40,7 @@ var Grid = React.createClass({
 			if (this.state.isRunning) {
 				this.applyNextState();
 			}
-		}, 2500);
+		}, 2000);
 	},
 	getInitialState: function() {
 		return {
