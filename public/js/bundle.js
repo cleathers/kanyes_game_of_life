@@ -1,41 +1,41 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -46,7 +46,7 @@
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -55,19 +55,56 @@
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 178);
+/******/ 	return __webpack_require__(__webpack_require__.s = 403);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _isPlaceholder = __webpack_require__(64);
+
+/**
+ * Optimized internal two-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+module.exports = function _curry2(fn) {
+  return function f2(a, b) {
+    switch (arguments.length) {
+      case 0:
+        return f2;
+      case 1:
+        return _isPlaceholder(a) ? f2 : _curry1(function (_b) {
+          return fn(a, _b);
+        });
+      default:
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f2 : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b);
+        }) : fn(a, b);
+    }
+  };
+};
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -253,7 +290,98 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 1 */
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _isPlaceholder = __webpack_require__(64);
+
+/**
+ * Optimized internal one-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+module.exports = function _curry1(fn) {
+  return function f1(a) {
+    if (arguments.length === 0 || _isPlaceholder(a)) {
+      return f1;
+    } else {
+      return fn.apply(this, arguments);
+    }
+  };
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(43);
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _curry2 = __webpack_require__(0);
+var _isPlaceholder = __webpack_require__(64);
+
+/**
+ * Optimized internal three-arity curry function.
+ *
+ * @private
+ * @category Function
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+module.exports = function _curry3(fn) {
+  return function f3(a, b, c) {
+    switch (arguments.length) {
+      case 0:
+        return f3;
+      case 1:
+        return _isPlaceholder(a) ? f3 : _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        });
+      case 2:
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f3 : _isPlaceholder(a) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _curry1(function (_c) {
+          return fn(a, b, _c);
+        });
+      default:
+        return _isPlaceholder(a) && _isPlaceholder(b) && _isPlaceholder(c) ? f3 : _isPlaceholder(a) && _isPlaceholder(b) ? _curry2(function (_a, _b) {
+          return fn(_a, _b, c);
+        }) : _isPlaceholder(a) && _isPlaceholder(c) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) && _isPlaceholder(c) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b, c);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b, c);
+        }) : _isPlaceholder(c) ? _curry1(function (_c) {
+          return fn(a, b, _c);
+        }) : fn(a, b, c);
+    }
+  };
+};
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -312,10 +440,10 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 2 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -331,7 +459,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(21);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -385,10 +513,65 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = warning;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 3 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2016 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+			return classNames;
+		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -432,7 +615,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 4 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -529,7 +712,55 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 5 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _isArray = __webpack_require__(29);
+var _isTransformer = __webpack_require__(89);
+
+/**
+ * Returns a function that dispatches with different strategies based on the
+ * object in list position (last argument). If it is an array, executes [fn].
+ * Otherwise, if it has a function with one of the given method names, it will
+ * execute that function (functor case). Otherwise, if it is a transformer,
+ * uses transducer [xf] to return a new transformer (transducer case).
+ * Otherwise, it will default to executing [fn].
+ *
+ * @private
+ * @param {Array} methodNames properties to check for a custom implementation
+ * @param {Function} xf transducer to initialize if object is transformer
+ * @param {Function} fn default ramda implementation
+ * @return {Function} A function that dispatches on object in list position
+ */
+module.exports = function _dispatchable(methodNames, xf, fn) {
+  return function () {
+    if (arguments.length === 0) {
+      return fn();
+    }
+    var args = Array.prototype.slice.call(arguments, 0);
+    var obj = args.pop();
+    if (!_isArray(obj)) {
+      var idx = 0;
+      while (idx < methodNames.length) {
+        if (typeof obj[methodNames[idx]] === 'function') {
+          return obj[methodNames[idx]].apply(obj, args);
+        }
+        idx += 1;
+      }
+      if (_isTransformer(obj)) {
+        var transducer = xf.apply(null, args);
+        return transducer(obj);
+      }
+    }
+    return fn.apply(this, arguments);
+  };
+};
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -545,12 +776,12 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var DOMProperty = __webpack_require__(13);
-var ReactDOMComponentFlags = __webpack_require__(59);
+var DOMProperty = __webpack_require__(31);
+var ReactDOMComponentFlags = __webpack_require__(181);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 var Flags = ReactDOMComponentFlags;
@@ -727,10 +958,26 @@ var ReactDOMComponentTree = {
 };
 
 module.exports = ReactDOMComponentTree;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 6 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+  init: function init() {
+    return this.xf['@@transducer/init']();
+  },
+  result: function result(_result) {
+    return this.xf['@@transducer/result'](_result);
+  }
+};
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -771,7 +1018,145 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 7 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _curry1 = __webpack_require__(2);
+var _curry2 = __webpack_require__(0);
+var _curryN = __webpack_require__(62);
+
+/**
+ * Returns a curried equivalent of the provided function, with the specified
+ * arity. The curried function has two unusual capabilities. First, its
+ * arguments needn't be provided one at a time. If `g` is `R.curryN(3, f)`, the
+ * following are equivalent:
+ *
+ *   - `g(1)(2)(3)`
+ *   - `g(1)(2, 3)`
+ *   - `g(1, 2)(3)`
+ *   - `g(1, 2, 3)`
+ *
+ * Secondly, the special placeholder value `R.__` may be used to specify
+ * "gaps", allowing partial application of any combination of arguments,
+ * regardless of their positions. If `g` is as above and `_` is `R.__`, the
+ * following are equivalent:
+ *
+ *   - `g(1, 2, 3)`
+ *   - `g(_, 2, 3)(1)`
+ *   - `g(_, _, 3)(1)(2)`
+ *   - `g(_, _, 3)(1, 2)`
+ *   - `g(_, 2)(1)(3)`
+ *   - `g(_, 2)(1, 3)`
+ *   - `g(_, 2)(_, 3)(1)`
+ *
+ * @func
+ * @memberOf R
+ * @since v0.5.0
+ * @category Function
+ * @sig Number -> (* -> a) -> (* -> a)
+ * @param {Number} length The arity for the returned function.
+ * @param {Function} fn The function to curry.
+ * @return {Function} A new, curried function.
+ * @see R.curry
+ * @example
+ *
+ *      var sumArgs = (...args) => R.sum(args);
+ *
+ *      var curriedAddFourNumbers = R.curryN(4, sumArgs);
+ *      var f = curriedAddFourNumbers(1, 2);
+ *      var g = f(3);
+ *      g(4); //=> 10
+ */
+module.exports = _curry2(function curryN(length, fn) {
+  if (length === 1) {
+    return _curry1(fn);
+  }
+  return _arity(length, _curryN(length, [], fn));
+});
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _has(prop, obj) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _map = __webpack_require__(66);
+var _reduce = __webpack_require__(18);
+var _xmap = __webpack_require__(296);
+var curryN = __webpack_require__(14);
+var keys = __webpack_require__(24);
+
+/**
+ * Takes a function and
+ * a [functor](https://github.com/fantasyland/fantasy-land#functor),
+ * applies the function to each of the functor's values, and returns
+ * a functor of the same shape.
+ *
+ * Ramda provides suitable `map` implementations for `Array` and `Object`,
+ * so this function may be applied to `[1, 2, 3]` or `{x: 1, y: 2, z: 3}`.
+ *
+ * Dispatches to the `map` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * Also treats functions as functors and will compose them together.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Functor f => (a -> b) -> f a -> f b
+ * @param {Function} fn The function to be called on every element of the input `list`.
+ * @param {Array} list The list to be iterated over.
+ * @return {Array} The new list.
+ * @see R.transduce, R.addIndex
+ * @example
+ *
+ *      var double = x => x * 2;
+ *
+ *      R.map(double, [1, 2, 3]); //=> [2, 4, 6]
+ *
+ *      R.map(double, {x: 1, y: 2, z: 3}); //=> {x: 2, y: 4, z: 6}
+ * @symb R.map(f, [a, b]) = [f(a), f(b)]
+ * @symb R.map(f, { x: a, y: b }) = { x: f(a), y: f(b) }
+ * @symb R.map(f, functor_o) = functor_o.map(f)
+ */
+module.exports = _curry2(_dispatchable(['map'], _xmap, function map(fn, functor) {
+  switch (Object.prototype.toString.call(functor)) {
+    case '[object Function]':
+      return curryN(functor.length, function () {
+        return fn.call(this, functor.apply(this, arguments));
+      });
+    case '[object Object]':
+      return _reduce(function (acc, key) {
+        acc[key] = fn(functor[key]);
+        return acc;
+      }, {}, keys(functor));
+    default:
+      return _map(fn, functor);
+  }
+}));
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -788,12 +1173,12 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(16);
+var _prodInvariant = __webpack_require__(37);
 
-var ReactCurrentOwner = __webpack_require__(11);
+var ReactCurrentOwner = __webpack_require__(27);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 function isNative(fn) {
   // Based on isNative() from Lodash
@@ -1108,10 +1493,74 @@ var ReactComponentTreeHook = {
 };
 
 module.exports = ReactComponentTreeHook;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 8 */
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _xwrap = __webpack_require__(148);
+var bind = __webpack_require__(123);
+var isArrayLike = __webpack_require__(46);
+
+module.exports = function () {
+  function _arrayReduce(xf, acc, list) {
+    var idx = 0;
+    var len = list.length;
+    while (idx < len) {
+      acc = xf['@@transducer/step'](acc, list[idx]);
+      if (acc && acc['@@transducer/reduced']) {
+        acc = acc['@@transducer/value'];
+        break;
+      }
+      idx += 1;
+    }
+    return xf['@@transducer/result'](acc);
+  }
+
+  function _iterableReduce(xf, acc, iter) {
+    var step = iter.next();
+    while (!step.done) {
+      acc = xf['@@transducer/step'](acc, step.value);
+      if (acc && acc['@@transducer/reduced']) {
+        acc = acc['@@transducer/value'];
+        break;
+      }
+      step = iter.next();
+    }
+    return xf['@@transducer/result'](acc);
+  }
+
+  function _methodReduce(xf, acc, obj) {
+    return xf['@@transducer/result'](obj.reduce(bind(xf['@@transducer/step'], xf), acc));
+  }
+
+  var symIterator = typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator';
+  return function _reduce(fn, acc, list) {
+    if (typeof fn === 'function') {
+      fn = _xwrap(fn);
+    }
+    if (isArrayLike(list)) {
+      return _arrayReduce(fn, acc, list);
+    }
+    if (typeof list.reduce === 'function') {
+      return _methodReduce(fn, acc, list);
+    }
+    if (list[symIterator] != null) {
+      return _iterableReduce(fn, acc, list[symIterator]());
+    }
+    if (typeof list.next === 'function') {
+      return _iterableReduce(fn, acc, list);
+    }
+    throw new TypeError('reduce: list must be array or iterable');
+  };
+}();
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1133,15 +1582,54 @@ module.exports = ReactComponentTreeHook;
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(124);
+  var ReactDebugTool = __webpack_require__(446);
   debugTool = ReactDebugTool;
 }
 
 module.exports = { debugTool: debugTool };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Private `concat` function to merge two array-like objects.
+ *
+ * @private
+ * @param {Array|Arguments} [set1=[]] An array-like object.
+ * @param {Array|Arguments} [set2=[]] An array-like object.
+ * @return {Array} A new, merged array.
+ * @example
+ *
+ *      _concat([4, 5, 6], [1, 2, 3]); //=> [4, 5, 6, 1, 2, 3]
+ */
+module.exports = function _concat(set1, set2) {
+  set1 = set1 || [];
+  set2 = set2 || [];
+  var idx;
+  var len1 = set1.length;
+  var len2 = set2.length;
+  var result = [];
+
+  idx = 0;
+  while (idx < len1) {
+    result[result.length] = set1[idx];
+    idx += 1;
+  }
+  idx = 0;
+  while (idx < len2) {
+    result[result.length] = set2[idx];
+    idx += 1;
+  }
+  return result;
+};
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1185,7 +1673,238 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 10 */
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _equals = __webpack_require__(271);
+
+/**
+ * Returns `true` if its arguments are equivalent, `false` otherwise. Handles
+ * cyclical data structures.
+ *
+ * Dispatches symmetrically to the `equals` methods of both arguments, if
+ * present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.15.0
+ * @category Relation
+ * @sig a -> b -> Boolean
+ * @param {*} a
+ * @param {*} b
+ * @return {Boolean}
+ * @example
+ *
+ *      R.equals(1, 1); //=> true
+ *      R.equals(1, '1'); //=> false
+ *      R.equals([1, 2, 3], [1, 2, 3]); //=> true
+ *
+ *      var a = {}; a.v = a;
+ *      var b = {}; b.v = b;
+ *      R.equals(a, b); //=> true
+ */
+module.exports = _curry2(function equals(a, b) {
+  return _equals(a, b, [], []);
+});
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _arity(n, fn) {
+  /* eslint-disable no-unused-vars */
+  switch (n) {
+    case 0:
+      return function () {
+        return fn.apply(this, arguments);
+      };
+    case 1:
+      return function (a0) {
+        return fn.apply(this, arguments);
+      };
+    case 2:
+      return function (a0, a1) {
+        return fn.apply(this, arguments);
+      };
+    case 3:
+      return function (a0, a1, a2) {
+        return fn.apply(this, arguments);
+      };
+    case 4:
+      return function (a0, a1, a2, a3) {
+        return fn.apply(this, arguments);
+      };
+    case 5:
+      return function (a0, a1, a2, a3, a4) {
+        return fn.apply(this, arguments);
+      };
+    case 6:
+      return function (a0, a1, a2, a3, a4, a5) {
+        return fn.apply(this, arguments);
+      };
+    case 7:
+      return function (a0, a1, a2, a3, a4, a5, a6) {
+        return fn.apply(this, arguments);
+      };
+    case 8:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
+        return fn.apply(this, arguments);
+      };
+    case 9:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        return fn.apply(this, arguments);
+      };
+    case 10:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        return fn.apply(this, arguments);
+      };
+    default:
+      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
+  }
+};
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _has = __webpack_require__(15);
+var _isArguments = __webpack_require__(141);
+
+/**
+ * Returns a list containing the names of all the enumerable own properties of
+ * the supplied object.
+ * Note that the order of the output array is not guaranteed to be consistent
+ * across different JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> [k]
+ * @param {Object} obj The object to extract properties from
+ * @return {Array} An array of the object's own properties.
+ * @example
+ *
+ *      R.keys({a: 1, b: 2, c: 3}); //=> ['a', 'b', 'c']
+ */
+module.exports = function () {
+  // cover IE < 9 keys issues
+  var hasEnumBug = !{ toString: null }.propertyIsEnumerable('toString');
+  var nonEnumerableProps = ['constructor', 'valueOf', 'isPrototypeOf', 'toString', 'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
+  // Safari bug
+  var hasArgsEnumBug = function () {
+    'use strict';
+
+    return arguments.propertyIsEnumerable('length');
+  }();
+
+  var contains = function contains(list, item) {
+    var idx = 0;
+    while (idx < list.length) {
+      if (list[idx] === item) {
+        return true;
+      }
+      idx += 1;
+    }
+    return false;
+  };
+
+  return typeof Object.keys === 'function' && !hasArgsEnumBug ? _curry1(function keys(obj) {
+    return Object(obj) !== obj ? [] : Object.keys(obj);
+  }) : _curry1(function keys(obj) {
+    if (Object(obj) !== obj) {
+      return [];
+    }
+    var prop, nIdx;
+    var ks = [];
+    var checkArgsLength = hasArgsEnumBug && _isArguments(obj);
+    for (prop in obj) {
+      if (_has(prop, obj) && (!checkArgsLength || prop !== 'length')) {
+        ks[ks.length] = prop;
+      }
+    }
+    if (hasEnumBug) {
+      nIdx = nonEnumerableProps.length - 1;
+      while (nIdx >= 0) {
+        prop = nonEnumerableProps[nIdx];
+        if (_has(prop, obj) && !contains(ks, prop)) {
+          ks[ks.length] = prop;
+        }
+        nIdx -= 1;
+      }
+    }
+    return ks;
+  });
+}();
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var _reduce = __webpack_require__(18);
+
+/**
+ * Returns a single item by iterating through the list, successively calling
+ * the iterator function and passing it an accumulator value and the current
+ * value from the array, and then passing the result to the next call.
+ *
+ * The iterator function receives two values: *(acc, value)*. It may use
+ * `R.reduced` to shortcut the iteration.
+ *
+ * The arguments' order of `reduceRight`'s iterator function is *(value, acc)*.
+ *
+ * Note: `R.reduce` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.reduce` method. For more details
+ * on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Description
+ *
+ * Dispatches to the `reduce` method of the third argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig ((a, b) -> a) -> a -> [b] -> a
+ * @param {Function} fn The iterator function. Receives two values, the accumulator and the
+ *        current element from the array.
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.reduced, R.addIndex, R.reduceRight
+ * @example
+ *
+ *      R.reduce(R.subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
+ *                -               -10
+ *               / \              / \
+ *              -   4           -6   4
+ *             / \              / \
+ *            -   3   ==>     -3   3
+ *           / \              / \
+ *          -   2           -1   2
+ *         / \              / \
+ *        0   1            0   1
+ *
+ * @symb R.reduce(f, a, [b, c, d]) = f(f(f(a, b), c), d)
+ */
+module.exports = _curry3(_reduce);
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1201,16 +1920,16 @@ module.exports = emptyFunction;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var CallbackQueue = __webpack_require__(57);
-var PooledClass = __webpack_require__(14);
-var ReactFeatureFlags = __webpack_require__(62);
-var ReactReconciler = __webpack_require__(18);
-var Transaction = __webpack_require__(28);
+var CallbackQueue = __webpack_require__(179);
+var PooledClass = __webpack_require__(35);
+var ReactFeatureFlags = __webpack_require__(184);
+var ReactReconciler = __webpack_require__(41);
+var Transaction = __webpack_require__(76);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 var dirtyComponents = [];
 var updateBatchNumber = 0;
@@ -1439,10 +2158,10 @@ var ReactUpdates = {
 };
 
 module.exports = ReactUpdates;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 11 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1478,7 +2197,7 @@ var ReactCurrentOwner = {
 module.exports = ReactCurrentOwner;
 
 /***/ }),
-/* 12 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1494,12 +2213,12 @@ module.exports = ReactCurrentOwner;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var PooledClass = __webpack_require__(14);
+var PooledClass = __webpack_require__(35);
 
-var emptyFunction = __webpack_require__(9);
-var warning = __webpack_require__(2);
+var emptyFunction = __webpack_require__(21);
+var warning = __webpack_require__(6);
 
 var didWarnForAddedNewProperty = false;
 var isProxySupported = typeof Proxy === 'function';
@@ -1749,10 +2468,47 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
     process.env.NODE_ENV !== 'production' ? warning(warningCondition, 'This synthetic event is reused for performance reasons. If you\'re seeing this, ' + 'you\'re %s `%s` on a released/nullified synthetic event. %s. ' + 'If you must keep the original synthetic event around, use event.persist(). ' + 'See https://fb.me/react-event-pooling for more information.', action, propName, result) : void 0;
   }
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 13 */
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Tests whether or not an object is an array.
+ *
+ * @private
+ * @param {*} val The object to test.
+ * @return {Boolean} `true` if `val` is an array, `false` otherwise.
+ * @example
+ *
+ *      _isArray([]); //=> true
+ *      _isArray(null); //=> false
+ *      _isArray({}); //=> false
+ */
+module.exports = Array.isArray || function _isArray(val) {
+  return val != null && val.length >= 0 && Object.prototype.toString.call(val) === '[object Array]';
+};
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _reduced(x) {
+  return x && x['@@transducer/reduced'] ? x : {
+    '@@transducer/value': x,
+    '@@transducer/reduced': true
+  };
+};
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1768,9 +2524,9 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 function checkMask(value, bitmask) {
   return (value & bitmask) === bitmask;
@@ -1965,10 +2721,141 @@ var DOMProperty = {
 };
 
 module.exports = DOMProperty;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 14 */
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _constants = __webpack_require__(42);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Icon = function (_Component) {
+  _inherits(Icon, _Component);
+
+  function Icon() {
+    _classCallCheck(this, Icon);
+
+    return _possibleConstructorReturn(this, (Icon.__proto__ || Object.getPrototypeOf(Icon)).apply(this, arguments));
+  }
+
+  _createClass(Icon, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var classes = {
+        'material-icons': true
+      };
+      _constants2.default.PLACEMENTS.forEach(function (p) {
+        classes[p] = _this2.props[p];
+      });
+
+      _constants2.default.ICON_SIZES.forEach(function (s) {
+        classes[s] = _this2.props[s];
+      });
+
+      return _react2.default.createElement(
+        'i',
+        { className: (0, _classnames2.default)(classes, this.props.className) },
+        this.props.children
+      );
+    }
+  }]);
+
+  return Icon;
+}(_react.Component);
+
+Icon.propTypes = {
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  tiny: _react.PropTypes.bool,
+  small: _react.PropTypes.bool,
+  medium: _react.PropTypes.bool,
+  large: _react.PropTypes.bool
+};
+
+exports.default = Icon;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _indexOf = __webpack_require__(140);
+
+module.exports = function _contains(a, list) {
+  return _indexOf(list, a, 0) >= 0;
+};
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _checkForMethod = __webpack_require__(44);
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Returns the elements of the given list or string (or object with a `slice`
+ * method) from `fromIndex` (inclusive) to `toIndex` (exclusive).
+ *
+ * Dispatches to the `slice` method of the third argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.4
+ * @category List
+ * @sig Number -> Number -> [a] -> [a]
+ * @sig Number -> Number -> String -> String
+ * @param {Number} fromIndex The start index (inclusive).
+ * @param {Number} toIndex The end index (exclusive).
+ * @param {*} list
+ * @return {*}
+ * @example
+ *
+ *      R.slice(1, 3, ['a', 'b', 'c', 'd']);        //=> ['b', 'c']
+ *      R.slice(1, Infinity, ['a', 'b', 'c', 'd']); //=> ['b', 'c', 'd']
+ *      R.slice(0, -1, ['a', 'b', 'c', 'd']);       //=> ['a', 'b', 'c']
+ *      R.slice(-3, -1, ['a', 'b', 'c', 'd']);      //=> ['b', 'c']
+ *      R.slice(0, 3, 'ramda');                     //=> 'ram'
+ */
+module.exports = _curry3(_checkForMethod('slice', function slice(fromIndex, toIndex, list) {
+  return Array.prototype.slice.call(list, fromIndex, toIndex);
+}));
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1985,9 +2872,9 @@ module.exports = DOMProperty;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Static poolers. Several custom versions for each potential number of
@@ -2083,10 +2970,10 @@ var PooledClass = {
 };
 
 module.exports = PooledClass;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 15 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2102,15 +2989,15 @@ module.exports = PooledClass;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var ReactCurrentOwner = __webpack_require__(11);
+var ReactCurrentOwner = __webpack_require__(27);
 
-var warning = __webpack_require__(2);
-var canDefineProperty = __webpack_require__(50);
+var warning = __webpack_require__(6);
+var canDefineProperty = __webpack_require__(116);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(77);
+var REACT_ELEMENT_TYPE = __webpack_require__(203);
 
 var RESERVED_PROPS = {
   key: true,
@@ -2430,10 +3317,10 @@ ReactElement.isValidElement = function (object) {
 };
 
 module.exports = ReactElement;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 16 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2477,7 +3364,71 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 17 */
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Returns a function that always returns the given value. Note that for
+ * non-primitives the value returned is a reference to the original value.
+ *
+ * This function is known as `const`, `constant`, or `K` (for K combinator) in
+ * other languages and libraries.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig a -> (* -> a)
+ * @param {*} val The value to wrap in a function
+ * @return {Function} A Function :: * -> val.
+ * @example
+ *
+ *      var t = R.always('Tee');
+ *      t(); //=> 'Tee'
+ */
+module.exports = _curry1(function always(val) {
+  return function () {
+    return val;
+  };
+});
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns the larger of its two arguments.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> a
+ * @param {*} a
+ * @param {*} b
+ * @return {*}
+ * @see R.maxBy, R.min
+ * @example
+ *
+ *      R.max(789, 123); //=> 789
+ *      R.max('a', 'b'); //=> 'b'
+ */
+module.exports = _curry2(function max(a, b) {
+  return b > a ? b : a;
+});
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2493,11 +3444,11 @@ module.exports = reactProdInvariant;
 
 
 
-var DOMNamespaces = __webpack_require__(33);
-var setInnerHTML = __webpack_require__(30);
+var DOMNamespaces = __webpack_require__(97);
+var setInnerHTML = __webpack_require__(78);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(40);
-var setTextContent = __webpack_require__(75);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(104);
+var setTextContent = __webpack_require__(197);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -2600,7 +3551,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 18 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2616,10 +3567,10 @@ module.exports = DOMLazyTree;
 
 
 
-var ReactRef = __webpack_require__(138);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactRef = __webpack_require__(460);
+var ReactInstrumentation = __webpack_require__(19);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 /**
  * Helper to call ReactRef.attachRefs with this composite component, split out
@@ -2771,10 +3722,29 @@ var ReactReconciler = {
 };
 
 module.exports = ReactReconciler;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 19 */
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  STYLES: ['large', 'floating', 'flat'],
+  WAVES: ['light', 'red', 'yellow', 'orange', 'purple', 'green', 'teal'],
+  SIZES: ['s', 'm', 'l'],
+  PLACEMENTS: ['left', 'center', 'right'],
+  SCALES: ['big', 'small'],
+  ICON_SIZES: ['tiny', 'small', 'medium', 'large']
+};
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2790,26 +3760,26 @@ module.exports = ReactReconciler;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var ReactChildren = __webpack_require__(169);
-var ReactComponent = __webpack_require__(47);
-var ReactPureComponent = __webpack_require__(173);
-var ReactClass = __webpack_require__(170);
-var ReactDOMFactories = __webpack_require__(171);
-var ReactElement = __webpack_require__(15);
-var ReactPropTypes = __webpack_require__(172);
-var ReactVersion = __webpack_require__(174);
+var ReactChildren = __webpack_require__(524);
+var ReactComponent = __webpack_require__(113);
+var ReactPureComponent = __webpack_require__(528);
+var ReactClass = __webpack_require__(525);
+var ReactDOMFactories = __webpack_require__(526);
+var ReactElement = __webpack_require__(36);
+var ReactPropTypes = __webpack_require__(527);
+var ReactVersion = __webpack_require__(529);
 
-var onlyChild = __webpack_require__(176);
-var warning = __webpack_require__(2);
+var onlyChild = __webpack_require__(531);
+var warning = __webpack_require__(6);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(78);
+  var ReactElementValidator = __webpack_require__(204);
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
   cloneElement = ReactElementValidator.cloneElement;
@@ -2866,10 +3836,312 @@ var React = {
 };
 
 module.exports = React;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 20 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _isArray = __webpack_require__(29);
+
+/**
+ * This checks whether a function has a [methodname] function. If it isn't an
+ * array it will execute that function otherwise it will default to the ramda
+ * implementation.
+ *
+ * @private
+ * @param {Function} fn ramda implemtation
+ * @param {String} methodname property to check for a custom implementation
+ * @return {Object} Whatever the return value of the method is.
+ */
+module.exports = function _checkForMethod(methodname, fn) {
+  return function () {
+    var length = arguments.length;
+    if (length === 0) {
+      return fn();
+    }
+    var obj = arguments[length - 1];
+    return _isArray(obj) || typeof obj[methodname] !== 'function' ? fn.apply(this, arguments) : obj[methodname].apply(obj, Array.prototype.slice.call(arguments, 0, length - 1));
+  };
+};
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isFunction = __webpack_require__(63);
+var curryN = __webpack_require__(14);
+var toString = __webpack_require__(50);
+
+/**
+ * Turns a named method with a specified arity into a function that can be
+ * called directly supplied with arguments and a target object.
+ *
+ * The returned function is curried and accepts `arity + 1` parameters where
+ * the final parameter is the target object.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig Number -> String -> (a -> b -> ... -> n -> Object -> *)
+ * @param {Number} arity Number of arguments the returned function should take
+ *        before the target object.
+ * @param {String} method Name of the method to call.
+ * @return {Function} A new curried function.
+ * @example
+ *
+ *      var sliceFrom = R.invoker(1, 'slice');
+ *      sliceFrom(6, 'abcdefghijklm'); //=> 'ghijklm'
+ *      var sliceFrom6 = R.invoker(2, 'slice')(6);
+ *      sliceFrom6(8, 'abcdefghijklm'); //=> 'gh'
+ * @symb R.invoker(0, 'method')(o) = o['method']()
+ * @symb R.invoker(1, 'method')(a, o) = o['method'](a)
+ * @symb R.invoker(2, 'method')(a, b, o) = o['method'](a, b)
+ */
+module.exports = _curry2(function invoker(arity, method) {
+  return curryN(arity + 1, function () {
+    var target = arguments[arity];
+    if (target != null && _isFunction(target[method])) {
+      return target[method].apply(target, Array.prototype.slice.call(arguments, 0, arity));
+    }
+    throw new TypeError(toString(target) + ' does not have a method named "' + method + '"');
+  });
+});
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _curry1 = __webpack_require__(2);
+var _isArray = __webpack_require__(29);
+var _isString = __webpack_require__(65);
+
+/**
+ * Tests whether or not an object is similar to an array.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.5.0
+ * @category Type
+ * @category List
+ * @sig * -> Boolean
+ * @param {*} x The object to test.
+ * @return {Boolean} `true` if `x` has a numeric length property and extreme indices defined; `false` otherwise.
+ * @deprecated since v0.23.0
+ * @example
+ *
+ *      R.isArrayLike([]); //=> true
+ *      R.isArrayLike(true); //=> false
+ *      R.isArrayLike({}); //=> false
+ *      R.isArrayLike({length: 10}); //=> false
+ *      R.isArrayLike({0: 'zero', 9: 'nine', length: 10}); //=> true
+ */
+module.exports = _curry1(function isArrayLike(x) {
+  if (_isArray(x)) {
+    return true;
+  }
+  if (!x) {
+    return false;
+  }
+  if ((typeof x === 'undefined' ? 'undefined' : _typeof(x)) !== 'object') {
+    return false;
+  }
+  if (_isString(x)) {
+    return false;
+  }
+  if (x.nodeType === 1) {
+    return !!x.length;
+  }
+  if (x.length === 0) {
+    return true;
+  }
+  if (x.length > 0) {
+    return x.hasOwnProperty(0) && x.hasOwnProperty(x.length - 1);
+  }
+  return false;
+});
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isString = __webpack_require__(65);
+
+/**
+ * Returns the nth element of the given list or string. If n is negative the
+ * element at index length + n is returned.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Number -> [a] -> a | Undefined
+ * @sig Number -> String -> String
+ * @param {Number} offset
+ * @param {*} list
+ * @return {*}
+ * @example
+ *
+ *      var list = ['foo', 'bar', 'baz', 'quux'];
+ *      R.nth(1, list); //=> 'bar'
+ *      R.nth(-1, list); //=> 'quux'
+ *      R.nth(-99, list); //=> undefined
+ *
+ *      R.nth(2, 'abc'); //=> 'c'
+ *      R.nth(3, 'abc'); //=> ''
+ * @symb R.nth(-1, [a, b, c]) = c
+ * @symb R.nth(0, [a, b, c]) = a
+ * @symb R.nth(1, [a, b, c]) = b
+ */
+module.exports = _curry2(function nth(offset, list) {
+  var idx = offset < 0 ? list.length + offset : offset;
+  return _isString(list) ? list.charAt(idx) : list[idx];
+});
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Retrieve the value at a given path.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category Object
+ * @typedefn Idx = String | Int
+ * @sig [Idx] -> {a} -> a | Undefined
+ * @param {Array} path The path to use.
+ * @param {Object} obj The object to retrieve the nested property from.
+ * @return {*} The data at `path`.
+ * @see R.prop
+ * @example
+ *
+ *      R.path(['a', 'b'], {a: {b: 2}}); //=> 2
+ *      R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
+ */
+module.exports = _curry2(function path(paths, obj) {
+  var val = obj;
+  var idx = 0;
+  while (idx < paths.length) {
+    if (val == null) {
+      return;
+    }
+    val = val[paths[idx]];
+    idx += 1;
+  }
+  return val;
+});
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var map = __webpack_require__(16);
+var prop = __webpack_require__(90);
+
+/**
+ * Returns a new list by plucking the same named property off all objects in
+ * the list supplied.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig k -> [{k: v}] -> [v]
+ * @param {Number|String} key The key name to pluck off of each object.
+ * @param {Array} list The array to consider.
+ * @return {Array} The list of values for the given key.
+ * @see R.props
+ * @example
+ *
+ *      R.pluck('a')([{a: 1}, {a: 2}]); //=> [1, 2]
+ *      R.pluck(0)([[1, 2], [3, 4]]);   //=> [1, 3]
+ * @symb R.pluck('x', [{x: 1, y: 2}, {x: 3, y: 4}, {x: 5, y: 6}]) = [1, 3, 5]
+ * @symb R.pluck(0, [[1, 2], [3, 4], [5, 6]]) = [1, 3, 5]
+ */
+module.exports = _curry2(function pluck(p, list) {
+  return map(prop(p), list);
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _toString = __webpack_require__(283);
+
+/**
+ * Returns the string representation of the given value. `eval`'ing the output
+ * should result in a value equivalent to the input value. Many of the built-in
+ * `toString` methods do not satisfy this requirement.
+ *
+ * If the given value is an `[object Object]` with a `toString` method other
+ * than `Object.prototype.toString`, this method is invoked with no arguments
+ * to produce the return value. This means user-defined constructor functions
+ * can provide a suitable `toString` method. For example:
+ *
+ *     function Point(x, y) {
+ *       this.x = x;
+ *       this.y = y;
+ *     }
+ *
+ *     Point.prototype.toString = function() {
+ *       return 'new Point(' + this.x + ', ' + this.y + ')';
+ *     };
+ *
+ *     R.toString(new Point(1, 2)); //=> 'new Point(1, 2)'
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category String
+ * @sig * -> String
+ * @param {*} val
+ * @return {String}
+ * @example
+ *
+ *      R.toString(42); //=> '42'
+ *      R.toString('abc'); //=> '"abc"'
+ *      R.toString([1, 2, 3]); //=> '[1, 2, 3]'
+ *      R.toString({foo: 1, bar: 2, baz: 3}); //=> '{"bar": 2, "baz": 3, "foo": 1}'
+ *      R.toString(new Date('2001-02-03T04:05:06Z')); //=> 'new Date("2001-02-03T04:05:06.000Z")'
+ */
+module.exports = _curry1(function toString(val) {
+  return _toString(val, []);
+});
+
+/***/ }),
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2892,10 +4164,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = emptyObject;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 21 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2911,15 +4183,15 @@ module.exports = emptyObject;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var EventPluginRegistry = __webpack_require__(25);
-var EventPluginUtils = __webpack_require__(34);
-var ReactErrorUtils = __webpack_require__(38);
+var EventPluginRegistry = __webpack_require__(73);
+var EventPluginUtils = __webpack_require__(98);
+var ReactErrorUtils = __webpack_require__(102);
 
-var accumulateInto = __webpack_require__(69);
-var forEachAccumulated = __webpack_require__(70);
-var invariant = __webpack_require__(1);
+var accumulateInto = __webpack_require__(191);
+var forEachAccumulated = __webpack_require__(192);
+var invariant = __webpack_require__(5);
 
 /**
  * Internal store for event listeners
@@ -3176,10 +4448,10 @@ var EventPluginHub = {
 };
 
 module.exports = EventPluginHub;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 22 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3195,12 +4467,12 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(21);
-var EventPluginUtils = __webpack_require__(34);
+var EventPluginHub = __webpack_require__(52);
+var EventPluginUtils = __webpack_require__(98);
 
-var accumulateInto = __webpack_require__(69);
-var forEachAccumulated = __webpack_require__(70);
-var warning = __webpack_require__(2);
+var accumulateInto = __webpack_require__(191);
+var forEachAccumulated = __webpack_require__(192);
+var warning = __webpack_require__(6);
 
 var getListener = EventPluginHub.getListener;
 
@@ -3316,10 +4588,10 @@ var EventPropagators = {
 };
 
 module.exports = EventPropagators;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 23 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3372,7 +4644,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 24 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3388,9 +4660,9 @@ module.exports = ReactInstanceMap;
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(28);
 
-var getEventTarget = __webpack_require__(43);
+var getEventTarget = __webpack_require__(107);
 
 /**
  * @interface UIEvent
@@ -3436,7 +4708,687 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 25 */
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _constants = __webpack_require__(42);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var Col = function Col(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      _ref$node = _ref.node,
+      C = _ref$node === undefined ? 'div' : _ref$node,
+      s = _ref.s,
+      m = _ref.m,
+      l = _ref.l,
+      offset = _ref.offset,
+      other = _objectWithoutProperties(_ref, ['children', 'className', 'node', 's', 'm', 'l', 'offset']);
+
+  var sizes = { s: s, m: m, l: l };
+  var classes = { col: true };
+  _constants2.default.SIZES.forEach(function (size) {
+    classes[size + sizes[size]] = sizes[size];
+  });
+
+  if (offset) {
+    offset.split(' ').forEach(function (off) {
+      classes['offset-' + off] = true;
+    });
+  }
+
+  return _react2.default.createElement(
+    C,
+    _extends({}, other, { className: (0, _classnames2.default)(classes, className) }),
+    children
+  );
+};
+
+Col.propTypes = {
+  children: _react2.default.PropTypes.node,
+  className: _react2.default.PropTypes.string,
+  /**
+   * Columns for large size screens
+   */
+  l: _react2.default.PropTypes.number,
+  /**
+   * Columns for middle size screens
+   */
+  m: _react2.default.PropTypes.number,
+  /**
+   * The node to be used for the column
+   * @default div
+   */
+  node: _react2.default.PropTypes.node,
+  /**
+   * To offset, simply add s2 to the class where s signifies the screen
+   * class-prefix (s = small, m = medium, l = large) and the number after
+   * is the number of columns you want to offset by.
+   */
+  offset: _react2.default.PropTypes.string,
+  /**
+   * Columns for small size screens
+   */
+  s: _react2.default.PropTypes.number
+};
+
+exports.default = Col;
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.resetID = resetID;
+exports.default = idgen;
+var id = 0;
+
+function resetID() {
+  id = 0;
+}
+
+function idgen() {
+  var oldId = id;
+  id += 1;
+  return oldId;
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Adds two values.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} a
+ * @param {Number} b
+ * @return {Number}
+ * @see R.subtract
+ * @example
+ *
+ *      R.add(2, 3);       //=>  5
+ *      R.add(7)(10);      //=> 17
+ */
+module.exports = _curry2(function add(a, b) {
+  return Number(a) + Number(b);
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Makes a shallow clone of an object, setting or overriding the specified
+ * property with the given value. Note that this copies and flattens prototype
+ * properties onto the new object as well. All non-primitive properties are
+ * copied by reference.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Object
+ * @sig String -> a -> {k: v} -> {k: v}
+ * @param {String} prop The property name to set
+ * @param {*} val The new value
+ * @param {Object} obj The object to clone
+ * @return {Object} A new object equivalent to the original except for the changed property.
+ * @see R.dissoc
+ * @example
+ *
+ *      R.assoc('c', 3, {a: 1, b: 2}); //=> {a: 1, b: 2, c: 3}
+ */
+module.exports = _curry3(function assoc(prop, val, obj) {
+  var result = {};
+  for (var p in obj) {
+    result[p] = obj[p];
+  }
+  result[prop] = val;
+  return result;
+});
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var curryN = __webpack_require__(14);
+
+/**
+ * Returns a curried equivalent of the provided function. The curried function
+ * has two unusual capabilities. First, its arguments needn't be provided one
+ * at a time. If `f` is a ternary function and `g` is `R.curry(f)`, the
+ * following are equivalent:
+ *
+ *   - `g(1)(2)(3)`
+ *   - `g(1)(2, 3)`
+ *   - `g(1, 2)(3)`
+ *   - `g(1, 2, 3)`
+ *
+ * Secondly, the special placeholder value `R.__` may be used to specify
+ * "gaps", allowing partial application of any combination of arguments,
+ * regardless of their positions. If `g` is as above and `_` is `R.__`, the
+ * following are equivalent:
+ *
+ *   - `g(1, 2, 3)`
+ *   - `g(_, 2, 3)(1)`
+ *   - `g(_, _, 3)(1)(2)`
+ *   - `g(_, _, 3)(1, 2)`
+ *   - `g(_, 2)(1)(3)`
+ *   - `g(_, 2)(1, 3)`
+ *   - `g(_, 2)(_, 3)(1)`
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (* -> a) -> (* -> a)
+ * @param {Function} fn The function to curry.
+ * @return {Function} A new, curried function.
+ * @see R.curryN
+ * @example
+ *
+ *      var addFourNumbers = (a, b, c, d) => a + b + c + d;
+ *
+ *      var curriedAddFourNumbers = R.curry(addFourNumbers);
+ *      var f = curriedAddFourNumbers(1, 2);
+ *      var g = f(3);
+ *      g(4); //=> 10
+ */
+module.exports = _curry1(function curry(fn) {
+  return curryN(fn.length, fn);
+});
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var curry = __webpack_require__(60);
+
+/**
+ * Returns a new function much like the supplied one, except that the first two
+ * arguments' order is reversed.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (a -> b -> c -> ... -> z) -> (b -> a -> c -> ... -> z)
+ * @param {Function} fn The function to invoke with its first two parameters reversed.
+ * @return {*} The result of invoking `fn` with its first two parameters' order reversed.
+ * @example
+ *
+ *      var mergeThree = (a, b, c) => [].concat(a, b, c);
+ *
+ *      mergeThree(1, 2, 3); //=> [1, 2, 3]
+ *
+ *      R.flip(mergeThree)(1, 2, 3); //=> [2, 1, 3]
+ * @symb R.flip(f)(a, b, c) = f(b, a, c)
+ */
+module.exports = _curry1(function flip(fn) {
+  return curry(function (a, b) {
+    var args = Array.prototype.slice.call(arguments, 0);
+    args[0] = b;
+    args[1] = a;
+    return fn.apply(this, args);
+  });
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _isPlaceholder = __webpack_require__(64);
+
+/**
+ * Internal curryN function.
+ *
+ * @private
+ * @category Function
+ * @param {Number} length The arity of the curried function.
+ * @param {Array} received An array of arguments received thus far.
+ * @param {Function} fn The function to curry.
+ * @return {Function} The curried function.
+ */
+module.exports = function _curryN(length, received, fn) {
+  return function () {
+    var combined = [];
+    var argsIdx = 0;
+    var left = length;
+    var combinedIdx = 0;
+    while (combinedIdx < received.length || argsIdx < arguments.length) {
+      var result;
+      if (combinedIdx < received.length && (!_isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)) {
+        result = received[combinedIdx];
+      } else {
+        result = arguments[argsIdx];
+        argsIdx += 1;
+      }
+      combined[combinedIdx] = result;
+      if (!_isPlaceholder(result)) {
+        left -= 1;
+      }
+      combinedIdx += 1;
+    }
+    return left <= 0 ? fn.apply(this, combined) : _arity(left, _curryN(length, combined, fn));
+  };
+};
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _isFunction(x) {
+  return Object.prototype.toString.call(x) === '[object Function]';
+};
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+module.exports = function _isPlaceholder(a) {
+       return a != null && (typeof a === 'undefined' ? 'undefined' : _typeof(a)) === 'object' && a['@@functional/placeholder'] === true;
+};
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _isString(x) {
+  return Object.prototype.toString.call(x) === '[object String]';
+};
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _map(fn, functor) {
+  var idx = 0;
+  var len = functor.length;
+  var result = Array(len);
+  while (idx < len) {
+    result[idx] = fn(functor[idx]);
+    idx += 1;
+  }
+  return result;
+};
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var map = __webpack_require__(16);
+
+/**
+ * Returns a lens for the given getter and setter functions. The getter "gets"
+ * the value of the focus; the setter "sets" the value of the focus. The setter
+ * should not mutate the data structure.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Object
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig (s -> a) -> ((a, s) -> s) -> Lens s a
+ * @param {Function} getter
+ * @param {Function} setter
+ * @return {Lens}
+ * @see R.view, R.set, R.over, R.lensIndex, R.lensProp
+ * @example
+ *
+ *      var xLens = R.lens(R.prop('x'), R.assoc('x'));
+ *
+ *      R.view(xLens, {x: 1, y: 2});            //=> 1
+ *      R.set(xLens, 4, {x: 1, y: 2});          //=> {x: 4, y: 2}
+ *      R.over(xLens, R.negate, {x: 1, y: 2});  //=> {x: -1, y: 2}
+ */
+module.exports = _curry2(function lens(getter, setter) {
+  return function (toFunctorFn) {
+    return function (target) {
+      return map(function (focus) {
+        return setter(focus, target);
+      }, toFunctorFn(getter(target)));
+    };
+  };
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var liftN = __webpack_require__(153);
+
+/**
+ * "lifts" a function of arity > 1 so that it may "map over" a list, Function or other
+ * object that satisfies the [FantasyLand Apply spec](https://github.com/fantasyland/fantasy-land#apply).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category Function
+ * @sig (*... -> *) -> ([*]... -> [*])
+ * @param {Function} fn The function to lift into higher context
+ * @return {Function} The lifted function.
+ * @see R.liftN
+ * @example
+ *
+ *      var madd3 = R.lift((a, b, c) => a + b + c);
+ *
+ *      madd3([1,2,3], [1,2,3], [1]); //=> [3, 4, 5, 4, 5, 6, 5, 6, 7]
+ *
+ *      var madd5 = R.lift((a, b, c, d, e) => a + b + c + d + e);
+ *
+ *      madd5([1,2], [3], [4, 5], [6], [7, 8]); //=> [21, 22, 22, 23, 22, 23, 23, 24]
+ */
+module.exports = _curry1(function lift(fn) {
+  return liftN(fn.length, fn);
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Wraps a function of any arity (including nullary) in a function that accepts
+ * exactly `n` parameters. Any extraneous parameters will not be passed to the
+ * supplied function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig Number -> (* -> a) -> (* -> a)
+ * @param {Number} n The desired arity of the new function.
+ * @param {Function} fn The function to wrap.
+ * @return {Function} A new function wrapping `fn`. The new function is guaranteed to be of
+ *         arity `n`.
+ * @example
+ *
+ *      var takesTwoArgs = (a, b) => [a, b];
+ *
+ *      takesTwoArgs.length; //=> 2
+ *      takesTwoArgs(1, 2); //=> [1, 2]
+ *
+ *      var takesOneArg = R.nAry(1, takesTwoArgs);
+ *      takesOneArg.length; //=> 1
+ *      // Only `n` arguments are passed to the wrapped function
+ *      takesOneArg(1, 2); //=> [1, undefined]
+ * @symb R.nAry(0, f)(a, b) = f()
+ * @symb R.nAry(1, f)(a, b) = f(a)
+ * @symb R.nAry(2, f)(a, b) = f(a, b)
+ */
+module.exports = _curry2(function nAry(n, fn) {
+  switch (n) {
+    case 0:
+      return function () {
+        return fn.call(this);
+      };
+    case 1:
+      return function (a0) {
+        return fn.call(this, a0);
+      };
+    case 2:
+      return function (a0, a1) {
+        return fn.call(this, a0, a1);
+      };
+    case 3:
+      return function (a0, a1, a2) {
+        return fn.call(this, a0, a1, a2);
+      };
+    case 4:
+      return function (a0, a1, a2, a3) {
+        return fn.call(this, a0, a1, a2, a3);
+      };
+    case 5:
+      return function (a0, a1, a2, a3, a4) {
+        return fn.call(this, a0, a1, a2, a3, a4);
+      };
+    case 6:
+      return function (a0, a1, a2, a3, a4, a5) {
+        return fn.call(this, a0, a1, a2, a3, a4, a5);
+      };
+    case 7:
+      return function (a0, a1, a2, a3, a4, a5, a6) {
+        return fn.call(this, a0, a1, a2, a3, a4, a5, a6);
+      };
+    case 8:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
+        return fn.call(this, a0, a1, a2, a3, a4, a5, a6, a7);
+      };
+    case 9:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        return fn.call(this, a0, a1, a2, a3, a4, a5, a6, a7, a8);
+      };
+    case 10:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        return fn.call(this, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+      };
+    default:
+      throw new Error('First argument to nAry must be a non-negative integer no greater than ten');
+  }
+});
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curryN = __webpack_require__(62);
+var _dispatchable = __webpack_require__(10);
+var _has = __webpack_require__(15);
+var _reduce = __webpack_require__(18);
+var _xreduceBy = __webpack_require__(297);
+
+/**
+ * Groups the elements of the list according to the result of calling
+ * the String-returning function `keyFn` on each element and reduces the elements
+ * of each group to a single value via the reducer function `valueFn`.
+ *
+ * This function is basically a more general `groupBy` function.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.20.0
+ * @category List
+ * @sig ((a, b) -> a) -> a -> (b -> String) -> [b] -> {String: a}
+ * @param {Function} valueFn The function that reduces the elements of each group to a single
+ *        value. Receives two values, accumulator for a particular group and the current element.
+ * @param {*} acc The (initial) accumulator value for each group.
+ * @param {Function} keyFn The function that maps the list's element into a key.
+ * @param {Array} list The array to group.
+ * @return {Object} An object with the output of `keyFn` for keys, mapped to the output of
+ *         `valueFn` for elements which produced that key when passed to `keyFn`.
+ * @see R.groupBy, R.reduce
+ * @example
+ *
+ *      var reduceToNamesBy = R.reduceBy((acc, student) => acc.concat(student.name), []);
+ *      var namesByGrade = reduceToNamesBy(function(student) {
+ *        var score = student.score;
+ *        return score < 65 ? 'F' :
+ *               score < 70 ? 'D' :
+ *               score < 80 ? 'C' :
+ *               score < 90 ? 'B' : 'A';
+ *      });
+ *      var students = [{name: 'Lucy', score: 92},
+ *                      {name: 'Drew', score: 85},
+ *                      // ...
+ *                      {name: 'Bart', score: 62}];
+ *      namesByGrade(students);
+ *      // {
+ *      //   'A': ['Lucy'],
+ *      //   'B': ['Drew']
+ *      //   // ...,
+ *      //   'F': ['Bart']
+ *      // }
+ */
+module.exports = _curryN(4, [], _dispatchable([], _xreduceBy, function reduceBy(valueFn, valueAcc, keyFn, list) {
+  return _reduce(function (acc, elt) {
+    var key = keyFn(elt);
+    acc[key] = valueFn(_has(key, acc) ? acc[key] : valueAcc, elt);
+    return acc;
+  }, {}, list);
+}));
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _complement = __webpack_require__(137);
+var _curry2 = __webpack_require__(0);
+var filter = __webpack_require__(84);
+
+/**
+ * The complement of `filter`.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Filterable f => (a -> Boolean) -> f a -> f a
+ * @param {Function} pred
+ * @param {Array} filterable
+ * @return {Array}
+ * @see R.filter, R.transduce, R.addIndex
+ * @example
+ *
+ *      var isOdd = (n) => n % 2 === 1;
+ *
+ *      R.reject(isOdd, [1, 2, 3, 4]); //=> [2, 4]
+ *
+ *      R.reject(isOdd, {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, d: 4}
+ */
+module.exports = _curry2(function reject(pred, filterable) {
+  return filter(_complement(pred), filterable);
+});
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _isString = __webpack_require__(65);
+
+/**
+ * Returns a new list or string with the elements or characters in reverse
+ * order.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [a]
+ * @sig String -> String
+ * @param {Array|String} list
+ * @return {Array|String}
+ * @example
+ *
+ *      R.reverse([1, 2, 3]);  //=> [3, 2, 1]
+ *      R.reverse([1, 2]);     //=> [2, 1]
+ *      R.reverse([1]);        //=> [1]
+ *      R.reverse([]);         //=> []
+ *
+ *      R.reverse('abc');      //=> 'cba'
+ *      R.reverse('ab');       //=> 'ba'
+ *      R.reverse('a');        //=> 'a'
+ *      R.reverse('');         //=> ''
+ */
+module.exports = _curry1(function reverse(list) {
+  return _isString(list) ? list.split('').reverse().join('') : Array.prototype.slice.call(list, 0).reverse();
+});
+
+/***/ }),
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3453,9 +5405,9 @@ module.exports = SyntheticUIEvent;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Injectable ordering of event plugins.
@@ -3694,10 +5646,10 @@ var EventPluginRegistry = {
 };
 
 module.exports = EventPluginRegistry;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 26 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3713,14 +5665,14 @@ module.exports = EventPluginRegistry;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var EventPluginRegistry = __webpack_require__(25);
-var ReactEventEmitterMixin = __webpack_require__(128);
-var ViewportMetrics = __webpack_require__(68);
+var EventPluginRegistry = __webpack_require__(73);
+var ReactEventEmitterMixin = __webpack_require__(450);
+var ViewportMetrics = __webpack_require__(190);
 
-var getVendorPrefixedEventName = __webpack_require__(164);
-var isEventSupported = __webpack_require__(44);
+var getVendorPrefixedEventName = __webpack_require__(486);
+var isEventSupported = __webpack_require__(108);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -4030,7 +5982,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 27 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4046,10 +5998,10 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
-var ViewportMetrics = __webpack_require__(68);
+var SyntheticUIEvent = __webpack_require__(55);
+var ViewportMetrics = __webpack_require__(190);
 
-var getEventModifierState = __webpack_require__(42);
+var getEventModifierState = __webpack_require__(106);
 
 /**
  * @interface MouseEvent
@@ -4107,7 +6059,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 28 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4124,9 +6076,9 @@ module.exports = SyntheticMouseEvent;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 var OBSERVED_ERROR = {};
 
@@ -4335,10 +6287,10 @@ var TransactionImpl = {
 };
 
 module.exports = TransactionImpl;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 29 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4466,7 +6418,7 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 30 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4482,13 +6434,13 @@ module.exports = escapeTextContentForBrowser;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
-var DOMNamespaces = __webpack_require__(33);
+var ExecutionEnvironment = __webpack_require__(13);
+var DOMNamespaces = __webpack_require__(97);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(40);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(104);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -4569,7 +6521,512 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 31 */
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(431);
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry2 = __webpack_require__(0);
+var _reduce = __webpack_require__(18);
+var map = __webpack_require__(16);
+
+/**
+ * ap applies a list of functions to a list of values.
+ *
+ * Dispatches to the `ap` method of the second argument, if present. Also
+ * treats curried functions as applicatives.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category Function
+ * @sig [a -> b] -> [a] -> [b]
+ * @sig Apply f => f (a -> b) -> f a -> f b
+ * @param {Array} fns An array of functions
+ * @param {Array} vs An array of values
+ * @return {Array} An array of results of applying each of `fns` to all of `vs` in turn.
+ * @example
+ *
+ *      R.ap([R.multiply(2), R.add(3)], [1,2,3]); //=> [2, 4, 6, 4, 5, 6]
+ *      R.ap([R.concat('tasty '), R.toUpper], ['pizza', 'salad']); //=> ["tasty pizza", "tasty salad", "PIZZA", "SALAD"]
+ * @symb R.ap([f, g], [a, b]) = [f(a), f(b), g(a), g(b)]
+ */
+module.exports = _curry2(function ap(applicative, fn) {
+  return typeof applicative.ap === 'function' ? applicative.ap(fn) : typeof applicative === 'function' ? function (x) {
+    return applicative(x)(fn(x));
+  } :
+  // else
+  _reduce(function (acc, f) {
+    return _concat(acc, map(f, fn));
+  }, [], applicative);
+});
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _makeFlat = __webpack_require__(145);
+var _xchain = __webpack_require__(286);
+var map = __webpack_require__(16);
+
+/**
+ * `chain` maps a function over a list and concatenates the results. `chain`
+ * is also known as `flatMap` in some libraries
+ *
+ * Dispatches to the `chain` method of the second argument, if present,
+ * according to the [FantasyLand Chain spec](https://github.com/fantasyland/fantasy-land#chain).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category List
+ * @sig Chain m => (a -> m b) -> m a -> m b
+ * @param {Function} fn The function to map with
+ * @param {Array} list The list to map over
+ * @return {Array} The result of flat-mapping `list` with `fn`
+ * @example
+ *
+ *      var duplicate = n => [n, n];
+ *      R.chain(duplicate, [1, 2, 3]); //=> [1, 1, 2, 2, 3, 3]
+ *
+ *      R.chain(R.append, R.head)([1, 2, 3]); //=> [1, 2, 3, 1]
+ */
+module.exports = _curry2(_dispatchable(['chain'], _xchain, function chain(fn, monad) {
+  if (typeof monad === 'function') {
+    return function (x) {
+      return fn(monad(x))(x);
+    };
+  }
+  return _makeFlat(false)(map(fn, monad));
+}));
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var pipe = __webpack_require__(162);
+var reverse = __webpack_require__(72);
+
+/**
+ * Performs right-to-left function composition. The rightmost function may have
+ * any arity; the remaining functions must be unary.
+ *
+ * **Note:** The result of compose is not automatically curried.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig ((y -> z), (x -> y), ..., (o -> p), ((a, b, ..., n) -> o)) -> ((a, b, ..., n) -> z)
+ * @param {...Function} ...functions The functions to compose
+ * @return {Function}
+ * @see R.pipe
+ * @example
+ *
+ *      var classyGreeting = (firstName, lastName) => "The name's " + lastName + ", " + firstName + " " + lastName
+ *      var yellGreeting = R.compose(R.toUpper, classyGreeting);
+ *      yellGreeting('James', 'Bond'); //=> "THE NAME'S BOND, JAMES BOND"
+ *
+ *      R.compose(Math.abs, R.add(1), R.multiply(2))(-4) //=> 7
+ *
+ * @symb R.compose(f, g, h)(a, b) = f(g(h(a, b)))
+ */
+module.exports = function compose() {
+  if (arguments.length === 0) {
+    throw new Error('compose requires at least one argument');
+  }
+  return pipe.apply(this, reverse(arguments));
+};
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isArray = __webpack_require__(29);
+var _isFunction = __webpack_require__(63);
+var toString = __webpack_require__(50);
+
+/**
+ * Returns the result of concatenating the given lists or strings.
+ *
+ * Note: `R.concat` expects both arguments to be of the same type,
+ * unlike the native `Array.prototype.concat` method. It will throw
+ * an error if you `concat` an Array with a non-Array value.
+ *
+ * Dispatches to the `concat` method of the first argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [a] -> [a]
+ * @sig String -> String -> String
+ * @param {Array|String} firstList The first list
+ * @param {Array|String} secondList The second list
+ * @return {Array|String} A list consisting of the elements of `firstList` followed by the elements of
+ * `secondList`.
+ *
+ * @example
+ *
+ *      R.concat('ABC', 'DEF'); // 'ABCDEF'
+ *      R.concat([4, 5, 6], [1, 2, 3]); //=> [4, 5, 6, 1, 2, 3]
+ *      R.concat([], []); //=> []
+ */
+module.exports = _curry2(function concat(a, b) {
+  if (a == null || !_isFunction(a.concat)) {
+    throw new TypeError(toString(a) + ' does not have a method named "concat"');
+  }
+  if (_isArray(a) && !_isArray(b)) {
+    throw new TypeError(toString(b) + ' is not an array');
+  }
+  return a.concat(b);
+});
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _filter = __webpack_require__(139);
+var _isObject = __webpack_require__(144);
+var _reduce = __webpack_require__(18);
+var _xfilter = __webpack_require__(291);
+var keys = __webpack_require__(24);
+
+/**
+ * Takes a predicate and a "filterable", and returns a new filterable of the
+ * same type containing the members of the given filterable which satisfy the
+ * given predicate.
+ *
+ * Dispatches to the `filter` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Filterable f => (a -> Boolean) -> f a -> f a
+ * @param {Function} pred
+ * @param {Array} filterable
+ * @return {Array}
+ * @see R.reject, R.transduce, R.addIndex
+ * @example
+ *
+ *      var isEven = n => n % 2 === 0;
+ *
+ *      R.filter(isEven, [1, 2, 3, 4]); //=> [2, 4]
+ *
+ *      R.filter(isEven, {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, d: 4}
+ */
+module.exports = _curry2(_dispatchable(['filter'], _xfilter, function (pred, filterable) {
+  return _isObject(filterable) ? _reduce(function (acc, key) {
+    if (pred(filterable[key])) {
+      acc[key] = filterable[key];
+    }
+    return acc;
+  }, {}, keys(filterable)) :
+  // else
+  _filter(pred, filterable);
+}));
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _identity = __webpack_require__(88);
+
+/**
+ * A function that does nothing but return the parameter supplied to it. Good
+ * as a default or placeholder function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig a -> a
+ * @param {*} x The value to return.
+ * @return {*} The input value, `x`.
+ * @example
+ *
+ *      R.identity(1); //=> 1
+ *
+ *      var obj = {};
+ *      R.identity(obj) === obj; //=> true
+ * @symb R.identity(a) = a
+ */
+module.exports = _curry1(_identity);
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _objectAssign = __webpack_require__(276);
+
+module.exports = typeof Object.assign === 'function' ? Object.assign : _objectAssign;
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _containsWith(pred, x, list) {
+  var idx = 0;
+  var len = list.length;
+
+  while (idx < len) {
+    if (pred(x, list[idx])) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+};
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _identity(x) {
+  return x;
+};
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _isTransformer(obj) {
+  return typeof obj['@@transducer/step'] === 'function';
+};
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a function that when supplied an object returns the indicated
+ * property of that object, if it exists.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig s -> {s: a} -> a | Undefined
+ * @param {String} p The property name
+ * @param {Object} obj The object to query
+ * @return {*} The value at `obj.p`.
+ * @see R.path
+ * @example
+ *
+ *      R.prop('x', {x: 100}); //=> 100
+ *      R.prop('x', {}); //=> undefined
+ */
+module.exports = _curry2(function prop(p, obj) {
+  return obj[p];
+});
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _checkForMethod = __webpack_require__(44);
+var _curry1 = __webpack_require__(2);
+var slice = __webpack_require__(34);
+
+/**
+ * Returns all but the first element of the given list or string (or object
+ * with a `tail` method).
+ *
+ * Dispatches to the `slice` method of the first argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [a]
+ * @sig String -> String
+ * @param {*} list
+ * @return {*}
+ * @see R.head, R.init, R.last
+ * @example
+ *
+ *      R.tail([1, 2, 3]);  //=> [2, 3]
+ *      R.tail([1, 2]);     //=> [2]
+ *      R.tail([1]);        //=> []
+ *      R.tail([]);         //=> []
+ *
+ *      R.tail('abc');  //=> 'bc'
+ *      R.tail('ab');   //=> 'b'
+ *      R.tail('a');    //=> ''
+ *      R.tail('');     //=> ''
+ */
+module.exports = _curry1(_checkForMethod('tail', slice(1, Infinity)));
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Gives a single-word string description of the (native) type of a value,
+ * returning such answers as 'Object', 'Number', 'Array', or 'Null'. Does not
+ * attempt to distinguish user Object types any further, reporting them all as
+ * 'Object'.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Type
+ * @sig (* -> {*}) -> String
+ * @param {*} val The value to test
+ * @return {String}
+ * @example
+ *
+ *      R.type({}); //=> "Object"
+ *      R.type(1); //=> "Number"
+ *      R.type(false); //=> "Boolean"
+ *      R.type('s'); //=> "String"
+ *      R.type(null); //=> "Null"
+ *      R.type([]); //=> "Array"
+ *      R.type(/[A-z]/); //=> "RegExp"
+ */
+module.exports = _curry1(function type(val) {
+  return val === null ? 'Null' : val === undefined ? 'Undefined' : Object.prototype.toString.call(val).slice(8, -1);
+});
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var identity = __webpack_require__(85);
+var uniqBy = __webpack_require__(170);
+
+/**
+ * Returns a new list containing only one copy of each element in the original
+ * list. `R.equals` is used to determine equality.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [a]
+ * @param {Array} list The array to consider.
+ * @return {Array} The list of unique items.
+ * @example
+ *
+ *      R.uniq([1, 1, 2, 1]); //=> [1, 2]
+ *      R.uniq([1, '1']);     //=> [1, '1']
+ *      R.uniq([[42], [42]]); //=> [[42]]
+ */
+module.exports = uniqBy(identity);
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _containsWith = __webpack_require__(87);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a new list containing only one copy of each element in the original
+ * list, based upon the value returned by applying the supplied predicate to
+ * two list elements. Prefers the first item if two items compare equal based
+ * on the predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category List
+ * @sig (a, a -> Boolean) -> [a] -> [a]
+ * @param {Function} pred A predicate used to test whether two items are equal.
+ * @param {Array} list The array to consider.
+ * @return {Array} The list of unique items.
+ * @example
+ *
+ *      var strEq = R.eqBy(String);
+ *      R.uniqWith(strEq)([1, '1', 2, 1]); //=> [1, 2]
+ *      R.uniqWith(strEq)([{}, {}]);       //=> [{}]
+ *      R.uniqWith(strEq)([1, '1', 1]);    //=> [1]
+ *      R.uniqWith(strEq)(['1', 1, 1]);    //=> ['1']
+ */
+module.exports = _curry2(function uniqWith(pred, list) {
+  var idx = 0;
+  var len = list.length;
+  var result = [];
+  var item;
+  while (idx < len) {
+    item = list[idx];
+    if (!_containsWith(pred, item, result)) {
+      result[result.length] = item;
+    }
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4642,7 +7099,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 32 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4658,14 +7115,14 @@ module.exports = shallowEqual;
 
 
 
-var DOMLazyTree = __webpack_require__(17);
-var Danger = __webpack_require__(101);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstrumentation = __webpack_require__(8);
+var DOMLazyTree = __webpack_require__(40);
+var Danger = __webpack_require__(423);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactInstrumentation = __webpack_require__(19);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(40);
-var setInnerHTML = __webpack_require__(30);
-var setTextContent = __webpack_require__(75);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(104);
+var setInnerHTML = __webpack_require__(78);
+var setTextContent = __webpack_require__(197);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -4870,10 +7327,10 @@ var DOMChildrenOperations = {
 };
 
 module.exports = DOMChildrenOperations;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 33 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4898,7 +7355,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 34 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4914,12 +7371,12 @@ module.exports = DOMNamespaces;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var ReactErrorUtils = __webpack_require__(38);
+var ReactErrorUtils = __webpack_require__(102);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 /**
  * Injected dependencies:
@@ -5127,10 +7584,10 @@ var EventPluginUtils = {
 };
 
 module.exports = EventPluginUtils;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 35 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5194,7 +7651,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 36 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5210,13 +7667,13 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var React = __webpack_require__(19);
-var ReactPropTypesSecret = __webpack_require__(67);
+var React = __webpack_require__(43);
+var ReactPropTypesSecret = __webpack_require__(189);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 var hasReadOnlyValue = {
   'button': true,
@@ -5332,10 +7789,10 @@ var LinkedValueUtils = {
 };
 
 module.exports = LinkedValueUtils;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 37 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5352,9 +7809,9 @@ module.exports = LinkedValueUtils;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 var injected = false;
 
@@ -5384,10 +7841,10 @@ var ReactComponentEnvironment = {
 };
 
 module.exports = ReactComponentEnvironment;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 38 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5467,10 +7924,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = ReactErrorUtils;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 39 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5486,15 +7943,15 @@ module.exports = ReactErrorUtils;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactInstanceMap = __webpack_require__(23);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactUpdates = __webpack_require__(10);
+var ReactCurrentOwner = __webpack_require__(27);
+var ReactInstanceMap = __webpack_require__(54);
+var ReactInstrumentation = __webpack_require__(19);
+var ReactUpdates = __webpack_require__(26);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 function enqueueUpdate(internalInstance) {
   ReactUpdates.enqueueUpdate(internalInstance);
@@ -5699,10 +8156,10 @@ var ReactUpdateQueue = {
 };
 
 module.exports = ReactUpdateQueue;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 40 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5739,7 +8196,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 41 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5794,7 +8251,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 42 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5842,7 +8299,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 43 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5882,7 +8339,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 44 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5898,7 +8355,7 @@ module.exports = getEventTarget;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
 var useHasFeature;
 if (ExecutionEnvironment.canUseDOM) {
@@ -5947,7 +8404,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 45 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5994,7 +8451,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 46 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6010,10 +8467,10 @@ module.exports = shouldUpdateReactComponent;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var emptyFunction = __webpack_require__(9);
-var warning = __webpack_require__(2);
+var emptyFunction = __webpack_require__(21);
+var warning = __webpack_require__(6);
 
 var validateDOMNesting = emptyFunction;
 
@@ -6379,10 +8836,245 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = validateDOMNesting;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 47 */
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _constants = __webpack_require__(42);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+var _idgen = __webpack_require__(57);
+
+var _idgen2 = _interopRequireDefault(_idgen);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Button = function (_Component) {
+  _inherits(Button, _Component);
+
+  function Button(props) {
+    _classCallCheck(this, Button);
+
+    var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));
+
+    _this.renderIcon = _this.renderIcon.bind(_this);
+    _this.renderFab = _this.renderFab.bind(_this);
+    return _this;
+  }
+
+  _createClass(Button, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          className = _props.className,
+          node = _props.node,
+          fab = _props.fab,
+          fabClickOnly = _props.fabClickOnly,
+          modal = _props.modal,
+          flat = _props.flat,
+          floating = _props.floating,
+          large = _props.large,
+          disabled = _props.disabled,
+          waves = _props.waves,
+          other = _objectWithoutProperties(_props, ['className', 'node', 'fab', 'fabClickOnly', 'modal', 'flat', 'floating', 'large', 'disabled', 'waves']);
+
+      var toggle = fabClickOnly ? 'click-to-toggle' : '';
+      var C = node;
+      var classes = {
+        btn: true,
+        disabled: disabled,
+        'waves-effect': waves
+      };
+
+      if (_constants2.default.WAVES.indexOf(waves) > -1) {
+        classes['waves-' + waves] = true;
+      }
+
+      var styles = { flat: flat, floating: floating, large: large };
+      _constants2.default.STYLES.forEach(function (style) {
+        classes['btn-' + style] = styles[style];
+      });
+
+      if (modal) {
+        classes['modal-action'] = true;
+        classes['modal-' + modal] = true;
+      }
+      if (fab) {
+        return this.renderFab((0, _classnames2.default)(classes, className), fab, toggle);
+      } else {
+        return _react2.default.createElement(
+          C,
+          _extends({}, other, {
+            disabled: !!disabled,
+            onClick: this.props.onClick,
+            className: (0, _classnames2.default)(classes, className)
+          }),
+          this.renderIcon(),
+          this.props.children
+        );
+      }
+    }
+  }, {
+    key: 'renderFab',
+    value: function renderFab(className, orientation, clickOnly) {
+      var classes = (0, _classnames2.default)(orientation, clickOnly);
+      return _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)('fixed-action-btn', classes) },
+        _react2.default.createElement(
+          'a',
+          { className: className },
+          this.renderIcon()
+        ),
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.Children.map(this.props.children, function (child) {
+            return _react2.default.createElement(
+              'li',
+              { key: (0, _idgen2.default)() },
+              child
+            );
+          })
+        )
+      );
+    }
+  }, {
+    key: 'renderIcon',
+    value: function renderIcon() {
+      var icon = this.props.icon;
+
+      if (!icon) return;
+
+      return _react2.default.createElement(
+        _Icon2.default,
+        null,
+        icon
+      );
+    }
+  }]);
+
+  return Button;
+}(_react.Component);
+
+Button.propTypes = {
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  disabled: _react.PropTypes.bool,
+  /**
+   * Enable other styles
+   */
+  flat: _react.PropTypes.bool,
+  large: _react.PropTypes.bool,
+  floating: _react.PropTypes.bool,
+  /**
+   * Fixed action button
+   * If enabled, any children button will be rendered as actions, remember to provide an icon.
+   * @default vertical
+   */
+  fab: _react.PropTypes.oneOf(['vertical', 'horizontal']),
+  /**
+   * The icon to display, if specified it will create a button with the material icon
+   */
+  icon: _react.PropTypes.string,
+  modal: _react.PropTypes.oneOf(['close', 'confirm']),
+  node: _react.PropTypes.node,
+  /**
+   * Tooltip to show when mouse hovered
+   */
+  onClick: _react.PropTypes.func,
+  tooltip: _react.PropTypes.string,
+  waves: _react.PropTypes.oneOf(_constants2.default.WAVES),
+  /**
+   * FAB Click-Only
+   * Turns a FAB from a hover-toggle to a click-toggle
+   */
+  fabClickOnly: _react.PropTypes.bool
+};
+
+Button.defaultProps = {
+  node: 'button'
+};
+
+exports.default = Button;
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Row = function Row(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      _ref$node = _ref.node,
+      Node = _ref$node === undefined ? 'div' : _ref$node;
+  return _react2.default.createElement(
+    Node,
+    { className: (0, _classnames2.default)('row', className) },
+    children
+  );
+};
+
+Row.propTypes = {
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  node: _react.PropTypes.node
+};
+
+exports.default = Row;
+
+/***/ }),
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6398,14 +9090,14 @@ module.exports = validateDOMNesting;
 
 
 
-var _prodInvariant = __webpack_require__(16);
+var _prodInvariant = __webpack_require__(37);
 
-var ReactNoopUpdateQueue = __webpack_require__(48);
+var ReactNoopUpdateQueue = __webpack_require__(114);
 
-var canDefineProperty = __webpack_require__(50);
-var emptyObject = __webpack_require__(20);
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var canDefineProperty = __webpack_require__(116);
+var emptyObject = __webpack_require__(51);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -6503,10 +9195,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = ReactComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 48 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6522,7 +9214,7 @@ module.exports = ReactComponent;
 
 
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 function warnNoop(publicInstance, callerName) {
   if (process.env.NODE_ENV !== 'production') {
@@ -6605,10 +9297,10 @@ var ReactNoopUpdateQueue = {
 };
 
 module.exports = ReactNoopUpdateQueue;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 49 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6636,10 +9328,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = ReactPropTypeLocationNames;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 50 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6668,10 +9360,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = canDefineProperty;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 51 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6717,17 +9409,2194 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 52 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(19);
+var _concat = __webpack_require__(20);
+var _curry3 = __webpack_require__(4);
 
+/**
+ * Applies a function to the value at the given index of an array, returning a
+ * new copy of the array with the element at the given index replaced with the
+ * result of the function application.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category List
+ * @sig (a -> a) -> Number -> [a] -> [a]
+ * @param {Function} fn The function to apply.
+ * @param {Number} idx The index.
+ * @param {Array|Arguments} list An array-like object whose value
+ *        at the supplied index will be replaced.
+ * @return {Array} A copy of the supplied array-like object with
+ *         the element at index `idx` replaced with the value
+ *         returned by applying `fn` to the existing element.
+ * @see R.update
+ * @example
+ *
+ *      R.adjust(R.add(10), 1, [1, 2, 3]);     //=> [1, 12, 3]
+ *      R.adjust(R.add(10))(1)([1, 2, 3]);     //=> [1, 12, 3]
+ * @symb R.adjust(f, -1, [a, b]) = [a, f(b)]
+ * @symb R.adjust(f, 0, [a, b]) = [f(a), b]
+ */
+module.exports = _curry3(function adjust(fn, idx, list) {
+  if (idx >= list.length || idx < -list.length) {
+    return list;
+  }
+  var start = idx < 0 ? list.length : 0;
+  var _idx = start + idx;
+  var _list = _concat(list);
+  _list[_idx] = fn(list[_idx]);
+  return _list;
+});
 
 /***/ }),
-/* 53 */
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if both arguments are `true`; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Logic
+ * @sig a -> b -> a | b
+ * @param {Any} a
+ * @param {Any} b
+ * @return {Any} the first argument if it is falsy, otherwise the second argument.
+ * @see R.both
+ * @example
+ *
+ *      R.and(true, true); //=> true
+ *      R.and(true, false); //=> false
+ *      R.and(false, true); //=> false
+ *      R.and(false, false); //=> false
+ */
+module.exports = _curry2(function and(a, b) {
+  return a && b;
+});
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xany = __webpack_require__(146);
+
+/**
+ * Returns `true` if at least one of elements of the list match the predicate,
+ * `false` otherwise.
+ *
+ * Dispatches to the `any` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> Boolean
+ * @param {Function} fn The predicate function.
+ * @param {Array} list The array to consider.
+ * @return {Boolean} `true` if the predicate is satisfied by at least one element, `false`
+ *         otherwise.
+ * @see R.all, R.none, R.transduce
+ * @example
+ *
+ *      var lessThan0 = R.flip(R.lt)(0);
+ *      var lessThan2 = R.flip(R.lt)(2);
+ *      R.any(lessThan0)([1, 2]); //=> false
+ *      R.any(lessThan2)([1, 2]); //=> true
+ */
+module.exports = _curry2(_dispatchable(['any'], _xany, function any(fn, list) {
+  var idx = 0;
+  while (idx < list.length) {
+    if (fn(list[idx])) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+}));
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Applies function `fn` to the argument list `args`. This is useful for
+ * creating a fixed-arity function from a variadic function. `fn` should be a
+ * bound function if context is significant.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category Function
+ * @sig (*... -> a) -> [*] -> a
+ * @param {Function} fn The function which will be called with `args`
+ * @param {Array} args The arguments to call `fn` with
+ * @return {*} result The result, equivalent to `fn(...args)`
+ * @see R.call, R.unapply
+ * @example
+ *
+ *      var nums = [1, 2, 3, -99, 42, 6, 7];
+ *      R.apply(Math.max, nums); //=> 42
+ * @symb R.apply(f, [a, b, c]) = f(a, b, c)
+ */
+module.exports = _curry2(function apply(fn, args) {
+  return fn.apply(this, args);
+});
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var _has = __webpack_require__(15);
+var _isArray = __webpack_require__(29);
+var _isInteger = __webpack_require__(142);
+var assoc = __webpack_require__(59);
+
+/**
+ * Makes a shallow clone of an object, setting or overriding the nodes required
+ * to create the given path, and placing the specific value at the tail end of
+ * that path. Note that this copies and flattens prototype properties onto the
+ * new object as well. All non-primitive properties are copied by reference.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Object
+ * @typedefn Idx = String | Int
+ * @sig [Idx] -> a -> {a} -> {a}
+ * @param {Array} path the path to set
+ * @param {*} val The new value
+ * @param {Object} obj The object to clone
+ * @return {Object} A new object equivalent to the original except along the specified path.
+ * @see R.dissocPath
+ * @example
+ *
+ *      R.assocPath(['a', 'b', 'c'], 42, {a: {b: {c: 0}}}); //=> {a: {b: {c: 42}}}
+ *
+ *      // Any missing or non-object keys in path will be overridden
+ *      R.assocPath(['a', 'b', 'c'], 42, {a: 5}); //=> {a: {b: {c: 42}}}
+ */
+module.exports = _curry3(function assocPath(path, val, obj) {
+  if (path.length === 0) {
+    return val;
+  }
+  var idx = path[0];
+  if (path.length > 1) {
+    var nextObj = _has(idx, obj) ? obj[idx] : _isInteger(path[1]) ? [] : {};
+    val = assocPath(Array.prototype.slice.call(path, 1), val, nextObj);
+  }
+  if (_isInteger(idx) && _isArray(obj)) {
+    var arr = [].concat(obj);
+    arr[idx] = val;
+    return arr;
+  } else {
+    return assoc(idx, val, obj);
+  }
+});
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates a function that is bound to a context.
+ * Note: `R.bind` does not provide the additional argument-binding capabilities of
+ * [Function.prototype.bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category Function
+ * @category Object
+ * @sig (* -> *) -> {*} -> (* -> *)
+ * @param {Function} fn The function to bind to context
+ * @param {Object} thisObj The context to bind `fn` to
+ * @return {Function} A function that will execute in the context of `thisObj`.
+ * @see R.partial
+ * @example
+ *
+ *      var log = R.bind(console.log, console);
+ *      R.pipe(R.assoc('a', 2), R.tap(log), R.assoc('a', 3))({a: 1}); //=> {a: 3}
+ *      // logs {a: 2}
+ * @symb R.bind(f, o)(a, b) = f.call(o, a, b)
+ */
+module.exports = _curry2(function bind(fn, thisObj) {
+  return _arity(fn.length, function () {
+    return fn.apply(thisObj, arguments);
+  });
+});
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var chain = __webpack_require__(81);
+var compose = __webpack_require__(82);
+var map = __webpack_require__(16);
+
+/**
+ * Returns the right-to-left Kleisli composition of the provided functions,
+ * each of which must return a value of a type supported by [`chain`](#chain).
+ *
+ * `R.composeK(h, g, f)` is equivalent to `R.compose(R.chain(h), R.chain(g), R.chain(f))`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Function
+ * @sig Chain m => ((y -> m z), (x -> m y), ..., (a -> m b)) -> (a -> m z)
+ * @param {...Function} ...functions The functions to compose
+ * @return {Function}
+ * @see R.pipeK
+ * @example
+ *
+ *       //  get :: String -> Object -> Maybe *
+ *       var get = R.curry((propName, obj) => Maybe(obj[propName]))
+ *
+ *       //  getStateCode :: Maybe String -> Maybe String
+ *       var getStateCode = R.composeK(
+ *         R.compose(Maybe.of, R.toUpper),
+ *         get('state'),
+ *         get('address'),
+ *         get('user'),
+ *       );
+ *       getStateCode({"user":{"address":{"state":"ny"}}}); //=> Maybe.Just("NY")
+ *       getStateCode({}); //=> Maybe.Nothing()
+ * @symb R.composeK(f, g, h)(a) = R.chain(f, R.chain(g, h(a)))
+ */
+module.exports = function composeK() {
+  if (arguments.length === 0) {
+    throw new Error('composeK requires at least one argument');
+  }
+  var init = Array.prototype.slice.call(arguments);
+  var last = init.pop();
+  return compose(compose.apply(this, map(chain, init)), last);
+};
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var curry = __webpack_require__(60);
+var nAry = __webpack_require__(69);
+
+/**
+ * Wraps a constructor function inside a curried function that can be called
+ * with the same arguments and returns the same type. The arity of the function
+ * returned is specified to allow using variadic constructor functions.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.4.0
+ * @category Function
+ * @sig Number -> (* -> {*}) -> (* -> {*})
+ * @param {Number} n The arity of the constructor function.
+ * @param {Function} Fn The constructor function to wrap.
+ * @return {Function} A wrapped, curried constructor function.
+ * @example
+ *
+ *      // Variadic Constructor function
+ *      function Salad() {
+ *        this.ingredients = arguments;
+ *      };
+ *      Salad.prototype.recipe = function() {
+ *        var instructions = R.map((ingredient) => (
+ *          'Add a whollop of ' + ingredient, this.ingredients)
+ *        )
+ *        return R.join('\n', instructions)
+ *      }
+ *
+ *      var ThreeLayerSalad = R.constructN(3, Salad)
+ *
+ *      // Notice we no longer need the 'new' keyword, and the constructor is curried for 3 arguments.
+ *      var salad = ThreeLayerSalad('Mayonnaise')('Potato Chips')('Ketchup')
+ *      console.log(salad.recipe());
+ *      // Add a whollop of Mayonnaise
+ *      // Add a whollop of Potato Chips
+ *      // Add a whollop of Potato Ketchup
+ */
+module.exports = _curry2(function constructN(n, Fn) {
+  if (n > 10) {
+    throw new Error('Constructor with greater than ten arguments');
+  }
+  if (n === 0) {
+    return function () {
+      return new Fn();
+    };
+  }
+  return curry(nAry(n, function ($0, $1, $2, $3, $4, $5, $6, $7, $8, $9) {
+    switch (arguments.length) {
+      case 1:
+        return new Fn($0);
+      case 2:
+        return new Fn($0, $1);
+      case 3:
+        return new Fn($0, $1, $2);
+      case 4:
+        return new Fn($0, $1, $2, $3);
+      case 5:
+        return new Fn($0, $1, $2, $3, $4);
+      case 6:
+        return new Fn($0, $1, $2, $3, $4, $5);
+      case 7:
+        return new Fn($0, $1, $2, $3, $4, $5, $6);
+      case 8:
+        return new Fn($0, $1, $2, $3, $4, $5, $6, $7);
+      case 9:
+        return new Fn($0, $1, $2, $3, $4, $5, $6, $7, $8);
+      case 10:
+        return new Fn($0, $1, $2, $3, $4, $5, $6, $7, $8, $9);
+    }
+  }));
+});
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _map = __webpack_require__(66);
+var curryN = __webpack_require__(14);
+var max = __webpack_require__(39);
+var pluck = __webpack_require__(49);
+var reduce = __webpack_require__(25);
+
+/**
+ * Accepts a converging function and a list of branching functions and returns
+ * a new function. When invoked, this new function is applied to some
+ * arguments, each branching function is applied to those same arguments. The
+ * results of each branching function are passed as arguments to the converging
+ * function to produce the return value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.4.2
+ * @category Function
+ * @sig (x1 -> x2 -> ... -> z) -> [(a -> b -> ... -> x1), (a -> b -> ... -> x2), ...] -> (a -> b -> ... -> z)
+ * @param {Function} after A function. `after` will be invoked with the return values of
+ *        `fn1` and `fn2` as its arguments.
+ * @param {Array} functions A list of functions.
+ * @return {Function} A new function.
+ * @see R.useWith
+ * @example
+ *
+ *      var average = R.converge(R.divide, [R.sum, R.length])
+ *      average([1, 2, 3, 4, 5, 6, 7]) //=> 4
+ *
+ *      var strangeConcat = R.converge(R.concat, [R.toUpper, R.toLower])
+ *      strangeConcat("Yodel") //=> "YODELyodel"
+ *
+ * @symb R.converge(f, [g, h])(a, b) = f(g(a, b), h(a, b))
+ */
+module.exports = _curry2(function converge(after, fns) {
+  return curryN(reduce(max, 0, pluck('length', fns)), function () {
+    var args = arguments;
+    var context = this;
+    return after.apply(context, _map(function (fn) {
+      return fn.apply(context, args);
+    }, fns));
+  });
+});
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns the second argument if it is not `null`, `undefined` or `NaN`
+ * otherwise the first argument is returned.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Logic
+ * @sig a -> b -> a | b
+ * @param {a} default The default value.
+ * @param {b} val `val` will be returned instead of `default` unless `val` is `null`, `undefined` or `NaN`.
+ * @return {*} The second value if it is not `null`, `undefined` or `NaN`, otherwise the default value
+ * @example
+ *
+ *      var defaultTo42 = R.defaultTo(42);
+ *
+ *      defaultTo42(null);  //=> 42
+ *      defaultTo42(undefined);  //=> 42
+ *      defaultTo42('Ramda');  //=> 'Ramda'
+ *      // parseInt('string') results in NaN
+ *      defaultTo42(parseInt('string')); //=> 42
+ */
+module.exports = _curry2(function defaultTo(d, v) {
+  return v == null || v !== v ? d : v;
+});
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _contains = __webpack_require__(33);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Finds the set (i.e. no duplicates) of all elements in the first list not
+ * contained in the second list. Objects and Arrays are compared are compared
+ * in terms of value equality, not reference equality.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig [*] -> [*] -> [*]
+ * @param {Array} list1 The first list.
+ * @param {Array} list2 The second list.
+ * @return {Array} The elements in `list1` that are not in `list2`.
+ * @see R.differenceWith, R.symmetricDifference, R.symmetricDifferenceWith
+ * @example
+ *
+ *      R.difference([1,2,3,4], [7,6,5,4,3]); //=> [1,2]
+ *      R.difference([7,6,5,4,3], [1,2,3,4]); //=> [7,6,5]
+ *      R.difference([{a: 1}, {b: 2}], [{a: 1}, {c: 3}]) //=> [{b: 2}]
+ */
+module.exports = _curry2(function difference(first, second) {
+  var out = [];
+  var idx = 0;
+  var firstLen = first.length;
+  while (idx < firstLen) {
+    if (!_contains(first[idx], second) && !_contains(first[idx], out)) {
+      out[out.length] = first[idx];
+    }
+    idx += 1;
+  }
+  return out;
+});
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _containsWith = __webpack_require__(87);
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Finds the set (i.e. no duplicates) of all elements in the first list not
+ * contained in the second list. Duplication is determined according to the
+ * value returned by applying the supplied predicate to two list elements.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig ((a, a) -> Boolean) -> [a] -> [a] -> [a]
+ * @param {Function} pred A predicate used to test whether two items are equal.
+ * @param {Array} list1 The first list.
+ * @param {Array} list2 The second list.
+ * @return {Array} The elements in `list1` that are not in `list2`.
+ * @see R.difference, R.symmetricDifference, R.symmetricDifferenceWith
+ * @example
+ *
+ *      var cmp = (x, y) => x.a === y.a;
+ *      var l1 = [{a: 1}, {a: 2}, {a: 3}];
+ *      var l2 = [{a: 3}, {a: 4}];
+ *      R.differenceWith(cmp, l1, l2); //=> [{a: 1}, {a: 2}]
+ */
+module.exports = _curry3(function differenceWith(pred, first, second) {
+  var out = [];
+  var idx = 0;
+  var firstLen = first.length;
+  while (idx < firstLen) {
+    if (!_containsWith(pred, first[idx], second) && !_containsWith(pred, first[idx], out)) {
+      out.push(first[idx]);
+    }
+    idx += 1;
+  }
+  return out;
+});
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a new object that does not contain a `prop` property.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Object
+ * @sig String -> {k: v} -> {k: v}
+ * @param {String} prop The name of the property to dissociate
+ * @param {Object} obj The object to clone
+ * @return {Object} A new object equivalent to the original but without the specified property
+ * @see R.assoc
+ * @example
+ *
+ *      R.dissoc('b', {a: 1, b: 2, c: 3}); //=> {a: 1, c: 3}
+ */
+module.exports = _curry2(function dissoc(prop, obj) {
+  var result = {};
+  for (var p in obj) {
+    result[p] = obj[p];
+  }
+  delete result[prop];
+  return result;
+});
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xdrop = __webpack_require__(287);
+var slice = __webpack_require__(34);
+
+/**
+ * Returns all but the first `n` elements of the given list, string, or
+ * transducer/transformer (or object with a `drop` method).
+ *
+ * Dispatches to the `drop` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Number -> [a] -> [a]
+ * @sig Number -> String -> String
+ * @param {Number} n
+ * @param {[a]} list
+ * @return {[a]} A copy of list without the first `n` elements
+ * @see R.take, R.transduce, R.dropLast, R.dropWhile
+ * @example
+ *
+ *      R.drop(1, ['foo', 'bar', 'baz']); //=> ['bar', 'baz']
+ *      R.drop(2, ['foo', 'bar', 'baz']); //=> ['baz']
+ *      R.drop(3, ['foo', 'bar', 'baz']); //=> []
+ *      R.drop(4, ['foo', 'bar', 'baz']); //=> []
+ *      R.drop(3, 'ramda');               //=> 'da'
+ */
+module.exports = _curry2(_dispatchable(['drop'], _xdrop, function drop(n, xs) {
+  return slice(Math.max(0, n), Infinity, xs);
+}));
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xdropRepeatsWith = __webpack_require__(147);
+var last = __webpack_require__(151);
+
+/**
+ * Returns a new list without any consecutively repeating elements. Equality is
+ * determined by applying the supplied predicate to each pair of consecutive elements. The
+ * first element in a series of equal elements will be preserved.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category List
+ * @sig (a, a -> Boolean) -> [a] -> [a]
+ * @param {Function} pred A predicate used to test whether two items are equal.
+ * @param {Array} list The array to consider.
+ * @return {Array} `list` without repeating elements.
+ * @see R.transduce
+ * @example
+ *
+ *      var l = [1, -1, 1, 3, 4, -4, -4, -5, 5, 3, 3];
+ *      R.dropRepeatsWith(R.eqBy(Math.abs), l); //=> [1, 3, 4, -5, 3]
+ */
+module.exports = _curry2(_dispatchable([], _xdropRepeatsWith, function dropRepeatsWith(pred, list) {
+  var result = [];
+  var idx = 1;
+  var len = list.length;
+  if (len !== 0) {
+    result[0] = list[0];
+    while (idx < len) {
+      if (!pred(last(result), list[idx])) {
+        result[result.length] = list[idx];
+      }
+      idx += 1;
+    }
+  }
+  return result;
+}));
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _isArguments = __webpack_require__(141);
+var _isArray = __webpack_require__(29);
+var _isObject = __webpack_require__(144);
+var _isString = __webpack_require__(65);
+
+/**
+ * Returns the empty value of its argument's type. Ramda defines the empty
+ * value of Array (`[]`), Object (`{}`), String (`''`), and Arguments. Other
+ * types are supported if they define `<Type>.empty` and/or
+ * `<Type>.prototype.empty`.
+ *
+ * Dispatches to the `empty` method of the first argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category Function
+ * @sig a -> a
+ * @param {*} x
+ * @return {*}
+ * @example
+ *
+ *      R.empty(Just(42));      //=> Nothing()
+ *      R.empty([1, 2, 3]);     //=> []
+ *      R.empty('unicorns');    //=> ''
+ *      R.empty({x: 1, y: 2});  //=> {}
+ */
+module.exports = _curry1(function empty(x) {
+  return x != null && typeof x.empty === 'function' ? x.empty() : x != null && x.constructor != null && typeof x.constructor.empty === 'function' ? x.constructor.empty() : _isArray(x) ? [] : _isString(x) ? '' : _isObject(x) ? {} : _isArguments(x) ? function () {
+    return arguments;
+  }() :
+  // else
+  void 0;
+});
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns true if its arguments are identical, false otherwise. Values are
+ * identical if they reference the same memory. `NaN` is identical to `NaN`;
+ * `0` and `-0` are not identical.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.15.0
+ * @category Relation
+ * @sig a -> a -> Boolean
+ * @param {*} a
+ * @param {*} b
+ * @return {Boolean}
+ * @example
+ *
+ *      var o = {};
+ *      R.identical(o, o); //=> true
+ *      R.identical(1, 1); //=> true
+ *      R.identical(1, '1'); //=> false
+ *      R.identical([], []); //=> false
+ *      R.identical(0, -0); //=> false
+ *      R.identical(NaN, NaN); //=> true
+ */
+module.exports = _curry2(function identical(a, b) {
+  // SameValue algorithm
+  if (a === b) {
+    // Steps 1-5, 7-10
+    // Steps 6.b-6.e: +0 != -0
+    return a !== 0 || 1 / a === 1 / b;
+  } else {
+    // Step 6.a: NaN == NaN
+    return a !== a && b !== b;
+  }
+});
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _cloneRegExp = __webpack_require__(136);
+var type = __webpack_require__(92);
+
+/**
+ * Copies an object.
+ *
+ * @private
+ * @param {*} value The value to be copied
+ * @param {Array} refFrom Array containing the source references
+ * @param {Array} refTo Array containing the copied source references
+ * @param {Boolean} deep Whether or not to perform deep cloning.
+ * @return {*} The copied value.
+ */
+module.exports = function _clone(value, refFrom, refTo, deep) {
+  var copy = function copy(copiedValue) {
+    var len = refFrom.length;
+    var idx = 0;
+    while (idx < len) {
+      if (value === refFrom[idx]) {
+        return refTo[idx];
+      }
+      idx += 1;
+    }
+    refFrom[idx + 1] = value;
+    refTo[idx + 1] = copiedValue;
+    for (var key in value) {
+      copiedValue[key] = deep ? _clone(value[key], refFrom, refTo, true) : value[key];
+    }
+    return copiedValue;
+  };
+  switch (type(value)) {
+    case 'Object':
+      return copy({});
+    case 'Array':
+      return copy([]);
+    case 'Date':
+      return new Date(value.valueOf());
+    case 'RegExp':
+      return _cloneRegExp(value);
+    default:
+      return value;
+  }
+};
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _cloneRegExp(pattern) {
+                                  return new RegExp(pattern.source, (pattern.global ? 'g' : '') + (pattern.ignoreCase ? 'i' : '') + (pattern.multiline ? 'm' : '') + (pattern.sticky ? 'y' : '') + (pattern.unicode ? 'u' : ''));
+};
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _complement(f) {
+  return function () {
+    return !f.apply(this, arguments);
+  };
+};
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _curry2 = __webpack_require__(0);
+
+module.exports = function _createPartialApplicator(concat) {
+  return _curry2(function (fn, args) {
+    return _arity(Math.max(0, fn.length - args.length), function () {
+      return fn.apply(this, concat(args, arguments));
+    });
+  });
+};
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _filter(fn, list) {
+  var idx = 0;
+  var len = list.length;
+  var result = [];
+
+  while (idx < len) {
+    if (fn(list[idx])) {
+      result[result.length] = list[idx];
+    }
+    idx += 1;
+  }
+  return result;
+};
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var equals = __webpack_require__(22);
+
+module.exports = function _indexOf(list, a, idx) {
+  var inf, item;
+  // Array.prototype.indexOf doesn't exist below IE9
+  if (typeof list.indexOf === 'function') {
+    switch (typeof a === 'undefined' ? 'undefined' : _typeof(a)) {
+      case 'number':
+        if (a === 0) {
+          // manually crawl the list to distinguish between +0 and -0
+          inf = 1 / a;
+          while (idx < list.length) {
+            item = list[idx];
+            if (item === 0 && 1 / item === inf) {
+              return idx;
+            }
+            idx += 1;
+          }
+          return -1;
+        } else if (a !== a) {
+          // NaN
+          while (idx < list.length) {
+            item = list[idx];
+            if (typeof item === 'number' && item !== item) {
+              return idx;
+            }
+            idx += 1;
+          }
+          return -1;
+        }
+        // non-zero numbers can utilise Set
+        return list.indexOf(a, idx);
+
+      // all these types can utilise Set
+      case 'string':
+      case 'boolean':
+      case 'function':
+      case 'undefined':
+        return list.indexOf(a, idx);
+
+      case 'object':
+        if (a === null) {
+          // null can utilise Set
+          return list.indexOf(a, idx);
+        }
+    }
+  }
+  // anything else not covered above, defer to R.equals
+  while (idx < list.length) {
+    if (equals(list[idx], a)) {
+      return idx;
+    }
+    idx += 1;
+  }
+  return -1;
+};
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _has = __webpack_require__(15);
+
+module.exports = function () {
+  var toString = Object.prototype.toString;
+  return toString.call(arguments) === '[object Arguments]' ? function _isArguments(x) {
+    return toString.call(x) === '[object Arguments]';
+  } : function _isArguments(x) {
+    return _has('callee', x);
+  };
+}();
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determine if the passed argument is an integer.
+ *
+ * @private
+ * @param {*} n
+ * @category Type
+ * @return {Boolean}
+ */
+module.exports = Number.isInteger || function _isInteger(n) {
+  return n << 0 === n;
+};
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _isNumber(x) {
+  return Object.prototype.toString.call(x) === '[object Number]';
+};
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _isObject(x) {
+  return Object.prototype.toString.call(x) === '[object Object]';
+};
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isArrayLike = __webpack_require__(46);
+
+/**
+ * `_makeFlat` is a helper function that returns a one-level or fully recursive
+ * function based on the flag passed in.
+ *
+ * @private
+ */
+module.exports = function _makeFlat(recursive) {
+  return function flatt(list) {
+    var value, jlen, j;
+    var result = [];
+    var idx = 0;
+    var ilen = list.length;
+
+    while (idx < ilen) {
+      if (isArrayLike(list[idx])) {
+        value = recursive ? flatt(list[idx]) : list[idx];
+        j = 0;
+        jlen = value.length;
+        while (j < jlen) {
+          result[result.length] = value[j];
+          j += 1;
+        }
+      } else {
+        result[result.length] = list[idx];
+      }
+      idx += 1;
+    }
+    return result;
+  };
+};
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduced = __webpack_require__(30);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XAny(f, xf) {
+    this.xf = xf;
+    this.f = f;
+    this.any = false;
+  }
+  XAny.prototype['@@transducer/init'] = _xfBase.init;
+  XAny.prototype['@@transducer/result'] = function (result) {
+    if (!this.any) {
+      result = this.xf['@@transducer/step'](result, false);
+    }
+    return this.xf['@@transducer/result'](result);
+  };
+  XAny.prototype['@@transducer/step'] = function (result, input) {
+    if (this.f(input)) {
+      this.any = true;
+      result = _reduced(this.xf['@@transducer/step'](result, true));
+    }
+    return result;
+  };
+
+  return _curry2(function _xany(f, xf) {
+    return new XAny(f, xf);
+  });
+}();
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XDropRepeatsWith(pred, xf) {
+    this.xf = xf;
+    this.pred = pred;
+    this.lastValue = undefined;
+    this.seenFirstValue = false;
+  }
+
+  XDropRepeatsWith.prototype['@@transducer/init'] = _xfBase.init;
+  XDropRepeatsWith.prototype['@@transducer/result'] = _xfBase.result;
+  XDropRepeatsWith.prototype['@@transducer/step'] = function (result, input) {
+    var sameAsLast = false;
+    if (!this.seenFirstValue) {
+      this.seenFirstValue = true;
+    } else if (this.pred(this.lastValue, input)) {
+      sameAsLast = true;
+    }
+    this.lastValue = input;
+    return sameAsLast ? result : this.xf['@@transducer/step'](result, input);
+  };
+
+  return _curry2(function _xdropRepeatsWith(pred, xf) {
+    return new XDropRepeatsWith(pred, xf);
+  });
+}();
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function () {
+  function XWrap(fn) {
+    this.f = fn;
+  }
+  XWrap.prototype['@@transducer/init'] = function () {
+    throw new Error('init not implemented on XWrap');
+  };
+  XWrap.prototype['@@transducer/result'] = function (acc) {
+    return acc;
+  };
+  XWrap.prototype['@@transducer/step'] = function (acc, x) {
+    return this.f(acc, x);
+  };
+
+  return function _xwrap(fn) {
+    return new XWrap(fn);
+  };
+}();
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * See if an object (`val`) is an instance of the supplied constructor. This
+ * function will check up the inheritance chain, if any.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category Type
+ * @sig (* -> {*}) -> a -> Boolean
+ * @param {Object} ctor A constructor
+ * @param {*} val The value to test
+ * @return {Boolean}
+ * @example
+ *
+ *      R.is(Object, {}); //=> true
+ *      R.is(Number, 1); //=> true
+ *      R.is(Object, 1); //=> false
+ *      R.is(String, 's'); //=> true
+ *      R.is(String, new String('')); //=> true
+ *      R.is(Object, new String('')); //=> true
+ *      R.is(Object, 's'); //=> false
+ *      R.is(Number, {}); //=> false
+ */
+module.exports = _curry2(function is(Ctor, val) {
+  return val != null && val.constructor === Ctor || val instanceof Ctor;
+});
+
+/***/ }),
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var converge = __webpack_require__(126);
+
+/**
+ * juxt applies a list of functions to a list of values.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Function
+ * @sig [(a, b, ..., m) -> n] -> ((a, b, ..., m) -> [n])
+ * @param {Array} fns An array of functions
+ * @return {Function} A function that returns a list of values after applying each of the original `fns` to its parameters.
+ * @see R.applySpec
+ * @example
+ *
+ *      var getRange = R.juxt([Math.min, Math.max]);
+ *      getRange(3, 4, 9, -3); //=> [-3, 9]
+ * @symb R.juxt([f, g, h])(a, b) = [f(a, b), g(a, b), h(a, b)]
+ */
+module.exports = _curry1(function juxt(fns) {
+  return converge(function () {
+    return Array.prototype.slice.call(arguments, 0);
+  }, fns);
+});
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var nth = __webpack_require__(47);
+
+/**
+ * Returns the last element of the given list or string.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.4
+ * @category List
+ * @sig [a] -> a | Undefined
+ * @sig String -> String
+ * @param {*} list
+ * @return {*}
+ * @see R.init, R.head, R.tail
+ * @example
+ *
+ *      R.last(['fi', 'fo', 'fum']); //=> 'fum'
+ *      R.last([]); //=> undefined
+ *
+ *      R.last('abc'); //=> 'c'
+ *      R.last(''); //=> ''
+ */
+module.exports = nth(-1);
+
+/***/ }),
+/* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _isNumber = __webpack_require__(143);
+
+/**
+ * Returns the number of elements in the array by returning `list.length`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category List
+ * @sig [a] -> Number
+ * @param {Array} list The array to inspect.
+ * @return {Number} The length of the array.
+ * @example
+ *
+ *      R.length([]); //=> 0
+ *      R.length([1, 2, 3]); //=> 3
+ */
+module.exports = _curry1(function length(list) {
+  return list != null && _isNumber(list.length) ? list.length : NaN;
+});
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduce = __webpack_require__(18);
+var ap = __webpack_require__(80);
+var curryN = __webpack_require__(14);
+var map = __webpack_require__(16);
+
+/**
+ * "lifts" a function to be the specified arity, so that it may "map over" that
+ * many lists, Functions or other objects that satisfy the [FantasyLand Apply spec](https://github.com/fantasyland/fantasy-land#apply).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category Function
+ * @sig Number -> (*... -> *) -> ([*]... -> [*])
+ * @param {Function} fn The function to lift into higher context
+ * @return {Function} The lifted function.
+ * @see R.lift, R.ap
+ * @example
+ *
+ *      var madd3 = R.liftN(3, (...args) => R.sum(args));
+ *      madd3([1,2,3], [1,2,3], [1]); //=> [3, 4, 5, 4, 5, 6, 5, 6, 7]
+ */
+module.exports = _curry2(function liftN(arity, fn) {
+  var lifted = curryN(arity, fn);
+  return curryN(arity, function () {
+    return _reduce(ap, map(lifted, arguments[0]), Array.prototype.slice.call(arguments, 1));
+  });
+});
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var sum = __webpack_require__(167);
+
+/**
+ * Returns the mean of the given list of numbers.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category Math
+ * @sig [Number] -> Number
+ * @param {Array} list
+ * @return {Number}
+ * @example
+ *
+ *      R.mean([2, 7, 9]); //=> 6
+ *      R.mean([]); //=> NaN
+ */
+module.exports = _curry1(function mean(list) {
+  return sum(list) / list.length;
+});
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var _has = __webpack_require__(15);
+
+/**
+ * Creates a new object with the own properties of the two provided objects. If
+ * a key exists in both objects, the provided function is applied to the key
+ * and the values associated with the key in each object, with the result being
+ * used as the value associated with the key in the returned object. The key
+ * will be excluded from the returned object if the resulting value is
+ * `undefined`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Object
+ * @sig (String -> a -> a -> a) -> {a} -> {a} -> {a}
+ * @param {Function} fn
+ * @param {Object} l
+ * @param {Object} r
+ * @return {Object}
+ * @see R.merge, R.mergeWith
+ * @example
+ *
+ *      let concatValues = (k, l, r) => k == 'values' ? R.concat(l, r) : r
+ *      R.mergeWithKey(concatValues,
+ *                     { a: true, thing: 'foo', values: [10, 20] },
+ *                     { b: true, thing: 'bar', values: [15, 35] });
+ *      //=> { a: true, b: true, thing: 'bar', values: [10, 20, 15, 35] }
+ * @symb R.mergeWithKey(f, { x: 1, y: 2 }, { y: 5, z: 3 }) = { x: 1, y: f('y', 2, 5), z: 3 }
+ */
+module.exports = _curry3(function mergeWithKey(fn, l, r) {
+  var result = {};
+  var k;
+
+  for (k in l) {
+    if (_has(k, l)) {
+      result[k] = _has(k, r) ? fn(k, l[k], r[k]) : l[k];
+    }
+  }
+
+  for (k in r) {
+    if (_has(k, r) && !_has(k, result)) {
+      result[k] = r[k];
+    }
+  }
+
+  return result;
+});
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Multiplies two numbers. Equivalent to `a * b` but curried.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} a The first value.
+ * @param {Number} b The second value.
+ * @return {Number} The result of `a * b`.
+ * @see R.divide
+ * @example
+ *
+ *      var double = R.multiply(2);
+ *      var triple = R.multiply(3);
+ *      double(3);       //=>  6
+ *      triple(4);       //=> 12
+ *      R.multiply(2, 5);  //=> 10
+ */
+module.exports = _curry2(function multiply(a, b) {
+  return a * b;
+});
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * A function that returns the `!` of its argument. It will return `true` when
+ * passed false-y value, and `false` when passed a truth-y one.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Logic
+ * @sig * -> Boolean
+ * @param {*} a any value
+ * @return {Boolean} the logical inverse of passed argument.
+ * @see R.complement
+ * @example
+ *
+ *      R.not(true); //=> false
+ *      R.not(false); //=> true
+ *      R.not(0); //=> true
+ *      R.not(1); //=> false
+ */
+module.exports = _curry1(function not(a) {
+  return !a;
+});
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates an object containing a single key:value pair.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.18.0
+ * @category Object
+ * @sig String -> a -> {String:a}
+ * @param {String} key
+ * @param {*} val
+ * @return {Object}
+ * @see R.pair
+ * @example
+ *
+ *      var matchPhrases = R.compose(
+ *        R.objOf('must'),
+ *        R.map(R.objOf('match_phrase'))
+ *      );
+ *      matchPhrases(['foo', 'bar', 'baz']); //=> {must: [{match_phrase: 'foo'}, {match_phrase: 'bar'}, {match_phrase: 'baz'}]}
+ */
+module.exports = _curry2(function objOf(key, val) {
+  var obj = {};
+  obj[key] = val;
+  return obj;
+});
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if one or both of its arguments are `true`. Returns `false`
+ * if both arguments are `false`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Logic
+ * @sig a -> b -> a | b
+ * @param {Any} a
+ * @param {Any} b
+ * @return {Any} the first argument if truthy, otherwise the second argument.
+ * @see R.either
+ * @example
+ *
+ *      R.or(true, true); //=> true
+ *      R.or(true, false); //=> true
+ *      R.or(false, true); //=> true
+ *      R.or(false, false); //=> false
+ */
+module.exports = _curry2(function or(a, b) {
+  return a || b;
+});
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Returns the result of "setting" the portion of the given data structure
+ * focused by the given lens to the result of applying the given function to
+ * the focused value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Object
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig Lens s a -> (a -> a) -> s -> s
+ * @param {Lens} lens
+ * @param {*} v
+ * @param {*} x
+ * @return {*}
+ * @see R.prop, R.lensIndex, R.lensProp
+ * @example
+ *
+ *      var headLens = R.lensIndex(0);
+ *
+ *      R.over(headLens, R.toUpper, ['foo', 'bar', 'baz']); //=> ['FOO', 'bar', 'baz']
+ */
+module.exports = function () {
+  // `Identity` is a functor that holds a single value, where `map` simply
+  // transforms the held value with the provided function.
+  var Identity = function Identity(x) {
+    return { value: x, map: function map(f) {
+        return Identity(f(x));
+      } };
+  };
+
+  return _curry3(function over(lens, f, x) {
+    // The value returned by the getter function is first transformed with `f`,
+    // then set as the value of an `Identity`. This is then mapped over with the
+    // setter function of the lens.
+    return lens(function (y) {
+      return Identity(f(y));
+    })(x).value;
+  });
+}();
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Similar to `pick` except that this one includes a `key: undefined` pair for
+ * properties that don't exist.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig [k] -> {k: v} -> {k: v}
+ * @param {Array} names an array of String property names to copy onto a new object
+ * @param {Object} obj The object to copy from
+ * @return {Object} A new object with only properties from `names` on it.
+ * @see R.pick
+ * @example
+ *
+ *      R.pickAll(['a', 'd'], {a: 1, b: 2, c: 3, d: 4}); //=> {a: 1, d: 4}
+ *      R.pickAll(['a', 'e', 'f'], {a: 1, b: 2, c: 3, d: 4}); //=> {a: 1, e: undefined, f: undefined}
+ */
+module.exports = _curry2(function pickAll(names, obj) {
+  var result = {};
+  var idx = 0;
+  var len = names.length;
+  while (idx < len) {
+    var name = names[idx];
+    result[name] = obj[name];
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _pipe = __webpack_require__(278);
+var reduce = __webpack_require__(25);
+var tail = __webpack_require__(91);
+
+/**
+ * Performs left-to-right function composition. The leftmost function may have
+ * any arity; the remaining functions must be unary.
+ *
+ * In some libraries this function is named `sequence`.
+ *
+ * **Note:** The result of pipe is not automatically curried.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)
+ * @param {...Function} functions
+ * @return {Function}
+ * @see R.compose
+ * @example
+ *
+ *      var f = R.pipe(Math.pow, R.negate, R.inc);
+ *
+ *      f(3, 4); // -(3^4) + 1
+ * @symb R.pipe(f, g, h)(a, b) = h(g(f(a, b)))
+ */
+module.exports = function pipe() {
+  if (arguments.length === 0) {
+    throw new Error('pipe requires at least one argument');
+  }
+  return _arity(arguments[0].length, reduce(_pipe, arguments[0], tail(arguments)));
+};
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _pipeP = __webpack_require__(279);
+var reduce = __webpack_require__(25);
+var tail = __webpack_require__(91);
+
+/**
+ * Performs left-to-right composition of one or more Promise-returning
+ * functions. The leftmost function may have any arity; the remaining functions
+ * must be unary.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Function
+ * @sig ((a -> Promise b), (b -> Promise c), ..., (y -> Promise z)) -> (a -> Promise z)
+ * @param {...Function} functions
+ * @return {Function}
+ * @see R.composeP
+ * @example
+ *
+ *      //  followersForUser :: String -> Promise [User]
+ *      var followersForUser = R.pipeP(db.getUserById, db.getFollowers);
+ */
+module.exports = function pipeP() {
+  if (arguments.length === 0) {
+    throw new Error('pipeP requires at least one argument');
+  }
+  return _arity(arguments[0].length, reduce(_pipeP, arguments[0], tail(arguments)));
+};
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a new list with the given element at the front, followed by the
+ * contents of the list.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig a -> [a] -> [a]
+ * @param {*} el The item to add to the head of the output list.
+ * @param {Array} list The array to add to the tail of the output list.
+ * @return {Array} A new array.
+ * @see R.append
+ * @example
+ *
+ *      R.prepend('fee', ['fi', 'fo', 'fum']); //=> ['fee', 'fi', 'fo', 'fum']
+ */
+module.exports = _curry2(function prepend(el, list) {
+  return _concat([el], list);
+});
+
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Returns a single item by iterating through the list, successively calling
+ * the iterator function and passing it an accumulator value and the current
+ * value from the array, and then passing the result to the next call.
+ *
+ * Similar to `reduce`, except moves through the input list from the right to
+ * the left.
+ *
+ * The iterator function receives two values: *(value, acc)*, while the arguments'
+ * order of `reduce`'s iterator function is *(acc, value)*.
+ *
+ * Note: `R.reduceRight` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.reduce` method. For more details
+ * on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight#Description
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a, b -> b) -> b -> [a] -> b
+ * @param {Function} fn The iterator function. Receives two values, the current element from the array
+ *        and the accumulator.
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.reduce, R.addIndex
+ * @example
+ *
+ *      R.reduceRight(R.subtract, 0, [1, 2, 3, 4]) // => (1 - (2 - (3 - (4 - 0)))) = -2
+ *          -               -2
+ *         / \              / \
+ *        1   -            1   3
+ *           / \              / \
+ *          2   -     ==>    2  -1
+ *             / \              / \
+ *            3   -            3   4
+ *               / \              / \
+ *              4   0            4   0
+ *
+ * @symb R.reduceRight(f, a, [b, c, d]) = f(b, f(c, f(d, a)))
+ */
+module.exports = _curry3(function reduceRight(fn, acc, list) {
+  var idx = list.length - 1;
+  while (idx >= 0) {
+    acc = fn(list[idx], acc);
+    idx -= 1;
+  }
+  return acc;
+});
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var ap = __webpack_require__(80);
+var map = __webpack_require__(16);
+var prepend = __webpack_require__(164);
+var reduceRight = __webpack_require__(165);
+
+/**
+ * Transforms a [Traversable](https://github.com/fantasyland/fantasy-land#traversable)
+ * of [Applicative](https://github.com/fantasyland/fantasy-land#applicative) into an
+ * Applicative of Traversable.
+ *
+ * Dispatches to the `sequence` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig (Applicative f, Traversable t) => (a -> f a) -> t (f a) -> f (t a)
+ * @param {Function} of
+ * @param {*} traversable
+ * @return {*}
+ * @see R.traverse
+ * @example
+ *
+ *      R.sequence(Maybe.of, [Just(1), Just(2), Just(3)]);   //=> Just([1, 2, 3])
+ *      R.sequence(Maybe.of, [Just(1), Just(2), Nothing()]); //=> Nothing()
+ *
+ *      R.sequence(R.of, Just([1, 2, 3])); //=> [Just(1), Just(2), Just(3)]
+ *      R.sequence(R.of, Nothing());       //=> [Nothing()]
+ */
+module.exports = _curry2(function sequence(of, traversable) {
+  return typeof traversable.sequence === 'function' ? traversable.sequence(of) : reduceRight(function (x, acc) {
+    return ap(map(prepend, x), acc);
+  }, of([]), traversable);
+});
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var add = __webpack_require__(58);
+var reduce = __webpack_require__(25);
+
+/**
+ * Adds together all the elements of a list.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig [Number] -> Number
+ * @param {Array} list An array of numbers
+ * @return {Number} The sum of all the numbers in the list.
+ * @see R.reduce
+ * @example
+ *
+ *      R.sum([2,4,6,8,100,1]); //=> 121
+ */
+module.exports = reduce(add, 0);
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xtake = __webpack_require__(298);
+var slice = __webpack_require__(34);
+
+/**
+ * Returns the first `n` elements of the given list, string, or
+ * transducer/transformer (or object with a `take` method).
+ *
+ * Dispatches to the `take` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Number -> [a] -> [a]
+ * @sig Number -> String -> String
+ * @param {Number} n
+ * @param {*} list
+ * @return {*}
+ * @see R.drop
+ * @example
+ *
+ *      R.take(1, ['foo', 'bar', 'baz']); //=> ['foo']
+ *      R.take(2, ['foo', 'bar', 'baz']); //=> ['foo', 'bar']
+ *      R.take(3, ['foo', 'bar', 'baz']); //=> ['foo', 'bar', 'baz']
+ *      R.take(4, ['foo', 'bar', 'baz']); //=> ['foo', 'bar', 'baz']
+ *      R.take(3, 'ramda');               //=> 'ram'
+ *
+ *      var personnel = [
+ *        'Dave Brubeck',
+ *        'Paul Desmond',
+ *        'Eugene Wright',
+ *        'Joe Morello',
+ *        'Gerry Mulligan',
+ *        'Bob Bates',
+ *        'Joe Dodge',
+ *        'Ron Crotty'
+ *      ];
+ *
+ *      var takeFive = R.take(5);
+ *      takeFive(personnel);
+ *      //=> ['Dave Brubeck', 'Paul Desmond', 'Eugene Wright', 'Joe Morello', 'Gerry Mulligan']
+ * @symb R.take(-1, [a, b]) = [a, b]
+ * @symb R.take(0, [a, b]) = []
+ * @symb R.take(1, [a, b]) = [a]
+ * @symb R.take(2, [a, b]) = [a, b]
+ */
+module.exports = _curry2(_dispatchable(['take'], _xtake, function take(n, xs) {
+  return slice(0, n < 0 ? Infinity : n, xs);
+}));
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Calls an input function `n` times, returning an array containing the results
+ * of those function calls.
+ *
+ * `fn` is passed one argument: The current value of `n`, which begins at `0`
+ * and is gradually incremented to `n - 1`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.3
+ * @category List
+ * @sig (Number -> a) -> Number -> [a]
+ * @param {Function} fn The function to invoke. Passed one argument, the current value of `n`.
+ * @param {Number} n A value between `0` and `n - 1`. Increments after each function call.
+ * @return {Array} An array containing the return values of all calls to `fn`.
+ * @example
+ *
+ *      R.times(R.identity, 5); //=> [0, 1, 2, 3, 4]
+ * @symb R.times(f, 0) = []
+ * @symb R.times(f, 1) = [f(0)]
+ * @symb R.times(f, 2) = [f(0), f(1)]
+ */
+module.exports = _curry2(function times(fn, n) {
+  var len = Number(n);
+  var idx = 0;
+  var list;
+
+  if (len < 0 || isNaN(len)) {
+    throw new RangeError('n must be a non-negative number');
+  }
+  list = new Array(len);
+  while (idx < len) {
+    list[idx] = fn(idx);
+    idx += 1;
+  }
+  return list;
+});
+
+/***/ }),
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _Set = __webpack_require__(266);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a new list containing only one copy of each element in the original
+ * list, based upon the value returned by applying the supplied function to
+ * each list element. Prefers the first item if the supplied function produces
+ * the same value on two items. `R.equals` is used for comparison.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category List
+ * @sig (a -> b) -> [a] -> [a]
+ * @param {Function} fn A function used to produce a value to use during comparisons.
+ * @param {Array} list The array to consider.
+ * @return {Array} The list of unique items.
+ * @example
+ *
+ *      R.uniqBy(Math.abs, [-1, -5, 2, 10, 1, 2]); //=> [-1, -5, 2, 10]
+ */
+module.exports = _curry2(function uniqBy(fn, list) {
+  var set = new _Set();
+  var result = [];
+  var idx = 0;
+  var appliedItem, item;
+
+  while (idx < list.length) {
+    item = list[idx];
+    appliedItem = fn(item);
+    if (set.add(appliedItem)) {
+      result.push(item);
+    }
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var adjust = __webpack_require__(118);
+var always = __webpack_require__(38);
+
+/**
+ * Returns a new copy of the array with the element at the provided index
+ * replaced with the given value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category List
+ * @sig Number -> a -> [a] -> [a]
+ * @param {Number} idx The index to update.
+ * @param {*} x The value to exist at the given index of the returned array.
+ * @param {Array|Arguments} list The source array-like object to be updated.
+ * @return {Array} A copy of `list` with the value at index `idx` replaced with `x`.
+ * @see R.adjust
+ * @example
+ *
+ *      R.update(1, 11, [0, 1, 2]);     //=> [0, 11, 2]
+ *      R.update(1)(11)([0, 1, 2]);     //=> [0, 11, 2]
+ * @symb R.update(-1, a, [b, c]) = [b, a]
+ * @symb R.update(0, a, [b, c]) = [a, c]
+ * @symb R.update(1, a, [b, c]) = [b, a]
+ */
+module.exports = _curry3(function update(idx, x, list) {
+  return adjust(always(x), idx, list);
+});
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var curryN = __webpack_require__(14);
+
+/**
+ * Accepts a function `fn` and a list of transformer functions and returns a
+ * new curried function. When the new function is invoked, it calls the
+ * function `fn` with parameters consisting of the result of calling each
+ * supplied handler on successive arguments to the new function.
+ *
+ * If more arguments are passed to the returned function than transformer
+ * functions, those arguments are passed directly to `fn` as additional
+ * parameters. If you expect additional arguments that don't need to be
+ * transformed, although you can ignore them, it's best to pass an identity
+ * function so that the new function reports the correct arity.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (x1 -> x2 -> ... -> z) -> [(a -> x1), (b -> x2), ...] -> (a -> b -> ... -> z)
+ * @param {Function} fn The function to wrap.
+ * @param {Array} transformers A list of transformer functions
+ * @return {Function} The wrapped function.
+ * @see R.converge
+ * @example
+ *
+ *      R.useWith(Math.pow, [R.identity, R.identity])(3, 4); //=> 81
+ *      R.useWith(Math.pow, [R.identity, R.identity])(3)(4); //=> 81
+ *      R.useWith(Math.pow, [R.dec, R.inc])(3, 4); //=> 32
+ *      R.useWith(Math.pow, [R.dec, R.inc])(3)(4); //=> 32
+ * @symb R.useWith(f, [g, h])(a, b) = f(g(a), h(b))
+ */
+module.exports = _curry2(function useWith(fn, transformers) {
+  return curryN(transformers.length, function () {
+    var args = [];
+    var idx = 0;
+    while (idx < transformers.length) {
+      args.push(transformers[idx].call(this, arguments[idx]));
+      idx += 1;
+    }
+    return fn.apply(this, args.concat(Array.prototype.slice.call(arguments, transformers.length)));
+  });
+});
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var keys = __webpack_require__(24);
+
+/**
+ * Returns a list of all the enumerable own properties of the supplied object.
+ * Note that the order of the output array is not guaranteed across different
+ * JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> [v]
+ * @param {Object} obj The object to extract values from
+ * @return {Array} An array of the values of the object's own properties.
+ * @example
+ *
+ *      R.values({a: 1, b: 2, c: 3}); //=> [1, 2, 3]
+ */
+module.exports = _curry1(function values(obj) {
+  var props = keys(obj);
+  var len = props.length;
+  var vals = [];
+  var idx = 0;
+  while (idx < len) {
+    vals[idx] = obj[props[idx]];
+    idx += 1;
+  }
+  return vals;
+});
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _has = __webpack_require__(15);
+
+/**
+ * Takes a spec object and a test object; returns true if the test satisfies
+ * the spec. Each of the spec's own properties must be a predicate function.
+ * Each predicate is applied to the value of the corresponding property of the
+ * test object. `where` returns true if all the predicates return true, false
+ * otherwise.
+ *
+ * `where` is well suited to declaratively expressing constraints for other
+ * functions such as `filter` and `find`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category Object
+ * @sig {String: (* -> Boolean)} -> {String: *} -> Boolean
+ * @param {Object} spec
+ * @param {Object} testObj
+ * @return {Boolean}
+ * @example
+ *
+ *      // pred :: Object -> Boolean
+ *      var pred = R.where({
+ *        a: R.equals('foo'),
+ *        b: R.complement(R.equals('bar')),
+ *        x: R.gt(__, 10),
+ *        y: R.lt(__, 20)
+ *      });
+ *
+ *      pred({a: 'foo', b: 'xxx', x: 11, y: 19}); //=> true
+ *      pred({a: 'xxx', b: 'xxx', x: 11, y: 19}); //=> false
+ *      pred({a: 'foo', b: 'bar', x: 11, y: 19}); //=> false
+ *      pred({a: 'foo', b: 'xxx', x: 10, y: 19}); //=> false
+ *      pred({a: 'foo', b: 'xxx', x: 11, y: 20}); //=> false
+ */
+module.exports = _curry2(function where(spec, testObj) {
+  for (var prop in spec) {
+    if (_has(prop, spec) && !spec[prop](testObj[prop])) {
+      return false;
+    }
+  }
+  return true;
+});
+
+/***/ }),
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6751,7 +11620,7 @@ module.exports = __webpack_require__(19);
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(21);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -6814,10 +11683,10 @@ var EventListener = {
 };
 
 module.exports = EventListener;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 54 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6849,7 +11718,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 55 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6889,7 +11758,7 @@ function getActiveElement() /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 56 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7042,7 +11911,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 57 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7059,13 +11928,13 @@ module.exports = CSSProperty;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(14);
+var PooledClass = __webpack_require__(35);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * A specialized pseudo-event module to help keep track of components waiting to
@@ -7164,10 +12033,10 @@ var CallbackQueue = function () {
 }();
 
 module.exports = PooledClass.addPoolingTo(CallbackQueue);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 58 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7183,12 +12052,12 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 
 
-var DOMProperty = __webpack_require__(13);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstrumentation = __webpack_require__(8);
+var DOMProperty = __webpack_require__(31);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactInstrumentation = __webpack_require__(19);
 
-var quoteAttributeValueForBrowser = __webpack_require__(165);
-var warning = __webpack_require__(2);
+var quoteAttributeValueForBrowser = __webpack_require__(487);
+var warning = __webpack_require__(6);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
 var illegalAttributeNameCache = {};
@@ -7407,10 +12276,10 @@ var DOMPropertyOperations = {
 };
 
 module.exports = DOMPropertyOperations;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 59 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7433,7 +12302,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 60 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7449,13 +12318,13 @@ module.exports = ReactDOMComponentFlags;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var LinkedValueUtils = __webpack_require__(36);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactUpdates = __webpack_require__(10);
+var LinkedValueUtils = __webpack_require__(100);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactUpdates = __webpack_require__(26);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 var didWarnValueLink = false;
 var didWarnValueDefaultValue = false;
@@ -7636,10 +12505,10 @@ function _handleChange(event) {
 }
 
 module.exports = ReactDOMSelect;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 61 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7674,7 +12543,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 62 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7701,7 +12570,7 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 63 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7717,9 +12586,9 @@ module.exports = ReactFeatureFlags;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 var genericComponentClass = null;
 var textComponentClass = null;
@@ -7772,10 +12641,10 @@ var ReactHostComponent = {
 };
 
 module.exports = ReactHostComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 64 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7791,11 +12660,11 @@ module.exports = ReactHostComponent;
 
 
 
-var ReactDOMSelection = __webpack_require__(119);
+var ReactDOMSelection = __webpack_require__(441);
 
-var containsNode = __webpack_require__(84);
-var focusNode = __webpack_require__(54);
-var getActiveElement = __webpack_require__(55);
+var containsNode = __webpack_require__(406);
+var focusNode = __webpack_require__(176);
+var getActiveElement = __webpack_require__(177);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -7904,7 +12773,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 65 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7920,30 +12789,30 @@ module.exports = ReactInputSelection;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var DOMLazyTree = __webpack_require__(17);
-var DOMProperty = __webpack_require__(13);
-var React = __webpack_require__(19);
-var ReactBrowserEventEmitter = __webpack_require__(26);
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMContainerInfo = __webpack_require__(111);
-var ReactDOMFeatureFlags = __webpack_require__(113);
-var ReactFeatureFlags = __webpack_require__(62);
-var ReactInstanceMap = __webpack_require__(23);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactMarkupChecksum = __webpack_require__(133);
-var ReactReconciler = __webpack_require__(18);
-var ReactUpdateQueue = __webpack_require__(39);
-var ReactUpdates = __webpack_require__(10);
+var DOMLazyTree = __webpack_require__(40);
+var DOMProperty = __webpack_require__(31);
+var React = __webpack_require__(43);
+var ReactBrowserEventEmitter = __webpack_require__(74);
+var ReactCurrentOwner = __webpack_require__(27);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactDOMContainerInfo = __webpack_require__(433);
+var ReactDOMFeatureFlags = __webpack_require__(435);
+var ReactFeatureFlags = __webpack_require__(184);
+var ReactInstanceMap = __webpack_require__(54);
+var ReactInstrumentation = __webpack_require__(19);
+var ReactMarkupChecksum = __webpack_require__(455);
+var ReactReconciler = __webpack_require__(41);
+var ReactUpdateQueue = __webpack_require__(103);
+var ReactUpdates = __webpack_require__(26);
 
-var emptyObject = __webpack_require__(20);
-var instantiateReactComponent = __webpack_require__(73);
-var invariant = __webpack_require__(1);
-var setInnerHTML = __webpack_require__(30);
-var shouldUpdateReactComponent = __webpack_require__(45);
-var warning = __webpack_require__(2);
+var emptyObject = __webpack_require__(51);
+var instantiateReactComponent = __webpack_require__(195);
+var invariant = __webpack_require__(5);
+var setInnerHTML = __webpack_require__(78);
+var shouldUpdateReactComponent = __webpack_require__(109);
+var warning = __webpack_require__(6);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
 var ROOT_ATTR_NAME = DOMProperty.ROOT_ATTRIBUTE_NAME;
@@ -8445,10 +13314,10 @@ var ReactMount = {
 };
 
 module.exports = ReactMount;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 66 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8465,11 +13334,11 @@ module.exports = ReactMount;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var React = __webpack_require__(19);
+var React = __webpack_require__(43);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 var ReactNodeTypes = {
   HOST: 0,
@@ -8491,10 +13360,10 @@ var ReactNodeTypes = {
 };
 
 module.exports = ReactNodeTypes;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 67 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8516,7 +13385,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 68 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8548,7 +13417,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 69 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8565,9 +13434,9 @@ module.exports = ViewportMetrics;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Accumulates items that must not be null or undefined into the first one. This
@@ -8609,10 +13478,10 @@ function accumulateInto(current, next) {
 }
 
 module.exports = accumulateInto;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 70 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8648,7 +13517,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 71 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8664,7 +13533,7 @@ module.exports = forEachAccumulated;
 
 
 
-var ReactNodeTypes = __webpack_require__(66);
+var ReactNodeTypes = __webpack_require__(188);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -8683,7 +13552,7 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 72 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8699,7 +13568,7 @@ module.exports = getHostComponentFromComposite;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
 var contentKey = null;
 
@@ -8721,7 +13590,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 73 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8737,16 +13606,16 @@ module.exports = getTextContentAccessor;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var ReactCompositeComponent = __webpack_require__(108);
-var ReactEmptyComponent = __webpack_require__(61);
-var ReactHostComponent = __webpack_require__(63);
+var ReactCompositeComponent = __webpack_require__(430);
+var ReactEmptyComponent = __webpack_require__(183);
+var ReactHostComponent = __webpack_require__(185);
 
-var getNextDebugID = __webpack_require__(162);
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var getNextDebugID = __webpack_require__(484);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 // To avoid a cyclic dependency, we create the final class in this module
 var ReactCompositeComponentWrapper = function (element) {
@@ -8852,10 +13721,10 @@ function instantiateReactComponent(node, shouldHaveDebugID) {
 }
 
 module.exports = instantiateReactComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 74 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8911,7 +13780,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 75 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8927,9 +13796,9 @@ module.exports = isTextInputElement;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
-var escapeTextContentForBrowser = __webpack_require__(29);
-var setInnerHTML = __webpack_require__(30);
+var ExecutionEnvironment = __webpack_require__(13);
+var escapeTextContentForBrowser = __webpack_require__(77);
+var setInnerHTML = __webpack_require__(78);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -8968,7 +13837,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 76 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8984,15 +13853,15 @@ module.exports = setTextContent;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var REACT_ELEMENT_TYPE = __webpack_require__(127);
+var ReactCurrentOwner = __webpack_require__(27);
+var REACT_ELEMENT_TYPE = __webpack_require__(449);
 
-var getIteratorFn = __webpack_require__(161);
-var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(35);
-var warning = __webpack_require__(2);
+var getIteratorFn = __webpack_require__(483);
+var invariant = __webpack_require__(5);
+var KeyEscapeUtils = __webpack_require__(99);
+var warning = __webpack_require__(6);
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
@@ -9147,10 +14016,316 @@ function traverseAllChildren(children, callback, traverseContext) {
 }
 
 module.exports = traverseAllChildren;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 77 */
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Chip = function Chip(_ref) {
+  var children = _ref.children,
+      close = _ref.close;
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'chip' },
+    children,
+    close ? _react2.default.createElement(
+      'i',
+      { className: 'material-icons' },
+      'close'
+    ) : null
+  );
+};
+
+Chip.propTypes = {
+  children: _react.PropTypes.node,
+  /**
+   * If show a close icon
+   * @default false
+   */
+  close: _react.PropTypes.bool
+};
+
+exports.default = Chip;
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(79);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Overlay = function (_Component) {
+  _inherits(Overlay, _Component);
+
+  function Overlay() {
+    _classCallCheck(this, Overlay);
+
+    return _possibleConstructorReturn(this, (Overlay.__proto__ || Object.getPrototypeOf(Overlay)).apply(this, arguments));
+  }
+
+  _createClass(Overlay, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      try {
+        this._unrenderOverlay();
+      } catch (e) {
+        this._overlayInstance = null;
+      }
+      if (this._overlayTarget) {
+        this.getContainerDOMNode().removeChild(this._overlayTarget);
+        this._overlayTarget = null;
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this._renderOverlay();
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this._renderOverlay();
+    }
+  }, {
+    key: '_mountOverlayTarget',
+    value: function _mountOverlayTarget() {
+      this._overlayTarget = document.createElement('div');
+      this.getContainerDOMNode().appendChild(this._overlayTarget);
+    }
+  }, {
+    key: '_renderOverlay',
+    value: function _renderOverlay() {
+      if (!this._overlayTarget) {
+        this._mountOverlayTarget();
+      }
+
+      // Save reference to help testing
+      this._overlayInstance = _reactDom2.default.unstable_renderSubtreeIntoContainer(this, this.renderOverlay(), this._overlayTarget);
+    }
+  }, {
+    key: '_unrenderOverlay',
+    value: function _unrenderOverlay() {
+      _react2.default.unmountComponentAtNode(this._overlayTarget);
+      this._overlayInstance = null;
+    }
+  }, {
+    key: 'getOverlayDOMNode',
+    value: function getOverlayDOMNode() {
+      if (!this.isMounted()) {
+        throw new Error('getOverlayDOMNode(): A component must be mounted to have a DOM node.');
+      }
+
+      return this._overlayInstance.getDOMNode();
+    }
+  }, {
+    key: 'getContainerDOMNode',
+    value: function getContainerDOMNode() {
+      return this.props.container.getDOMNode ? this.props.container.getDOMNode() : this.props.container;
+    }
+  }]);
+
+  return Overlay;
+}(_react.Component);
+
+Overlay.propTypes = {
+  container: _react.PropTypes.any.isRequired
+};
+
+Overlay.defaultProps = {
+  container: {
+    // Provide `getDOMNode` fn mocking a React component API. The `document.body`
+    // reference needs to be contained within this function so that it is not accessed
+    // in environments where it would not be defined, e.g. nodejs. Equally this is needed
+    // before the body is defined where `document.body === null`, this ensures
+    // `document.body` is only accessed after componentDidMount.
+    getDOMNode: function getDOMNode() {
+      return document.body;
+    }
+  }
+};
+
+exports.default = Overlay;
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Overlay2 = __webpack_require__(200);
+
+var _Overlay3 = _interopRequireDefault(_Overlay2);
+
+var _idgen = __webpack_require__(57);
+
+var _idgen2 = _interopRequireDefault(_idgen);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OverlayTrigger = function (_Overlay) {
+  _inherits(OverlayTrigger, _Overlay);
+
+  function OverlayTrigger(props) {
+    _classCallCheck(this, OverlayTrigger);
+
+    var _this = _possibleConstructorReturn(this, (OverlayTrigger.__proto__ || Object.getPrototypeOf(OverlayTrigger)).call(this, props));
+
+    _this.showOverlay = _this.showOverlay.bind(_this);
+    _this.renderOverlay = _this.renderOverlay.bind(_this);
+    _this.overlayID = _this.props.overlay.props.id || 'overlay_' + (0, _idgen2.default)();
+    return _this;
+  }
+
+  _createClass(OverlayTrigger, [{
+    key: 'render',
+    value: function render() {
+      var child = _react2.default.Children.only(this.props.children);
+
+      return _react2.default.cloneElement(child, {
+        onClick: this.showOverlay
+      });
+    }
+  }, {
+    key: 'renderOverlay',
+    value: function renderOverlay() {
+      return _react2.default.cloneElement(this.props.overlay, {
+        id: this.overlayID
+      });
+    }
+  }, {
+    key: 'showOverlay',
+    value: function showOverlay(e) {
+      e.preventDefault();
+      $('#' + this.overlayID).modal(this.props.modalOptions).modal('open');
+    }
+  }]);
+
+  return OverlayTrigger;
+}(_Overlay3.default);
+
+OverlayTrigger.propTypes = {
+  modalOptions: _react.PropTypes.object,
+  overlay: _react.PropTypes.node
+};
+
+exports.default = OverlayTrigger;
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PaginationButton = function PaginationButton(_ref) {
+  var _ref$active = _ref.active,
+      active = _ref$active === undefined ? false : _ref$active,
+      children = _ref.children,
+      className = _ref.className,
+      _ref$disabled = _ref.disabled,
+      disabled = _ref$disabled === undefined ? false : _ref$disabled,
+      _ref$href = _ref.href,
+      href = _ref$href === undefined ? '#' : _ref$href,
+      onSelect = _ref.onSelect;
+
+  var classes = {
+    'waves-effect': true,
+    disabled: disabled,
+    active: active
+  };
+
+  return _react2.default.createElement(
+    'li',
+    { className: (0, _classnames2.default)(classes, className), onClick: onSelect },
+    _react2.default.createElement(
+      'a',
+      { href: href },
+      children
+    )
+  );
+};
+
+PaginationButton.propTypes = {
+  active: _react.PropTypes.bool,
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  disabled: _react.PropTypes.bool,
+  href: _react.PropTypes.string,
+  onSelect: _react.PropTypes.func
+};
+
+exports.default = PaginationButton;
+
+/***/ }),
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9175,7 +14350,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 78 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9198,15 +14373,15 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactComponentTreeHook = __webpack_require__(7);
-var ReactElement = __webpack_require__(15);
+var ReactCurrentOwner = __webpack_require__(27);
+var ReactComponentTreeHook = __webpack_require__(17);
+var ReactElement = __webpack_require__(36);
 
-var checkReactTypeSpec = __webpack_require__(175);
+var checkReactTypeSpec = __webpack_require__(530);
 
-var canDefineProperty = __webpack_require__(50);
-var getIteratorFn = __webpack_require__(51);
-var warning = __webpack_require__(2);
+var canDefineProperty = __webpack_require__(116);
+var getIteratorFn = __webpack_require__(117);
+var warning = __webpack_require__(6);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -9412,10 +14587,10 @@ var ReactElementValidator = {
 };
 
 module.exports = ReactElementValidator;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 79 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9437,103 +14612,8322 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 80 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var React = __webpack_require__(52);
+var React = __webpack_require__(3);
 
 var Cell = React.createClass({
-	displayName: 'Cell',
+	displayName: "Cell",
 
-	getInitialState: function getInitialState() {
-		var isAlive = false;
-		var nextState = false;
-		var kanye = '';
-
-		return {
-			isAlive: isAlive,
-			nextState: nextState
-		};
-	},
 	getNewKanye: function getNewKanye() {
 		var num = Math.ceil(Math.random() * 5);
-		return 'public/img/kw' + num + '.jpg';
+		return "public/img/kw" + num + ".jpg";
 	},
-	onClick: function onClick() {
-		var isAlive = !this.state.isAlive;
-		var kanye = isAlive ? this.getNewKanye() : '';
-
-		this.setState({
-			isAlive: isAlive,
-			kanye: kanye
-		});
-	},
-	applyNextState: function applyNextState() {
-		var kanye = '';
-		if (this.state.isAlive && this.state.nextState) {
-			kanye = this.state.kanye;
-		} else if (!this.state.isAlive && this.state.nextState) {
-			kanye = this.getNewKanye();
-		}
-
-		this.setState({
-			isAlive: this.state.nextState,
-			kanye: kanye
-		});
-	},
-	setNextState: function setNextState() {
-		var isAlive = void 0;
-		var siblingsCount = this.props.getSiblingsCount(this.props.rowNum, this.props.col, this);
-
-		if (this.state.isAlive) {
-			// Any Live Cell
-			if (siblingsCount < 2) {
-				isAlive = false;
-			} else if (siblingsCount === 2 || siblingsCount === 3) {
-				isAlive = true;
-			} else if (siblingsCount > 3) {
-				isAlive = false;
-			}
-		} else {
-			// Any Dead Cell
-			if (siblingsCount === 3) {
-				// generate new cell
-				isAlive = true;
-			} else {
-				isAlive = false;
-			}
-		}
-
-		this.setState({
-			nextState: isAlive
-		});
+	handleClick: function handleClick() {
+		this.props.onClick(this.props.rowNum, this.props.col);
 	},
 	render: function render() {
-		if (this.state.isAlive) {
-			return React.createElement('img', { src: this.state.kanye, className: 'cell alive', onClick: this.onClick });
+		if (this.props.isAlive) {
+			return React.createElement("img", {
+				src: this.props.kanye,
+				style: { width: this.props.width + "%" },
+				className: "cell alive",
+				onClick: this.handleClick
+			});
 		}
 
-		return React.createElement('div', { className: 'cell', onClick: this.onClick });
+		return React.createElement("div", {
+			className: "cell",
+			style: { width: this.props.width + "%" },
+			onClick: this.handleClick
+		});
 	}
 });
+
+Cell.propTypes = {
+	isAlive: React.PropTypes.bool,
+	kanye: React.PropTypes.string,
+	rowNum: React.PropTypes.number,
+	col: React.PropTypes.number
+};
 
 module.exports = Cell;
 
 /***/ }),
-/* 81 */
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+  F: __webpack_require__(209),
+  T: __webpack_require__(210),
+  __: __webpack_require__(211),
+  add: __webpack_require__(58),
+  addIndex: __webpack_require__(212),
+  adjust: __webpack_require__(118),
+  all: __webpack_require__(213),
+  allPass: __webpack_require__(214),
+  always: __webpack_require__(38),
+  and: __webpack_require__(119),
+  any: __webpack_require__(120),
+  anyPass: __webpack_require__(215),
+  ap: __webpack_require__(80),
+  aperture: __webpack_require__(216),
+  append: __webpack_require__(217),
+  apply: __webpack_require__(121),
+  applySpec: __webpack_require__(218),
+  ascend: __webpack_require__(219),
+  assoc: __webpack_require__(59),
+  assocPath: __webpack_require__(122),
+  binary: __webpack_require__(220),
+  bind: __webpack_require__(123),
+  both: __webpack_require__(221),
+  call: __webpack_require__(222),
+  chain: __webpack_require__(81),
+  clamp: __webpack_require__(223),
+  clone: __webpack_require__(224),
+  comparator: __webpack_require__(225),
+  complement: __webpack_require__(226),
+  compose: __webpack_require__(82),
+  composeK: __webpack_require__(124),
+  composeP: __webpack_require__(227),
+  concat: __webpack_require__(83),
+  cond: __webpack_require__(228),
+  construct: __webpack_require__(229),
+  constructN: __webpack_require__(125),
+  contains: __webpack_require__(230),
+  converge: __webpack_require__(126),
+  countBy: __webpack_require__(231),
+  curry: __webpack_require__(60),
+  curryN: __webpack_require__(14),
+  dec: __webpack_require__(232),
+  descend: __webpack_require__(233),
+  defaultTo: __webpack_require__(127),
+  difference: __webpack_require__(128),
+  differenceWith: __webpack_require__(129),
+  dissoc: __webpack_require__(130),
+  dissocPath: __webpack_require__(234),
+  divide: __webpack_require__(235),
+  drop: __webpack_require__(131),
+  dropLast: __webpack_require__(236),
+  dropLastWhile: __webpack_require__(237),
+  dropRepeats: __webpack_require__(238),
+  dropRepeatsWith: __webpack_require__(132),
+  dropWhile: __webpack_require__(239),
+  either: __webpack_require__(240),
+  empty: __webpack_require__(133),
+  eqBy: __webpack_require__(241),
+  eqProps: __webpack_require__(242),
+  equals: __webpack_require__(22),
+  evolve: __webpack_require__(243),
+  filter: __webpack_require__(84),
+  find: __webpack_require__(244),
+  findIndex: __webpack_require__(245),
+  findLast: __webpack_require__(246),
+  findLastIndex: __webpack_require__(247),
+  flatten: __webpack_require__(248),
+  flip: __webpack_require__(61),
+  forEach: __webpack_require__(249),
+  forEachObjIndexed: __webpack_require__(250),
+  fromPairs: __webpack_require__(251),
+  groupBy: __webpack_require__(252),
+  groupWith: __webpack_require__(253),
+  gt: __webpack_require__(254),
+  gte: __webpack_require__(255),
+  has: __webpack_require__(256),
+  hasIn: __webpack_require__(257),
+  head: __webpack_require__(258),
+  identical: __webpack_require__(134),
+  identity: __webpack_require__(85),
+  ifElse: __webpack_require__(259),
+  inc: __webpack_require__(260),
+  indexBy: __webpack_require__(261),
+  indexOf: __webpack_require__(262),
+  init: __webpack_require__(263),
+  insert: __webpack_require__(264),
+  insertAll: __webpack_require__(265),
+  intersection: __webpack_require__(300),
+  intersectionWith: __webpack_require__(301),
+  intersperse: __webpack_require__(302),
+  into: __webpack_require__(303),
+  invert: __webpack_require__(304),
+  invertObj: __webpack_require__(305),
+  invoker: __webpack_require__(45),
+  is: __webpack_require__(149),
+  isArrayLike: __webpack_require__(46),
+  isEmpty: __webpack_require__(306),
+  isNil: __webpack_require__(307),
+  join: __webpack_require__(308),
+  juxt: __webpack_require__(150),
+  keys: __webpack_require__(24),
+  keysIn: __webpack_require__(309),
+  last: __webpack_require__(151),
+  lastIndexOf: __webpack_require__(310),
+  length: __webpack_require__(152),
+  lens: __webpack_require__(67),
+  lensIndex: __webpack_require__(311),
+  lensPath: __webpack_require__(312),
+  lensProp: __webpack_require__(313),
+  lift: __webpack_require__(68),
+  liftN: __webpack_require__(153),
+  lt: __webpack_require__(314),
+  lte: __webpack_require__(315),
+  map: __webpack_require__(16),
+  mapAccum: __webpack_require__(316),
+  mapAccumRight: __webpack_require__(317),
+  mapObjIndexed: __webpack_require__(318),
+  match: __webpack_require__(319),
+  mathMod: __webpack_require__(320),
+  max: __webpack_require__(39),
+  maxBy: __webpack_require__(321),
+  mean: __webpack_require__(154),
+  median: __webpack_require__(322),
+  memoize: __webpack_require__(323),
+  merge: __webpack_require__(324),
+  mergeAll: __webpack_require__(325),
+  mergeWith: __webpack_require__(326),
+  mergeWithKey: __webpack_require__(155),
+  min: __webpack_require__(327),
+  minBy: __webpack_require__(328),
+  modulo: __webpack_require__(329),
+  multiply: __webpack_require__(156),
+  nAry: __webpack_require__(69),
+  negate: __webpack_require__(330),
+  none: __webpack_require__(331),
+  not: __webpack_require__(157),
+  nth: __webpack_require__(47),
+  nthArg: __webpack_require__(332),
+  objOf: __webpack_require__(158),
+  of: __webpack_require__(333),
+  omit: __webpack_require__(334),
+  once: __webpack_require__(335),
+  or: __webpack_require__(159),
+  over: __webpack_require__(160),
+  pair: __webpack_require__(336),
+  partial: __webpack_require__(337),
+  partialRight: __webpack_require__(338),
+  partition: __webpack_require__(339),
+  path: __webpack_require__(48),
+  pathEq: __webpack_require__(340),
+  pathOr: __webpack_require__(341),
+  pathSatisfies: __webpack_require__(342),
+  pick: __webpack_require__(343),
+  pickAll: __webpack_require__(161),
+  pickBy: __webpack_require__(344),
+  pipe: __webpack_require__(162),
+  pipeK: __webpack_require__(345),
+  pipeP: __webpack_require__(163),
+  pluck: __webpack_require__(49),
+  prepend: __webpack_require__(164),
+  product: __webpack_require__(346),
+  project: __webpack_require__(347),
+  prop: __webpack_require__(90),
+  propEq: __webpack_require__(348),
+  propIs: __webpack_require__(349),
+  propOr: __webpack_require__(350),
+  propSatisfies: __webpack_require__(351),
+  props: __webpack_require__(352),
+  range: __webpack_require__(353),
+  reduce: __webpack_require__(25),
+  reduceBy: __webpack_require__(70),
+  reduceRight: __webpack_require__(165),
+  reduceWhile: __webpack_require__(354),
+  reduced: __webpack_require__(355),
+  reject: __webpack_require__(71),
+  remove: __webpack_require__(356),
+  repeat: __webpack_require__(357),
+  replace: __webpack_require__(358),
+  reverse: __webpack_require__(72),
+  scan: __webpack_require__(359),
+  sequence: __webpack_require__(166),
+  set: __webpack_require__(360),
+  slice: __webpack_require__(34),
+  sort: __webpack_require__(361),
+  sortBy: __webpack_require__(362),
+  sortWith: __webpack_require__(363),
+  split: __webpack_require__(364),
+  splitAt: __webpack_require__(365),
+  splitEvery: __webpack_require__(366),
+  splitWhen: __webpack_require__(367),
+  subtract: __webpack_require__(368),
+  sum: __webpack_require__(167),
+  symmetricDifference: __webpack_require__(369),
+  symmetricDifferenceWith: __webpack_require__(370),
+  tail: __webpack_require__(91),
+  take: __webpack_require__(168),
+  takeLast: __webpack_require__(371),
+  takeLastWhile: __webpack_require__(372),
+  takeWhile: __webpack_require__(373),
+  tap: __webpack_require__(374),
+  test: __webpack_require__(375),
+  times: __webpack_require__(169),
+  toLower: __webpack_require__(376),
+  toPairs: __webpack_require__(377),
+  toPairsIn: __webpack_require__(378),
+  toString: __webpack_require__(50),
+  toUpper: __webpack_require__(379),
+  transduce: __webpack_require__(380),
+  transpose: __webpack_require__(381),
+  traverse: __webpack_require__(382),
+  trim: __webpack_require__(383),
+  tryCatch: __webpack_require__(384),
+  type: __webpack_require__(92),
+  unapply: __webpack_require__(385),
+  unary: __webpack_require__(386),
+  uncurryN: __webpack_require__(387),
+  unfold: __webpack_require__(388),
+  union: __webpack_require__(389),
+  unionWith: __webpack_require__(390),
+  uniq: __webpack_require__(93),
+  uniqBy: __webpack_require__(170),
+  uniqWith: __webpack_require__(94),
+  unless: __webpack_require__(391),
+  unnest: __webpack_require__(392),
+  until: __webpack_require__(393),
+  update: __webpack_require__(171),
+  useWith: __webpack_require__(172),
+  values: __webpack_require__(173),
+  valuesIn: __webpack_require__(394),
+  view: __webpack_require__(395),
+  when: __webpack_require__(396),
+  where: __webpack_require__(174),
+  whereEq: __webpack_require__(397),
+  without: __webpack_require__(398),
+  xprod: __webpack_require__(399),
+  zip: __webpack_require__(400),
+  zipObj: __webpack_require__(401),
+  zipWith: __webpack_require__(402)
+};
+
+
+/***/ }),
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(109);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Toast = exports.Tag = exports.Table = exports.Tabs = exports.Tab = exports.Slider = exports.Slide = exports.SideNavItem = exports.SideNav = exports.SearchForm = exports.Row = exports.ProgressBar = exports.Preloader = exports.PaginationButton = exports.Pagination = exports.Parallax = exports.OverlayTrigger = exports.Overlay = exports.NavItem = exports.Navbar = exports.Modal = exports.MenuItem = exports.MediaBox = exports.Input = exports.Icon = exports.Footer = exports.Dropdown = exports.CollectionItem = exports.Collection = exports.CollapsibleItem = exports.Collapsible = exports.Col = exports.Chip = exports.CardTitle = exports.CardPanel = exports.Card = exports.Button = exports.Breadcrumb = exports.Badge = undefined;
 
+var _Badge = __webpack_require__(489);
+
+var _Badge2 = _interopRequireDefault(_Badge);
+
+var _Breadcrumb = __webpack_require__(490);
+
+var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
+
+var _Button = __webpack_require__(111);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _Card = __webpack_require__(491);
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _CardPanel = __webpack_require__(492);
+
+var _CardPanel2 = _interopRequireDefault(_CardPanel);
+
+var _CardTitle = __webpack_require__(493);
+
+var _CardTitle2 = _interopRequireDefault(_CardTitle);
+
+var _Chip = __webpack_require__(199);
+
+var _Chip2 = _interopRequireDefault(_Chip);
+
+var _Col = __webpack_require__(56);
+
+var _Col2 = _interopRequireDefault(_Col);
+
+var _Collapsible = __webpack_require__(494);
+
+var _Collapsible2 = _interopRequireDefault(_Collapsible);
+
+var _CollapsibleItem = __webpack_require__(495);
+
+var _CollapsibleItem2 = _interopRequireDefault(_CollapsibleItem);
+
+var _Collection = __webpack_require__(496);
+
+var _Collection2 = _interopRequireDefault(_Collection);
+
+var _CollectionItem = __webpack_require__(497);
+
+var _CollectionItem2 = _interopRequireDefault(_CollectionItem);
+
+var _Dropdown = __webpack_require__(498);
+
+var _Dropdown2 = _interopRequireDefault(_Dropdown);
+
+var _Parallax = __webpack_require__(507);
+
+var _Parallax2 = _interopRequireDefault(_Parallax);
+
+var _Footer = __webpack_require__(499);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+var _Input = __webpack_require__(500);
+
+var _Input2 = _interopRequireDefault(_Input);
+
+var _MediaBox = __webpack_require__(501);
+
+var _MediaBox2 = _interopRequireDefault(_MediaBox);
+
+var _MenuItem = __webpack_require__(502);
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+var _Modal = __webpack_require__(503);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
+var _Navbar = __webpack_require__(505);
+
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+var _NavItem = __webpack_require__(504);
+
+var _NavItem2 = _interopRequireDefault(_NavItem);
+
+var _Overlay = __webpack_require__(200);
+
+var _Overlay2 = _interopRequireDefault(_Overlay);
+
+var _OverlayTrigger = __webpack_require__(201);
+
+var _OverlayTrigger2 = _interopRequireDefault(_OverlayTrigger);
+
+var _Pagination = __webpack_require__(506);
+
+var _Pagination2 = _interopRequireDefault(_Pagination);
+
+var _PaginationButton = __webpack_require__(202);
+
+var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
+
+var _Preloader = __webpack_require__(508);
+
+var _Preloader2 = _interopRequireDefault(_Preloader);
+
+var _ProgressBar = __webpack_require__(509);
+
+var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
+
+var _Row = __webpack_require__(112);
+
+var _Row2 = _interopRequireDefault(_Row);
+
+var _SearchForm = __webpack_require__(510);
+
+var _SearchForm2 = _interopRequireDefault(_SearchForm);
+
+var _SideNav = __webpack_require__(511);
+
+var _SideNav2 = _interopRequireDefault(_SideNav);
+
+var _SideNavItem = __webpack_require__(512);
+
+var _SideNavItem2 = _interopRequireDefault(_SideNavItem);
+
+var _Slide = __webpack_require__(513);
+
+var _Slide2 = _interopRequireDefault(_Slide);
+
+var _Slider = __webpack_require__(514);
+
+var _Slider2 = _interopRequireDefault(_Slider);
+
+var _Tab = __webpack_require__(516);
+
+var _Tab2 = _interopRequireDefault(_Tab);
+
+var _Tabs = __webpack_require__(518);
+
+var _Tabs2 = _interopRequireDefault(_Tabs);
+
+var _Table = __webpack_require__(517);
+
+var _Table2 = _interopRequireDefault(_Table);
+
+var _Tag = __webpack_require__(519);
+
+var _Tag2 = _interopRequireDefault(_Tag);
+
+var _Toast = __webpack_require__(520);
+
+var _Toast2 = _interopRequireDefault(_Toast);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Badge = _Badge2.default;
+exports.Breadcrumb = _Breadcrumb2.default;
+exports.Button = _Button2.default;
+exports.Card = _Card2.default;
+exports.CardPanel = _CardPanel2.default;
+exports.CardTitle = _CardTitle2.default;
+exports.Chip = _Chip2.default;
+exports.Col = _Col2.default;
+exports.Collapsible = _Collapsible2.default;
+exports.CollapsibleItem = _CollapsibleItem2.default;
+exports.Collection = _Collection2.default;
+exports.CollectionItem = _CollectionItem2.default;
+exports.Dropdown = _Dropdown2.default;
+exports.Footer = _Footer2.default;
+exports.Icon = _Icon2.default;
+exports.Input = _Input2.default;
+exports.MediaBox = _MediaBox2.default;
+exports.MenuItem = _MenuItem2.default;
+exports.Modal = _Modal2.default;
+exports.Navbar = _Navbar2.default;
+exports.NavItem = _NavItem2.default;
+exports.Overlay = _Overlay2.default;
+exports.OverlayTrigger = _OverlayTrigger2.default;
+exports.Parallax = _Parallax2.default;
+exports.Pagination = _Pagination2.default;
+exports.PaginationButton = _PaginationButton2.default;
+exports.Preloader = _Preloader2.default;
+exports.ProgressBar = _ProgressBar2.default;
+exports.Row = _Row2.default;
+exports.SearchForm = _SearchForm2.default;
+exports.SideNav = _SideNav2.default;
+exports.SideNavItem = _SideNavItem2.default;
+exports.Slide = _Slide2.default;
+exports.Slider = _Slider2.default;
+exports.Tab = _Tab2.default;
+exports.Tabs = _Tabs2.default;
+exports.Table = _Table2.default;
+exports.Tag = _Tag2.default;
+exports.Toast = _Toast2.default;
 
 /***/ }),
-/* 82 */
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var always = __webpack_require__(38);
+
+/**
+ * A function that always returns `false`. Any passed in parameters are ignored.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Function
+ * @sig * -> Boolean
+ * @param {*}
+ * @return {Boolean}
+ * @see R.always, R.T
+ * @example
+ *
+ *      R.F(); //=> false
+ */
+module.exports = always(false);
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var always = __webpack_require__(38);
+
+/**
+ * A function that always returns `true`. Any passed in parameters are ignored.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Function
+ * @sig * -> Boolean
+ * @param {*}
+ * @return {Boolean}
+ * @see R.always, R.F
+ * @example
+ *
+ *      R.T(); //=> true
+ */
+module.exports = always(true);
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * A special placeholder value used to specify "gaps" within curried functions,
+ * allowing partial application of any combination of arguments, regardless of
+ * their positions.
+ *
+ * If `g` is a curried ternary function and `_` is `R.__`, the following are
+ * equivalent:
+ *
+ *   - `g(1, 2, 3)`
+ *   - `g(_, 2, 3)(1)`
+ *   - `g(_, _, 3)(1)(2)`
+ *   - `g(_, _, 3)(1, 2)`
+ *   - `g(_, 2, _)(1, 3)`
+ *   - `g(_, 2)(1)(3)`
+ *   - `g(_, 2)(1, 3)`
+ *   - `g(_, 2)(_, 3)(1)`
+ *
+ * @constant
+ * @memberOf R
+ * @since v0.6.0
+ * @category Function
+ * @example
+ *
+ *      var greet = R.replace('{name}', R.__, 'Hello, {name}!');
+ *      greet('Alice'); //=> 'Hello, Alice!'
+ */
+module.exports = { '@@functional/placeholder': true };
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry1 = __webpack_require__(2);
+var curryN = __webpack_require__(14);
+
+/**
+ * Creates a new list iteration function from an existing one by adding two new
+ * parameters to its callback function: the current index, and the entire list.
+ *
+ * This would turn, for instance, Ramda's simple `map` function into one that
+ * more closely resembles `Array.prototype.map`. Note that this will only work
+ * for functions in which the iteration callback function is the first
+ * parameter, and where the list is the last parameter. (This latter might be
+ * unimportant if the list parameter is not used.)
+ *
+ * @func
+ * @memberOf R
+ * @since v0.15.0
+ * @category Function
+ * @category List
+ * @sig ((a ... -> b) ... -> [a] -> *) -> (a ..., Int, [a] -> b) ... -> [a] -> *)
+ * @param {Function} fn A list iteration function that does not pass index or list to its callback
+ * @return {Function} An altered list iteration function that passes (item, index, list) to its callback
+ * @example
+ *
+ *      var mapIndexed = R.addIndex(R.map);
+ *      mapIndexed((val, idx) => idx + '-' + val, ['f', 'o', 'o', 'b', 'a', 'r']);
+ *      //=> ['0-f', '1-o', '2-o', '3-b', '4-a', '5-r']
+ */
+module.exports = _curry1(function addIndex(fn) {
+  return curryN(fn.length, function () {
+    var idx = 0;
+    var origFn = arguments[0];
+    var list = arguments[arguments.length - 1];
+    var args = Array.prototype.slice.call(arguments, 0);
+    args[0] = function () {
+      var result = origFn.apply(this, _concat(arguments, [idx, list]));
+      idx += 1;
+      return result;
+    };
+    return fn.apply(this, args);
+  });
+});
+
+/***/ }),
+/* 213 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xall = __webpack_require__(284);
+
+/**
+ * Returns `true` if all elements of the list match the predicate, `false` if
+ * there are any that don't.
+ *
+ * Dispatches to the `all` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> Boolean
+ * @param {Function} fn The predicate function.
+ * @param {Array} list The array to consider.
+ * @return {Boolean} `true` if the predicate is satisfied by every element, `false`
+ *         otherwise.
+ * @see R.any, R.none, R.transduce
+ * @example
+ *
+ *      var equals3 = R.equals(3);
+ *      R.all(equals3)([3, 3, 3, 3]); //=> true
+ *      R.all(equals3)([3, 3, 1, 3]); //=> false
+ */
+module.exports = _curry2(_dispatchable(['all'], _xall, function all(fn, list) {
+  var idx = 0;
+  while (idx < list.length) {
+    if (!fn(list[idx])) {
+      return false;
+    }
+    idx += 1;
+  }
+  return true;
+}));
+
+/***/ }),
+/* 214 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var curryN = __webpack_require__(14);
+var max = __webpack_require__(39);
+var pluck = __webpack_require__(49);
+var reduce = __webpack_require__(25);
+
+/**
+ * Takes a list of predicates and returns a predicate that returns true for a
+ * given list of arguments if every one of the provided predicates is satisfied
+ * by those arguments.
+ *
+ * The function returned is a curried function whose arity matches that of the
+ * highest-arity predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Logic
+ * @sig [(*... -> Boolean)] -> (*... -> Boolean)
+ * @param {Array} predicates An array of predicates to check
+ * @return {Function} The combined predicate
+ * @see R.anyPass
+ * @example
+ *
+ *      var isQueen = R.propEq('rank', 'Q');
+ *      var isSpade = R.propEq('suit', '♠︎');
+ *      var isQueenOfSpades = R.allPass([isQueen, isSpade]);
+ *
+ *      isQueenOfSpades({rank: 'Q', suit: '♣︎'}); //=> false
+ *      isQueenOfSpades({rank: 'Q', suit: '♠︎'}); //=> true
+ */
+module.exports = _curry1(function allPass(preds) {
+  return curryN(reduce(max, 0, pluck('length', preds)), function () {
+    var idx = 0;
+    var len = preds.length;
+    while (idx < len) {
+      if (!preds[idx].apply(this, arguments)) {
+        return false;
+      }
+      idx += 1;
+    }
+    return true;
+  });
+});
+
+/***/ }),
+/* 215 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var curryN = __webpack_require__(14);
+var max = __webpack_require__(39);
+var pluck = __webpack_require__(49);
+var reduce = __webpack_require__(25);
+
+/**
+ * Takes a list of predicates and returns a predicate that returns true for a
+ * given list of arguments if at least one of the provided predicates is
+ * satisfied by those arguments.
+ *
+ * The function returned is a curried function whose arity matches that of the
+ * highest-arity predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Logic
+ * @sig [(*... -> Boolean)] -> (*... -> Boolean)
+ * @param {Array} predicates An array of predicates to check
+ * @return {Function} The combined predicate
+ * @see R.allPass
+ * @example
+ *
+ *      var isClub = R.propEq('suit', '♣');
+ *      var isSpade = R.propEq('suit', '♠');
+ *      var isBlackCard = R.anyPass([isClub, isSpade]);
+ *
+ *      isBlackCard({rank: '10', suit: '♣'}); //=> true
+ *      isBlackCard({rank: 'Q', suit: '♠'}); //=> true
+ *      isBlackCard({rank: 'Q', suit: '♦'}); //=> false
+ */
+module.exports = _curry1(function anyPass(preds) {
+  return curryN(reduce(max, 0, pluck('length', preds)), function () {
+    var idx = 0;
+    var len = preds.length;
+    while (idx < len) {
+      if (preds[idx].apply(this, arguments)) {
+        return true;
+      }
+      idx += 1;
+    }
+    return false;
+  });
+});
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _aperture = __webpack_require__(267);
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xaperture = __webpack_require__(285);
+
+/**
+ * Returns a new list, composed of n-tuples of consecutive elements If `n` is
+ * greater than the length of the list, an empty list is returned.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category List
+ * @sig Number -> [a] -> [[a]]
+ * @param {Number} n The size of the tuples to create
+ * @param {Array} list The list to split into `n`-length tuples
+ * @return {Array} The resulting list of `n`-length tuples
+ * @see R.transduce
+ * @example
+ *
+ *      R.aperture(2, [1, 2, 3, 4, 5]); //=> [[1, 2], [2, 3], [3, 4], [4, 5]]
+ *      R.aperture(3, [1, 2, 3, 4, 5]); //=> [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+ *      R.aperture(7, [1, 2, 3, 4, 5]); //=> []
+ */
+module.exports = _curry2(_dispatchable([], _xaperture, _aperture));
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a new list containing the contents of the given list, followed by
+ * the given element.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig a -> [a] -> [a]
+ * @param {*} el The element to add to the end of the new list.
+ * @param {Array} list The list of elements to add a new item to.
+ *        list.
+ * @return {Array} A new list containing the elements of the old list followed by `el`.
+ * @see R.prepend
+ * @example
+ *
+ *      R.append('tests', ['write', 'more']); //=> ['write', 'more', 'tests']
+ *      R.append('tests', []); //=> ['tests']
+ *      R.append(['tests'], ['write', 'more']); //=> ['write', 'more', ['tests']]
+ */
+module.exports = _curry2(function append(el, list) {
+  return _concat(list, [el]);
+});
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var apply = __webpack_require__(121);
+var curryN = __webpack_require__(14);
+var map = __webpack_require__(16);
+var max = __webpack_require__(39);
+var pluck = __webpack_require__(49);
+var reduce = __webpack_require__(25);
+var values = __webpack_require__(173);
+
+/**
+ * Given a spec object recursively mapping properties to functions, creates a
+ * function producing an object of the same structure, by mapping each property
+ * to the result of calling its associated function with the supplied arguments.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.20.0
+ * @category Function
+ * @sig {k: ((a, b, ..., m) -> v)} -> ((a, b, ..., m) -> {k: v})
+ * @param {Object} spec an object recursively mapping properties to functions for
+ *        producing the values for these properties.
+ * @return {Function} A function that returns an object of the same structure
+ * as `spec', with each property set to the value returned by calling its
+ * associated function with the supplied arguments.
+ * @see R.converge, R.juxt
+ * @example
+ *
+ *      var getMetrics = R.applySpec({
+ *                                      sum: R.add,
+ *                                      nested: { mul: R.multiply }
+ *                                   });
+ *      getMetrics(2, 4); // => { sum: 6, nested: { mul: 8 } }
+ * @symb R.applySpec({ x: f, y: { z: g } })(a, b) = { x: f(a, b), y: { z: g(a, b) } }
+ */
+module.exports = _curry1(function applySpec(spec) {
+  spec = map(function (v) {
+    return typeof v == 'function' ? v : applySpec(v);
+  }, spec);
+  return curryN(reduce(max, 0, pluck('length', values(spec))), function () {
+    var args = arguments;
+    return map(function (f) {
+      return apply(f, args);
+    }, spec);
+  });
+});
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Makes an ascending comparator function out of a function that returns a value
+ * that can be compared with `<` and `>`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.23.0
+ * @category Function
+ * @sig Ord b => (a -> b) -> a -> a -> Number
+ * @param {Function} fn A function of arity one that returns a value that can be compared
+ * @param {*} a The first item to be compared.
+ * @param {*} b The second item to be compared.
+ * @return {Number} `-1` if fn(a) < fn(b), `1` if fn(b) < fn(a), otherwise `0`
+ * @example
+ *
+ *      var byAge = R.ascend(R.prop('age'));
+ *      var people = [
+ *        // ...
+ *      ];
+ *      var peopleByYoungestFirst = R.sort(byAge, people);
+ */
+module.exports = _curry3(function ascend(fn, a, b) {
+  var aa = fn(a);
+  var bb = fn(b);
+  return aa < bb ? -1 : aa > bb ? 1 : 0;
+});
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var nAry = __webpack_require__(69);
+
+/**
+ * Wraps a function of any arity (including nullary) in a function that accepts
+ * exactly 2 parameters. Any extraneous parameters will not be passed to the
+ * supplied function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category Function
+ * @sig (* -> c) -> (a, b -> c)
+ * @param {Function} fn The function to wrap.
+ * @return {Function} A new function wrapping `fn`. The new function is guaranteed to be of
+ *         arity 2.
+ * @example
+ *
+ *      var takesThreeArgs = function(a, b, c) {
+ *        return [a, b, c];
+ *      };
+ *      takesThreeArgs.length; //=> 3
+ *      takesThreeArgs(1, 2, 3); //=> [1, 2, 3]
+ *
+ *      var takesTwoArgs = R.binary(takesThreeArgs);
+ *      takesTwoArgs.length; //=> 2
+ *      // Only 2 arguments are passed to the wrapped function
+ *      takesTwoArgs(1, 2, 3); //=> [1, 2, undefined]
+ * @symb R.binary(f)(a, b, c) = f(a, b)
+ */
+module.exports = _curry1(function binary(fn) {
+  return nAry(2, fn);
+});
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isFunction = __webpack_require__(63);
+var and = __webpack_require__(119);
+var lift = __webpack_require__(68);
+
+/**
+ * A function which calls the two provided functions and returns the `&&`
+ * of the results.
+ * It returns the result of the first function if it is false-y and the result
+ * of the second function otherwise. Note that this is short-circuited,
+ * meaning that the second function will not be invoked if the first returns a
+ * false-y value.
+ *
+ * In addition to functions, `R.both` also accepts any fantasy-land compatible
+ * applicative functor.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category Logic
+ * @sig (*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)
+ * @param {Function} f A predicate
+ * @param {Function} g Another predicate
+ * @return {Function} a function that applies its arguments to `f` and `g` and `&&`s their outputs together.
+ * @see R.and
+ * @example
+ *
+ *      var gt10 = R.gt(R.__, 10)
+ *      var lt20 = R.lt(R.__, 20)
+ *      var f = R.both(gt10, lt20);
+ *      f(15); //=> true
+ *      f(30); //=> false
+ */
+module.exports = _curry2(function both(f, g) {
+  return _isFunction(f) ? function _both() {
+    return f.apply(this, arguments) && g.apply(this, arguments);
+  } : lift(and)(f, g);
+});
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var curry = __webpack_require__(60);
+
+/**
+ * Returns the result of calling its first argument with the remaining
+ * arguments. This is occasionally useful as a converging function for
+ * `R.converge`: the left branch can produce a function while the right branch
+ * produces a value to be passed to that function as an argument.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Function
+ * @sig (*... -> a),*... -> a
+ * @param {Function} fn The function to apply to the remaining arguments.
+ * @param {...*} args Any number of positional arguments.
+ * @return {*}
+ * @see R.apply
+ * @example
+ *
+ *      R.call(R.add, 1, 2); //=> 3
+ *
+ *      var indentN = R.pipe(R.times(R.always(' ')),
+ *                           R.join(''),
+ *                           R.replace(/^(?!$)/gm));
+ *
+ *      var format = R.converge(R.call, [
+ *                                  R.pipe(R.prop('indent'), indentN),
+ *                                  R.prop('value')
+ *                              ]);
+ *
+ *      format({indent: 2, value: 'foo\nbar\nbaz\n'}); //=> '  foo\n  bar\n  baz\n'
+ * @symb R.call(f, a, b) = f(a, b)
+ */
+module.exports = curry(function call(fn) {
+  return fn.apply(this, Array.prototype.slice.call(arguments, 1));
+});
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Restricts a number to be within a range.
+ *
+ * Also works for other ordered types such as Strings and Dates.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.20.0
+ * @category Relation
+ * @sig Ord a => a -> a -> a -> a
+ * @param {Number} minimum The lower limit of the clamp (inclusive)
+ * @param {Number} maximum The upper limit of the clamp (inclusive)
+ * @param {Number} value Value to be clamped
+ * @return {Number} Returns `minimum` when `val < minimum`, `maximum` when `val > maximum`, returns `val` otherwise
+ * @example
+ *
+ *      R.clamp(1, 10, -5) // => 1
+ *      R.clamp(1, 10, 15) // => 10
+ *      R.clamp(1, 10, 4)  // => 4
+ */
+module.exports = _curry3(function clamp(min, max, value) {
+  if (min > max) {
+    throw new Error('min must not be greater than max in clamp(min, max, value)');
+  }
+  return value < min ? min : value > max ? max : value;
+});
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _clone = __webpack_require__(135);
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Creates a deep copy of the value which may contain (nested) `Array`s and
+ * `Object`s, `Number`s, `String`s, `Boolean`s and `Date`s. `Function`s are
+ * assigned by reference rather than copied
+ *
+ * Dispatches to a `clone` method if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {*} -> {*}
+ * @param {*} value The object or array to clone
+ * @return {*} A deeply cloned copy of `val`
+ * @example
+ *
+ *      var objects = [{}, {}, {}];
+ *      var objectsClone = R.clone(objects);
+ *      objects === objectsClone; //=> false
+ *      objects[0] === objectsClone[0]; //=> false
+ */
+module.exports = _curry1(function clone(value) {
+  return value != null && typeof value.clone === 'function' ? value.clone() : _clone(value, [], [], true);
+});
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Makes a comparator function out of a function that reports whether the first
+ * element is less than the second.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (a, b -> Boolean) -> (a, b -> Number)
+ * @param {Function} pred A predicate function of arity two which will return `true` if the first argument
+ * is less than the second, `false` otherwise
+ * @return {Function} A Function :: a -> b -> Int that returns `-1` if a < b, `1` if b < a, otherwise `0`
+ * @example
+ *
+ *      var byAge = R.comparator((a, b) => a.age < b.age);
+ *      var people = [
+ *        // ...
+ *      ];
+ *      var peopleByIncreasingAge = R.sort(byAge, people);
+ */
+module.exports = _curry1(function comparator(pred) {
+  return function (a, b) {
+    return pred(a, b) ? -1 : pred(b, a) ? 1 : 0;
+  };
+});
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var lift = __webpack_require__(68);
+var not = __webpack_require__(157);
+
+/**
+ * Takes a function `f` and returns a function `g` such that if called with the same arguments
+ * when `f` returns a "truthy" value, `g` returns `false` and when `f` returns a "falsy" value `g` returns `true`.
+ *
+ * `R.complement` may be applied to any functor
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category Logic
+ * @sig (*... -> *) -> (*... -> Boolean)
+ * @param {Function} f
+ * @return {Function}
+ * @see R.not
+ * @example
+ *
+ *      var isNotNil = R.complement(R.isNil);
+ *      isNil(null); //=> true
+ *      isNotNil(null); //=> false
+ *      isNil(7); //=> false
+ *      isNotNil(7); //=> true
+ */
+module.exports = lift(not);
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var pipeP = __webpack_require__(163);
+var reverse = __webpack_require__(72);
+
+/**
+ * Performs right-to-left composition of one or more Promise-returning
+ * functions. The rightmost function may have any arity; the remaining
+ * functions must be unary.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Function
+ * @sig ((y -> Promise z), (x -> Promise y), ..., (a -> Promise b)) -> (a -> Promise z)
+ * @param {...Function} functions The functions to compose
+ * @return {Function}
+ * @see R.pipeP
+ * @example
+ *
+ *      var db = {
+ *        users: {
+ *          JOE: {
+ *            name: 'Joe',
+ *            followers: ['STEVE', 'SUZY']
+ *          }
+ *        }
+ *      }
+ *
+ *      // We'll pretend to do a db lookup which returns a promise
+ *      var lookupUser = (userId) => Promise.resolve(db.users[userId])
+ *      var lookupFollowers = (user) => Promise.resolve(user.followers)
+ *      lookupUser('JOE').then(lookupFollowers)
+ *
+ *      //  followersForUser :: String -> Promise [UserId]
+ *      var followersForUser = R.composeP(lookupFollowers, lookupUser);
+ *      followersForUser('JOE').then(followers => console.log('Followers:', followers))
+ *      // Followers: ["STEVE","SUZY"]
+ */
+module.exports = function composeP() {
+  if (arguments.length === 0) {
+    throw new Error('composeP requires at least one argument');
+  }
+  return pipeP.apply(this, reverse(arguments));
+};
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _curry1 = __webpack_require__(2);
+var map = __webpack_require__(16);
+var max = __webpack_require__(39);
+var reduce = __webpack_require__(25);
+
+/**
+ * Returns a function, `fn`, which encapsulates `if/else, if/else, ...` logic.
+ * `R.cond` takes a list of [predicate, transformer] pairs. All of the arguments
+ * to `fn` are applied to each of the predicates in turn until one returns a
+ * "truthy" value, at which point `fn` returns the result of applying its
+ * arguments to the corresponding transformer. If none of the predicates
+ * matches, `fn` returns undefined.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category Logic
+ * @sig [[(*... -> Boolean),(*... -> *)]] -> (*... -> *)
+ * @param {Array} pairs A list of [predicate, transformer]
+ * @return {Function}
+ * @example
+ *
+ *      var fn = R.cond([
+ *        [R.equals(0),   R.always('water freezes at 0°C')],
+ *        [R.equals(100), R.always('water boils at 100°C')],
+ *        [R.T,           temp => 'nothing special happens at ' + temp + '°C']
+ *      ]);
+ *      fn(0); //=> 'water freezes at 0°C'
+ *      fn(50); //=> 'nothing special happens at 50°C'
+ *      fn(100); //=> 'water boils at 100°C'
+ */
+module.exports = _curry1(function cond(pairs) {
+  var arity = reduce(max, 0, map(function (pair) {
+    return pair[0].length;
+  }, pairs));
+  return _arity(arity, function () {
+    var idx = 0;
+    while (idx < pairs.length) {
+      if (pairs[idx][0].apply(this, arguments)) {
+        return pairs[idx][1].apply(this, arguments);
+      }
+      idx += 1;
+    }
+  });
+});
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var constructN = __webpack_require__(125);
+
+/**
+ * Wraps a constructor function inside a curried function that can be called
+ * with the same arguments and returns the same type.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (* -> {*}) -> (* -> {*})
+ * @param {Function} fn The constructor function to wrap.
+ * @return {Function} A wrapped, curried constructor function.
+ * @example
+ *
+ *      // Constructor function
+ *      function Animal(kind) {
+ *        this.kind = kind;
+ *      };
+ *      Animal.prototype.sighting = function() {
+ *        return "It's a " + this.kind + "!";
+ *      }
+ *
+ *      var AnimalConstructor = R.construct(Animal)
+ *
+ *      // Notice we no longer need the 'new' keyword:
+ *      AnimalConstructor('Pig'); //=> {"kind": "Pig", "sighting": function (){...}};
+ *
+ *      var animalTypes = ["Lion", "Tiger", "Bear"];
+ *      var animalSighting = R.invoker(0, 'sighting');
+ *      var sightNewAnimal = R.compose(animalSighting, AnimalConstructor);
+ *      R.map(sightNewAnimal, animalTypes); //=> ["It's a Lion!", "It's a Tiger!", "It's a Bear!"]
+ */
+module.exports = _curry1(function construct(Fn) {
+  return constructN(Fn.length, Fn);
+});
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _contains = __webpack_require__(33);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if the specified value is equal, in `R.equals` terms, to at
+ * least one element of the given list; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig a -> [a] -> Boolean
+ * @param {Object} a The item to compare against.
+ * @param {Array} list The array to consider.
+ * @return {Boolean} `true` if an equivalent item is in the list, `false` otherwise.
+ * @see R.any
+ * @example
+ *
+ *      R.contains(3, [1, 2, 3]); //=> true
+ *      R.contains(4, [1, 2, 3]); //=> false
+ *      R.contains({ name: 'Fred' }, [{ name: 'Fred' }]); //=> true
+ *      R.contains([42], [[42]]); //=> true
+ */
+module.exports = _curry2(_contains);
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var reduceBy = __webpack_require__(70);
+
+/**
+ * Counts the elements of a list according to how many match each value of a
+ * key generated by the supplied function. Returns an object mapping the keys
+ * produced by `fn` to the number of occurrences in the list. Note that all
+ * keys are coerced to strings because of how JavaScript objects work.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig (a -> String) -> [a] -> {*}
+ * @param {Function} fn The function used to map values to keys.
+ * @param {Array} list The list to count elements from.
+ * @return {Object} An object mapping keys to number of occurrences in the list.
+ * @example
+ *
+ *      var numbers = [1.0, 1.1, 1.2, 2.0, 3.0, 2.2];
+ *      R.countBy(Math.floor)(numbers);    //=> {'1': 3, '2': 2, '3': 1}
+ *
+ *      var letters = ['a', 'b', 'A', 'a', 'B', 'c'];
+ *      R.countBy(R.toLower)(letters);   //=> {'a': 3, 'b': 2, 'c': 1}
+ */
+module.exports = reduceBy(function (acc, elem) {
+  return acc + 1;
+}, 0);
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var add = __webpack_require__(58);
+
+/**
+ * Decrements its argument.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Math
+ * @sig Number -> Number
+ * @param {Number} n
+ * @return {Number} n - 1
+ * @see R.inc
+ * @example
+ *
+ *      R.dec(42); //=> 41
+ */
+module.exports = add(-1);
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Makes a descending comparator function out of a function that returns a value
+ * that can be compared with `<` and `>`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.23.0
+ * @category Function
+ * @sig Ord b => (a -> b) -> a -> a -> Number
+ * @param {Function} fn A function of arity one that returns a value that can be compared
+ * @param {*} a The first item to be compared.
+ * @param {*} b The second item to be compared.
+ * @return {Number} `-1` if fn(a) > fn(b), `1` if fn(b) > fn(a), otherwise `0`
+ * @example
+ *
+ *      var byAge = R.descend(R.prop('age'));
+ *      var people = [
+ *        // ...
+ *      ];
+ *      var peopleByOldestFirst = R.sort(byAge, people);
+ */
+module.exports = _curry3(function descend(fn, a, b) {
+  var aa = fn(a);
+  var bb = fn(b);
+  return aa > bb ? -1 : aa < bb ? 1 : 0;
+});
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var assoc = __webpack_require__(59);
+var dissoc = __webpack_require__(130);
+
+/**
+ * Makes a shallow clone of an object, omitting the property at the given path.
+ * Note that this copies and flattens prototype properties onto the new object
+ * as well. All non-primitive properties are copied by reference.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.11.0
+ * @category Object
+ * @sig [String] -> {k: v} -> {k: v}
+ * @param {Array} path The path to the value to omit
+ * @param {Object} obj The object to clone
+ * @return {Object} A new object without the property at path
+ * @see R.assocPath
+ * @example
+ *
+ *      R.dissocPath(['a', 'b', 'c'], {a: {b: {c: 42}}}); //=> {a: {b: {}}}
+ */
+module.exports = _curry2(function dissocPath(path, obj) {
+  switch (path.length) {
+    case 0:
+      return obj;
+    case 1:
+      return dissoc(path[0], obj);
+    default:
+      var head = path[0];
+      var tail = Array.prototype.slice.call(path, 1);
+      return obj[head] == null ? obj : assoc(head, dissocPath(tail, obj[head]), obj);
+  }
+});
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Divides two numbers. Equivalent to `a / b`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} a The first value.
+ * @param {Number} b The second value.
+ * @return {Number} The result of `a / b`.
+ * @see R.multiply
+ * @example
+ *
+ *      R.divide(71, 100); //=> 0.71
+ *
+ *      var half = R.divide(R.__, 2);
+ *      half(42); //=> 21
+ *
+ *      var reciprocal = R.divide(1);
+ *      reciprocal(4);   //=> 0.25
+ */
+module.exports = _curry2(function divide(a, b) {
+  return a / b;
+});
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _dropLast = __webpack_require__(269);
+var _xdropLast = __webpack_require__(288);
+
+/**
+ * Returns a list containing all but the last `n` elements of the given `list`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category List
+ * @sig Number -> [a] -> [a]
+ * @sig Number -> String -> String
+ * @param {Number} n The number of elements of `list` to skip.
+ * @param {Array} list The list of elements to consider.
+ * @return {Array} A copy of the list with only the first `list.length - n` elements
+ * @see R.takeLast, R.drop, R.dropWhile, R.dropLastWhile
+ * @example
+ *
+ *      R.dropLast(1, ['foo', 'bar', 'baz']); //=> ['foo', 'bar']
+ *      R.dropLast(2, ['foo', 'bar', 'baz']); //=> ['foo']
+ *      R.dropLast(3, ['foo', 'bar', 'baz']); //=> []
+ *      R.dropLast(4, ['foo', 'bar', 'baz']); //=> []
+ *      R.dropLast(3, 'ramda');               //=> 'ra'
+ */
+module.exports = _curry2(_dispatchable([], _xdropLast, _dropLast));
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _dropLastWhile = __webpack_require__(270);
+var _xdropLastWhile = __webpack_require__(289);
+
+/**
+ * Returns a new list excluding all the tailing elements of a given list which
+ * satisfy the supplied predicate function. It passes each value from the right
+ * to the supplied predicate function, skipping elements until the predicate
+ * function returns a `falsy` value. The predicate function is applied to one argument:
+ * *(value)*.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> [a]
+ * @param {Function} predicate The function to be called on each element
+ * @param {Array} list The collection to iterate over.
+ * @return {Array} A new array without any trailing elements that return `falsy` values from the `predicate`.
+ * @see R.takeLastWhile, R.addIndex, R.drop, R.dropWhile
+ * @example
+ *
+ *      var lteThree = x => x <= 3;
+ *
+ *      R.dropLastWhile(lteThree, [1, 2, 3, 4, 3, 2, 1]); //=> [1, 2, 3, 4]
+ */
+module.exports = _curry2(_dispatchable([], _xdropLastWhile, _dropLastWhile));
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _dispatchable = __webpack_require__(10);
+var _xdropRepeatsWith = __webpack_require__(147);
+var dropRepeatsWith = __webpack_require__(132);
+var equals = __webpack_require__(22);
+
+/**
+ * Returns a new list without any consecutively repeating elements. `R.equals`
+ * is used to determine equality.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category List
+ * @sig [a] -> [a]
+ * @param {Array} list The array to consider.
+ * @return {Array} `list` without repeating elements.
+ * @see R.transduce
+ * @example
+ *
+ *     R.dropRepeats([1, 1, 1, 2, 3, 4, 4, 2, 2]); //=> [1, 2, 3, 4, 2]
+ */
+module.exports = _curry1(_dispatchable([], _xdropRepeatsWith(equals), dropRepeatsWith(equals)));
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xdropWhile = __webpack_require__(290);
+
+/**
+ * Returns a new list excluding the leading elements of a given list which
+ * satisfy the supplied predicate function. It passes each value to the supplied
+ * predicate function, skipping elements while the predicate function returns
+ * `true`. The predicate function is applied to one argument: *(value)*.
+ *
+ * Dispatches to the `dropWhile` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> [a]
+ * @param {Function} fn The function called per iteration.
+ * @param {Array} list The collection to iterate over.
+ * @return {Array} A new array.
+ * @see R.takeWhile, R.transduce, R.addIndex
+ * @example
+ *
+ *      var lteTwo = x => x <= 2;
+ *
+ *      R.dropWhile(lteTwo, [1, 2, 3, 4, 3, 2, 1]); //=> [3, 4, 3, 2, 1]
+ */
+module.exports = _curry2(_dispatchable(['dropWhile'], _xdropWhile, function dropWhile(pred, list) {
+  var idx = 0;
+  var len = list.length;
+  while (idx < len && pred(list[idx])) {
+    idx += 1;
+  }
+  return Array.prototype.slice.call(list, idx);
+}));
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isFunction = __webpack_require__(63);
+var lift = __webpack_require__(68);
+var or = __webpack_require__(159);
+
+/**
+ * A function wrapping calls to the two functions in an `||` operation,
+ * returning the result of the first function if it is truth-y and the result
+ * of the second function otherwise. Note that this is short-circuited,
+ * meaning that the second function will not be invoked if the first returns a
+ * truth-y value.
+ *
+ * In addition to functions, `R.either` also accepts any fantasy-land compatible
+ * applicative functor.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category Logic
+ * @sig (*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)
+ * @param {Function} f a predicate
+ * @param {Function} g another predicate
+ * @return {Function} a function that applies its arguments to `f` and `g` and `||`s their outputs together.
+ * @see R.or
+ * @example
+ *
+ *      var gt10 = x => x > 10;
+ *      var even = x => x % 2 === 0;
+ *      var f = R.either(gt10, even);
+ *      f(101); //=> true
+ *      f(8); //=> true
+ */
+module.exports = _curry2(function either(f, g) {
+  return _isFunction(f) ? function _either() {
+    return f.apply(this, arguments) || g.apply(this, arguments);
+  } : lift(or)(f, g);
+});
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var equals = __webpack_require__(22);
+
+/**
+ * Takes a function and two values in its domain and returns `true` if the
+ * values map to the same value in the codomain; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.18.0
+ * @category Relation
+ * @sig (a -> b) -> a -> a -> Boolean
+ * @param {Function} f
+ * @param {*} x
+ * @param {*} y
+ * @return {Boolean}
+ * @example
+ *
+ *      R.eqBy(Math.abs, 5, -5); //=> true
+ */
+module.exports = _curry3(function eqBy(f, x, y) {
+  return equals(f(x), f(y));
+});
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var equals = __webpack_require__(22);
+
+/**
+ * Reports whether two objects have the same value, in `R.equals` terms, for
+ * the specified property. Useful as a curried predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig k -> {k: v} -> {k: v} -> Boolean
+ * @param {String} prop The name of the property to compare
+ * @param {Object} obj1
+ * @param {Object} obj2
+ * @return {Boolean}
+ *
+ * @example
+ *
+ *      var o1 = { a: 1, b: 2, c: 3, d: 4 };
+ *      var o2 = { a: 10, b: 20, c: 3, d: 40 };
+ *      R.eqProps('a', o1, o2); //=> false
+ *      R.eqProps('c', o1, o2); //=> true
+ */
+module.exports = _curry3(function eqProps(prop, obj1, obj2) {
+  return equals(obj1[prop], obj2[prop]);
+});
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates a new object by recursively evolving a shallow copy of `object`,
+ * according to the `transformation` functions. All non-primitive properties
+ * are copied by reference.
+ *
+ * A `transformation` function will not be invoked if its corresponding key
+ * does not exist in the evolved object.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Object
+ * @sig {k: (v -> v)} -> {k: v} -> {k: v}
+ * @param {Object} transformations The object specifying transformation functions to apply
+ *        to the object.
+ * @param {Object} object The object to be transformed.
+ * @return {Object} The transformed object.
+ * @example
+ *
+ *      var tomato  = {firstName: '  Tomato ', data: {elapsed: 100, remaining: 1400}, id:123};
+ *      var transformations = {
+ *        firstName: R.trim,
+ *        lastName: R.trim, // Will not get invoked.
+ *        data: {elapsed: R.add(1), remaining: R.add(-1)}
+ *      };
+ *      R.evolve(transformations, tomato); //=> {firstName: 'Tomato', data: {elapsed: 101, remaining: 1399}, id:123}
+ */
+module.exports = _curry2(function evolve(transformations, object) {
+  var result = {};
+  var transformation, key, type;
+  for (key in object) {
+    transformation = transformations[key];
+    type = typeof transformation === 'undefined' ? 'undefined' : _typeof(transformation);
+    result[key] = type === 'function' ? transformation(object[key]) : transformation && type === 'object' ? evolve(transformation, object[key]) : object[key];
+  }
+  return result;
+});
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xfind = __webpack_require__(292);
+
+/**
+ * Returns the first element of the list which matches the predicate, or
+ * `undefined` if no element matches.
+ *
+ * Dispatches to the `find` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> a | undefined
+ * @param {Function} fn The predicate function used to determine if the element is the
+ *        desired one.
+ * @param {Array} list The array to consider.
+ * @return {Object} The element found, or `undefined`.
+ * @see R.transduce
+ * @example
+ *
+ *      var xs = [{a: 1}, {a: 2}, {a: 3}];
+ *      R.find(R.propEq('a', 2))(xs); //=> {a: 2}
+ *      R.find(R.propEq('a', 4))(xs); //=> undefined
+ */
+module.exports = _curry2(_dispatchable(['find'], _xfind, function find(fn, list) {
+  var idx = 0;
+  var len = list.length;
+  while (idx < len) {
+    if (fn(list[idx])) {
+      return list[idx];
+    }
+    idx += 1;
+  }
+}));
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xfindIndex = __webpack_require__(293);
+
+/**
+ * Returns the index of the first element of the list which matches the
+ * predicate, or `-1` if no element matches.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> Number
+ * @param {Function} fn The predicate function used to determine if the element is the
+ * desired one.
+ * @param {Array} list The array to consider.
+ * @return {Number} The index of the element found, or `-1`.
+ * @see R.transduce
+ * @example
+ *
+ *      var xs = [{a: 1}, {a: 2}, {a: 3}];
+ *      R.findIndex(R.propEq('a', 2))(xs); //=> 1
+ *      R.findIndex(R.propEq('a', 4))(xs); //=> -1
+ */
+module.exports = _curry2(_dispatchable([], _xfindIndex, function findIndex(fn, list) {
+  var idx = 0;
+  var len = list.length;
+  while (idx < len) {
+    if (fn(list[idx])) {
+      return idx;
+    }
+    idx += 1;
+  }
+  return -1;
+}));
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xfindLast = __webpack_require__(294);
+
+/**
+ * Returns the last element of the list which matches the predicate, or
+ * `undefined` if no element matches.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> a | undefined
+ * @param {Function} fn The predicate function used to determine if the element is the
+ * desired one.
+ * @param {Array} list The array to consider.
+ * @return {Object} The element found, or `undefined`.
+ * @see R.transduce
+ * @example
+ *
+ *      var xs = [{a: 1, b: 0}, {a:1, b: 1}];
+ *      R.findLast(R.propEq('a', 1))(xs); //=> {a: 1, b: 1}
+ *      R.findLast(R.propEq('a', 4))(xs); //=> undefined
+ */
+module.exports = _curry2(_dispatchable([], _xfindLast, function findLast(fn, list) {
+  var idx = list.length - 1;
+  while (idx >= 0) {
+    if (fn(list[idx])) {
+      return list[idx];
+    }
+    idx -= 1;
+  }
+}));
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xfindLastIndex = __webpack_require__(295);
+
+/**
+ * Returns the index of the last element of the list which matches the
+ * predicate, or `-1` if no element matches.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> Number
+ * @param {Function} fn The predicate function used to determine if the element is the
+ * desired one.
+ * @param {Array} list The array to consider.
+ * @return {Number} The index of the element found, or `-1`.
+ * @see R.transduce
+ * @example
+ *
+ *      var xs = [{a: 1, b: 0}, {a:1, b: 1}];
+ *      R.findLastIndex(R.propEq('a', 1))(xs); //=> 1
+ *      R.findLastIndex(R.propEq('a', 4))(xs); //=> -1
+ */
+module.exports = _curry2(_dispatchable([], _xfindLastIndex, function findLastIndex(fn, list) {
+  var idx = list.length - 1;
+  while (idx >= 0) {
+    if (fn(list[idx])) {
+      return idx;
+    }
+    idx -= 1;
+  }
+  return -1;
+}));
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _makeFlat = __webpack_require__(145);
+
+/**
+ * Returns a new list by pulling every item out of it (and all its sub-arrays)
+ * and putting them in a new array, depth-first.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [b]
+ * @param {Array} list The array to consider.
+ * @return {Array} The flattened list.
+ * @see R.unnest
+ * @example
+ *
+ *      R.flatten([1, 2, [3, 4], 5, [6, [7, 8, [9, [10, 11], 12]]]]);
+ *      //=> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+ */
+module.exports = _curry1(_makeFlat(true));
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _checkForMethod = __webpack_require__(44);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Iterate over an input `list`, calling a provided function `fn` for each
+ * element in the list.
+ *
+ * `fn` receives one argument: *(value)*.
+ *
+ * Note: `R.forEach` does not skip deleted or unassigned indices (sparse
+ * arrays), unlike the native `Array.prototype.forEach` method. For more
+ * details on this behavior, see:
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Description
+ *
+ * Also note that, unlike `Array.prototype.forEach`, Ramda's `forEach` returns
+ * the original array. In some libraries this function is named `each`.
+ *
+ * Dispatches to the `forEach` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig (a -> *) -> [a] -> [a]
+ * @param {Function} fn The function to invoke. Receives one argument, `value`.
+ * @param {Array} list The list to iterate over.
+ * @return {Array} The original list.
+ * @see R.addIndex
+ * @example
+ *
+ *      var printXPlusFive = x => console.log(x + 5);
+ *      R.forEach(printXPlusFive, [1, 2, 3]); //=> [1, 2, 3]
+ *      // logs 6
+ *      // logs 7
+ *      // logs 8
+ * @symb R.forEach(f, [a, b, c]) = [a, b, c]
+ */
+module.exports = _curry2(_checkForMethod('forEach', function forEach(fn, list) {
+  var len = list.length;
+  var idx = 0;
+  while (idx < len) {
+    fn(list[idx]);
+    idx += 1;
+  }
+  return list;
+}));
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var keys = __webpack_require__(24);
+
+/**
+ * Iterate over an input `object`, calling a provided function `fn` for each
+ * key and value in the object.
+ *
+ * `fn` receives three argument: *(value, key, obj)*.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.23.0
+ * @category Object
+ * @sig ((a, String, StrMap a) -> Any) -> StrMap a -> StrMap a
+ * @param {Function} fn The function to invoke. Receives three argument, `value`, `key`, `obj`.
+ * @param {Object} obj The object to iterate over.
+ * @return {Object} The original object.
+ * @example
+ *
+ *      var printKeyConcatValue = (value, key) => console.log(key + ':' + value);
+ *      R.forEachObjIndexed(printKeyConcatValue, {x: 1, y: 2}); //=> {x: 1, y: 2}
+ *      // logs x:1
+ *      // logs y:2
+ * @symb R.forEachObjIndexed(f, {x: a, y: b}) = {x: a, y: b}
+ */
+module.exports = _curry2(function forEachObjIndexed(fn, obj) {
+  var keyList = keys(obj);
+  var idx = 0;
+  while (idx < keyList.length) {
+    var key = keyList[idx];
+    fn(obj[key], key, obj);
+    idx += 1;
+  }
+  return obj;
+});
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Creates a new object from a list key-value pairs. If a key appears in
+ * multiple pairs, the rightmost pair is included in the object.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category List
+ * @sig [[k,v]] -> {k: v}
+ * @param {Array} pairs An array of two-element arrays that will be the keys and values of the output object.
+ * @return {Object} The object made by pairing up `keys` and `values`.
+ * @see R.toPairs, R.pair
+ * @example
+ *
+ *      R.fromPairs([['a', 1], ['b', 2], ['c', 3]]); //=> {a: 1, b: 2, c: 3}
+ */
+module.exports = _curry1(function fromPairs(pairs) {
+  var result = {};
+  var idx = 0;
+  while (idx < pairs.length) {
+    result[pairs[idx][0]] = pairs[idx][1];
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _checkForMethod = __webpack_require__(44);
+var _curry2 = __webpack_require__(0);
+var reduceBy = __webpack_require__(70);
+
+/**
+ * Splits a list into sub-lists stored in an object, based on the result of
+ * calling a String-returning function on each element, and grouping the
+ * results according to values returned.
+ *
+ * Dispatches to the `groupBy` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a -> String) -> [a] -> {String: [a]}
+ * @param {Function} fn Function :: a -> String
+ * @param {Array} list The array to group
+ * @return {Object} An object with the output of `fn` for keys, mapped to arrays of elements
+ *         that produced that key when passed to `fn`.
+ * @see R.transduce
+ * @example
+ *
+ *      var byGrade = R.groupBy(function(student) {
+ *        var score = student.score;
+ *        return score < 65 ? 'F' :
+ *               score < 70 ? 'D' :
+ *               score < 80 ? 'C' :
+ *               score < 90 ? 'B' : 'A';
+ *      });
+ *      var students = [{name: 'Abby', score: 84},
+ *                      {name: 'Eddy', score: 58},
+ *                      // ...
+ *                      {name: 'Jack', score: 69}];
+ *      byGrade(students);
+ *      // {
+ *      //   'A': [{name: 'Dianne', score: 99}],
+ *      //   'B': [{name: 'Abby', score: 84}]
+ *      //   // ...,
+ *      //   'F': [{name: 'Eddy', score: 58}]
+ *      // }
+ */
+module.exports = _curry2(_checkForMethod('groupBy', reduceBy(function (acc, item) {
+  if (acc == null) {
+    acc = [];
+  }
+  acc.push(item);
+  return acc;
+}, null)));
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Takes a list and returns a list of lists where each sublist's elements are
+ * all "equal" according to the provided equality function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.21.0
+ * @category List
+ * @sig ((a, a) → Boolean) → [a] → [[a]]
+ * @param {Function} fn Function for determining whether two given (adjacent)
+ *        elements should be in the same group
+ * @param {Array} list The array to group. Also accepts a string, which will be
+ *        treated as a list of characters.
+ * @return {List} A list that contains sublists of equal elements,
+ *         whose concatenations are equal to the original list.
+ * @example
+ *
+ * R.groupWith(R.equals, [0, 1, 1, 2, 3, 5, 8, 13, 21])
+ * //=> [[0], [1, 1], [2], [3], [5], [8], [13], [21]]
+ *
+ * R.groupWith((a, b) => a % 2 === b % 2, [0, 1, 1, 2, 3, 5, 8, 13, 21])
+ * //=> [[0], [1, 1], [2], [3, 5], [8], [13, 21]]
+ *
+ * R.groupWith(R.eqBy(isVowel), 'aestiou')
+ * //=> ['ae', 'st', 'iou']
+ */
+module.exports = _curry2(function (fn, list) {
+  var res = [];
+  var idx = 0;
+  var len = list.length;
+  while (idx < len) {
+    var nextidx = idx + 1;
+    while (nextidx < len && fn(list[idx], list[nextidx])) {
+      nextidx += 1;
+    }
+    res.push(list.slice(idx, nextidx));
+    idx = nextidx;
+  }
+  return res;
+});
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if the first argument is greater than the second; `false`
+ * otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> Boolean
+ * @param {*} a
+ * @param {*} b
+ * @return {Boolean}
+ * @see R.lt
+ * @example
+ *
+ *      R.gt(2, 1); //=> true
+ *      R.gt(2, 2); //=> false
+ *      R.gt(2, 3); //=> false
+ *      R.gt('a', 'z'); //=> false
+ *      R.gt('z', 'a'); //=> true
+ */
+module.exports = _curry2(function gt(a, b) {
+  return a > b;
+});
+
+/***/ }),
+/* 255 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if the first argument is greater than or equal to the second;
+ * `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> Boolean
+ * @param {Number} a
+ * @param {Number} b
+ * @return {Boolean}
+ * @see R.lte
+ * @example
+ *
+ *      R.gte(2, 1); //=> true
+ *      R.gte(2, 2); //=> true
+ *      R.gte(2, 3); //=> false
+ *      R.gte('a', 'z'); //=> false
+ *      R.gte('z', 'a'); //=> true
+ */
+module.exports = _curry2(function gte(a, b) {
+  return a >= b;
+});
+
+/***/ }),
+/* 256 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _has = __webpack_require__(15);
+
+/**
+ * Returns whether or not an object has an own property with the specified name
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category Object
+ * @sig s -> {s: x} -> Boolean
+ * @param {String} prop The name of the property to check for.
+ * @param {Object} obj The object to query.
+ * @return {Boolean} Whether the property exists.
+ * @example
+ *
+ *      var hasName = R.has('name');
+ *      hasName({name: 'alice'});   //=> true
+ *      hasName({name: 'bob'});     //=> true
+ *      hasName({});                //=> false
+ *
+ *      var point = {x: 0, y: 0};
+ *      var pointHas = R.has(R.__, point);
+ *      pointHas('x');  //=> true
+ *      pointHas('y');  //=> true
+ *      pointHas('z');  //=> false
+ */
+module.exports = _curry2(_has);
+
+/***/ }),
+/* 257 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns whether or not an object or its prototype chain has a property with
+ * the specified name
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category Object
+ * @sig s -> {s: x} -> Boolean
+ * @param {String} prop The name of the property to check for.
+ * @param {Object} obj The object to query.
+ * @return {Boolean} Whether the property exists.
+ * @example
+ *
+ *      function Rectangle(width, height) {
+ *        this.width = width;
+ *        this.height = height;
+ *      }
+ *      Rectangle.prototype.area = function() {
+ *        return this.width * this.height;
+ *      };
+ *
+ *      var square = new Rectangle(2, 2);
+ *      R.hasIn('width', square);  //=> true
+ *      R.hasIn('area', square);  //=> true
+ */
+module.exports = _curry2(function hasIn(prop, obj) {
+  return prop in obj;
+});
+
+/***/ }),
+/* 258 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var nth = __webpack_require__(47);
+
+/**
+ * Returns the first element of the given list or string. In some libraries
+ * this function is named `first`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> a | Undefined
+ * @sig String -> String
+ * @param {Array|String} list
+ * @return {*}
+ * @see R.tail, R.init, R.last
+ * @example
+ *
+ *      R.head(['fi', 'fo', 'fum']); //=> 'fi'
+ *      R.head([]); //=> undefined
+ *
+ *      R.head('abc'); //=> 'a'
+ *      R.head(''); //=> ''
+ */
+module.exports = nth(0);
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var curryN = __webpack_require__(14);
+
+/**
+ * Creates a function that will process either the `onTrue` or the `onFalse`
+ * function depending upon the result of the `condition` predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Logic
+ * @sig (*... -> Boolean) -> (*... -> *) -> (*... -> *) -> (*... -> *)
+ * @param {Function} condition A predicate function
+ * @param {Function} onTrue A function to invoke when the `condition` evaluates to a truthy value.
+ * @param {Function} onFalse A function to invoke when the `condition` evaluates to a falsy value.
+ * @return {Function} A new unary function that will process either the `onTrue` or the `onFalse`
+ *                    function depending upon the result of the `condition` predicate.
+ * @see R.unless, R.when
+ * @example
+ *
+ *      var incCount = R.ifElse(
+ *        R.has('count'),
+ *        R.over(R.lensProp('count'), R.inc),
+ *        R.assoc('count', 1)
+ *      );
+ *      incCount({});           //=> { count: 1 }
+ *      incCount({ count: 1 }); //=> { count: 2 }
+ */
+module.exports = _curry3(function ifElse(condition, onTrue, onFalse) {
+  return curryN(Math.max(condition.length, onTrue.length, onFalse.length), function _ifElse() {
+    return condition.apply(this, arguments) ? onTrue.apply(this, arguments) : onFalse.apply(this, arguments);
+  });
+});
+
+/***/ }),
+/* 260 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var add = __webpack_require__(58);
+
+/**
+ * Increments its argument.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Math
+ * @sig Number -> Number
+ * @param {Number} n
+ * @return {Number} n + 1
+ * @see R.dec
+ * @example
+ *
+ *      R.inc(42); //=> 43
+ */
+module.exports = add(1);
+
+/***/ }),
+/* 261 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var reduceBy = __webpack_require__(70);
+
+/**
+ * Given a function that generates a key, turns a list of objects into an
+ * object indexing the objects by the given key. Note that if multiple
+ * objects generate the same value for the indexing key only the last value
+ * will be included in the generated object.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig (a -> String) -> [{k: v}] -> {k: {k: v}}
+ * @param {Function} fn Function :: a -> String
+ * @param {Array} array The array of objects to index
+ * @return {Object} An object indexing each array element by the given property.
+ * @example
+ *
+ *      var list = [{id: 'xyz', title: 'A'}, {id: 'abc', title: 'B'}];
+ *      R.indexBy(R.prop('id'), list);
+ *      //=> {abc: {id: 'abc', title: 'B'}, xyz: {id: 'xyz', title: 'A'}}
+ */
+module.exports = reduceBy(function (acc, elem) {
+  return elem;
+}, null);
+
+/***/ }),
+/* 262 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _indexOf = __webpack_require__(140);
+var _isArray = __webpack_require__(29);
+
+/**
+ * Returns the position of the first occurrence of an item in an array, or -1
+ * if the item is not included in the array. `R.equals` is used to determine
+ * equality.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig a -> [a] -> Number
+ * @param {*} target The item to find.
+ * @param {Array} xs The array to search in.
+ * @return {Number} the index of the target, or -1 if the target is not found.
+ * @see R.lastIndexOf
+ * @example
+ *
+ *      R.indexOf(3, [1,2,3,4]); //=> 2
+ *      R.indexOf(10, [1,2,3,4]); //=> -1
+ */
+module.exports = _curry2(function indexOf(target, xs) {
+  return typeof xs.indexOf === 'function' && !_isArray(xs) ? xs.indexOf(target) : _indexOf(xs, target, 0);
+});
+
+/***/ }),
+/* 263 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var slice = __webpack_require__(34);
+
+/**
+ * Returns all but the last element of the given list or string.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category List
+ * @sig [a] -> [a]
+ * @sig String -> String
+ * @param {*} list
+ * @return {*}
+ * @see R.last, R.head, R.tail
+ * @example
+ *
+ *      R.init([1, 2, 3]);  //=> [1, 2]
+ *      R.init([1, 2]);     //=> [1]
+ *      R.init([1]);        //=> []
+ *      R.init([]);         //=> []
+ *
+ *      R.init('abc');  //=> 'ab'
+ *      R.init('ab');   //=> 'a'
+ *      R.init('a');    //=> ''
+ *      R.init('');     //=> ''
+ */
+module.exports = slice(0, -1);
+
+/***/ }),
+/* 264 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Inserts the supplied element into the list, at index `index`. _Note that
+ * this is not destructive_: it returns a copy of the list with the changes.
+ * <small>No lists have been harmed in the application of this function.</small>
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.2
+ * @category List
+ * @sig Number -> a -> [a] -> [a]
+ * @param {Number} index The position to insert the element
+ * @param {*} elt The element to insert into the Array
+ * @param {Array} list The list to insert into
+ * @return {Array} A new Array with `elt` inserted at `index`.
+ * @example
+ *
+ *      R.insert(2, 'x', [1,2,3,4]); //=> [1,2,'x',3,4]
+ */
+module.exports = _curry3(function insert(idx, elt, list) {
+  idx = idx < list.length && idx >= 0 ? idx : list.length;
+  var result = Array.prototype.slice.call(list, 0);
+  result.splice(idx, 0, elt);
+  return result;
+});
+
+/***/ }),
+/* 265 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Inserts the sub-list into the list, at index `index`. _Note that this is not
+ * destructive_: it returns a copy of the list with the changes.
+ * <small>No lists have been harmed in the application of this function.</small>
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category List
+ * @sig Number -> [a] -> [a] -> [a]
+ * @param {Number} index The position to insert the sub-list
+ * @param {Array} elts The sub-list to insert into the Array
+ * @param {Array} list The list to insert the sub-list into
+ * @return {Array} A new Array with `elts` inserted starting at `index`.
+ * @example
+ *
+ *      R.insertAll(2, ['x','y','z'], [1,2,3,4]); //=> [1,2,'x','y','z',3,4]
+ */
+module.exports = _curry3(function insertAll(idx, elts, list) {
+  idx = idx < list.length && idx >= 0 ? idx : list.length;
+  return [].concat(Array.prototype.slice.call(list, 0, idx), elts, Array.prototype.slice.call(list, idx));
+});
+
+/***/ }),
+/* 266 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _contains = __webpack_require__(33);
+
+// A simple Set type that honours R.equals semantics
+module.exports = function () {
+  function _Set() {
+    /* globals Set */
+    this._nativeSet = typeof Set === 'function' ? new Set() : null;
+    this._items = {};
+  }
+
+  // until we figure out why jsdoc chokes on this
+  // @param item The item to add to the Set
+  // @returns {boolean} true if the item did not exist prior, otherwise false
+  //
+  _Set.prototype.add = function (item) {
+    return !hasOrAdd(item, true, this);
+  };
+
+  //
+  // @param item The item to check for existence in the Set
+  // @returns {boolean} true if the item exists in the Set, otherwise false
+  //
+  _Set.prototype.has = function (item) {
+    return hasOrAdd(item, false, this);
+  };
+
+  //
+  // Combines the logic for checking whether an item is a member of the set and
+  // for adding a new item to the set.
+  //
+  // @param item       The item to check or add to the Set instance.
+  // @param shouldAdd  If true, the item will be added to the set if it doesn't
+  //                   already exist.
+  // @param set        The set instance to check or add to.
+  // @return {boolean} true if the item already existed, otherwise false.
+  //
+  function hasOrAdd(item, shouldAdd, set) {
+    var type = typeof item === 'undefined' ? 'undefined' : _typeof(item);
+    var prevSize, newSize;
+    switch (type) {
+      case 'string':
+      case 'number':
+        // distinguish between +0 and -0
+        if (item === 0 && 1 / item === -Infinity) {
+          if (set._items['-0']) {
+            return true;
+          } else {
+            if (shouldAdd) {
+              set._items['-0'] = true;
+            }
+            return false;
+          }
+        }
+        // these types can all utilise the native Set
+        if (set._nativeSet !== null) {
+          if (shouldAdd) {
+            prevSize = set._nativeSet.size;
+            set._nativeSet.add(item);
+            newSize = set._nativeSet.size;
+            return newSize === prevSize;
+          } else {
+            return set._nativeSet.has(item);
+          }
+        } else {
+          if (!(type in set._items)) {
+            if (shouldAdd) {
+              set._items[type] = {};
+              set._items[type][item] = true;
+            }
+            return false;
+          } else if (item in set._items[type]) {
+            return true;
+          } else {
+            if (shouldAdd) {
+              set._items[type][item] = true;
+            }
+            return false;
+          }
+        }
+
+      case 'boolean':
+        // set._items['boolean'] holds a two element array
+        // representing [ falseExists, trueExists ]
+        if (type in set._items) {
+          var bIdx = item ? 1 : 0;
+          if (set._items[type][bIdx]) {
+            return true;
+          } else {
+            if (shouldAdd) {
+              set._items[type][bIdx] = true;
+            }
+            return false;
+          }
+        } else {
+          if (shouldAdd) {
+            set._items[type] = item ? [false, true] : [true, false];
+          }
+          return false;
+        }
+
+      case 'function':
+        // compare functions for reference equality
+        if (set._nativeSet !== null) {
+          if (shouldAdd) {
+            prevSize = set._nativeSet.size;
+            set._nativeSet.add(item);
+            newSize = set._nativeSet.size;
+            return newSize === prevSize;
+          } else {
+            return set._nativeSet.has(item);
+          }
+        } else {
+          if (!(type in set._items)) {
+            if (shouldAdd) {
+              set._items[type] = [item];
+            }
+            return false;
+          }
+          if (!_contains(item, set._items[type])) {
+            if (shouldAdd) {
+              set._items[type].push(item);
+            }
+            return false;
+          }
+          return true;
+        }
+
+      case 'undefined':
+        if (set._items[type]) {
+          return true;
+        } else {
+          if (shouldAdd) {
+            set._items[type] = true;
+          }
+          return false;
+        }
+
+      case 'object':
+        if (item === null) {
+          if (!set._items['null']) {
+            if (shouldAdd) {
+              set._items['null'] = true;
+            }
+            return false;
+          }
+          return true;
+        }
+      /* falls through */
+      default:
+        // reduce the search size of heterogeneous sets by creating buckets
+        // for each type.
+        type = Object.prototype.toString.call(item);
+        if (!(type in set._items)) {
+          if (shouldAdd) {
+            set._items[type] = [item];
+          }
+          return false;
+        }
+        // scan through all previously applied items
+        if (!_contains(item, set._items[type])) {
+          if (shouldAdd) {
+            set._items[type].push(item);
+          }
+          return false;
+        }
+        return true;
+    }
+  }
+  return _Set;
+}();
+
+/***/ }),
+/* 267 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _aperture(n, list) {
+  var idx = 0;
+  var limit = list.length - (n - 1);
+  var acc = new Array(limit >= 0 ? limit : 0);
+  while (idx < limit) {
+    acc[idx] = Array.prototype.slice.call(list, idx, idx + n);
+    idx += 1;
+  }
+  return acc;
+};
+
+/***/ }),
+/* 268 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _arrayFromIterator(iter) {
+  var list = [];
+  var next;
+  while (!(next = iter.next()).done) {
+    list.push(next.value);
+  }
+  return list;
+};
+
+/***/ }),
+/* 269 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var take = __webpack_require__(168);
+
+module.exports = function dropLast(n, xs) {
+  return take(n < xs.length ? xs.length - n : 0, xs);
+};
+
+/***/ }),
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function dropLastWhile(pred, list) {
+  var idx = list.length - 1;
+  while (idx >= 0 && pred(list[idx])) {
+    idx -= 1;
+  }
+  return Array.prototype.slice.call(list, 0, idx + 1);
+};
+
+/***/ }),
+/* 271 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _arrayFromIterator = __webpack_require__(268);
+var _functionName = __webpack_require__(274);
+var _has = __webpack_require__(15);
+var identical = __webpack_require__(134);
+var keys = __webpack_require__(24);
+var type = __webpack_require__(92);
+
+module.exports = function _equals(a, b, stackA, stackB) {
+  if (identical(a, b)) {
+    return true;
+  }
+
+  if (type(a) !== type(b)) {
+    return false;
+  }
+
+  if (a == null || b == null) {
+    return false;
+  }
+
+  if (typeof a.equals === 'function' || typeof b.equals === 'function') {
+    return typeof a.equals === 'function' && a.equals(b) && typeof b.equals === 'function' && b.equals(a);
+  }
+
+  switch (type(a)) {
+    case 'Arguments':
+    case 'Array':
+    case 'Object':
+      if (typeof a.constructor === 'function' && _functionName(a.constructor) === 'Promise') {
+        return a === b;
+      }
+      break;
+    case 'Boolean':
+    case 'Number':
+    case 'String':
+      if (!((typeof a === 'undefined' ? 'undefined' : _typeof(a)) === (typeof b === 'undefined' ? 'undefined' : _typeof(b)) && identical(a.valueOf(), b.valueOf()))) {
+        return false;
+      }
+      break;
+    case 'Date':
+      if (!identical(a.valueOf(), b.valueOf())) {
+        return false;
+      }
+      break;
+    case 'Error':
+      return a.name === b.name && a.message === b.message;
+    case 'RegExp':
+      if (!(a.source === b.source && a.global === b.global && a.ignoreCase === b.ignoreCase && a.multiline === b.multiline && a.sticky === b.sticky && a.unicode === b.unicode)) {
+        return false;
+      }
+      break;
+    case 'Map':
+    case 'Set':
+      if (!_equals(_arrayFromIterator(a.entries()), _arrayFromIterator(b.entries()), stackA, stackB)) {
+        return false;
+      }
+      break;
+    case 'Int8Array':
+    case 'Uint8Array':
+    case 'Uint8ClampedArray':
+    case 'Int16Array':
+    case 'Uint16Array':
+    case 'Int32Array':
+    case 'Uint32Array':
+    case 'Float32Array':
+    case 'Float64Array':
+      break;
+    case 'ArrayBuffer':
+      break;
+    default:
+      // Values of other types are only equal if identical.
+      return false;
+  }
+
+  var keysA = keys(a);
+  if (keysA.length !== keys(b).length) {
+    return false;
+  }
+
+  var idx = stackA.length - 1;
+  while (idx >= 0) {
+    if (stackA[idx] === a) {
+      return stackB[idx] === b;
+    }
+    idx -= 1;
+  }
+
+  stackA.push(a);
+  stackB.push(b);
+  idx = keysA.length - 1;
+  while (idx >= 0) {
+    var key = keysA[idx];
+    if (!(_has(key, b) && _equals(b[key], a[key], stackA, stackB))) {
+      return false;
+    }
+    idx -= 1;
+  }
+  stackA.pop();
+  stackB.pop();
+  return true;
+};
+
+/***/ }),
+/* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _forceReduced = __webpack_require__(273);
+var _reduce = __webpack_require__(18);
+var _xfBase = __webpack_require__(12);
+var isArrayLike = __webpack_require__(46);
+
+module.exports = function () {
+  var preservingReduced = function preservingReduced(xf) {
+    return {
+      '@@transducer/init': _xfBase.init,
+      '@@transducer/result': function transducerResult(result) {
+        return xf['@@transducer/result'](result);
+      },
+      '@@transducer/step': function transducerStep(result, input) {
+        var ret = xf['@@transducer/step'](result, input);
+        return ret['@@transducer/reduced'] ? _forceReduced(ret) : ret;
+      }
+    };
+  };
+
+  return function _xcat(xf) {
+    var rxf = preservingReduced(xf);
+    return {
+      '@@transducer/init': _xfBase.init,
+      '@@transducer/result': function transducerResult(result) {
+        return rxf['@@transducer/result'](result);
+      },
+      '@@transducer/step': function transducerStep(result, input) {
+        return !isArrayLike(input) ? _reduce(rxf, result, [input]) : _reduce(rxf, result, input);
+      }
+    };
+  };
+}();
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _forceReduced(x) {
+  return {
+    '@@transducer/value': x,
+    '@@transducer/reduced': true
+  };
+};
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _functionName(f) {
+  // String(x => x) evaluates to "x => x", so the pattern may not match.
+  var match = String(f).match(/^function (\w*)/);
+  return match == null ? '' : match[1];
+};
+
+/***/ }),
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _isRegExp(x) {
+  return Object.prototype.toString.call(x) === '[object RegExp]';
+};
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _has = __webpack_require__(15);
+
+// Based on https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+module.exports = function _objectAssign(target) {
+  if (target == null) {
+    throw new TypeError('Cannot convert undefined or null to object');
+  }
+
+  var output = Object(target);
+  var idx = 1;
+  var length = arguments.length;
+  while (idx < length) {
+    var source = arguments[idx];
+    if (source != null) {
+      for (var nextKey in source) {
+        if (_has(nextKey, source)) {
+          output[nextKey] = source[nextKey];
+        }
+      }
+    }
+    idx += 1;
+  }
+  return output;
+};
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _of(x) {
+  return [x];
+};
+
+/***/ }),
+/* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _pipe(f, g) {
+  return function () {
+    return g.call(this, f.apply(this, arguments));
+  };
+};
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _pipeP(f, g) {
+  return function () {
+    var ctx = this;
+    return f.apply(ctx, arguments).then(function (x) {
+      return g.call(ctx, x);
+    });
+  };
+};
+
+/***/ }),
+/* 280 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function _quote(s) {
+  var escaped = s.replace(/\\/g, '\\\\').replace(/[\b]/g, '\\b') // \b matches word boundary; [\b] matches backspace
+  .replace(/\f/g, '\\f').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/\v/g, '\\v').replace(/\0/g, '\\0');
+
+  return '"' + escaped.replace(/"/g, '\\"') + '"';
+};
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _assign = __webpack_require__(86);
+var _identity = __webpack_require__(88);
+var _isTransformer = __webpack_require__(89);
+var isArrayLike = __webpack_require__(46);
+var objOf = __webpack_require__(158);
+
+module.exports = function () {
+  var _stepCatArray = {
+    '@@transducer/init': Array,
+    '@@transducer/step': function transducerStep(xs, x) {
+      xs.push(x);
+      return xs;
+    },
+    '@@transducer/result': _identity
+  };
+  var _stepCatString = {
+    '@@transducer/init': String,
+    '@@transducer/step': function transducerStep(a, b) {
+      return a + b;
+    },
+    '@@transducer/result': _identity
+  };
+  var _stepCatObject = {
+    '@@transducer/init': Object,
+    '@@transducer/step': function transducerStep(result, input) {
+      return _assign(result, isArrayLike(input) ? objOf(input[0], input[1]) : input);
+    },
+    '@@transducer/result': _identity
+  };
+
+  return function _stepCat(obj) {
+    if (_isTransformer(obj)) {
+      return obj;
+    }
+    if (isArrayLike(obj)) {
+      return _stepCatArray;
+    }
+    if (typeof obj === 'string') {
+      return _stepCatString;
+    }
+    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
+      return _stepCatObject;
+    }
+    throw new Error('Cannot create transformer for ' + obj);
+  };
+}();
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Polyfill from <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString>.
+ */
+module.exports = function () {
+  var pad = function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+  };
+
+  return typeof Date.prototype.toISOString === 'function' ? function _toISOString(d) {
+    return d.toISOString();
+  } : function _toISOString(d) {
+    return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) + '.' + (d.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) + 'Z';
+  };
+}();
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _contains = __webpack_require__(33);
+var _map = __webpack_require__(66);
+var _quote = __webpack_require__(280);
+var _toISOString = __webpack_require__(282);
+var keys = __webpack_require__(24);
+var reject = __webpack_require__(71);
+
+module.exports = function _toString(x, seen) {
+  var recur = function recur(y) {
+    var xs = seen.concat([x]);
+    return _contains(y, xs) ? '<Circular>' : _toString(y, xs);
+  };
+
+  //  mapPairs :: (Object, [String]) -> [String]
+  var mapPairs = function mapPairs(obj, keys) {
+    return _map(function (k) {
+      return _quote(k) + ': ' + recur(obj[k]);
+    }, keys.slice().sort());
+  };
+
+  switch (Object.prototype.toString.call(x)) {
+    case '[object Arguments]':
+      return '(function() { return arguments; }(' + _map(recur, x).join(', ') + '))';
+    case '[object Array]':
+      return '[' + _map(recur, x).concat(mapPairs(x, reject(function (k) {
+        return (/^\d+$/.test(k)
+        );
+      }, keys(x)))).join(', ') + ']';
+    case '[object Boolean]':
+      return (typeof x === 'undefined' ? 'undefined' : _typeof(x)) === 'object' ? 'new Boolean(' + recur(x.valueOf()) + ')' : x.toString();
+    case '[object Date]':
+      return 'new Date(' + (isNaN(x.valueOf()) ? recur(NaN) : _quote(_toISOString(x))) + ')';
+    case '[object Null]':
+      return 'null';
+    case '[object Number]':
+      return (typeof x === 'undefined' ? 'undefined' : _typeof(x)) === 'object' ? 'new Number(' + recur(x.valueOf()) + ')' : 1 / x === -Infinity ? '-0' : x.toString(10);
+    case '[object String]':
+      return (typeof x === 'undefined' ? 'undefined' : _typeof(x)) === 'object' ? 'new String(' + recur(x.valueOf()) + ')' : _quote(x);
+    case '[object Undefined]':
+      return 'undefined';
+    default:
+      if (typeof x.toString === 'function') {
+        var repr = x.toString();
+        if (repr !== '[object Object]') {
+          return repr;
+        }
+      }
+      return '{' + mapPairs(x, keys(x)).join(', ') + '}';
+  }
+};
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduced = __webpack_require__(30);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XAll(f, xf) {
+    this.xf = xf;
+    this.f = f;
+    this.all = true;
+  }
+  XAll.prototype['@@transducer/init'] = _xfBase.init;
+  XAll.prototype['@@transducer/result'] = function (result) {
+    if (this.all) {
+      result = this.xf['@@transducer/step'](result, true);
+    }
+    return this.xf['@@transducer/result'](result);
+  };
+  XAll.prototype['@@transducer/step'] = function (result, input) {
+    if (!this.f(input)) {
+      this.all = false;
+      result = _reduced(this.xf['@@transducer/step'](result, false));
+    }
+    return result;
+  };
+
+  return _curry2(function _xall(f, xf) {
+    return new XAll(f, xf);
+  });
+}();
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XAperture(n, xf) {
+    this.xf = xf;
+    this.pos = 0;
+    this.full = false;
+    this.acc = new Array(n);
+  }
+  XAperture.prototype['@@transducer/init'] = _xfBase.init;
+  XAperture.prototype['@@transducer/result'] = function (result) {
+    this.acc = null;
+    return this.xf['@@transducer/result'](result);
+  };
+  XAperture.prototype['@@transducer/step'] = function (result, input) {
+    this.store(input);
+    return this.full ? this.xf['@@transducer/step'](result, this.getCopy()) : result;
+  };
+  XAperture.prototype.store = function (input) {
+    this.acc[this.pos] = input;
+    this.pos += 1;
+    if (this.pos === this.acc.length) {
+      this.pos = 0;
+      this.full = true;
+    }
+  };
+  XAperture.prototype.getCopy = function () {
+    return _concat(Array.prototype.slice.call(this.acc, this.pos), Array.prototype.slice.call(this.acc, 0, this.pos));
+  };
+
+  return _curry2(function _xaperture(n, xf) {
+    return new XAperture(n, xf);
+  });
+}();
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _flatCat = __webpack_require__(272);
+var map = __webpack_require__(16);
+
+module.exports = _curry2(function _xchain(f, xf) {
+  return map(f, _flatCat(xf));
+});
+
+/***/ }),
+/* 287 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XDrop(n, xf) {
+    this.xf = xf;
+    this.n = n;
+  }
+  XDrop.prototype['@@transducer/init'] = _xfBase.init;
+  XDrop.prototype['@@transducer/result'] = _xfBase.result;
+  XDrop.prototype['@@transducer/step'] = function (result, input) {
+    if (this.n > 0) {
+      this.n -= 1;
+      return result;
+    }
+    return this.xf['@@transducer/step'](result, input);
+  };
+
+  return _curry2(function _xdrop(n, xf) {
+    return new XDrop(n, xf);
+  });
+}();
+
+/***/ }),
+/* 288 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XDropLast(n, xf) {
+    this.xf = xf;
+    this.pos = 0;
+    this.full = false;
+    this.acc = new Array(n);
+  }
+  XDropLast.prototype['@@transducer/init'] = _xfBase.init;
+  XDropLast.prototype['@@transducer/result'] = function (result) {
+    this.acc = null;
+    return this.xf['@@transducer/result'](result);
+  };
+  XDropLast.prototype['@@transducer/step'] = function (result, input) {
+    if (this.full) {
+      result = this.xf['@@transducer/step'](result, this.acc[this.pos]);
+    }
+    this.store(input);
+    return result;
+  };
+  XDropLast.prototype.store = function (input) {
+    this.acc[this.pos] = input;
+    this.pos += 1;
+    if (this.pos === this.acc.length) {
+      this.pos = 0;
+      this.full = true;
+    }
+  };
+
+  return _curry2(function _xdropLast(n, xf) {
+    return new XDropLast(n, xf);
+  });
+}();
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduce = __webpack_require__(18);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XDropLastWhile(fn, xf) {
+    this.f = fn;
+    this.retained = [];
+    this.xf = xf;
+  }
+  XDropLastWhile.prototype['@@transducer/init'] = _xfBase.init;
+  XDropLastWhile.prototype['@@transducer/result'] = function (result) {
+    this.retained = null;
+    return this.xf['@@transducer/result'](result);
+  };
+  XDropLastWhile.prototype['@@transducer/step'] = function (result, input) {
+    return this.f(input) ? this.retain(result, input) : this.flush(result, input);
+  };
+  XDropLastWhile.prototype.flush = function (result, input) {
+    result = _reduce(this.xf['@@transducer/step'], result, this.retained);
+    this.retained = [];
+    return this.xf['@@transducer/step'](result, input);
+  };
+  XDropLastWhile.prototype.retain = function (result, input) {
+    this.retained.push(input);
+    return result;
+  };
+
+  return _curry2(function _xdropLastWhile(fn, xf) {
+    return new XDropLastWhile(fn, xf);
+  });
+}();
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XDropWhile(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+  XDropWhile.prototype['@@transducer/init'] = _xfBase.init;
+  XDropWhile.prototype['@@transducer/result'] = _xfBase.result;
+  XDropWhile.prototype['@@transducer/step'] = function (result, input) {
+    if (this.f) {
+      if (this.f(input)) {
+        return result;
+      }
+      this.f = null;
+    }
+    return this.xf['@@transducer/step'](result, input);
+  };
+
+  return _curry2(function _xdropWhile(f, xf) {
+    return new XDropWhile(f, xf);
+  });
+}();
+
+/***/ }),
+/* 291 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XFilter(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+  XFilter.prototype['@@transducer/init'] = _xfBase.init;
+  XFilter.prototype['@@transducer/result'] = _xfBase.result;
+  XFilter.prototype['@@transducer/step'] = function (result, input) {
+    return this.f(input) ? this.xf['@@transducer/step'](result, input) : result;
+  };
+
+  return _curry2(function _xfilter(f, xf) {
+    return new XFilter(f, xf);
+  });
+}();
+
+/***/ }),
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduced = __webpack_require__(30);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XFind(f, xf) {
+    this.xf = xf;
+    this.f = f;
+    this.found = false;
+  }
+  XFind.prototype['@@transducer/init'] = _xfBase.init;
+  XFind.prototype['@@transducer/result'] = function (result) {
+    if (!this.found) {
+      result = this.xf['@@transducer/step'](result, void 0);
+    }
+    return this.xf['@@transducer/result'](result);
+  };
+  XFind.prototype['@@transducer/step'] = function (result, input) {
+    if (this.f(input)) {
+      this.found = true;
+      result = _reduced(this.xf['@@transducer/step'](result, input));
+    }
+    return result;
+  };
+
+  return _curry2(function _xfind(f, xf) {
+    return new XFind(f, xf);
+  });
+}();
+
+/***/ }),
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduced = __webpack_require__(30);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XFindIndex(f, xf) {
+    this.xf = xf;
+    this.f = f;
+    this.idx = -1;
+    this.found = false;
+  }
+  XFindIndex.prototype['@@transducer/init'] = _xfBase.init;
+  XFindIndex.prototype['@@transducer/result'] = function (result) {
+    if (!this.found) {
+      result = this.xf['@@transducer/step'](result, -1);
+    }
+    return this.xf['@@transducer/result'](result);
+  };
+  XFindIndex.prototype['@@transducer/step'] = function (result, input) {
+    this.idx += 1;
+    if (this.f(input)) {
+      this.found = true;
+      result = _reduced(this.xf['@@transducer/step'](result, this.idx));
+    }
+    return result;
+  };
+
+  return _curry2(function _xfindIndex(f, xf) {
+    return new XFindIndex(f, xf);
+  });
+}();
+
+/***/ }),
+/* 294 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XFindLast(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+  XFindLast.prototype['@@transducer/init'] = _xfBase.init;
+  XFindLast.prototype['@@transducer/result'] = function (result) {
+    return this.xf['@@transducer/result'](this.xf['@@transducer/step'](result, this.last));
+  };
+  XFindLast.prototype['@@transducer/step'] = function (result, input) {
+    if (this.f(input)) {
+      this.last = input;
+    }
+    return result;
+  };
+
+  return _curry2(function _xfindLast(f, xf) {
+    return new XFindLast(f, xf);
+  });
+}();
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XFindLastIndex(f, xf) {
+    this.xf = xf;
+    this.f = f;
+    this.idx = -1;
+    this.lastIdx = -1;
+  }
+  XFindLastIndex.prototype['@@transducer/init'] = _xfBase.init;
+  XFindLastIndex.prototype['@@transducer/result'] = function (result) {
+    return this.xf['@@transducer/result'](this.xf['@@transducer/step'](result, this.lastIdx));
+  };
+  XFindLastIndex.prototype['@@transducer/step'] = function (result, input) {
+    this.idx += 1;
+    if (this.f(input)) {
+      this.lastIdx = this.idx;
+    }
+    return result;
+  };
+
+  return _curry2(function _xfindLastIndex(f, xf) {
+    return new XFindLastIndex(f, xf);
+  });
+}();
+
+/***/ }),
+/* 296 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XMap(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+  XMap.prototype['@@transducer/init'] = _xfBase.init;
+  XMap.prototype['@@transducer/result'] = _xfBase.result;
+  XMap.prototype['@@transducer/step'] = function (result, input) {
+    return this.xf['@@transducer/step'](result, this.f(input));
+  };
+
+  return _curry2(function _xmap(f, xf) {
+    return new XMap(f, xf);
+  });
+}();
+
+/***/ }),
+/* 297 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curryN = __webpack_require__(62);
+var _has = __webpack_require__(15);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XReduceBy(valueFn, valueAcc, keyFn, xf) {
+    this.valueFn = valueFn;
+    this.valueAcc = valueAcc;
+    this.keyFn = keyFn;
+    this.xf = xf;
+    this.inputs = {};
+  }
+  XReduceBy.prototype['@@transducer/init'] = _xfBase.init;
+  XReduceBy.prototype['@@transducer/result'] = function (result) {
+    var key;
+    for (key in this.inputs) {
+      if (_has(key, this.inputs)) {
+        result = this.xf['@@transducer/step'](result, this.inputs[key]);
+        if (result['@@transducer/reduced']) {
+          result = result['@@transducer/value'];
+          break;
+        }
+      }
+    }
+    this.inputs = null;
+    return this.xf['@@transducer/result'](result);
+  };
+  XReduceBy.prototype['@@transducer/step'] = function (result, input) {
+    var key = this.keyFn(input);
+    this.inputs[key] = this.inputs[key] || [key, this.valueAcc];
+    this.inputs[key][1] = this.valueFn(this.inputs[key][1], input);
+    return result;
+  };
+
+  return _curryN(4, [], function _xreduceBy(valueFn, valueAcc, keyFn, xf) {
+    return new XReduceBy(valueFn, valueAcc, keyFn, xf);
+  });
+}();
+
+/***/ }),
+/* 298 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduced = __webpack_require__(30);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XTake(n, xf) {
+    this.xf = xf;
+    this.n = n;
+    this.i = 0;
+  }
+  XTake.prototype['@@transducer/init'] = _xfBase.init;
+  XTake.prototype['@@transducer/result'] = _xfBase.result;
+  XTake.prototype['@@transducer/step'] = function (result, input) {
+    this.i += 1;
+    var ret = this.n === 0 ? result : this.xf['@@transducer/step'](result, input);
+    return this.i >= this.n ? _reduced(ret) : ret;
+  };
+
+  return _curry2(function _xtake(n, xf) {
+    return new XTake(n, xf);
+  });
+}();
+
+/***/ }),
+/* 299 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduced = __webpack_require__(30);
+var _xfBase = __webpack_require__(12);
+
+module.exports = function () {
+  function XTakeWhile(f, xf) {
+    this.xf = xf;
+    this.f = f;
+  }
+  XTakeWhile.prototype['@@transducer/init'] = _xfBase.init;
+  XTakeWhile.prototype['@@transducer/result'] = _xfBase.result;
+  XTakeWhile.prototype['@@transducer/step'] = function (result, input) {
+    return this.f(input) ? this.xf['@@transducer/step'](result, input) : _reduced(result);
+  };
+
+  return _curry2(function _xtakeWhile(f, xf) {
+    return new XTakeWhile(f, xf);
+  });
+}();
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _contains = __webpack_require__(33);
+var _curry2 = __webpack_require__(0);
+var _filter = __webpack_require__(139);
+var flip = __webpack_require__(61);
+var uniq = __webpack_require__(93);
+
+/**
+ * Combines two lists into a set (i.e. no duplicates) composed of those
+ * elements common to both lists.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig [*] -> [*] -> [*]
+ * @param {Array} list1 The first list.
+ * @param {Array} list2 The second list.
+ * @return {Array} The list of elements found in both `list1` and `list2`.
+ * @see R.intersectionWith
+ * @example
+ *
+ *      R.intersection([1,2,3,4], [7,6,5,4,3]); //=> [4, 3]
+ */
+module.exports = _curry2(function intersection(list1, list2) {
+  var lookupList, filteredList;
+  if (list1.length > list2.length) {
+    lookupList = list1;
+    filteredList = list2;
+  } else {
+    lookupList = list2;
+    filteredList = list1;
+  }
+  return uniq(_filter(flip(_contains)(lookupList), filteredList));
+});
+
+/***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _containsWith = __webpack_require__(87);
+var _curry3 = __webpack_require__(4);
+var uniqWith = __webpack_require__(94);
+
+/**
+ * Combines two lists into a set (i.e. no duplicates) composed of those
+ * elements common to both lists. Duplication is determined according to the
+ * value returned by applying the supplied predicate to two list elements.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig ((a, a) -> Boolean) -> [a] -> [a] -> [a]
+ * @param {Function} pred A predicate function that determines whether
+ *        the two supplied elements are equal.
+ * @param {Array} list1 One list of items to compare
+ * @param {Array} list2 A second list of items to compare
+ * @return {Array} A new list containing those elements common to both lists.
+ * @see R.intersection
+ * @example
+ *
+ *      var buffaloSpringfield = [
+ *        {id: 824, name: 'Richie Furay'},
+ *        {id: 956, name: 'Dewey Martin'},
+ *        {id: 313, name: 'Bruce Palmer'},
+ *        {id: 456, name: 'Stephen Stills'},
+ *        {id: 177, name: 'Neil Young'}
+ *      ];
+ *      var csny = [
+ *        {id: 204, name: 'David Crosby'},
+ *        {id: 456, name: 'Stephen Stills'},
+ *        {id: 539, name: 'Graham Nash'},
+ *        {id: 177, name: 'Neil Young'}
+ *      ];
+ *
+ *      R.intersectionWith(R.eqBy(R.prop('id')), buffaloSpringfield, csny);
+ *      //=> [{id: 456, name: 'Stephen Stills'}, {id: 177, name: 'Neil Young'}]
+ */
+module.exports = _curry3(function intersectionWith(pred, list1, list2) {
+  var lookupList, filteredList;
+  if (list1.length > list2.length) {
+    lookupList = list1;
+    filteredList = list2;
+  } else {
+    lookupList = list2;
+    filteredList = list1;
+  }
+  var results = [];
+  var idx = 0;
+  while (idx < filteredList.length) {
+    if (_containsWith(pred, filteredList[idx], lookupList)) {
+      results[results.length] = filteredList[idx];
+    }
+    idx += 1;
+  }
+  return uniqWith(pred, results);
+});
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _checkForMethod = __webpack_require__(44);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates a new list with the separator interposed between elements.
+ *
+ * Dispatches to the `intersperse` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category List
+ * @sig a -> [a] -> [a]
+ * @param {*} separator The element to add to the list.
+ * @param {Array} list The list to be interposed.
+ * @return {Array} The new list.
+ * @example
+ *
+ *      R.intersperse('n', ['ba', 'a', 'a']); //=> ['ba', 'n', 'a', 'n', 'a']
+ */
+module.exports = _curry2(_checkForMethod('intersperse', function intersperse(separator, list) {
+  var out = [];
+  var idx = 0;
+  var length = list.length;
+  while (idx < length) {
+    if (idx === length - 1) {
+      out.push(list[idx]);
+    } else {
+      out.push(list[idx], separator);
+    }
+    idx += 1;
+  }
+  return out;
+}));
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _clone = __webpack_require__(135);
+var _curry3 = __webpack_require__(4);
+var _isTransformer = __webpack_require__(89);
+var _reduce = __webpack_require__(18);
+var _stepCat = __webpack_require__(281);
+
+/**
+ * Transforms the items of the list with the transducer and appends the
+ * transformed items to the accumulator using an appropriate iterator function
+ * based on the accumulator type.
+ *
+ * The accumulator can be an array, string, object or a transformer. Iterated
+ * items will be appended to arrays and concatenated to strings. Objects will
+ * be merged directly or 2-item arrays will be merged as key, value pairs.
+ *
+ * The accumulator can also be a transformer object that provides a 2-arity
+ * reducing iterator function, step, 0-arity initial value function, init, and
+ * 1-arity result extraction function result. The step function is used as the
+ * iterator function in reduce. The result function is used to convert the
+ * final accumulator into the return type and in most cases is R.identity. The
+ * init function is used to provide the initial accumulator.
+ *
+ * The iteration is performed with R.reduce after initializing the transducer.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category List
+ * @sig a -> (b -> b) -> [c] -> a
+ * @param {*} acc The initial accumulator value.
+ * @param {Function} xf The transducer function. Receives a transformer and returns a transformer.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @example
+ *
+ *      var numbers = [1, 2, 3, 4];
+ *      var transducer = R.compose(R.map(R.add(1)), R.take(2));
+ *
+ *      R.into([], transducer, numbers); //=> [2, 3]
+ *
+ *      var intoArray = R.into([]);
+ *      intoArray(transducer, numbers); //=> [2, 3]
+ */
+module.exports = _curry3(function into(acc, xf, list) {
+  return _isTransformer(acc) ? _reduce(xf(acc), acc['@@transducer/init'](), list) : _reduce(xf(_stepCat(acc)), _clone(acc, [], [], false), list);
+});
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _has = __webpack_require__(15);
+var keys = __webpack_require__(24);
+
+/**
+ * Same as R.invertObj, however this accounts for objects with duplicate values
+ * by putting the values into an array.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Object
+ * @sig {s: x} -> {x: [ s, ... ]}
+ * @param {Object} obj The object or array to invert
+ * @return {Object} out A new object with keys
+ * in an array.
+ * @example
+ *
+ *      var raceResultsByFirstName = {
+ *        first: 'alice',
+ *        second: 'jake',
+ *        third: 'alice',
+ *      };
+ *      R.invert(raceResultsByFirstName);
+ *      //=> { 'alice': ['first', 'third'], 'jake':['second'] }
+ */
+module.exports = _curry1(function invert(obj) {
+  var props = keys(obj);
+  var len = props.length;
+  var idx = 0;
+  var out = {};
+
+  while (idx < len) {
+    var key = props[idx];
+    var val = obj[key];
+    var list = _has(val, out) ? out[val] : out[val] = [];
+    list[list.length] = key;
+    idx += 1;
+  }
+  return out;
+});
+
+/***/ }),
+/* 305 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var keys = __webpack_require__(24);
+
+/**
+ * Returns a new object with the keys of the given object as values, and the
+ * values of the given object, which are coerced to strings, as keys. Note
+ * that the last key found is preferred when handling the same value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Object
+ * @sig {s: x} -> {x: s}
+ * @param {Object} obj The object or array to invert
+ * @return {Object} out A new object
+ * @example
+ *
+ *      var raceResults = {
+ *        first: 'alice',
+ *        second: 'jake'
+ *      };
+ *      R.invertObj(raceResults);
+ *      //=> { 'alice': 'first', 'jake':'second' }
+ *
+ *      // Alternatively:
+ *      var raceResults = ['alice', 'jake'];
+ *      R.invertObj(raceResults);
+ *      //=> { 'alice': '0', 'jake':'1' }
+ */
+module.exports = _curry1(function invertObj(obj) {
+  var props = keys(obj);
+  var len = props.length;
+  var idx = 0;
+  var out = {};
+
+  while (idx < len) {
+    var key = props[idx];
+    out[obj[key]] = key;
+    idx += 1;
+  }
+  return out;
+});
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var empty = __webpack_require__(133);
+var equals = __webpack_require__(22);
+
+/**
+ * Returns `true` if the given value is its type's empty value; `false`
+ * otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Logic
+ * @sig a -> Boolean
+ * @param {*} x
+ * @return {Boolean}
+ * @see R.empty
+ * @example
+ *
+ *      R.isEmpty([1, 2, 3]);   //=> false
+ *      R.isEmpty([]);          //=> true
+ *      R.isEmpty('');          //=> true
+ *      R.isEmpty(null);        //=> false
+ *      R.isEmpty({});          //=> true
+ *      R.isEmpty({length: 0}); //=> false
+ */
+module.exports = _curry1(function isEmpty(x) {
+  return x != null && equals(x, empty(x));
+});
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Checks if the input value is `null` or `undefined`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Type
+ * @sig * -> Boolean
+ * @param {*} x The value to test.
+ * @return {Boolean} `true` if `x` is `undefined` or `null`, otherwise `false`.
+ * @example
+ *
+ *      R.isNil(null); //=> true
+ *      R.isNil(undefined); //=> true
+ *      R.isNil(0); //=> false
+ *      R.isNil([]); //=> false
+ */
+module.exports = _curry1(function isNil(x) {
+  return x == null;
+});
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var invoker = __webpack_require__(45);
+
+/**
+ * Returns a string made by inserting the `separator` between each element and
+ * concatenating all the elements into a single string.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig String -> [a] -> String
+ * @param {Number|String} separator The string used to separate the elements.
+ * @param {Array} xs The elements to join into a string.
+ * @return {String} str The string made by concatenating `xs` with `separator`.
+ * @see R.split
+ * @example
+ *
+ *      var spacer = R.join(' ');
+ *      spacer(['a', 2, 3.4]);   //=> 'a 2 3.4'
+ *      R.join('|', [1, 2, 3]);    //=> '1|2|3'
+ */
+module.exports = invoker(1, 'join');
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Returns a list containing the names of all the properties of the supplied
+ * object, including prototype properties.
+ * Note that the order of the output array is not guaranteed to be consistent
+ * across different JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category Object
+ * @sig {k: v} -> [k]
+ * @param {Object} obj The object to extract properties from
+ * @return {Array} An array of the object's own and prototype properties.
+ * @example
+ *
+ *      var F = function() { this.x = 'X'; };
+ *      F.prototype.y = 'Y';
+ *      var f = new F();
+ *      R.keysIn(f); //=> ['x', 'y']
+ */
+module.exports = _curry1(function keysIn(obj) {
+  var prop;
+  var ks = [];
+  for (prop in obj) {
+    ks[ks.length] = prop;
+  }
+  return ks;
+});
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isArray = __webpack_require__(29);
+var equals = __webpack_require__(22);
+
+/**
+ * Returns the position of the last occurrence of an item in an array, or -1 if
+ * the item is not included in the array. `R.equals` is used to determine
+ * equality.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig a -> [a] -> Number
+ * @param {*} target The item to find.
+ * @param {Array} xs The array to search in.
+ * @return {Number} the index of the target, or -1 if the target is not found.
+ * @see R.indexOf
+ * @example
+ *
+ *      R.lastIndexOf(3, [-1,3,3,0,1,2,3,4]); //=> 6
+ *      R.lastIndexOf(10, [1,2,3,4]); //=> -1
+ */
+module.exports = _curry2(function lastIndexOf(target, xs) {
+  if (typeof xs.lastIndexOf === 'function' && !_isArray(xs)) {
+    return xs.lastIndexOf(target);
+  } else {
+    var idx = xs.length - 1;
+    while (idx >= 0) {
+      if (equals(xs[idx], target)) {
+        return idx;
+      }
+      idx -= 1;
+    }
+    return -1;
+  }
+});
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var lens = __webpack_require__(67);
+var nth = __webpack_require__(47);
+var update = __webpack_require__(171);
+
+/**
+ * Returns a lens whose focus is the specified index.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category Object
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig Number -> Lens s a
+ * @param {Number} n
+ * @return {Lens}
+ * @see R.view, R.set, R.over
+ * @example
+ *
+ *      var headLens = R.lensIndex(0);
+ *
+ *      R.view(headLens, ['a', 'b', 'c']);            //=> 'a'
+ *      R.set(headLens, 'x', ['a', 'b', 'c']);        //=> ['x', 'b', 'c']
+ *      R.over(headLens, R.toUpper, ['a', 'b', 'c']); //=> ['A', 'b', 'c']
+ */
+module.exports = _curry1(function lensIndex(n) {
+  return lens(nth(n), update(n));
+});
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var assocPath = __webpack_require__(122);
+var lens = __webpack_require__(67);
+var path = __webpack_require__(48);
+
+/**
+ * Returns a lens whose focus is the specified path.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Object
+ * @typedefn Idx = String | Int
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig [Idx] -> Lens s a
+ * @param {Array} path The path to use.
+ * @return {Lens}
+ * @see R.view, R.set, R.over
+ * @example
+ *
+ *      var xHeadYLens = R.lensPath(['x', 0, 'y']);
+ *
+ *      R.view(xHeadYLens, {x: [{y: 2, z: 3}, {y: 4, z: 5}]});
+ *      //=> 2
+ *      R.set(xHeadYLens, 1, {x: [{y: 2, z: 3}, {y: 4, z: 5}]});
+ *      //=> {x: [{y: 1, z: 3}, {y: 4, z: 5}]}
+ *      R.over(xHeadYLens, R.negate, {x: [{y: 2, z: 3}, {y: 4, z: 5}]});
+ *      //=> {x: [{y: -2, z: 3}, {y: 4, z: 5}]}
+ */
+module.exports = _curry1(function lensPath(p) {
+  return lens(path(p), assocPath(p));
+});
+
+/***/ }),
+/* 313 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var assoc = __webpack_require__(59);
+var lens = __webpack_require__(67);
+var prop = __webpack_require__(90);
+
+/**
+ * Returns a lens whose focus is the specified property.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category Object
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig String -> Lens s a
+ * @param {String} k
+ * @return {Lens}
+ * @see R.view, R.set, R.over
+ * @example
+ *
+ *      var xLens = R.lensProp('x');
+ *
+ *      R.view(xLens, {x: 1, y: 2});            //=> 1
+ *      R.set(xLens, 4, {x: 1, y: 2});          //=> {x: 4, y: 2}
+ *      R.over(xLens, R.negate, {x: 1, y: 2});  //=> {x: -1, y: 2}
+ */
+module.exports = _curry1(function lensProp(k) {
+  return lens(prop(k), assoc(k));
+});
+
+/***/ }),
+/* 314 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if the first argument is less than the second; `false`
+ * otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> Boolean
+ * @param {*} a
+ * @param {*} b
+ * @return {Boolean}
+ * @see R.gt
+ * @example
+ *
+ *      R.lt(2, 1); //=> false
+ *      R.lt(2, 2); //=> false
+ *      R.lt(2, 3); //=> true
+ *      R.lt('a', 'z'); //=> true
+ *      R.lt('z', 'a'); //=> false
+ */
+module.exports = _curry2(function lt(a, b) {
+  return a < b;
+});
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns `true` if the first argument is less than or equal to the second;
+ * `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> Boolean
+ * @param {Number} a
+ * @param {Number} b
+ * @return {Boolean}
+ * @see R.gte
+ * @example
+ *
+ *      R.lte(2, 1); //=> false
+ *      R.lte(2, 2); //=> true
+ *      R.lte(2, 3); //=> true
+ *      R.lte('a', 'z'); //=> true
+ *      R.lte('z', 'a'); //=> false
+ */
+module.exports = _curry2(function lte(a, b) {
+  return a <= b;
+});
+
+/***/ }),
+/* 316 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * The mapAccum function behaves like a combination of map and reduce; it
+ * applies a function to each element of a list, passing an accumulating
+ * parameter from left to right, and returning a final value of this
+ * accumulator together with the new list.
+ *
+ * The iterator function receives two arguments, *acc* and *value*, and should
+ * return a tuple *[acc, value]*.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category List
+ * @sig (acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])
+ * @param {Function} fn The function to be called on every element of the input `list`.
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.addIndex, R.mapAccumRight
+ * @example
+ *
+ *      var digits = ['1', '2', '3', '4'];
+ *      var appender = (a, b) => [a + b, a + b];
+ *
+ *      R.mapAccum(appender, 0, digits); //=> ['01234', ['01', '012', '0123', '01234']]
+ * @symb R.mapAccum(f, a, [b, c, d]) = [
+ *   f(f(f(a, b)[0], c)[0], d)[0],
+ *   [
+ *     f(a, b)[1],
+ *     f(f(a, b)[0], c)[1],
+ *     f(f(f(a, b)[0], c)[0], d)[1]
+ *   ]
+ * ]
+ */
+module.exports = _curry3(function mapAccum(fn, acc, list) {
+  var idx = 0;
+  var len = list.length;
+  var result = [];
+  var tuple = [acc];
+  while (idx < len) {
+    tuple = fn(tuple[0], list[idx]);
+    result[idx] = tuple[1];
+    idx += 1;
+  }
+  return [tuple[0], result];
+});
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * The mapAccumRight function behaves like a combination of map and reduce; it
+ * applies a function to each element of a list, passing an accumulating
+ * parameter from right to left, and returning a final value of this
+ * accumulator together with the new list.
+ *
+ * Similar to `mapAccum`, except moves through the input list from the right to
+ * the left.
+ *
+ * The iterator function receives two arguments, *value* and *acc*, and should
+ * return a tuple *[value, acc]*.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category List
+ * @sig (x-> acc -> (y, acc)) -> acc -> [x] -> ([y], acc)
+ * @param {Function} fn The function to be called on every element of the input `list`.
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.addIndex, R.mapAccum
+ * @example
+ *
+ *      var digits = ['1', '2', '3', '4'];
+ *      var append = (a, b) => [a + b, a + b];
+ *
+ *      R.mapAccumRight(append, 5, digits); //=> [['12345', '2345', '345', '45'], '12345']
+ * @symb R.mapAccumRight(f, a, [b, c, d]) = [
+ *   [
+ *     f(b, f(c, f(d, a)[0])[0])[1],
+ *     f(c, f(d, a)[0])[1],
+ *     f(d, a)[1],
+ *   ]
+ *   f(b, f(c, f(d, a)[0])[0])[0],
+ * ]
+ */
+module.exports = _curry3(function mapAccumRight(fn, acc, list) {
+  var idx = list.length - 1;
+  var result = [];
+  var tuple = [acc];
+  while (idx >= 0) {
+    tuple = fn(list[idx], tuple[0]);
+    result[idx] = tuple[1];
+    idx -= 1;
+  }
+  return [result, tuple[0]];
+});
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _reduce = __webpack_require__(18);
+var keys = __webpack_require__(24);
+
+/**
+ * An Object-specific version of `map`. The function is applied to three
+ * arguments: *(value, key, obj)*. If only the value is significant, use
+ * `map` instead.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Object
+ * @sig ((*, String, Object) -> *) -> Object -> Object
+ * @param {Function} fn
+ * @param {Object} obj
+ * @return {Object}
+ * @see R.map
+ * @example
+ *
+ *      var values = { x: 1, y: 2, z: 3 };
+ *      var prependKeyAndDouble = (num, key, obj) => key + (num * 2);
+ *
+ *      R.mapObjIndexed(prependKeyAndDouble, values); //=> { x: 'x2', y: 'y4', z: 'z6' }
+ */
+module.exports = _curry2(function mapObjIndexed(fn, obj) {
+  return _reduce(function (acc, key) {
+    acc[key] = fn(obj[key], key, obj);
+    return acc;
+  }, {}, keys(obj));
+});
+
+/***/ }),
+/* 319 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Tests a regular expression against a String. Note that this function will
+ * return an empty array when there are no matches. This differs from
+ * [`String.prototype.match`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match)
+ * which returns `null` when there are no matches.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category String
+ * @sig RegExp -> String -> [String | Undefined]
+ * @param {RegExp} rx A regular expression.
+ * @param {String} str The string to match against
+ * @return {Array} The list of matches or empty array.
+ * @see R.test
+ * @example
+ *
+ *      R.match(/([a-z]a)/g, 'bananas'); //=> ['ba', 'na', 'na']
+ *      R.match(/a/, 'b'); //=> []
+ *      R.match(/a/, null); //=> TypeError: null does not have a method named "match"
+ */
+module.exports = _curry2(function match(rx, str) {
+  return str.match(rx) || [];
+});
+
+/***/ }),
+/* 320 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isInteger = __webpack_require__(142);
+
+/**
+ * mathMod behaves like the modulo operator should mathematically, unlike the
+ * `%` operator (and by extension, R.modulo). So while "-17 % 5" is -2,
+ * mathMod(-17, 5) is 3. mathMod requires Integer arguments, and returns NaN
+ * when the modulus is zero or negative.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} m The dividend.
+ * @param {Number} p the modulus.
+ * @return {Number} The result of `b mod a`.
+ * @example
+ *
+ *      R.mathMod(-17, 5);  //=> 3
+ *      R.mathMod(17, 5);   //=> 2
+ *      R.mathMod(17, -5);  //=> NaN
+ *      R.mathMod(17, 0);   //=> NaN
+ *      R.mathMod(17.2, 5); //=> NaN
+ *      R.mathMod(17, 5.3); //=> NaN
+ *
+ *      var clock = R.mathMod(R.__, 12);
+ *      clock(15); //=> 3
+ *      clock(24); //=> 0
+ *
+ *      var seventeenMod = R.mathMod(17);
+ *      seventeenMod(3);  //=> 2
+ *      seventeenMod(4);  //=> 1
+ *      seventeenMod(10); //=> 7
+ */
+module.exports = _curry2(function mathMod(m, p) {
+  if (!_isInteger(m)) {
+    return NaN;
+  }
+  if (!_isInteger(p) || p < 1) {
+    return NaN;
+  }
+  return (m % p + p) % p;
+});
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Takes a function and two values, and returns whichever value produces the
+ * larger result when passed to the provided function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Relation
+ * @sig Ord b => (a -> b) -> a -> a -> a
+ * @param {Function} f
+ * @param {*} a
+ * @param {*} b
+ * @return {*}
+ * @see R.max, R.minBy
+ * @example
+ *
+ *      //  square :: Number -> Number
+ *      var square = n => n * n;
+ *
+ *      R.maxBy(square, -3, 2); //=> -3
+ *
+ *      R.reduce(R.maxBy(square), 0, [3, -5, 4, 1, -2]); //=> -5
+ *      R.reduce(R.maxBy(square), 0, []); //=> 0
+ */
+module.exports = _curry3(function maxBy(f, a, b) {
+  return f(b) > f(a) ? b : a;
+});
+
+/***/ }),
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var mean = __webpack_require__(154);
+
+/**
+ * Returns the median of the given list of numbers.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category Math
+ * @sig [Number] -> Number
+ * @param {Array} list
+ * @return {Number}
+ * @example
+ *
+ *      R.median([2, 9, 7]); //=> 7
+ *      R.median([7, 2, 10, 9]); //=> 8
+ *      R.median([]); //=> NaN
+ */
+module.exports = _curry1(function median(list) {
+  var len = list.length;
+  if (len === 0) {
+    return NaN;
+  }
+  var width = 2 - len % 2;
+  var idx = (len - width) / 2;
+  return mean(Array.prototype.slice.call(list, 0).sort(function (a, b) {
+    return a < b ? -1 : a > b ? 1 : 0;
+  }).slice(idx, idx + width));
+});
+
+/***/ }),
+/* 323 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _curry1 = __webpack_require__(2);
+var _has = __webpack_require__(15);
+var toString = __webpack_require__(50);
+
+/**
+ * Creates a new function that, when invoked, caches the result of calling `fn`
+ * for a given argument set and returns the result. Subsequent calls to the
+ * memoized `fn` with the same argument set will not result in an additional
+ * call to `fn`; instead, the cached result for that set of arguments will be
+ * returned.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (*... -> a) -> (*... -> a)
+ * @param {Function} fn The function to memoize.
+ * @return {Function} Memoized version of `fn`.
+ * @example
+ *
+ *      var count = 0;
+ *      var factorial = R.memoize(n => {
+ *        count += 1;
+ *        return R.product(R.range(1, n + 1));
+ *      });
+ *      factorial(5); //=> 120
+ *      factorial(5); //=> 120
+ *      factorial(5); //=> 120
+ *      count; //=> 1
+ */
+module.exports = _curry1(function memoize(fn) {
+  var cache = {};
+  return _arity(fn.length, function () {
+    var key = toString(arguments);
+    if (!_has(key, cache)) {
+      cache[key] = fn.apply(this, arguments);
+    }
+    return cache[key];
+  });
+});
+
+/***/ }),
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _assign = __webpack_require__(86);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Create a new object with the own properties of the first object merged with
+ * the own properties of the second object. If a key exists in both objects,
+ * the value from the second object will be used.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig {k: v} -> {k: v} -> {k: v}
+ * @param {Object} l
+ * @param {Object} r
+ * @return {Object}
+ * @see R.mergeWith, R.mergeWithKey
+ * @example
+ *
+ *      R.merge({ 'name': 'fred', 'age': 10 }, { 'age': 40 });
+ *      //=> { 'name': 'fred', 'age': 40 }
+ *
+ *      var resetToDefault = R.merge(R.__, {x: 0});
+ *      resetToDefault({x: 5, y: 2}); //=> {x: 0, y: 2}
+ * @symb R.merge({ x: 1, y: 2 }, { y: 5, z: 3 }) = { x: 1, y: 5, z: 3 }
+ */
+module.exports = _curry2(function merge(l, r) {
+  return _assign({}, l, r);
+});
+
+/***/ }),
+/* 325 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _assign = __webpack_require__(86);
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Merges a list of objects together into one object.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category List
+ * @sig [{k: v}] -> {k: v}
+ * @param {Array} list An array of objects
+ * @return {Object} A merged object.
+ * @see R.reduce
+ * @example
+ *
+ *      R.mergeAll([{foo:1},{bar:2},{baz:3}]); //=> {foo:1,bar:2,baz:3}
+ *      R.mergeAll([{foo:1},{foo:2},{bar:2}]); //=> {foo:2,bar:2}
+ * @symb R.mergeAll([{ x: 1 }, { y: 2 }, { z: 3 }]) = { x: 1, y: 2, z: 3 }
+ */
+module.exports = _curry1(function mergeAll(list) {
+  return _assign.apply(null, [{}].concat(list));
+});
+
+/***/ }),
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var mergeWithKey = __webpack_require__(155);
+
+/**
+ * Creates a new object with the own properties of the two provided objects. If
+ * a key exists in both objects, the provided function is applied to the values
+ * associated with the key in each object, with the result being used as the
+ * value associated with the key in the returned object. The key will be
+ * excluded from the returned object if the resulting value is `undefined`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Object
+ * @sig (a -> a -> a) -> {a} -> {a} -> {a}
+ * @param {Function} fn
+ * @param {Object} l
+ * @param {Object} r
+ * @return {Object}
+ * @see R.merge, R.mergeWithKey
+ * @example
+ *
+ *      R.mergeWith(R.concat,
+ *                  { a: true, values: [10, 20] },
+ *                  { b: true, values: [15, 35] });
+ *      //=> { a: true, b: true, values: [10, 20, 15, 35] }
+ */
+module.exports = _curry3(function mergeWith(fn, l, r) {
+  return mergeWithKey(function (_, _l, _r) {
+    return fn(_l, _r);
+  }, l, r);
+});
+
+/***/ }),
+/* 327 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns the smaller of its two arguments.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord a => a -> a -> a
+ * @param {*} a
+ * @param {*} b
+ * @return {*}
+ * @see R.minBy, R.max
+ * @example
+ *
+ *      R.min(789, 123); //=> 123
+ *      R.min('a', 'b'); //=> 'a'
+ */
+module.exports = _curry2(function min(a, b) {
+  return b < a ? b : a;
+});
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Takes a function and two values, and returns whichever value produces the
+ * smaller result when passed to the provided function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Relation
+ * @sig Ord b => (a -> b) -> a -> a -> a
+ * @param {Function} f
+ * @param {*} a
+ * @param {*} b
+ * @return {*}
+ * @see R.min, R.maxBy
+ * @example
+ *
+ *      //  square :: Number -> Number
+ *      var square = n => n * n;
+ *
+ *      R.minBy(square, -3, 2); //=> 2
+ *
+ *      R.reduce(R.minBy(square), Infinity, [3, -5, 4, 1, -2]); //=> 1
+ *      R.reduce(R.minBy(square), Infinity, []); //=> Infinity
+ */
+module.exports = _curry3(function minBy(f, a, b) {
+  return f(b) < f(a) ? b : a;
+});
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Divides the first parameter by the second and returns the remainder. Note
+ * that this function preserves the JavaScript-style behavior for modulo. For
+ * mathematical modulo see `mathMod`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} a The value to the divide.
+ * @param {Number} b The pseudo-modulus
+ * @return {Number} The result of `b % a`.
+ * @see R.mathMod
+ * @example
+ *
+ *      R.modulo(17, 3); //=> 2
+ *      // JS behavior:
+ *      R.modulo(-17, 3); //=> -2
+ *      R.modulo(17, -3); //=> 2
+ *
+ *      var isOdd = R.modulo(R.__, 2);
+ *      isOdd(42); //=> 0
+ *      isOdd(21); //=> 1
+ */
+module.exports = _curry2(function modulo(a, b) {
+  return a % b;
+});
+
+/***/ }),
+/* 330 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Negates its argument.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Math
+ * @sig Number -> Number
+ * @param {Number} n
+ * @return {Number}
+ * @example
+ *
+ *      R.negate(42); //=> -42
+ */
+module.exports = _curry1(function negate(n) {
+  return -n;
+});
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _complement = __webpack_require__(137);
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xany = __webpack_require__(146);
+var any = __webpack_require__(120);
+
+/**
+ * Returns `true` if no elements of the list match the predicate, `false`
+ * otherwise.
+ *
+ * Dispatches to the `any` method of the second argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> Boolean
+ * @param {Function} fn The predicate function.
+ * @param {Array} list The array to consider.
+ * @return {Boolean} `true` if the predicate is not satisfied by every element, `false` otherwise.
+ * @see R.all, R.any
+ * @example
+ *
+ *      var isEven = n => n % 2 === 0;
+ *
+ *      R.none(isEven, [1, 3, 5, 7, 9, 11]); //=> true
+ *      R.none(isEven, [1, 3, 5, 7, 8, 11]); //=> false
+ */
+module.exports = _curry2(_complement(_dispatchable(['any'], _xany, any)));
+
+/***/ }),
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var curryN = __webpack_require__(14);
+var nth = __webpack_require__(47);
+
+/**
+ * Returns a function which returns its nth argument.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category Function
+ * @sig Number -> *... -> *
+ * @param {Number} n
+ * @return {Function}
+ * @example
+ *
+ *      R.nthArg(1)('a', 'b', 'c'); //=> 'b'
+ *      R.nthArg(-1)('a', 'b', 'c'); //=> 'c'
+ * @symb R.nthArg(-1)(a, b, c) = c
+ * @symb R.nthArg(0)(a, b, c) = a
+ * @symb R.nthArg(1)(a, b, c) = b
+ */
+module.exports = _curry1(function nthArg(n) {
+  var arity = n < 0 ? 1 : n + 1;
+  return curryN(arity, function () {
+    return nth(n, arguments);
+  });
+});
+
+/***/ }),
+/* 333 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _of = __webpack_require__(277);
+
+/**
+ * Returns a singleton array containing the value provided.
+ *
+ * Note this `of` is different from the ES6 `of`; See
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/of
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category Function
+ * @sig a -> [a]
+ * @param {*} x any value
+ * @return {Array} An array wrapping `x`.
+ * @example
+ *
+ *      R.of(null); //=> [null]
+ *      R.of([42]); //=> [[42]]
+ */
+module.exports = _curry1(_of);
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _contains = __webpack_require__(33);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a partial copy of an object omitting the keys specified.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig [String] -> {String: *} -> {String: *}
+ * @param {Array} names an array of String property names to omit from the new object
+ * @param {Object} obj The object to copy from
+ * @return {Object} A new object with properties from `names` not on it.
+ * @see R.pick
+ * @example
+ *
+ *      R.omit(['a', 'd'], {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, c: 3}
+ */
+module.exports = _curry2(function omit(names, obj) {
+  var result = {};
+  for (var prop in obj) {
+    if (!_contains(prop, names)) {
+      result[prop] = obj[prop];
+    }
+  }
+  return result;
+});
+
+/***/ }),
+/* 335 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Accepts a function `fn` and returns a function that guards invocation of
+ * `fn` such that `fn` can only ever be called once, no matter how many times
+ * the returned function is invoked. The first value calculated is returned in
+ * subsequent invocations.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (a... -> b) -> (a... -> b)
+ * @param {Function} fn The function to wrap in a call-only-once wrapper.
+ * @return {Function} The wrapped function.
+ * @example
+ *
+ *      var addOneOnce = R.once(x => x + 1);
+ *      addOneOnce(10); //=> 11
+ *      addOneOnce(addOneOnce(50)); //=> 11
+ */
+module.exports = _curry1(function once(fn) {
+  var called = false;
+  var result;
+  return _arity(fn.length, function () {
+    if (called) {
+      return result;
+    }
+    called = true;
+    result = fn.apply(this, arguments);
+    return result;
+  });
+});
+
+/***/ }),
+/* 336 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Takes two arguments, `fst` and `snd`, and returns `[fst, snd]`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.18.0
+ * @category List
+ * @sig a -> b -> (a,b)
+ * @param {*} fst
+ * @param {*} snd
+ * @return {Array}
+ * @see R.objOf, R.of
+ * @example
+ *
+ *      R.pair('foo', 'bar'); //=> ['foo', 'bar']
+ */
+module.exports = _curry2(function pair(fst, snd) {
+  return [fst, snd];
+});
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _createPartialApplicator = __webpack_require__(138);
+
+/**
+ * Takes a function `f` and a list of arguments, and returns a function `g`.
+ * When applied, `g` returns the result of applying `f` to the arguments
+ * provided initially followed by the arguments provided to `g`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Function
+ * @sig ((a, b, c, ..., n) -> x) -> [a, b, c, ...] -> ((d, e, f, ..., n) -> x)
+ * @param {Function} f
+ * @param {Array} args
+ * @return {Function}
+ * @see R.partialRight
+ * @example
+ *
+ *      var multiply2 = (a, b) => a * b;
+ *      var double = R.partial(multiply2, [2]);
+ *      double(2); //=> 4
+ *
+ *      var greet = (salutation, title, firstName, lastName) =>
+ *        salutation + ', ' + title + ' ' + firstName + ' ' + lastName + '!';
+ *
+ *      var sayHello = R.partial(greet, ['Hello']);
+ *      var sayHelloToMs = R.partial(sayHello, ['Ms.']);
+ *      sayHelloToMs('Jane', 'Jones'); //=> 'Hello, Ms. Jane Jones!'
+ * @symb R.partial(f, [a, b])(c, d) = f(a, b, c, d)
+ */
+module.exports = _createPartialApplicator(_concat);
+
+/***/ }),
+/* 338 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _createPartialApplicator = __webpack_require__(138);
+var flip = __webpack_require__(61);
+
+/**
+ * Takes a function `f` and a list of arguments, and returns a function `g`.
+ * When applied, `g` returns the result of applying `f` to the arguments
+ * provided to `g` followed by the arguments provided initially.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category Function
+ * @sig ((a, b, c, ..., n) -> x) -> [d, e, f, ..., n] -> ((a, b, c, ...) -> x)
+ * @param {Function} f
+ * @param {Array} args
+ * @return {Function}
+ * @see R.partial
+ * @example
+ *
+ *      var greet = (salutation, title, firstName, lastName) =>
+ *        salutation + ', ' + title + ' ' + firstName + ' ' + lastName + '!';
+ *
+ *      var greetMsJaneJones = R.partialRight(greet, ['Ms.', 'Jane', 'Jones']);
+ *
+ *      greetMsJaneJones('Hello'); //=> 'Hello, Ms. Jane Jones!'
+ * @symb R.partialRight(f, [a, b])(c, d) = f(c, d, a, b)
+ */
+module.exports = _createPartialApplicator(flip(_concat));
+
+/***/ }),
+/* 339 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var filter = __webpack_require__(84);
+var juxt = __webpack_require__(150);
+var reject = __webpack_require__(71);
+
+/**
+ * Takes a predicate and a list or other "filterable" object and returns the
+ * pair of filterable objects of the same type of elements which do and do not
+ * satisfy, the predicate, respectively.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.4
+ * @category List
+ * @sig Filterable f => (a -> Boolean) -> f a -> [f a, f a]
+ * @param {Function} pred A predicate to determine which side the element belongs to.
+ * @param {Array} filterable the list (or other filterable) to partition.
+ * @return {Array} An array, containing first the subset of elements that satisfy the
+ *         predicate, and second the subset of elements that do not satisfy.
+ * @see R.filter, R.reject
+ * @example
+ *
+ *      R.partition(R.contains('s'), ['sss', 'ttt', 'foo', 'bars']);
+ *      // => [ [ 'sss', 'bars' ],  [ 'ttt', 'foo' ] ]
+ *
+ *      R.partition(R.contains('s'), { a: 'sss', b: 'ttt', foo: 'bars' });
+ *      // => [ { a: 'sss', foo: 'bars' }, { b: 'ttt' }  ]
+ */
+module.exports = juxt([filter, reject]);
+
+/***/ }),
+/* 340 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var equals = __webpack_require__(22);
+var path = __webpack_require__(48);
+
+/**
+ * Determines whether a nested path on an object has a specific value, in
+ * `R.equals` terms. Most likely used to filter a list.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category Relation
+ * @typedefn Idx = String | Int
+ * @sig [Idx] -> a -> {a} -> Boolean
+ * @param {Array} path The path of the nested property to use
+ * @param {*} val The value to compare the nested property with
+ * @param {Object} obj The object to check the nested property in
+ * @return {Boolean} `true` if the value equals the nested object property,
+ *         `false` otherwise.
+ * @example
+ *
+ *      var user1 = { address: { zipCode: 90210 } };
+ *      var user2 = { address: { zipCode: 55555 } };
+ *      var user3 = { name: 'Bob' };
+ *      var users = [ user1, user2, user3 ];
+ *      var isFamous = R.pathEq(['address', 'zipCode'], 90210);
+ *      R.filter(isFamous, users); //=> [ user1 ]
+ */
+module.exports = _curry3(function pathEq(_path, val, obj) {
+  return equals(path(_path, obj), val);
+});
+
+/***/ }),
+/* 341 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var defaultTo = __webpack_require__(127);
+var path = __webpack_require__(48);
+
+/**
+ * If the given, non-null object has a value at the given path, returns the
+ * value at that path. Otherwise returns the provided default value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.18.0
+ * @category Object
+ * @typedefn Idx = String | Int
+ * @sig a -> [Idx] -> {a} -> a
+ * @param {*} d The default value.
+ * @param {Array} p The path to use.
+ * @param {Object} obj The object to retrieve the nested property from.
+ * @return {*} The data at `path` of the supplied object or the default value.
+ * @example
+ *
+ *      R.pathOr('N/A', ['a', 'b'], {a: {b: 2}}); //=> 2
+ *      R.pathOr('N/A', ['a', 'b'], {c: {b: 2}}); //=> "N/A"
+ */
+module.exports = _curry3(function pathOr(d, p, obj) {
+  return defaultTo(d, path(p, obj));
+});
+
+/***/ }),
+/* 342 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var path = __webpack_require__(48);
+
+/**
+ * Returns `true` if the specified object property at given path satisfies the
+ * given predicate; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Logic
+ * @typedefn Idx = String | Int
+ * @sig (a -> Boolean) -> [Idx] -> {a} -> Boolean
+ * @param {Function} pred
+ * @param {Array} propPath
+ * @param {*} obj
+ * @return {Boolean}
+ * @see R.propSatisfies, R.path
+ * @example
+ *
+ *      R.pathSatisfies(y => y > 0, ['x', 'y'], {x: {y: 2}}); //=> true
+ */
+module.exports = _curry3(function pathSatisfies(pred, propPath, obj) {
+  return propPath.length > 0 && pred(path(propPath, obj));
+});
+
+/***/ }),
+/* 343 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a partial copy of an object containing only the keys specified. If
+ * the key does not exist, the property is ignored.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig [k] -> {k: v} -> {k: v}
+ * @param {Array} names an array of String property names to copy onto a new object
+ * @param {Object} obj The object to copy from
+ * @return {Object} A new object with only properties from `names` on it.
+ * @see R.omit, R.props
+ * @example
+ *
+ *      R.pick(['a', 'd'], {a: 1, b: 2, c: 3, d: 4}); //=> {a: 1, d: 4}
+ *      R.pick(['a', 'e', 'f'], {a: 1, b: 2, c: 3, d: 4}); //=> {a: 1}
+ */
+module.exports = _curry2(function pick(names, obj) {
+  var result = {};
+  var idx = 0;
+  while (idx < names.length) {
+    if (names[idx] in obj) {
+      result[names[idx]] = obj[names[idx]];
+    }
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 344 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a partial copy of an object containing only the keys that satisfy
+ * the supplied predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Object
+ * @sig (v, k -> Boolean) -> {k: v} -> {k: v}
+ * @param {Function} pred A predicate to determine whether or not a key
+ *        should be included on the output object.
+ * @param {Object} obj The object to copy from
+ * @return {Object} A new object with only properties that satisfy `pred`
+ *         on it.
+ * @see R.pick, R.filter
+ * @example
+ *
+ *      var isUpperCase = (val, key) => key.toUpperCase() === key;
+ *      R.pickBy(isUpperCase, {a: 1, b: 2, A: 3, B: 4}); //=> {A: 3, B: 4}
+ */
+module.exports = _curry2(function pickBy(test, obj) {
+  var result = {};
+  for (var prop in obj) {
+    if (test(obj[prop], prop, obj)) {
+      result[prop] = obj[prop];
+    }
+  }
+  return result;
+});
+
+/***/ }),
+/* 345 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var composeK = __webpack_require__(124);
+var reverse = __webpack_require__(72);
+
+/**
+ * Returns the left-to-right Kleisli composition of the provided functions,
+ * each of which must return a value of a type supported by [`chain`](#chain).
+ *
+ * `R.pipeK(f, g, h)` is equivalent to `R.pipe(R.chain(f), R.chain(g), R.chain(h))`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Function
+ * @sig Chain m => ((a -> m b), (b -> m c), ..., (y -> m z)) -> (a -> m z)
+ * @param {...Function}
+ * @return {Function}
+ * @see R.composeK
+ * @example
+ *
+ *      //  parseJson :: String -> Maybe *
+ *      //  get :: String -> Object -> Maybe *
+ *
+ *      //  getStateCode :: Maybe String -> Maybe String
+ *      var getStateCode = R.pipeK(
+ *        parseJson,
+ *        get('user'),
+ *        get('address'),
+ *        get('state'),
+ *        R.compose(Maybe.of, R.toUpper)
+ *      );
+ *
+ *      getStateCode('{"user":{"address":{"state":"ny"}}}');
+ *      //=> Just('NY')
+ *      getStateCode('[Invalid JSON]');
+ *      //=> Nothing()
+ * @symb R.pipeK(f, g, h)(a) = R.chain(h, R.chain(g, f(a)))
+ */
+module.exports = function pipeK() {
+  if (arguments.length === 0) {
+    throw new Error('pipeK requires at least one argument');
+  }
+  return composeK.apply(this, reverse(arguments));
+};
+
+/***/ }),
+/* 346 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var multiply = __webpack_require__(156);
+var reduce = __webpack_require__(25);
+
+/**
+ * Multiplies together all the elements of a list.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig [Number] -> Number
+ * @param {Array} list An array of numbers
+ * @return {Number} The product of all the numbers in the list.
+ * @see R.reduce
+ * @example
+ *
+ *      R.product([2,4,6,8,100,1]); //=> 38400
+ */
+module.exports = reduce(multiply, 1);
+
+/***/ }),
+/* 347 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _map = __webpack_require__(66);
+var identity = __webpack_require__(85);
+var pickAll = __webpack_require__(161);
+var useWith = __webpack_require__(172);
+
+/**
+ * Reasonable analog to SQL `select` statement.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @category Relation
+ * @sig [k] -> [{k: v}] -> [{k: v}]
+ * @param {Array} props The property names to project
+ * @param {Array} objs The objects to query
+ * @return {Array} An array of objects with just the `props` properties.
+ * @example
+ *
+ *      var abby = {name: 'Abby', age: 7, hair: 'blond', grade: 2};
+ *      var fred = {name: 'Fred', age: 12, hair: 'brown', grade: 7};
+ *      var kids = [abby, fred];
+ *      R.project(['name', 'grade'], kids); //=> [{name: 'Abby', grade: 2}, {name: 'Fred', grade: 7}]
+ */
+module.exports = useWith(_map, [pickAll, identity]); // passing `identity` gives correct arity
+
+/***/ }),
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var equals = __webpack_require__(22);
+
+/**
+ * Returns `true` if the specified object property is equal, in `R.equals`
+ * terms, to the given value; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig String -> a -> Object -> Boolean
+ * @param {String} name
+ * @param {*} val
+ * @param {*} obj
+ * @return {Boolean}
+ * @see R.equals, R.propSatisfies
+ * @example
+ *
+ *      var abby = {name: 'Abby', age: 7, hair: 'blond'};
+ *      var fred = {name: 'Fred', age: 12, hair: 'brown'};
+ *      var rusty = {name: 'Rusty', age: 10, hair: 'brown'};
+ *      var alois = {name: 'Alois', age: 15, disposition: 'surly'};
+ *      var kids = [abby, fred, rusty, alois];
+ *      var hasBrownHair = R.propEq('hair', 'brown');
+ *      R.filter(hasBrownHair, kids); //=> [fred, rusty]
+ */
+module.exports = _curry3(function propEq(name, val, obj) {
+  return equals(val, obj[name]);
+});
+
+/***/ }),
+/* 349 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var is = __webpack_require__(149);
+
+/**
+ * Returns `true` if the specified object property is of the given type;
+ * `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Type
+ * @sig Type -> String -> Object -> Boolean
+ * @param {Function} type
+ * @param {String} name
+ * @param {*} obj
+ * @return {Boolean}
+ * @see R.is, R.propSatisfies
+ * @example
+ *
+ *      R.propIs(Number, 'x', {x: 1, y: 2});  //=> true
+ *      R.propIs(Number, 'x', {x: 'foo'});    //=> false
+ *      R.propIs(Number, 'x', {});            //=> false
+ */
+module.exports = _curry3(function propIs(type, name, obj) {
+  return is(type, obj[name]);
+});
+
+/***/ }),
+/* 350 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var _has = __webpack_require__(15);
+
+/**
+ * If the given, non-null object has an own property with the specified name,
+ * returns the value of that property. Otherwise returns the provided default
+ * value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category Object
+ * @sig a -> String -> Object -> a
+ * @param {*} val The default value.
+ * @param {String} p The name of the property to return.
+ * @param {Object} obj The object to query.
+ * @return {*} The value of given property of the supplied object or the default value.
+ * @example
+ *
+ *      var alice = {
+ *        name: 'ALICE',
+ *        age: 101
+ *      };
+ *      var favorite = R.prop('favoriteLibrary');
+ *      var favoriteWithDefault = R.propOr('Ramda', 'favoriteLibrary');
+ *
+ *      favorite(alice);  //=> undefined
+ *      favoriteWithDefault(alice);  //=> 'Ramda'
+ */
+module.exports = _curry3(function propOr(val, p, obj) {
+  return obj != null && _has(p, obj) ? obj[p] : val;
+});
+
+/***/ }),
+/* 351 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Returns `true` if the specified object property satisfies the given
+ * predicate; `false` otherwise.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Logic
+ * @sig (a -> Boolean) -> String -> {String: a} -> Boolean
+ * @param {Function} pred
+ * @param {String} name
+ * @param {*} obj
+ * @return {Boolean}
+ * @see R.propEq, R.propIs
+ * @example
+ *
+ *      R.propSatisfies(x => x > 0, 'x', {x: 1, y: 2}); //=> true
+ */
+module.exports = _curry3(function propSatisfies(pred, name, obj) {
+  return pred(obj[name]);
+});
+
+/***/ }),
+/* 352 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Acts as multiple `prop`: array of keys in, array of values out. Preserves
+ * order.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Object
+ * @sig [k] -> {k: v} -> [v]
+ * @param {Array} ps The property names to fetch
+ * @param {Object} obj The object to query
+ * @return {Array} The corresponding values or partially applied function.
+ * @example
+ *
+ *      R.props(['x', 'y'], {x: 1, y: 2}); //=> [1, 2]
+ *      R.props(['c', 'a', 'b'], {b: 2, a: 1}); //=> [undefined, 1, 2]
+ *
+ *      var fullName = R.compose(R.join(' '), R.props(['first', 'last']));
+ *      fullName({last: 'Bullet-Tooth', age: 33, first: 'Tony'}); //=> 'Tony Bullet-Tooth'
+ */
+module.exports = _curry2(function props(ps, obj) {
+  var len = ps.length;
+  var out = [];
+  var idx = 0;
+
+  while (idx < len) {
+    out[idx] = obj[ps[idx]];
+    idx += 1;
+  }
+
+  return out;
+});
+
+/***/ }),
+/* 353 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _isNumber = __webpack_require__(143);
+
+/**
+ * Returns a list of numbers from `from` (inclusive) to `to` (exclusive).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig Number -> Number -> [Number]
+ * @param {Number} from The first number in the list.
+ * @param {Number} to One more than the last number in the list.
+ * @return {Array} The list of numbers in tthe set `[a, b)`.
+ * @example
+ *
+ *      R.range(1, 5);    //=> [1, 2, 3, 4]
+ *      R.range(50, 53);  //=> [50, 51, 52]
+ */
+module.exports = _curry2(function range(from, to) {
+  if (!(_isNumber(from) && _isNumber(to))) {
+    throw new TypeError('Both arguments to range must be numbers');
+  }
+  var result = [];
+  var n = from;
+  while (n < to) {
+    result.push(n);
+    n += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 354 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curryN = __webpack_require__(62);
+var _reduce = __webpack_require__(18);
+var _reduced = __webpack_require__(30);
+
+/**
+ * Like `reduce`, `reduceWhile` returns a single item by iterating through
+ * the list, successively calling the iterator function. `reduceWhile` also
+ * takes a predicate that is evaluated before each step. If the predicate returns
+ * `false`, it "short-circuits" the iteration and returns the current value
+ * of the accumulator.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.22.0
+ * @category List
+ * @sig ((a, b) -> Boolean) -> ((a, b) -> a) -> a -> [b] -> a
+ * @param {Function} pred The predicate. It is passed the accumulator and the
+ *        current element.
+ * @param {Function} fn The iterator function. Receives two values, the
+ *        accumulator and the current element.
+ * @param {*} a The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.reduce, R.reduced
+ * @example
+ *
+ *      var isOdd = (acc, x) => x % 2 === 1;
+ *      var xs = [1, 3, 5, 60, 777, 800];
+ *      R.reduceWhile(isOdd, R.add, 0, xs); //=> 9
+ *
+ *      var ys = [2, 4, 6]
+ *      R.reduceWhile(isOdd, R.add, 111, ys); //=> 111
+ */
+module.exports = _curryN(4, [], function _reduceWhile(pred, fn, a, list) {
+  return _reduce(function (acc, x) {
+    return pred(acc, x) ? fn(acc, x) : _reduced(acc);
+  }, a, list);
+});
+
+/***/ }),
+/* 355 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _reduced = __webpack_require__(30);
+
+/**
+ * Returns a value wrapped to indicate that it is the final value of the reduce
+ * and transduce functions. The returned value should be considered a black
+ * box: the internal structure is not guaranteed to be stable.
+ *
+ * Note: this optimization is unavailable to functions not explicitly listed
+ * above. For instance, it is not currently supported by reduceRight.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.15.0
+ * @category List
+ * @sig a -> *
+ * @param {*} x The final value of the reduce.
+ * @return {*} The wrapped value.
+ * @see R.reduce, R.transduce
+ * @example
+ *
+ *      R.reduce(
+ *        R.pipe(R.add, R.when(R.gte(R.__, 10), R.reduced)),
+ *        0,
+ *        [1, 2, 3, 4, 5]) // 10
+ */
+
+module.exports = _curry1(_reduced);
+
+/***/ }),
+/* 356 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Removes the sub-list of `list` starting at index `start` and containing
+ * `count` elements. _Note that this is not destructive_: it returns a copy of
+ * the list with the changes.
+ * <small>No lists have been harmed in the application of this function.</small>
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.2
+ * @category List
+ * @sig Number -> Number -> [a] -> [a]
+ * @param {Number} start The position to start removing elements
+ * @param {Number} count The number of elements to remove
+ * @param {Array} list The list to remove from
+ * @return {Array} A new Array with `count` elements from `start` removed.
+ * @example
+ *
+ *      R.remove(2, 3, [1,2,3,4,5,6,7,8]); //=> [1,2,6,7,8]
+ */
+module.exports = _curry3(function remove(start, count, list) {
+  var result = Array.prototype.slice.call(list, 0);
+  result.splice(start, count);
+  return result;
+});
+
+/***/ }),
+/* 357 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var always = __webpack_require__(38);
+var times = __webpack_require__(169);
+
+/**
+ * Returns a fixed list of size `n` containing a specified identical value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.1
+ * @category List
+ * @sig a -> n -> [a]
+ * @param {*} value The value to repeat.
+ * @param {Number} n The desired size of the output list.
+ * @return {Array} A new array containing `n` `value`s.
+ * @example
+ *
+ *      R.repeat('hi', 5); //=> ['hi', 'hi', 'hi', 'hi', 'hi']
+ *
+ *      var obj = {};
+ *      var repeatedObjs = R.repeat(obj, 5); //=> [{}, {}, {}, {}, {}]
+ *      repeatedObjs[0] === repeatedObjs[1]; //=> true
+ * @symb R.repeat(a, 0) = []
+ * @symb R.repeat(a, 1) = [a]
+ * @symb R.repeat(a, 2) = [a, a]
+ */
+module.exports = _curry2(function repeat(value, n) {
+  return times(always(value), n);
+});
+
+/***/ }),
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Replace a substring or regex match in a string with a replacement.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.7.0
+ * @category String
+ * @sig RegExp|String -> String -> String -> String
+ * @param {RegExp|String} pattern A regular expression or a substring to match.
+ * @param {String} replacement The string to replace the matches with.
+ * @param {String} str The String to do the search and replacement in.
+ * @return {String} The result.
+ * @example
+ *
+ *      R.replace('foo', 'bar', 'foo foo foo'); //=> 'bar foo foo'
+ *      R.replace(/foo/, 'bar', 'foo foo foo'); //=> 'bar foo foo'
+ *
+ *      // Use the "g" (global) flag to replace all occurrences:
+ *      R.replace(/foo/g, 'bar', 'foo foo foo'); //=> 'bar bar bar'
+ */
+module.exports = _curry3(function replace(regex, replacement, str) {
+  return str.replace(regex, replacement);
+});
+
+/***/ }),
+/* 359 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Scan is similar to reduce, but returns a list of successively reduced values
+ * from the left
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category List
+ * @sig (a,b -> a) -> a -> [b] -> [a]
+ * @param {Function} fn The iterator function. Receives two values, the accumulator and the
+ *        current element from the array
+ * @param {*} acc The accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {Array} A list of all intermediately reduced values.
+ * @example
+ *
+ *      var numbers = [1, 2, 3, 4];
+ *      var factorials = R.scan(R.multiply, 1, numbers); //=> [1, 1, 2, 6, 24]
+ * @symb R.scan(f, a, [b, c]) = [a, f(a, b), f(f(a, b), c)]
+ */
+module.exports = _curry3(function scan(fn, acc, list) {
+  var idx = 0;
+  var len = list.length;
+  var result = [acc];
+  while (idx < len) {
+    acc = fn(acc, list[idx]);
+    result[idx + 1] = acc;
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 360 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var always = __webpack_require__(38);
+var over = __webpack_require__(160);
+
+/**
+ * Returns the result of "setting" the portion of the given data structure
+ * focused by the given lens to the given value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Object
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig Lens s a -> a -> s -> s
+ * @param {Lens} lens
+ * @param {*} v
+ * @param {*} x
+ * @return {*}
+ * @see R.prop, R.lensIndex, R.lensProp
+ * @example
+ *
+ *      var xLens = R.lensProp('x');
+ *
+ *      R.set(xLens, 4, {x: 1, y: 2});  //=> {x: 4, y: 2}
+ *      R.set(xLens, 8, {x: 1, y: 2});  //=> {x: 8, y: 2}
+ */
+module.exports = _curry3(function set(lens, v, x) {
+  return over(lens, always(v), x);
+});
+
+/***/ }),
+/* 361 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a copy of the list, sorted according to the comparator function,
+ * which should accept two values at a time and return a negative number if the
+ * first value is smaller, a positive number if it's larger, and zero if they
+ * are equal. Please note that this is a **copy** of the list. It does not
+ * modify the original.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a,a -> Number) -> [a] -> [a]
+ * @param {Function} comparator A sorting function :: a -> b -> Int
+ * @param {Array} list The list to sort
+ * @return {Array} a new array with its elements sorted by the comparator function.
+ * @example
+ *
+ *      var diff = function(a, b) { return a - b; };
+ *      R.sort(diff, [4,2,7,5]); //=> [2, 4, 5, 7]
+ */
+module.exports = _curry2(function sort(comparator, list) {
+  return Array.prototype.slice.call(list, 0).sort(comparator);
+});
+
+/***/ }),
+/* 362 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Sorts the list according to the supplied function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig Ord b => (a -> b) -> [a] -> [a]
+ * @param {Function} fn
+ * @param {Array} list The list to sort.
+ * @return {Array} A new list sorted by the keys generated by `fn`.
+ * @example
+ *
+ *      var sortByFirstItem = R.sortBy(R.prop(0));
+ *      var sortByNameCaseInsensitive = R.sortBy(R.compose(R.toLower, R.prop('name')));
+ *      var pairs = [[-1, 1], [-2, 2], [-3, 3]];
+ *      sortByFirstItem(pairs); //=> [[-3, 3], [-2, 2], [-1, 1]]
+ *      var alice = {
+ *        name: 'ALICE',
+ *        age: 101
+ *      };
+ *      var bob = {
+ *        name: 'Bob',
+ *        age: -10
+ *      };
+ *      var clara = {
+ *        name: 'clara',
+ *        age: 314.159
+ *      };
+ *      var people = [clara, bob, alice];
+ *      sortByNameCaseInsensitive(people); //=> [alice, bob, clara]
+ */
+module.exports = _curry2(function sortBy(fn, list) {
+  return Array.prototype.slice.call(list, 0).sort(function (a, b) {
+    var aa = fn(a);
+    var bb = fn(b);
+    return aa < bb ? -1 : aa > bb ? 1 : 0;
+  });
+});
+
+/***/ }),
+/* 363 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Sorts a list according to a list of comparators.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.23.0
+ * @category Relation
+ * @sig [a -> a -> Number] -> [a] -> [a]
+ * @param {Array} functions A list of comparator functions.
+ * @param {Array} list The list to sort.
+ * @return {Array} A new list sorted according to the comarator functions.
+ * @example
+ *
+ *      var alice = {
+ *        name: 'alice',
+ *        age: 40
+ *      };
+ *      var bob = {
+ *        name: 'bob',
+ *        age: 30
+ *      };
+ *      var clara = {
+ *        name: 'clara',
+ *        age: 40
+ *      };
+ *      var people = [clara, bob, alice];
+ *      var ageNameSort = R.sortWith([
+ *        R.descend(R.prop('age')),
+ *        R.ascend(R.prop('name'))
+ *      ]);
+ *      ageNameSort(people); //=> [alice, clara, bob]
+ */
+module.exports = _curry2(function sortWith(fns, list) {
+  return Array.prototype.slice.call(list, 0).sort(function (a, b) {
+    var result = 0;
+    var i = 0;
+    while (result === 0 && i < fns.length) {
+      result = fns[i](a, b);
+      i += 1;
+    }
+    return result;
+  });
+});
+
+/***/ }),
+/* 364 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var invoker = __webpack_require__(45);
+
+/**
+ * Splits a string into an array of strings based on the given
+ * separator.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category String
+ * @sig (String | RegExp) -> String -> [String]
+ * @param {String|RegExp} sep The pattern.
+ * @param {String} str The string to separate into an array.
+ * @return {Array} The array of strings from `str` separated by `str`.
+ * @see R.join
+ * @example
+ *
+ *      var pathComponents = R.split('/');
+ *      R.tail(pathComponents('/usr/local/bin/node')); //=> ['usr', 'local', 'bin', 'node']
+ *
+ *      R.split('.', 'a.b.c.xyz.d'); //=> ['a', 'b', 'c', 'xyz', 'd']
+ */
+module.exports = invoker(1, 'split');
+
+/***/ }),
+/* 365 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var length = __webpack_require__(152);
+var slice = __webpack_require__(34);
+
+/**
+ * Splits a given list or string at a given index.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig Number -> [a] -> [[a], [a]]
+ * @sig Number -> String -> [String, String]
+ * @param {Number} index The index where the array/string is split.
+ * @param {Array|String} array The array/string to be split.
+ * @return {Array}
+ * @example
+ *
+ *      R.splitAt(1, [1, 2, 3]);          //=> [[1], [2, 3]]
+ *      R.splitAt(5, 'hello world');      //=> ['hello', ' world']
+ *      R.splitAt(-1, 'foobar');          //=> ['fooba', 'r']
+ */
+module.exports = _curry2(function splitAt(index, array) {
+  return [slice(0, index, array), slice(index, length(array), array)];
+});
+
+/***/ }),
+/* 366 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var slice = __webpack_require__(34);
+
+/**
+ * Splits a collection into slices of the specified length.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category List
+ * @sig Number -> [a] -> [[a]]
+ * @sig Number -> String -> [String]
+ * @param {Number} n
+ * @param {Array} list
+ * @return {Array}
+ * @example
+ *
+ *      R.splitEvery(3, [1, 2, 3, 4, 5, 6, 7]); //=> [[1, 2, 3], [4, 5, 6], [7]]
+ *      R.splitEvery(3, 'foobarbaz'); //=> ['foo', 'bar', 'baz']
+ */
+module.exports = _curry2(function splitEvery(n, list) {
+  if (n <= 0) {
+    throw new Error('First argument to splitEvery must be a positive integer');
+  }
+  var result = [];
+  var idx = 0;
+  while (idx < list.length) {
+    result.push(slice(idx, idx += n, list));
+  }
+  return result;
+});
+
+/***/ }),
+/* 367 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Takes a list and a predicate and returns a pair of lists with the following properties:
+ *
+ *  - the result of concatenating the two output lists is equivalent to the input list;
+ *  - none of the elements of the first output list satisfies the predicate; and
+ *  - if the second output list is non-empty, its first element satisfies the predicate.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> [[a], [a]]
+ * @param {Function} pred The predicate that determines where the array is split.
+ * @param {Array} list The array to be split.
+ * @return {Array}
+ * @example
+ *
+ *      R.splitWhen(R.equals(2), [1, 2, 3, 1, 2, 3]);   //=> [[1], [2, 3, 1, 2, 3]]
+ */
+module.exports = _curry2(function splitWhen(pred, list) {
+  var idx = 0;
+  var len = list.length;
+  var prefix = [];
+
+  while (idx < len && !pred(list[idx])) {
+    prefix.push(list[idx]);
+    idx += 1;
+  }
+
+  return [prefix, Array.prototype.slice.call(list, idx)];
+});
+
+/***/ }),
+/* 368 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Subtracts its second argument from its first argument.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Math
+ * @sig Number -> Number -> Number
+ * @param {Number} a The first value.
+ * @param {Number} b The second value.
+ * @return {Number} The result of `a - b`.
+ * @see R.add
+ * @example
+ *
+ *      R.subtract(10, 8); //=> 2
+ *
+ *      var minus5 = R.subtract(R.__, 5);
+ *      minus5(17); //=> 12
+ *
+ *      var complementaryAngle = R.subtract(90);
+ *      complementaryAngle(30); //=> 60
+ *      complementaryAngle(72); //=> 18
+ */
+module.exports = _curry2(function subtract(a, b) {
+  return Number(a) - Number(b);
+});
+
+/***/ }),
+/* 369 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var concat = __webpack_require__(83);
+var difference = __webpack_require__(128);
+
+/**
+ * Finds the set (i.e. no duplicates) of all elements contained in the first or
+ * second list, but not both.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Relation
+ * @sig [*] -> [*] -> [*]
+ * @param {Array} list1 The first list.
+ * @param {Array} list2 The second list.
+ * @return {Array} The elements in `list1` or `list2`, but not both.
+ * @see R.symmetricDifferenceWith, R.difference, R.differenceWith
+ * @example
+ *
+ *      R.symmetricDifference([1,2,3,4], [7,6,5,4,3]); //=> [1,2,7,6,5]
+ *      R.symmetricDifference([7,6,5,4,3], [1,2,3,4]); //=> [7,6,5,1,2]
+ */
+module.exports = _curry2(function symmetricDifference(list1, list2) {
+  return concat(difference(list1, list2), difference(list2, list1));
+});
+
+/***/ }),
+/* 370 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var concat = __webpack_require__(83);
+var differenceWith = __webpack_require__(129);
+
+/**
+ * Finds the set (i.e. no duplicates) of all elements contained in the first or
+ * second list, but not both. Duplication is determined according to the value
+ * returned by applying the supplied predicate to two list elements.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category Relation
+ * @sig ((a, a) -> Boolean) -> [a] -> [a] -> [a]
+ * @param {Function} pred A predicate used to test whether two items are equal.
+ * @param {Array} list1 The first list.
+ * @param {Array} list2 The second list.
+ * @return {Array} The elements in `list1` or `list2`, but not both.
+ * @see R.symmetricDifference, R.difference, R.differenceWith
+ * @example
+ *
+ *      var eqA = R.eqBy(R.prop('a'));
+ *      var l1 = [{a: 1}, {a: 2}, {a: 3}, {a: 4}];
+ *      var l2 = [{a: 3}, {a: 4}, {a: 5}, {a: 6}];
+ *      R.symmetricDifferenceWith(eqA, l1, l2); //=> [{a: 1}, {a: 2}, {a: 5}, {a: 6}]
+ */
+module.exports = _curry3(function symmetricDifferenceWith(pred, list1, list2) {
+  return concat(differenceWith(pred, list1, list2), differenceWith(pred, list2, list1));
+});
+
+/***/ }),
+/* 371 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var drop = __webpack_require__(131);
+
+/**
+ * Returns a new list containing the last `n` elements of the given list.
+ * If `n > list.length`, returns a list of `list.length` elements.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category List
+ * @sig Number -> [a] -> [a]
+ * @sig Number -> String -> String
+ * @param {Number} n The number of elements to return.
+ * @param {Array} xs The collection to consider.
+ * @return {Array}
+ * @see R.dropLast
+ * @example
+ *
+ *      R.takeLast(1, ['foo', 'bar', 'baz']); //=> ['baz']
+ *      R.takeLast(2, ['foo', 'bar', 'baz']); //=> ['bar', 'baz']
+ *      R.takeLast(3, ['foo', 'bar', 'baz']); //=> ['foo', 'bar', 'baz']
+ *      R.takeLast(4, ['foo', 'bar', 'baz']); //=> ['foo', 'bar', 'baz']
+ *      R.takeLast(3, 'ramda');               //=> 'mda'
+ */
+module.exports = _curry2(function takeLast(n, xs) {
+  return drop(n >= 0 ? xs.length - n : 0, xs);
+});
+
+/***/ }),
+/* 372 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a new list containing the last `n` elements of a given list, passing
+ * each value to the supplied predicate function, and terminating when the
+ * predicate function returns `false`. Excludes the element that caused the
+ * predicate function to fail. The predicate function is passed one argument:
+ * *(value)*.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> [a]
+ * @param {Function} fn The function called per iteration.
+ * @param {Array} list The collection to iterate over.
+ * @return {Array} A new array.
+ * @see R.dropLastWhile, R.addIndex
+ * @example
+ *
+ *      var isNotOne = x => x !== 1;
+ *
+ *      R.takeLastWhile(isNotOne, [1, 2, 3, 4]); //=> [2, 3, 4]
+ */
+module.exports = _curry2(function takeLastWhile(fn, list) {
+  var idx = list.length - 1;
+  while (idx >= 0 && fn(list[idx])) {
+    idx -= 1;
+  }
+  return Array.prototype.slice.call(list, idx + 1);
+});
+
+/***/ }),
+/* 373 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var _dispatchable = __webpack_require__(10);
+var _xtakeWhile = __webpack_require__(299);
+
+/**
+ * Returns a new list containing the first `n` elements of a given list,
+ * passing each value to the supplied predicate function, and terminating when
+ * the predicate function returns `false`. Excludes the element that caused the
+ * predicate function to fail. The predicate function is passed one argument:
+ * *(value)*.
+ *
+ * Dispatches to the `takeWhile` method of the second argument, if present.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a -> Boolean) -> [a] -> [a]
+ * @param {Function} fn The function called per iteration.
+ * @param {Array} list The collection to iterate over.
+ * @return {Array} A new array.
+ * @see R.dropWhile, R.transduce, R.addIndex
+ * @example
+ *
+ *      var isNotFour = x => x !== 4;
+ *
+ *      R.takeWhile(isNotFour, [1, 2, 3, 4, 3, 2, 1]); //=> [1, 2, 3]
+ */
+module.exports = _curry2(_dispatchable(['takeWhile'], _xtakeWhile, function takeWhile(fn, list) {
+  var idx = 0;
+  var len = list.length;
+  while (idx < len && fn(list[idx])) {
+    idx += 1;
+  }
+  return Array.prototype.slice.call(list, 0, idx);
+}));
+
+/***/ }),
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Runs the given function with the supplied object, then returns the object.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Function
+ * @sig (a -> *) -> a -> a
+ * @param {Function} fn The function to call with `x`. The return value of `fn` will be thrown away.
+ * @param {*} x
+ * @return {*} `x`.
+ * @example
+ *
+ *      var sayX = x => console.log('x is ' + x);
+ *      R.tap(sayX, 100); //=> 100
+ *      // logs 'x is 100'
+ * @symb R.tap(f, a) = a
+ */
+module.exports = _curry2(function tap(fn, x) {
+  fn(x);
+  return x;
+});
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _cloneRegExp = __webpack_require__(136);
+var _curry2 = __webpack_require__(0);
+var _isRegExp = __webpack_require__(275);
+var toString = __webpack_require__(50);
+
+/**
+ * Determines whether a given string matches a given regular expression.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category String
+ * @sig RegExp -> String -> Boolean
+ * @param {RegExp} pattern
+ * @param {String} str
+ * @return {Boolean}
+ * @see R.match
+ * @example
+ *
+ *      R.test(/^x/, 'xyz'); //=> true
+ *      R.test(/^y/, 'xyz'); //=> false
+ */
+module.exports = _curry2(function test(pattern, str) {
+  if (!_isRegExp(pattern)) {
+    throw new TypeError('‘test’ requires a value of type RegExp as its first argument; received ' + toString(pattern));
+  }
+  return _cloneRegExp(pattern).test(str);
+});
+
+/***/ }),
+/* 376 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var invoker = __webpack_require__(45);
+
+/**
+ * The lower case version of a string.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category String
+ * @sig String -> String
+ * @param {String} str The string to lower case.
+ * @return {String} The lower case version of `str`.
+ * @see R.toUpper
+ * @example
+ *
+ *      R.toLower('XYZ'); //=> 'xyz'
+ */
+module.exports = invoker(0, 'toLowerCase');
+
+/***/ }),
+/* 377 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var _has = __webpack_require__(15);
+
+/**
+ * Converts an object into an array of key, value arrays. Only the object's
+ * own properties are used.
+ * Note that the order of the output array is not guaranteed to be consistent
+ * across different JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.4.0
+ * @category Object
+ * @sig {String: *} -> [[String,*]]
+ * @param {Object} obj The object to extract from
+ * @return {Array} An array of key, value arrays from the object's own properties.
+ * @see R.fromPairs
+ * @example
+ *
+ *      R.toPairs({a: 1, b: 2, c: 3}); //=> [['a', 1], ['b', 2], ['c', 3]]
+ */
+module.exports = _curry1(function toPairs(obj) {
+  var pairs = [];
+  for (var prop in obj) {
+    if (_has(prop, obj)) {
+      pairs[pairs.length] = [prop, obj[prop]];
+    }
+  }
+  return pairs;
+});
+
+/***/ }),
+/* 378 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Converts an object into an array of key, value arrays. The object's own
+ * properties and prototype properties are used. Note that the order of the
+ * output array is not guaranteed to be consistent across different JS
+ * platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.4.0
+ * @category Object
+ * @sig {String: *} -> [[String,*]]
+ * @param {Object} obj The object to extract from
+ * @return {Array} An array of key, value arrays from the object's own
+ *         and prototype properties.
+ * @example
+ *
+ *      var F = function() { this.x = 'X'; };
+ *      F.prototype.y = 'Y';
+ *      var f = new F();
+ *      R.toPairsIn(f); //=> [['x','X'], ['y','Y']]
+ */
+module.exports = _curry1(function toPairsIn(obj) {
+  var pairs = [];
+  for (var prop in obj) {
+    pairs[pairs.length] = [prop, obj[prop]];
+  }
+  return pairs;
+});
+
+/***/ }),
+/* 379 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var invoker = __webpack_require__(45);
+
+/**
+ * The upper case version of a string.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.9.0
+ * @category String
+ * @sig String -> String
+ * @param {String} str The string to upper case.
+ * @return {String} The upper case version of `str`.
+ * @see R.toLower
+ * @example
+ *
+ *      R.toUpper('abc'); //=> 'ABC'
+ */
+module.exports = invoker(0, 'toUpperCase');
+
+/***/ }),
+/* 380 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _reduce = __webpack_require__(18);
+var _xwrap = __webpack_require__(148);
+var curryN = __webpack_require__(14);
+
+/**
+ * Initializes a transducer using supplied iterator function. Returns a single
+ * item by iterating through the list, successively calling the transformed
+ * iterator function and passing it an accumulator value and the current value
+ * from the array, and then passing the result to the next call.
+ *
+ * The iterator function receives two values: *(acc, value)*. It will be
+ * wrapped as a transformer to initialize the transducer. A transformer can be
+ * passed directly in place of an iterator function. In both cases, iteration
+ * may be stopped early with the `R.reduced` function.
+ *
+ * A transducer is a function that accepts a transformer and returns a
+ * transformer and can be composed directly.
+ *
+ * A transformer is an an object that provides a 2-arity reducing iterator
+ * function, step, 0-arity initial value function, init, and 1-arity result
+ * extraction function, result. The step function is used as the iterator
+ * function in reduce. The result function is used to convert the final
+ * accumulator into the return type and in most cases is R.identity. The init
+ * function can be used to provide an initial accumulator, but is ignored by
+ * transduce.
+ *
+ * The iteration is performed with R.reduce after initializing the transducer.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.12.0
+ * @category List
+ * @sig (c -> c) -> (a,b -> a) -> a -> [b] -> a
+ * @param {Function} xf The transducer function. Receives a transformer and returns a transformer.
+ * @param {Function} fn The iterator function. Receives two values, the accumulator and the
+ *        current element from the array. Wrapped as transformer, if necessary, and used to
+ *        initialize the transducer
+ * @param {*} acc The initial accumulator value.
+ * @param {Array} list The list to iterate over.
+ * @return {*} The final, accumulated value.
+ * @see R.reduce, R.reduced, R.into
+ * @example
+ *
+ *      var numbers = [1, 2, 3, 4];
+ *      var transducer = R.compose(R.map(R.add(1)), R.take(2));
+ *
+ *      R.transduce(transducer, R.flip(R.append), [], numbers); //=> [2, 3]
+ */
+module.exports = curryN(4, function transduce(xf, fn, acc, list) {
+  return _reduce(xf(typeof fn === 'function' ? _xwrap(fn) : fn), acc, list);
+});
+
+/***/ }),
+/* 381 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Transposes the rows and columns of a 2D list.
+ * When passed a list of `n` lists of length `x`,
+ * returns a list of `x` lists of length `n`.
+ *
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig [[a]] -> [[a]]
+ * @param {Array} list A 2D list
+ * @return {Array} A 2D list
+ * @example
+ *
+ *      R.transpose([[1, 'a'], [2, 'b'], [3, 'c']]) //=> [[1, 2, 3], ['a', 'b', 'c']]
+ *      R.transpose([[1, 2, 3], ['a', 'b', 'c']]) //=> [[1, 'a'], [2, 'b'], [3, 'c']]
+ *
+ * If some of the rows are shorter than the following rows, their elements are skipped:
+ *
+ *      R.transpose([[10, 11], [20], [], [30, 31, 32]]) //=> [[10, 20, 30], [11, 31], [32]]
+ * @symb R.transpose([[a], [b], [c]]) = [a, b, c]
+ * @symb R.transpose([[a, b], [c, d]]) = [[a, c], [b, d]]
+ * @symb R.transpose([[a, b], [c]]) = [[a, c], [b]]
+ */
+module.exports = _curry1(function transpose(outerlist) {
+  var i = 0;
+  var result = [];
+  while (i < outerlist.length) {
+    var innerlist = outerlist[i];
+    var j = 0;
+    while (j < innerlist.length) {
+      if (typeof result[j] === 'undefined') {
+        result[j] = [];
+      }
+      result[j].push(innerlist[j]);
+      j += 1;
+    }
+    i += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 382 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+var map = __webpack_require__(16);
+var sequence = __webpack_require__(166);
+
+/**
+ * Maps an [Applicative](https://github.com/fantasyland/fantasy-land#applicative)-returning
+ * function over a [Traversable](https://github.com/fantasyland/fantasy-land#traversable),
+ * then uses [`sequence`](#sequence) to transform the resulting Traversable of Applicative
+ * into an Applicative of Traversable.
+ *
+ * Dispatches to the `sequence` method of the third argument, if present.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig (Applicative f, Traversable t) => (a -> f a) -> (a -> f b) -> t a -> f (t b)
+ * @param {Function} of
+ * @param {Function} f
+ * @param {*} traversable
+ * @return {*}
+ * @see R.sequence
+ * @example
+ *
+ *      // Returns `Nothing` if the given divisor is `0`
+ *      safeDiv = n => d => d === 0 ? Nothing() : Just(n / d)
+ *
+ *      R.traverse(Maybe.of, safeDiv(10), [2, 4, 5]); //=> Just([5, 2.5, 2])
+ *      R.traverse(Maybe.of, safeDiv(10), [2, 0, 5]); //=> Nothing
+ */
+module.exports = _curry3(function traverse(of, f, traversable) {
+  return sequence(of, map(f, traversable));
+});
+
+/***/ }),
+/* 383 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Removes (strips) whitespace from both ends of the string.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.6.0
+ * @category String
+ * @sig String -> String
+ * @param {String} str The string to trim.
+ * @return {String} Trimmed version of `str`.
+ * @example
+ *
+ *      R.trim('   xyz  '); //=> 'xyz'
+ *      R.map(R.trim, R.split(',', 'x, y, z')); //=> ['x', 'y', 'z']
+ */
+module.exports = function () {
+  var ws = '\t\n\x0B\f\r \xA0\u1680\u180E\u2000\u2001\u2002\u2003' + '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028' + '\u2029\uFEFF';
+  var zeroWidth = '\u200B';
+  var hasProtoTrim = typeof String.prototype.trim === 'function';
+  if (!hasProtoTrim || ws.trim() || !zeroWidth.trim()) {
+    return _curry1(function trim(str) {
+      var beginRx = new RegExp('^[' + ws + '][' + ws + ']*');
+      var endRx = new RegExp('[' + ws + '][' + ws + ']*$');
+      return str.replace(beginRx, '').replace(endRx, '');
+    });
+  } else {
+    return _curry1(function trim(str) {
+      return str.trim();
+    });
+  }
+}();
+
+/***/ }),
+/* 384 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _arity = __webpack_require__(23);
+var _concat = __webpack_require__(20);
+var _curry2 = __webpack_require__(0);
+
+/**
+ * `tryCatch` takes two functions, a `tryer` and a `catcher`. The returned
+ * function evaluates the `tryer`; if it does not throw, it simply returns the
+ * result. If the `tryer` *does* throw, the returned function evaluates the
+ * `catcher` function and returns its result. Note that for effective
+ * composition with this function, both the `tryer` and `catcher` functions
+ * must return the same type of results.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.20.0
+ * @category Function
+ * @sig (...x -> a) -> ((e, ...x) -> a) -> (...x -> a)
+ * @param {Function} tryer The function that may throw.
+ * @param {Function} catcher The function that will be evaluated if `tryer` throws.
+ * @return {Function} A new function that will catch exceptions and send then to the catcher.
+ * @example
+ *
+ *      R.tryCatch(R.prop('x'), R.F)({x: true}); //=> true
+ *      R.tryCatch(R.prop('x'), R.F)(null);      //=> false
+ */
+module.exports = _curry2(function _tryCatch(tryer, catcher) {
+  return _arity(tryer.length, function () {
+    try {
+      return tryer.apply(this, arguments);
+    } catch (e) {
+      return catcher.apply(this, _concat([e], arguments));
+    }
+  });
+});
+
+/***/ }),
+/* 385 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Takes a function `fn`, which takes a single array argument, and returns a
+ * function which:
+ *
+ *   - takes any number of positional arguments;
+ *   - passes these arguments to `fn` as an array; and
+ *   - returns the result.
+ *
+ * In other words, R.unapply derives a variadic function from a function which
+ * takes an array. R.unapply is the inverse of R.apply.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.8.0
+ * @category Function
+ * @sig ([*...] -> a) -> (*... -> a)
+ * @param {Function} fn
+ * @return {Function}
+ * @see R.apply
+ * @example
+ *
+ *      R.unapply(JSON.stringify)(1, 2, 3); //=> '[1,2,3]'
+ * @symb R.unapply(f)(a, b) = f([a, b])
+ */
+module.exports = _curry1(function unapply(fn) {
+  return function () {
+    return fn(Array.prototype.slice.call(arguments, 0));
+  };
+});
+
+/***/ }),
+/* 386 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+var nAry = __webpack_require__(69);
+
+/**
+ * Wraps a function of any arity (including nullary) in a function that accepts
+ * exactly 1 parameter. Any extraneous parameters will not be passed to the
+ * supplied function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category Function
+ * @sig (* -> b) -> (a -> b)
+ * @param {Function} fn The function to wrap.
+ * @return {Function} A new function wrapping `fn`. The new function is guaranteed to be of
+ *         arity 1.
+ * @example
+ *
+ *      var takesTwoArgs = function(a, b) {
+ *        return [a, b];
+ *      };
+ *      takesTwoArgs.length; //=> 2
+ *      takesTwoArgs(1, 2); //=> [1, 2]
+ *
+ *      var takesOneArg = R.unary(takesTwoArgs);
+ *      takesOneArg.length; //=> 1
+ *      // Only 1 argument is passed to the wrapped function
+ *      takesOneArg(1, 2); //=> [1, undefined]
+ * @symb R.unary(f)(a, b, c) = f(a)
+ */
+module.exports = _curry1(function unary(fn) {
+  return nAry(1, fn);
+});
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var curryN = __webpack_require__(14);
+
+/**
+ * Returns a function of arity `n` from a (manually) curried function.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category Function
+ * @sig Number -> (a -> b) -> (a -> c)
+ * @param {Number} length The arity for the returned function.
+ * @param {Function} fn The function to uncurry.
+ * @return {Function} A new function.
+ * @see R.curry
+ * @example
+ *
+ *      var addFour = a => b => c => d => a + b + c + d;
+ *
+ *      var uncurriedAddFour = R.uncurryN(4, addFour);
+ *      uncurriedAddFour(1, 2, 3, 4); //=> 10
+ */
+module.exports = _curry2(function uncurryN(depth, fn) {
+  return curryN(depth, function () {
+    var currentDepth = 1;
+    var value = fn;
+    var idx = 0;
+    var endIdx;
+    while (currentDepth <= depth && typeof value === 'function') {
+      endIdx = currentDepth === depth ? arguments.length : idx + value.length;
+      value = value.apply(this, Array.prototype.slice.call(arguments, idx, endIdx));
+      currentDepth += 1;
+      idx = endIdx;
+    }
+    return value;
+  });
+});
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Builds a list from a seed value. Accepts an iterator function, which returns
+ * either false to stop iteration or an array of length 2 containing the value
+ * to add to the resulting list and the seed to be used in the next call to the
+ * iterator function.
+ *
+ * The iterator function receives one argument: *(seed)*.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.10.0
+ * @category List
+ * @sig (a -> [b]) -> * -> [b]
+ * @param {Function} fn The iterator function. receives one argument, `seed`, and returns
+ *        either false to quit iteration or an array of length two to proceed. The element
+ *        at index 0 of this array will be added to the resulting array, and the element
+ *        at index 1 will be passed to the next call to `fn`.
+ * @param {*} seed The seed value.
+ * @return {Array} The final list.
+ * @example
+ *
+ *      var f = n => n > 50 ? false : [-n, n + 10];
+ *      R.unfold(f, 10); //=> [-10, -20, -30, -40, -50]
+ * @symb R.unfold(f, x) = [f(x)[0], f(f(x)[1])[0], f(f(f(x)[1])[1])[0], ...]
+ */
+module.exports = _curry2(function unfold(fn, seed) {
+  var pair = fn(seed);
+  var result = [];
+  while (pair && pair.length) {
+    result[result.length] = pair[0];
+    pair = fn(pair[1]);
+  }
+  return result;
+});
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry2 = __webpack_require__(0);
+var compose = __webpack_require__(82);
+var uniq = __webpack_require__(93);
+
+/**
+ * Combines two lists into a set (i.e. no duplicates) composed of the elements
+ * of each list.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig [*] -> [*] -> [*]
+ * @param {Array} as The first list.
+ * @param {Array} bs The second list.
+ * @return {Array} The first and second lists concatenated, with
+ *         duplicates removed.
+ * @example
+ *
+ *      R.union([1, 2, 3], [2, 3, 4]); //=> [1, 2, 3, 4]
+ */
+module.exports = _curry2(compose(uniq, _concat));
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _concat = __webpack_require__(20);
+var _curry3 = __webpack_require__(4);
+var uniqWith = __webpack_require__(94);
+
+/**
+ * Combines two lists into a set (i.e. no duplicates) composed of the elements
+ * of each list. Duplication is determined according to the value returned by
+ * applying the supplied predicate to two list elements.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category Relation
+ * @sig (a -> a -> Boolean) -> [*] -> [*] -> [*]
+ * @param {Function} pred A predicate used to test whether two items are equal.
+ * @param {Array} list1 The first list.
+ * @param {Array} list2 The second list.
+ * @return {Array} The first and second lists concatenated, with
+ *         duplicates removed.
+ * @see R.union
+ * @example
+ *
+ *      var l1 = [{a: 1}, {a: 2}];
+ *      var l2 = [{a: 1}, {a: 4}];
+ *      R.unionWith(R.eqBy(R.prop('a')), l1, l2); //=> [{a: 1}, {a: 2}, {a: 4}]
+ */
+module.exports = _curry3(function unionWith(pred, list1, list2) {
+  return uniqWith(pred, _concat(list1, list2));
+});
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Tests the final argument by passing it to the given predicate function. If
+ * the predicate is not satisfied, the function will return the result of
+ * calling the `whenFalseFn` function with the same argument. If the predicate
+ * is satisfied, the argument is returned as is.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.18.0
+ * @category Logic
+ * @sig (a -> Boolean) -> (a -> a) -> a -> a
+ * @param {Function} pred        A predicate function
+ * @param {Function} whenFalseFn A function to invoke when the `pred` evaluates
+ *                               to a falsy value.
+ * @param {*}        x           An object to test with the `pred` function and
+ *                               pass to `whenFalseFn` if necessary.
+ * @return {*} Either `x` or the result of applying `x` to `whenFalseFn`.
+ * @see R.ifElse, R.when
+ * @example
+ *
+ *      // coerceArray :: (a|[a]) -> [a]
+ *      var coerceArray = R.unless(R.isArrayLike, R.of);
+ *      coerceArray([1, 2, 3]); //=> [1, 2, 3]
+ *      coerceArray(1);         //=> [1]
+ */
+module.exports = _curry3(function unless(pred, whenFalseFn, x) {
+  return pred(x) ? x : whenFalseFn(x);
+});
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _identity = __webpack_require__(88);
+var chain = __webpack_require__(81);
+
+/**
+ * Shorthand for `R.chain(R.identity)`, which removes one level of nesting from
+ * any [Chain](https://github.com/fantasyland/fantasy-land#chain).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category List
+ * @sig Chain c => c (c a) -> c a
+ * @param {*} list
+ * @return {*}
+ * @see R.flatten, R.chain
+ * @example
+ *
+ *      R.unnest([1, [2], [[3]]]); //=> [1, 2, [3]]
+ *      R.unnest([[1, 2], [3, 4], [5, 6]]); //=> [1, 2, 3, 4, 5, 6]
+ */
+module.exports = chain(_identity);
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Takes a predicate, a transformation function, and an initial value,
+ * and returns a value of the same type as the initial value.
+ * It does so by applying the transformation until the predicate is satisfied,
+ * at which point it returns the satisfactory value.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.20.0
+ * @category Logic
+ * @sig (a -> Boolean) -> (a -> a) -> a -> a
+ * @param {Function} pred A predicate function
+ * @param {Function} fn The iterator function
+ * @param {*} init Initial value
+ * @return {*} Final value that satisfies predicate
+ * @example
+ *
+ *      R.until(R.gt(R.__, 100), R.multiply(2))(1) // => 128
+ */
+module.exports = _curry3(function until(pred, fn, init) {
+  var val = init;
+  while (!pred(val)) {
+    val = fn(val);
+  }
+  return val;
+});
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry1 = __webpack_require__(2);
+
+/**
+ * Returns a list of all the properties, including prototype properties, of the
+ * supplied object.
+ * Note that the order of the output array is not guaranteed to be consistent
+ * across different JS platforms.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.2.0
+ * @category Object
+ * @sig {k: v} -> [v]
+ * @param {Object} obj The object to extract values from
+ * @return {Array} An array of the values of the object's own and prototype properties.
+ * @example
+ *
+ *      var F = function() { this.x = 'X'; };
+ *      F.prototype.y = 'Y';
+ *      var f = new F();
+ *      R.valuesIn(f); //=> ['X', 'Y']
+ */
+module.exports = _curry1(function valuesIn(obj) {
+  var prop;
+  var vs = [];
+  for (prop in obj) {
+    vs[vs.length] = obj[prop];
+  }
+  return vs;
+});
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Returns a "view" of the given data structure, determined by the given lens.
+ * The lens's focus determines which portion of the data structure is visible.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.16.0
+ * @category Object
+ * @typedefn Lens s a = Functor f => (a -> f a) -> s -> f s
+ * @sig Lens s a -> s -> a
+ * @param {Lens} lens
+ * @param {*} x
+ * @return {*}
+ * @see R.prop, R.lensIndex, R.lensProp
+ * @example
+ *
+ *      var xLens = R.lensProp('x');
+ *
+ *      R.view(xLens, {x: 1, y: 2});  //=> 1
+ *      R.view(xLens, {x: 4, y: 2});  //=> 4
+ */
+module.exports = function () {
+  // `Const` is a functor that effectively ignores the function given to `map`.
+  var Const = function Const(x) {
+    return { value: x, map: function map() {
+        return this;
+      } };
+  };
+
+  return _curry2(function view(lens, x) {
+    // Using `Const` effectively ignores the setter function of the `lens`,
+    // leaving the value returned by the getter function unmodified.
+    return lens(Const)(x).value;
+  });
+}();
+
+/***/ }),
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Tests the final argument by passing it to the given predicate function. If
+ * the predicate is satisfied, the function will return the result of calling
+ * the `whenTrueFn` function with the same argument. If the predicate is not
+ * satisfied, the argument is returned as is.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.18.0
+ * @category Logic
+ * @sig (a -> Boolean) -> (a -> a) -> a -> a
+ * @param {Function} pred       A predicate function
+ * @param {Function} whenTrueFn A function to invoke when the `condition`
+ *                              evaluates to a truthy value.
+ * @param {*}        x          An object to test with the `pred` function and
+ *                              pass to `whenTrueFn` if necessary.
+ * @return {*} Either `x` or the result of applying `x` to `whenTrueFn`.
+ * @see R.ifElse, R.unless
+ * @example
+ *
+ *      // truncate :: String -> String
+ *      var truncate = R.when(
+ *        R.propSatisfies(R.gt(R.__, 10), 'length'),
+ *        R.pipe(R.take(10), R.append('…'), R.join(''))
+ *      );
+ *      truncate('12345');         //=> '12345'
+ *      truncate('0123456789ABC'); //=> '0123456789…'
+ */
+module.exports = _curry3(function when(pred, whenTrueFn, x) {
+  return pred(x) ? whenTrueFn(x) : x;
+});
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+var equals = __webpack_require__(22);
+var map = __webpack_require__(16);
+var where = __webpack_require__(174);
+
+/**
+ * Takes a spec object and a test object; returns true if the test satisfies
+ * the spec, false otherwise. An object satisfies the spec if, for each of the
+ * spec's own properties, accessing that property of the object gives the same
+ * value (in `R.equals` terms) as accessing that property of the spec.
+ *
+ * `whereEq` is a specialization of [`where`](#where).
+ *
+ * @func
+ * @memberOf R
+ * @since v0.14.0
+ * @category Object
+ * @sig {String: *} -> {String: *} -> Boolean
+ * @param {Object} spec
+ * @param {Object} testObj
+ * @return {Boolean}
+ * @see R.where
+ * @example
+ *
+ *      // pred :: Object -> Boolean
+ *      var pred = R.whereEq({a: 1, b: 2});
+ *
+ *      pred({a: 1});              //=> false
+ *      pred({a: 1, b: 2});        //=> true
+ *      pred({a: 1, b: 2, c: 3});  //=> true
+ *      pred({a: 1, b: 1});        //=> false
+ */
+module.exports = _curry2(function whereEq(spec, testObj) {
+  return where(map(equals, spec), testObj);
+});
+
+/***/ }),
+/* 398 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _contains = __webpack_require__(33);
+var _curry2 = __webpack_require__(0);
+var flip = __webpack_require__(61);
+var reject = __webpack_require__(71);
+
+/**
+ * Returns a new list without values in the first argument.
+ * `R.equals` is used to determine equality.
+ *
+ * Acts as a transducer if a transformer is given in list position.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.19.0
+ * @category List
+ * @sig [a] -> [a] -> [a]
+ * @param {Array} list1 The values to be removed from `list2`.
+ * @param {Array} list2 The array to remove values from.
+ * @return {Array} The new array without values in `list1`.
+ * @see R.transduce
+ * @example
+ *
+ *      R.without([1, 2], [1, 2, 1, 3, 4]); //=> [3, 4]
+ */
+module.exports = _curry2(function (xs, list) {
+  return reject(flip(_contains)(xs), list);
+});
+
+/***/ }),
+/* 399 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates a new list out of the two supplied by creating each possible pair
+ * from the lists.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [b] -> [[a,b]]
+ * @param {Array} as The first list.
+ * @param {Array} bs The second list.
+ * @return {Array} The list made by combining each possible pair from
+ *         `as` and `bs` into pairs (`[a, b]`).
+ * @example
+ *
+ *      R.xprod([1, 2], ['a', 'b']); //=> [[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']]
+ * @symb R.xprod([a, b], [c, d]) = [[a, c], [a, d], [b, c], [b, d]]
+ */
+module.exports = _curry2(function xprod(a, b) {
+  // = xprodWith(prepend); (takes about 3 times as long...)
+  var idx = 0;
+  var ilen = a.length;
+  var j;
+  var jlen = b.length;
+  var result = [];
+  while (idx < ilen) {
+    j = 0;
+    while (j < jlen) {
+      result[result.length] = [a[idx], b[j]];
+      j += 1;
+    }
+    idx += 1;
+  }
+  return result;
+});
+
+/***/ }),
+/* 400 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates a new list out of the two supplied by pairing up equally-positioned
+ * items from both lists. The returned list is truncated to the length of the
+ * shorter of the two input lists.
+ * Note: `zip` is equivalent to `zipWith(function(a, b) { return [a, b] })`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig [a] -> [b] -> [[a,b]]
+ * @param {Array} list1 The first array to consider.
+ * @param {Array} list2 The second array to consider.
+ * @return {Array} The list made by pairing up same-indexed elements of `list1` and `list2`.
+ * @example
+ *
+ *      R.zip([1, 2, 3], ['a', 'b', 'c']); //=> [[1, 'a'], [2, 'b'], [3, 'c']]
+ * @symb R.zip([a, b, c], [d, e, f]) = [[a, d], [b, e], [c, f]]
+ */
+module.exports = _curry2(function zip(a, b) {
+  var rv = [];
+  var idx = 0;
+  var len = Math.min(a.length, b.length);
+  while (idx < len) {
+    rv[idx] = [a[idx], b[idx]];
+    idx += 1;
+  }
+  return rv;
+});
+
+/***/ }),
+/* 401 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry2 = __webpack_require__(0);
+
+/**
+ * Creates a new object out of a list of keys and a list of values.
+ * Key/value pairing is truncated to the length of the shorter of the two lists.
+ * Note: `zipObj` is equivalent to `pipe(zipWith(pair), fromPairs)`.
+ *
+ * @func
+ * @memberOf R
+ * @since v0.3.0
+ * @category List
+ * @sig [String] -> [*] -> {String: *}
+ * @param {Array} keys The array that will be properties on the output object.
+ * @param {Array} values The list of values on the output object.
+ * @return {Object} The object made by pairing up same-indexed elements of `keys` and `values`.
+ * @example
+ *
+ *      R.zipObj(['a', 'b', 'c'], [1, 2, 3]); //=> {a: 1, b: 2, c: 3}
+ */
+module.exports = _curry2(function zipObj(keys, values) {
+  var idx = 0;
+  var len = Math.min(keys.length, values.length);
+  var out = {};
+  while (idx < len) {
+    out[keys[idx]] = values[idx];
+    idx += 1;
+  }
+  return out;
+});
+
+/***/ }),
+/* 402 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _curry3 = __webpack_require__(4);
+
+/**
+ * Creates a new list out of the two supplied by applying the function to each
+ * equally-positioned pair in the lists. The returned list is truncated to the
+ * length of the shorter of the two input lists.
+ *
+ * @function
+ * @memberOf R
+ * @since v0.1.0
+ * @category List
+ * @sig (a,b -> c) -> [a] -> [b] -> [c]
+ * @param {Function} fn The function used to combine the two elements into one value.
+ * @param {Array} list1 The first array to consider.
+ * @param {Array} list2 The second array to consider.
+ * @return {Array} The list made by combining same-indexed elements of `list1` and `list2`
+ *         using `fn`.
+ * @example
+ *
+ *      var f = (x, y) => {
+ *        // ...
+ *      };
+ *      R.zipWith(f, [1, 2, 3], ['a', 'b', 'c']);
+ *      //=> [f(1, 'a'), f(2, 'b'), f(3, 'c')]
+ * @symb R.zipWith(fn, [a, b, c], [d, e, f]) = [fn(a, d), fn(b, e), fn(c, f)]
+ */
+module.exports = _curry3(function zipWith(fn, a, b) {
+  var rv = [];
+  var idx = 0;
+  var len = Math.min(a.length, b.length);
+  while (idx < len) {
+    rv[idx] = fn(a[idx], b[idx]);
+    idx += 1;
+  }
+  return rv;
+});
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var React = __webpack_require__(3);
+var ReactDOM = __webpack_require__(79);
+var R = __webpack_require__(207);
+var ReactMaterialize = __webpack_require__(208);
+
+var Cell = __webpack_require__(206);
+
+var Grid = React.createClass({
+	displayName: 'Grid',
+
+	applyNextState: function applyNextState() {
+		var _this = this;
+
+		var newGrid = R.clone(this.state.grid);
+		newGrid.forEach(function (row, rowNum) {
+			row.forEach(function (cell, colNum) {
+				var siblingCount = _this.getSiblingCount(rowNum, colNum);
+				var isAlive = false;
+
+				if (cell.isAlive) {
+					if (siblingCount === 2 || siblingCount === 3) {
+						isAlive = true;
+					}
+				} else {
+					if (siblingCount === 3) {
+						isAlive = true;
+					}
+				}
+
+				if (isAlive && !cell.isAlive) {
+					cell.kanye = _this.getNewKanyeImg();
+				}
+
+				cell.isAlive = isAlive;
+			});
+		});
+
+		this.setState({
+			grid: newGrid
+		});
+	},
+
+	componentDidMount: function componentDidMount() {
+		var _this2 = this;
+
+		setInterval(function () {
+			if (_this2.state.isRunning) {
+				_this2.applyNextState();
+			}
+		}, 2000);
+
+		var banner = document.getElementsByTagName('h1')[0];
+		var heightAboveRow = banner.getBoundingClientRect().top;
+		var bannerRowHeight = banner.parentElement.getBoundingClientRect().bottom;
+		var gridHeight = window.innerHeight - bannerRowHeight - heightAboveRow;
+
+		this.setState({
+			height: gridHeight
+		});
+	},
+
+	getInitialState: function getInitialState() {
+		return {
+			height: 0,
+			cols: this.props.cols,
+			rows: this.props.rows,
+			grid: this.generateGrid(),
+			isRunning: false
+		};
+	},
+
+	getSiblingCount: function getSiblingCount(row, col) {
+		var liveSiblings = 0;
+		var grid = this.state.grid;
+		var row1 = grid[row - 1] || [];
+		var row2 = grid[row];
+		var row3 = grid[row + 1] || [];
+
+		var siblings = [row1[col - 1], row1[col], row1[col + 1], row2[col - 1], row2[col + 1], row3[col - 1], row3[col], row3[col + 1]];
+
+		siblings.forEach(function (sibling) {
+			if (sibling) {
+				liveSiblings += sibling.isAlive ? 1 : 0;
+			}
+		});
+
+		return liveSiblings;
+	},
+
+	generateColumns: function generateColumns() {
+		var _this3 = this;
+
+		var cells = [];
+		var state = this.state || {};
+		var cols = state.cols || this.props.cols;
+
+		R.times(function () {
+			cells.push(_this3.getNewKanye());
+		}, cols);
+
+		return cells;
+	},
+
+	generateGrid: function generateGrid() {
+		var grid = [];
+		var state = this.state || {};
+		var rows = state.rows || this.props.rows;
+
+		for (var i = 0; i < rows; i++) {
+			grid.push(this.generateColumns(i));
+		}
+
+		return grid;
+	},
+
+	getNewKanye: function getNewKanye() {
+		return {
+			isAlive: false,
+			kanye: ''
+		};
+	},
+
+	getNewKanyeImg: function getNewKanyeImg() {
+		var num = Math.ceil(Math.random() * 5);
+		return 'public/img/kw' + num + '.jpg';
+	},
+
+	toggleCell: function toggleCell(rowNum, col) {
+		var newGrid = R.clone(this.state.grid);
+
+		newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
+
+		if (newGrid[rowNum][col].isAlive) {
+			newGrid[rowNum][col].kanye = this.getNewKanyeImg();
+		} else {
+			newGrid[rowNum][col].kanye = '';
+		}
+
+		this.setState({
+			grid: newGrid
+		});
+	},
+
+	togglePlayPause: function togglePlayPause() {
+		this.setState({
+			isRunning: !this.state.isRunning
+		});
+	},
+
+	renderGrid: function renderGrid() {
+		var _this4 = this;
+
+		var state = this.state || {};
+		var rows = this.state.grid.length;
+		var height = 100 / rows;
+		var tots = 0;
+
+		var grid = this.state.grid.reduce(function (prev, curr, idx) {
+
+			prev.push(React.createElement(
+				'div',
+				{
+					style: { height: height + '%' },
+					className: 'gridRow',
+					key: 'row-' + idx },
+				_this4.renderRow(curr, idx)
+			));
+
+			return prev;
+		}, []);
+
+		return grid;
+	},
+
+	renderRow: function renderRow(row, rowNum) {
+		var _this5 = this;
+
+		var state = this.state || {};
+		var cols = state.cols || this.props.cols;
+		var width = 100 / cols;
+
+		return row.reduce(function (prev, curr, idx) {
+			prev.push(React.createElement(Cell, {
+				width: width,
+				rowNum: rowNum,
+				isAlive: curr.isAlive,
+				kanye: curr.kanye,
+				col: idx,
+				key: rowNum + '-' + idx,
+				onClick: _this5.toggleCell
+			}));
+
+			return prev;
+		}, []);
+	},
+
+	updateRows: function updateRows(event) {
+		var _this6 = this;
+
+		var rows = event.target.value;
+		var newGrid = R.clone(this.state.grid);
+		// reverse sign to use in R.times and curr.slice properly
+		var lenDiff = (newGrid.length - rows) * -1;
+
+		if (lenDiff > 0) {
+			R.times(function () {
+				newGrid.push(_this6.generateColumns());
+			}, lenDiff);
+		} else if (lenDiff < 0) {
+			newGrid = newGrid.slice(0, lenDiff);
+		}
+
+		this.setState({
+			rows: rows,
+			grid: newGrid
+		});
+	},
+
+	updateCols: function updateCols(event) {
+		var _this7 = this;
+
+		var cols = event.target.value;
+		var newGrid = R.clone(this.state.grid);
+		// reverse sign to use in R.times and curr.slice properly
+		var lenDiff = (newGrid[0].length - cols) * -1;
+
+		if (lenDiff > 0) {
+			newGrid = newGrid.map(function (curr) {
+				R.times(function () {
+					curr.push(_this7.getNewKanye());
+				}, lenDiff);
+
+				return curr;
+			});
+		} else if (lenDiff < 0) {
+			newGrid = newGrid.map(function (curr) {
+				return curr.slice(0, lenDiff);
+			});
+		}
+
+		this.setState({
+			cols: cols,
+			grid: newGrid
+		});
+	},
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				ReactMaterialize.Row,
+				null,
+				React.createElement(
+					'h1',
+					null,
+					React.createElement(
+						'a',
+						{ href: 'https://en.wikipedia.org/wiki/Conway\'s_Game_of_Life', target: '_blank' },
+						'Kanye\'s Game of Life'
+					)
+				)
+			),
+			React.createElement(
+				ReactMaterialize.Row,
+				null,
+				React.createElement(
+					ReactMaterialize.Col,
+					{ s: 2 },
+					React.createElement(
+						ReactMaterialize.Row,
+						{ className: 'menu' },
+						React.createElement(
+							'div',
+							null,
+							React.createElement(
+								'ul',
+								null,
+								React.createElement(
+									'li',
+									{ className: 'right-align' },
+									React.createElement(ReactMaterialize.Button, {
+										floating: true,
+										large: true,
+										icon: this.state.isRunning ? 'pause' : 'play_arrow',
+										onClick: this.togglePlayPause })
+								),
+								React.createElement(
+									'li',
+									null,
+									React.createElement(
+										'label',
+										{ 'for': 'numberCols' },
+										'Cols:'
+									),
+									React.createElement(
+										'div',
+										{ className: 'card' },
+										React.createElement('input', { type: 'number',
+											id: 'numberCols',
+											value: this.state.cols,
+											onChange: this.updateCols })
+									)
+								),
+								React.createElement(
+									'li',
+									null,
+									React.createElement(
+										'label',
+										{ 'for': 'numberRows' },
+										'Rows:'
+									),
+									React.createElement(
+										'div',
+										{ className: 'card' },
+										React.createElement('input', { type: 'number',
+											id: 'numberRows',
+											value: this.state.rows,
+											className: 'card',
+											onChange: this.updateRows })
+									)
+								)
+							)
+						)
+					),
+					React.createElement(
+						ReactMaterialize.Row,
+						null,
+						React.createElement(
+							ReactMaterialize.Col,
+							{ s: 12 },
+							React.createElement(
+								'h4',
+								null,
+								'Rules'
+							)
+						)
+					)
+				),
+				React.createElement(
+					ReactMaterialize.Col,
+					{ s: 10 },
+					React.createElement(
+						'div',
+						{ id: 'grid', style: { height: this.state.height + 'px' } },
+						this.renderGrid()
+					)
+				)
+			)
+		);
+	}
+});
+
+ReactDOM.render(React.createElement(Grid, { rows: 30, cols: 30 }), document.getElementById('container'));
+
+/***/ }),
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9570,7 +22964,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 83 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9587,7 +22981,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(82);
+var camelize = __webpack_require__(404);
 
 var msPattern = /^-ms-/;
 
@@ -9615,7 +23009,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 84 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9632,7 +23026,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(92);
+var isTextNode = __webpack_require__(414);
 
 /*eslint-disable no-bitwise */
 
@@ -9660,7 +23054,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 85 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9677,7 +23071,7 @@ module.exports = containsNode;
  * @typechecks
  */
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Convert array-like objects to arrays.
@@ -9790,10 +23184,10 @@ function createArrayFromMixed(obj) {
 }
 
 module.exports = createArrayFromMixed;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 86 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9812,11 +23206,11 @@ module.exports = createArrayFromMixed;
 
 /*eslint-disable fb-www/unsafe-html*/
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
-var createArrayFromMixed = __webpack_require__(85);
-var getMarkupWrap = __webpack_require__(87);
-var invariant = __webpack_require__(1);
+var createArrayFromMixed = __webpack_require__(407);
+var getMarkupWrap = __webpack_require__(409);
+var invariant = __webpack_require__(5);
 
 /**
  * Dummy container used to render all markup.
@@ -9880,10 +23274,10 @@ function createNodesFromMarkup(markup, handleScript) {
 }
 
 module.exports = createNodesFromMarkup;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 87 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9901,9 +23295,9 @@ module.exports = createNodesFromMarkup;
 
 /*eslint-disable fb-www/unsafe-html */
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Dummy container used to detect which wraps are necessary.
@@ -9981,10 +23375,10 @@ function getMarkupWrap(nodeName) {
 }
 
 module.exports = getMarkupWrap;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 88 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10028,7 +23422,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 89 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10066,7 +23460,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 90 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10083,7 +23477,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(89);
+var hyphenate = __webpack_require__(411);
 
 var msPattern = /^ms-/;
 
@@ -10110,7 +23504,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 91 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10138,7 +23532,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 92 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10155,7 +23549,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(91);
+var isNode = __webpack_require__(413);
 
 /**
  * @param {*} object The object to check.
@@ -10168,7 +23562,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 93 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10203,7 +23597,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 94 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10220,7 +23614,7 @@ module.exports = memoizeStringOnly;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
 var performance;
 
@@ -10231,7 +23625,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 95 */
+/* 417 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10248,7 +23642,7 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(94);
+var performance = __webpack_require__(416);
 
 var performanceNow;
 
@@ -10270,7 +23664,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 96 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10349,7 +23743,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 97 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10365,9 +23759,9 @@ module.exports = ARIADOMPropertyConfig;
 
 
 
-var ReactDOMComponentTree = __webpack_require__(5);
+var ReactDOMComponentTree = __webpack_require__(11);
 
-var focusNode = __webpack_require__(54);
+var focusNode = __webpack_require__(176);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -10378,7 +23772,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 98 */
+/* 420 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10394,11 +23788,11 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(22);
-var ExecutionEnvironment = __webpack_require__(6);
-var FallbackCompositionState = __webpack_require__(104);
-var SyntheticCompositionEvent = __webpack_require__(147);
-var SyntheticInputEvent = __webpack_require__(150);
+var EventPropagators = __webpack_require__(53);
+var ExecutionEnvironment = __webpack_require__(13);
+var FallbackCompositionState = __webpack_require__(426);
+var SyntheticCompositionEvent = __webpack_require__(469);
+var SyntheticInputEvent = __webpack_require__(472);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -10768,7 +24162,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 99 */
+/* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10784,15 +24178,15 @@ module.exports = BeforeInputEventPlugin;
 
 
 
-var CSSProperty = __webpack_require__(56);
-var ExecutionEnvironment = __webpack_require__(6);
-var ReactInstrumentation = __webpack_require__(8);
+var CSSProperty = __webpack_require__(178);
+var ExecutionEnvironment = __webpack_require__(13);
+var ReactInstrumentation = __webpack_require__(19);
 
-var camelizeStyleName = __webpack_require__(83);
-var dangerousStyleValue = __webpack_require__(157);
-var hyphenateStyleName = __webpack_require__(90);
-var memoizeStringOnly = __webpack_require__(93);
-var warning = __webpack_require__(2);
+var camelizeStyleName = __webpack_require__(405);
+var dangerousStyleValue = __webpack_require__(479);
+var hyphenateStyleName = __webpack_require__(412);
+var memoizeStringOnly = __webpack_require__(415);
+var warning = __webpack_require__(6);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
   return hyphenateStyleName(styleName);
@@ -10980,10 +24374,10 @@ var CSSPropertyOperations = {
 };
 
 module.exports = CSSPropertyOperations;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 100 */
+/* 422 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10999,16 +24393,16 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(21);
-var EventPropagators = __webpack_require__(22);
-var ExecutionEnvironment = __webpack_require__(6);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactUpdates = __webpack_require__(10);
-var SyntheticEvent = __webpack_require__(12);
+var EventPluginHub = __webpack_require__(52);
+var EventPropagators = __webpack_require__(53);
+var ExecutionEnvironment = __webpack_require__(13);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactUpdates = __webpack_require__(26);
+var SyntheticEvent = __webpack_require__(28);
 
-var getEventTarget = __webpack_require__(43);
-var isEventSupported = __webpack_require__(44);
-var isTextInputElement = __webpack_require__(74);
+var getEventTarget = __webpack_require__(107);
+var isEventSupported = __webpack_require__(108);
+var isTextInputElement = __webpack_require__(196);
 
 var eventTypes = {
   change: {
@@ -11309,7 +24703,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 101 */
+/* 423 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11325,14 +24719,14 @@ module.exports = ChangeEventPlugin;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var DOMLazyTree = __webpack_require__(17);
-var ExecutionEnvironment = __webpack_require__(6);
+var DOMLazyTree = __webpack_require__(40);
+var ExecutionEnvironment = __webpack_require__(13);
 
-var createNodesFromMarkup = __webpack_require__(86);
-var emptyFunction = __webpack_require__(9);
-var invariant = __webpack_require__(1);
+var createNodesFromMarkup = __webpack_require__(408);
+var emptyFunction = __webpack_require__(21);
+var invariant = __webpack_require__(5);
 
 var Danger = {
 
@@ -11360,10 +24754,10 @@ var Danger = {
 };
 
 module.exports = Danger;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 102 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11394,7 +24788,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 103 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11410,9 +24804,9 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(22);
-var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticMouseEvent = __webpack_require__(27);
+var EventPropagators = __webpack_require__(53);
+var ReactDOMComponentTree = __webpack_require__(11);
+var SyntheticMouseEvent = __webpack_require__(75);
 
 var eventTypes = {
   mouseEnter: {
@@ -11499,7 +24893,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 104 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11515,11 +24909,11 @@ module.exports = EnterLeaveEventPlugin;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var PooledClass = __webpack_require__(14);
+var PooledClass = __webpack_require__(35);
 
-var getTextContentAccessor = __webpack_require__(72);
+var getTextContentAccessor = __webpack_require__(194);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -11599,7 +24993,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 105 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11615,7 +25009,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var DOMProperty = __webpack_require__(13);
+var DOMProperty = __webpack_require__(31);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -11816,7 +25210,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 106 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11832,13 +25226,13 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(41);
 
-var instantiateReactComponent = __webpack_require__(73);
-var KeyEscapeUtils = __webpack_require__(35);
-var shouldUpdateReactComponent = __webpack_require__(45);
-var traverseAllChildren = __webpack_require__(76);
-var warning = __webpack_require__(2);
+var instantiateReactComponent = __webpack_require__(195);
+var KeyEscapeUtils = __webpack_require__(99);
+var shouldUpdateReactComponent = __webpack_require__(109);
+var traverseAllChildren = __webpack_require__(198);
+var warning = __webpack_require__(6);
 
 var ReactComponentTreeHook;
 
@@ -11848,7 +25242,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(7);
+  ReactComponentTreeHook = __webpack_require__(17);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -11856,7 +25250,7 @@ function instantiateChild(childInstances, child, name, selfDebugID) {
   var keyUnique = childInstances[name] === undefined;
   if (process.env.NODE_ENV !== 'production') {
     if (!ReactComponentTreeHook) {
-      ReactComponentTreeHook = __webpack_require__(7);
+      ReactComponentTreeHook = __webpack_require__(17);
     }
     if (!keyUnique) {
       process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -11973,10 +25367,10 @@ var ReactChildReconciler = {
 };
 
 module.exports = ReactChildReconciler;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 107 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11992,8 +25386,8 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(32);
-var ReactDOMIDOperations = __webpack_require__(114);
+var DOMChildrenOperations = __webpack_require__(96);
+var ReactDOMIDOperations = __webpack_require__(436);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -12011,7 +25405,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 108 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12027,27 +25421,27 @@ module.exports = ReactComponentBrowserEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var React = __webpack_require__(19);
-var ReactComponentEnvironment = __webpack_require__(37);
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactErrorUtils = __webpack_require__(38);
-var ReactInstanceMap = __webpack_require__(23);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactNodeTypes = __webpack_require__(66);
-var ReactReconciler = __webpack_require__(18);
+var React = __webpack_require__(43);
+var ReactComponentEnvironment = __webpack_require__(101);
+var ReactCurrentOwner = __webpack_require__(27);
+var ReactErrorUtils = __webpack_require__(102);
+var ReactInstanceMap = __webpack_require__(54);
+var ReactInstrumentation = __webpack_require__(19);
+var ReactNodeTypes = __webpack_require__(188);
+var ReactReconciler = __webpack_require__(41);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(156);
+  var checkReactTypeSpec = __webpack_require__(478);
 }
 
-var emptyObject = __webpack_require__(20);
-var invariant = __webpack_require__(1);
-var shallowEqual = __webpack_require__(31);
-var shouldUpdateReactComponent = __webpack_require__(45);
-var warning = __webpack_require__(2);
+var emptyObject = __webpack_require__(51);
+var invariant = __webpack_require__(5);
+var shallowEqual = __webpack_require__(95);
+var shouldUpdateReactComponent = __webpack_require__(109);
+var warning = __webpack_require__(6);
 
 var CompositeTypes = {
   ImpureClass: 0,
@@ -12916,10 +26310,10 @@ var ReactCompositeComponent = {
 };
 
 module.exports = ReactCompositeComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 109 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12937,17 +26331,17 @@ module.exports = ReactCompositeComponent;
 
 
 
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDefaultInjection = __webpack_require__(126);
-var ReactMount = __webpack_require__(65);
-var ReactReconciler = __webpack_require__(18);
-var ReactUpdates = __webpack_require__(10);
-var ReactVersion = __webpack_require__(141);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactDefaultInjection = __webpack_require__(448);
+var ReactMount = __webpack_require__(187);
+var ReactReconciler = __webpack_require__(41);
+var ReactUpdates = __webpack_require__(26);
+var ReactVersion = __webpack_require__(463);
 
-var findDOMNode = __webpack_require__(158);
-var getHostComponentFromComposite = __webpack_require__(71);
-var renderSubtreeIntoContainer = __webpack_require__(166);
-var warning = __webpack_require__(2);
+var findDOMNode = __webpack_require__(480);
+var getHostComponentFromComposite = __webpack_require__(193);
+var renderSubtreeIntoContainer = __webpack_require__(488);
+var warning = __webpack_require__(6);
 
 ReactDefaultInjection.inject();
 
@@ -12986,7 +26380,7 @@ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' && typeof __REACT_DEVT
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  var ExecutionEnvironment = __webpack_require__(6);
+  var ExecutionEnvironment = __webpack_require__(13);
   if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
 
     // First check if devtools is not installed
@@ -13022,10 +26416,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactInstrumentation = __webpack_require__(8);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(123);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(117);
-  var ReactDOMInvalidARIAHook = __webpack_require__(116);
+  var ReactInstrumentation = __webpack_require__(19);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(445);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(439);
+  var ReactDOMInvalidARIAHook = __webpack_require__(438);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -13033,10 +26427,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = ReactDOM;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 110 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13054,35 +26448,35 @@ module.exports = ReactDOM;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var AutoFocusUtils = __webpack_require__(97);
-var CSSPropertyOperations = __webpack_require__(99);
-var DOMLazyTree = __webpack_require__(17);
-var DOMNamespaces = __webpack_require__(33);
-var DOMProperty = __webpack_require__(13);
-var DOMPropertyOperations = __webpack_require__(58);
-var EventPluginHub = __webpack_require__(21);
-var EventPluginRegistry = __webpack_require__(25);
-var ReactBrowserEventEmitter = __webpack_require__(26);
-var ReactDOMComponentFlags = __webpack_require__(59);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMInput = __webpack_require__(115);
-var ReactDOMOption = __webpack_require__(118);
-var ReactDOMSelect = __webpack_require__(60);
-var ReactDOMTextarea = __webpack_require__(121);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactMultiChild = __webpack_require__(134);
-var ReactServerRenderingTransaction = __webpack_require__(139);
+var AutoFocusUtils = __webpack_require__(419);
+var CSSPropertyOperations = __webpack_require__(421);
+var DOMLazyTree = __webpack_require__(40);
+var DOMNamespaces = __webpack_require__(97);
+var DOMProperty = __webpack_require__(31);
+var DOMPropertyOperations = __webpack_require__(180);
+var EventPluginHub = __webpack_require__(52);
+var EventPluginRegistry = __webpack_require__(73);
+var ReactBrowserEventEmitter = __webpack_require__(74);
+var ReactDOMComponentFlags = __webpack_require__(181);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactDOMInput = __webpack_require__(437);
+var ReactDOMOption = __webpack_require__(440);
+var ReactDOMSelect = __webpack_require__(182);
+var ReactDOMTextarea = __webpack_require__(443);
+var ReactInstrumentation = __webpack_require__(19);
+var ReactMultiChild = __webpack_require__(456);
+var ReactServerRenderingTransaction = __webpack_require__(461);
 
-var emptyFunction = __webpack_require__(9);
-var escapeTextContentForBrowser = __webpack_require__(29);
-var invariant = __webpack_require__(1);
-var isEventSupported = __webpack_require__(44);
-var shallowEqual = __webpack_require__(31);
-var validateDOMNesting = __webpack_require__(46);
-var warning = __webpack_require__(2);
+var emptyFunction = __webpack_require__(21);
+var escapeTextContentForBrowser = __webpack_require__(77);
+var invariant = __webpack_require__(5);
+var isEventSupported = __webpack_require__(108);
+var shallowEqual = __webpack_require__(95);
+var validateDOMNesting = __webpack_require__(110);
+var warning = __webpack_require__(6);
 
 var Flags = ReactDOMComponentFlags;
 var deleteListener = EventPluginHub.deleteListener;
@@ -14040,10 +27434,10 @@ ReactDOMComponent.Mixin = {
 _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mixin);
 
 module.exports = ReactDOMComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 111 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14059,7 +27453,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(46);
+var validateDOMNesting = __webpack_require__(110);
 
 var DOC_NODE_TYPE = 9;
 
@@ -14079,10 +27473,10 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
 }
 
 module.exports = ReactDOMContainerInfo;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 112 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14098,10 +27492,10 @@ module.exports = ReactDOMContainerInfo;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var DOMLazyTree = __webpack_require__(17);
-var ReactDOMComponentTree = __webpack_require__(5);
+var DOMLazyTree = __webpack_require__(40);
+var ReactDOMComponentTree = __webpack_require__(11);
 
 var ReactDOMEmptyComponent = function (instantiate) {
   // ReactCompositeComponent uses this:
@@ -14147,7 +27541,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 113 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14171,7 +27565,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 114 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14187,8 +27581,8 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(32);
-var ReactDOMComponentTree = __webpack_require__(5);
+var DOMChildrenOperations = __webpack_require__(96);
+var ReactDOMComponentTree = __webpack_require__(11);
 
 /**
  * Operations used to process updates to DOM nodes.
@@ -14210,7 +27604,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 115 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14226,16 +27620,16 @@ module.exports = ReactDOMIDOperations;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var DOMPropertyOperations = __webpack_require__(58);
-var LinkedValueUtils = __webpack_require__(36);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactUpdates = __webpack_require__(10);
+var DOMPropertyOperations = __webpack_require__(180);
+var LinkedValueUtils = __webpack_require__(100);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactUpdates = __webpack_require__(26);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 var didWarnValueLink = false;
 var didWarnCheckedLink = false;
@@ -14491,10 +27885,10 @@ function _handleChange(event) {
 }
 
 module.exports = ReactDOMInput;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 116 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14510,10 +27904,10 @@ module.exports = ReactDOMInput;
 
 
 
-var DOMProperty = __webpack_require__(13);
-var ReactComponentTreeHook = __webpack_require__(7);
+var DOMProperty = __webpack_require__(31);
+var ReactComponentTreeHook = __webpack_require__(17);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 var warnedProperties = {};
 var rARIA = new RegExp('^(aria)-[' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -14590,10 +27984,10 @@ var ReactDOMInvalidARIAHook = {
 };
 
 module.exports = ReactDOMInvalidARIAHook;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 117 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14609,9 +28003,9 @@ module.exports = ReactDOMInvalidARIAHook;
 
 
 
-var ReactComponentTreeHook = __webpack_require__(7);
+var ReactComponentTreeHook = __webpack_require__(17);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 var didWarnValueNull = false;
 
@@ -14639,10 +28033,10 @@ var ReactDOMNullInputValuePropHook = {
 };
 
 module.exports = ReactDOMNullInputValuePropHook;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 118 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14658,13 +28052,13 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var React = __webpack_require__(19);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMSelect = __webpack_require__(60);
+var React = __webpack_require__(43);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactDOMSelect = __webpack_require__(182);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 var didWarnInvalidOptionChildren = false;
 
 function flattenChildren(children) {
@@ -14768,10 +28162,10 @@ var ReactDOMOption = {
 };
 
 module.exports = ReactDOMOption;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 119 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14787,10 +28181,10 @@ module.exports = ReactDOMOption;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
-var getNodeForCharacterOffset = __webpack_require__(163);
-var getTextContentAccessor = __webpack_require__(72);
+var getNodeForCharacterOffset = __webpack_require__(485);
+var getTextContentAccessor = __webpack_require__(194);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -14988,7 +28382,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 120 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15004,16 +28398,16 @@ module.exports = ReactDOMSelection;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var DOMChildrenOperations = __webpack_require__(32);
-var DOMLazyTree = __webpack_require__(17);
-var ReactDOMComponentTree = __webpack_require__(5);
+var DOMChildrenOperations = __webpack_require__(96);
+var DOMLazyTree = __webpack_require__(40);
+var ReactDOMComponentTree = __webpack_require__(11);
 
-var escapeTextContentForBrowser = __webpack_require__(29);
-var invariant = __webpack_require__(1);
-var validateDOMNesting = __webpack_require__(46);
+var escapeTextContentForBrowser = __webpack_require__(77);
+var invariant = __webpack_require__(5);
+var validateDOMNesting = __webpack_require__(110);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -15155,10 +28549,10 @@ _assign(ReactDOMTextComponent.prototype, {
 });
 
 module.exports = ReactDOMTextComponent;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 121 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15174,15 +28568,15 @@ module.exports = ReactDOMTextComponent;
 
 
 
-var _prodInvariant = __webpack_require__(3),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
 
-var LinkedValueUtils = __webpack_require__(36);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactUpdates = __webpack_require__(10);
+var LinkedValueUtils = __webpack_require__(100);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactUpdates = __webpack_require__(26);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 var didWarnValueLink = false;
 var didWarnValDefaultVal = false;
@@ -15321,10 +28715,10 @@ function _handleChange(event) {
 }
 
 module.exports = ReactDOMTextarea;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 122 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15340,9 +28734,9 @@ module.exports = ReactDOMTextarea;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Return the lowest common ancestor of A and B, or null if they are in
@@ -15463,10 +28857,10 @@ module.exports = {
   traverseTwoPhase: traverseTwoPhase,
   traverseEnterLeave: traverseEnterLeave
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 123 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15482,11 +28876,11 @@ module.exports = {
 
 
 
-var DOMProperty = __webpack_require__(13);
-var EventPluginRegistry = __webpack_require__(25);
-var ReactComponentTreeHook = __webpack_require__(7);
+var DOMProperty = __webpack_require__(31);
+var EventPluginRegistry = __webpack_require__(73);
+var ReactComponentTreeHook = __webpack_require__(17);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 if (process.env.NODE_ENV !== 'production') {
   var reactProps = {
@@ -15581,10 +28975,10 @@ var ReactDOMUnknownPropertyHook = {
 };
 
 module.exports = ReactDOMUnknownPropertyHook;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 124 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15601,13 +28995,13 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(132);
-var ReactHostOperationHistoryHook = __webpack_require__(130);
-var ReactComponentTreeHook = __webpack_require__(7);
-var ExecutionEnvironment = __webpack_require__(6);
+var ReactInvalidSetStateWarningHook = __webpack_require__(454);
+var ReactHostOperationHistoryHook = __webpack_require__(452);
+var ReactComponentTreeHook = __webpack_require__(17);
+var ExecutionEnvironment = __webpack_require__(13);
 
-var performanceNow = __webpack_require__(95);
-var warning = __webpack_require__(2);
+var performanceNow = __webpack_require__(417);
+var warning = __webpack_require__(6);
 
 var hooks = [];
 var didHookThrowForEvent = {};
@@ -15948,10 +29342,10 @@ if (/[?&]react_perf\b/.test(url)) {
 }
 
 module.exports = ReactDebugTool;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 125 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15967,12 +29361,12 @@ module.exports = ReactDebugTool;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var ReactUpdates = __webpack_require__(10);
-var Transaction = __webpack_require__(28);
+var ReactUpdates = __webpack_require__(26);
+var Transaction = __webpack_require__(76);
 
-var emptyFunction = __webpack_require__(9);
+var emptyFunction = __webpack_require__(21);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -16024,7 +29418,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 126 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16040,25 +29434,25 @@ module.exports = ReactDefaultBatchingStrategy;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(96);
-var BeforeInputEventPlugin = __webpack_require__(98);
-var ChangeEventPlugin = __webpack_require__(100);
-var DefaultEventPluginOrder = __webpack_require__(102);
-var EnterLeaveEventPlugin = __webpack_require__(103);
-var HTMLDOMPropertyConfig = __webpack_require__(105);
-var ReactComponentBrowserEnvironment = __webpack_require__(107);
-var ReactDOMComponent = __webpack_require__(110);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMEmptyComponent = __webpack_require__(112);
-var ReactDOMTreeTraversal = __webpack_require__(122);
-var ReactDOMTextComponent = __webpack_require__(120);
-var ReactDefaultBatchingStrategy = __webpack_require__(125);
-var ReactEventListener = __webpack_require__(129);
-var ReactInjection = __webpack_require__(131);
-var ReactReconcileTransaction = __webpack_require__(137);
-var SVGDOMPropertyConfig = __webpack_require__(142);
-var SelectEventPlugin = __webpack_require__(143);
-var SimpleEventPlugin = __webpack_require__(144);
+var ARIADOMPropertyConfig = __webpack_require__(418);
+var BeforeInputEventPlugin = __webpack_require__(420);
+var ChangeEventPlugin = __webpack_require__(422);
+var DefaultEventPluginOrder = __webpack_require__(424);
+var EnterLeaveEventPlugin = __webpack_require__(425);
+var HTMLDOMPropertyConfig = __webpack_require__(427);
+var ReactComponentBrowserEnvironment = __webpack_require__(429);
+var ReactDOMComponent = __webpack_require__(432);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactDOMEmptyComponent = __webpack_require__(434);
+var ReactDOMTreeTraversal = __webpack_require__(444);
+var ReactDOMTextComponent = __webpack_require__(442);
+var ReactDefaultBatchingStrategy = __webpack_require__(447);
+var ReactEventListener = __webpack_require__(451);
+var ReactInjection = __webpack_require__(453);
+var ReactReconcileTransaction = __webpack_require__(459);
+var SVGDOMPropertyConfig = __webpack_require__(464);
+var SelectEventPlugin = __webpack_require__(465);
+var SimpleEventPlugin = __webpack_require__(466);
 
 var alreadyInjected = false;
 
@@ -16115,7 +29509,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 127 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16140,7 +29534,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 128 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16156,7 +29550,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(21);
+var EventPluginHub = __webpack_require__(52);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -16178,7 +29572,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 129 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16194,16 +29588,16 @@ module.exports = ReactEventEmitterMixin;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var EventListener = __webpack_require__(53);
-var ExecutionEnvironment = __webpack_require__(6);
-var PooledClass = __webpack_require__(14);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactUpdates = __webpack_require__(10);
+var EventListener = __webpack_require__(175);
+var ExecutionEnvironment = __webpack_require__(13);
+var PooledClass = __webpack_require__(35);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactUpdates = __webpack_require__(26);
 
-var getEventTarget = __webpack_require__(43);
-var getUnboundedScrollPosition = __webpack_require__(88);
+var getEventTarget = __webpack_require__(107);
+var getUnboundedScrollPosition = __webpack_require__(410);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -16338,7 +29732,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 130 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16377,7 +29771,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 131 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16393,14 +29787,14 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 
-var DOMProperty = __webpack_require__(13);
-var EventPluginHub = __webpack_require__(21);
-var EventPluginUtils = __webpack_require__(34);
-var ReactComponentEnvironment = __webpack_require__(37);
-var ReactEmptyComponent = __webpack_require__(61);
-var ReactBrowserEventEmitter = __webpack_require__(26);
-var ReactHostComponent = __webpack_require__(63);
-var ReactUpdates = __webpack_require__(10);
+var DOMProperty = __webpack_require__(31);
+var EventPluginHub = __webpack_require__(52);
+var EventPluginUtils = __webpack_require__(98);
+var ReactComponentEnvironment = __webpack_require__(101);
+var ReactEmptyComponent = __webpack_require__(183);
+var ReactBrowserEventEmitter = __webpack_require__(74);
+var ReactHostComponent = __webpack_require__(185);
+var ReactUpdates = __webpack_require__(26);
 
 var ReactInjection = {
   Component: ReactComponentEnvironment.injection,
@@ -16416,7 +29810,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 132 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16433,7 +29827,7 @@ module.exports = ReactInjection;
 
 
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 if (process.env.NODE_ENV !== 'production') {
   var processingChildContext = false;
@@ -16456,10 +29850,10 @@ var ReactInvalidSetStateWarningHook = {
 };
 
 module.exports = ReactInvalidSetStateWarningHook;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 133 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16475,7 +29869,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 
 
 
-var adler32 = __webpack_require__(155);
+var adler32 = __webpack_require__(477);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -16514,7 +29908,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 134 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16530,19 +29924,19 @@ module.exports = ReactMarkupChecksum;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var ReactComponentEnvironment = __webpack_require__(37);
-var ReactInstanceMap = __webpack_require__(23);
-var ReactInstrumentation = __webpack_require__(8);
+var ReactComponentEnvironment = __webpack_require__(101);
+var ReactInstanceMap = __webpack_require__(54);
+var ReactInstrumentation = __webpack_require__(19);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactReconciler = __webpack_require__(18);
-var ReactChildReconciler = __webpack_require__(106);
+var ReactCurrentOwner = __webpack_require__(27);
+var ReactReconciler = __webpack_require__(41);
+var ReactChildReconciler = __webpack_require__(428);
 
-var emptyFunction = __webpack_require__(9);
-var flattenChildren = __webpack_require__(159);
-var invariant = __webpack_require__(1);
+var emptyFunction = __webpack_require__(21);
+var flattenChildren = __webpack_require__(481);
+var invariant = __webpack_require__(5);
 
 /**
  * Make an update for markup to be rendered and inserted at a supplied index.
@@ -16967,10 +30361,10 @@ var ReactMultiChild = {
 };
 
 module.exports = ReactMultiChild;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 135 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16987,9 +30381,9 @@ module.exports = ReactMultiChild;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * @param {?object} object
@@ -17067,10 +30461,10 @@ var ReactOwner = {
 };
 
 module.exports = ReactOwner;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 136 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17098,10 +30492,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = ReactPropTypeLocationNames;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 137 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17117,15 +30511,15 @@ module.exports = ReactPropTypeLocationNames;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var CallbackQueue = __webpack_require__(57);
-var PooledClass = __webpack_require__(14);
-var ReactBrowserEventEmitter = __webpack_require__(26);
-var ReactInputSelection = __webpack_require__(64);
-var ReactInstrumentation = __webpack_require__(8);
-var Transaction = __webpack_require__(28);
-var ReactUpdateQueue = __webpack_require__(39);
+var CallbackQueue = __webpack_require__(179);
+var PooledClass = __webpack_require__(35);
+var ReactBrowserEventEmitter = __webpack_require__(74);
+var ReactInputSelection = __webpack_require__(186);
+var ReactInstrumentation = __webpack_require__(19);
+var Transaction = __webpack_require__(76);
+var ReactUpdateQueue = __webpack_require__(103);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -17282,10 +30676,10 @@ _assign(ReactReconcileTransaction.prototype, Transaction, Mixin);
 PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 138 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17302,7 +30696,7 @@ module.exports = ReactReconcileTransaction;
 
 
 
-var ReactOwner = __webpack_require__(135);
+var ReactOwner = __webpack_require__(457);
 
 var ReactRef = {};
 
@@ -17379,7 +30773,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 139 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17395,12 +30789,12 @@ module.exports = ReactRef;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var PooledClass = __webpack_require__(14);
-var Transaction = __webpack_require__(28);
-var ReactInstrumentation = __webpack_require__(8);
-var ReactServerUpdateQueue = __webpack_require__(140);
+var PooledClass = __webpack_require__(35);
+var Transaction = __webpack_require__(76);
+var ReactInstrumentation = __webpack_require__(19);
+var ReactServerUpdateQueue = __webpack_require__(462);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -17472,10 +30866,10 @@ _assign(ReactServerRenderingTransaction.prototype, Transaction, Mixin);
 PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 140 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17494,9 +30888,9 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(39);
+var ReactUpdateQueue = __webpack_require__(103);
 
-var warning = __webpack_require__(2);
+var warning = __webpack_require__(6);
 
 function warnNoop(publicInstance, callerName) {
   if (process.env.NODE_ENV !== 'production') {
@@ -17617,10 +31011,10 @@ var ReactServerUpdateQueue = function () {
 }();
 
 module.exports = ReactServerUpdateQueue;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 141 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17639,7 +31033,7 @@ module.exports = ReactServerUpdateQueue;
 module.exports = '15.4.2';
 
 /***/ }),
-/* 142 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17946,7 +31340,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 143 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17962,15 +31356,15 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(22);
-var ExecutionEnvironment = __webpack_require__(6);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInputSelection = __webpack_require__(64);
-var SyntheticEvent = __webpack_require__(12);
+var EventPropagators = __webpack_require__(53);
+var ExecutionEnvironment = __webpack_require__(13);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactInputSelection = __webpack_require__(186);
+var SyntheticEvent = __webpack_require__(28);
 
-var getActiveElement = __webpack_require__(55);
-var isTextInputElement = __webpack_require__(74);
-var shallowEqual = __webpack_require__(31);
+var getActiveElement = __webpack_require__(177);
+var isTextInputElement = __webpack_require__(196);
+var shallowEqual = __webpack_require__(95);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -18142,7 +31536,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 144 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18159,26 +31553,26 @@ module.exports = SelectEventPlugin;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var EventListener = __webpack_require__(53);
-var EventPropagators = __webpack_require__(22);
-var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticAnimationEvent = __webpack_require__(145);
-var SyntheticClipboardEvent = __webpack_require__(146);
-var SyntheticEvent = __webpack_require__(12);
-var SyntheticFocusEvent = __webpack_require__(149);
-var SyntheticKeyboardEvent = __webpack_require__(151);
-var SyntheticMouseEvent = __webpack_require__(27);
-var SyntheticDragEvent = __webpack_require__(148);
-var SyntheticTouchEvent = __webpack_require__(152);
-var SyntheticTransitionEvent = __webpack_require__(153);
-var SyntheticUIEvent = __webpack_require__(24);
-var SyntheticWheelEvent = __webpack_require__(154);
+var EventListener = __webpack_require__(175);
+var EventPropagators = __webpack_require__(53);
+var ReactDOMComponentTree = __webpack_require__(11);
+var SyntheticAnimationEvent = __webpack_require__(467);
+var SyntheticClipboardEvent = __webpack_require__(468);
+var SyntheticEvent = __webpack_require__(28);
+var SyntheticFocusEvent = __webpack_require__(471);
+var SyntheticKeyboardEvent = __webpack_require__(473);
+var SyntheticMouseEvent = __webpack_require__(75);
+var SyntheticDragEvent = __webpack_require__(470);
+var SyntheticTouchEvent = __webpack_require__(474);
+var SyntheticTransitionEvent = __webpack_require__(475);
+var SyntheticUIEvent = __webpack_require__(55);
+var SyntheticWheelEvent = __webpack_require__(476);
 
-var emptyFunction = __webpack_require__(9);
-var getEventCharCode = __webpack_require__(41);
-var invariant = __webpack_require__(1);
+var emptyFunction = __webpack_require__(21);
+var getEventCharCode = __webpack_require__(105);
+var invariant = __webpack_require__(5);
 
 /**
  * Turns
@@ -18373,10 +31767,10 @@ var SimpleEventPlugin = {
 };
 
 module.exports = SimpleEventPlugin;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 145 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18392,7 +31786,7 @@ module.exports = SimpleEventPlugin;
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(28);
 
 /**
  * @interface Event
@@ -18420,7 +31814,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 146 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18436,7 +31830,7 @@ module.exports = SyntheticAnimationEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(28);
 
 /**
  * @interface Event
@@ -18463,7 +31857,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 147 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18479,7 +31873,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(28);
 
 /**
  * @interface Event
@@ -18504,7 +31898,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 148 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18520,7 +31914,7 @@ module.exports = SyntheticCompositionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(27);
+var SyntheticMouseEvent = __webpack_require__(75);
 
 /**
  * @interface DragEvent
@@ -18545,7 +31939,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 149 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18561,7 +31955,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(55);
 
 /**
  * @interface FocusEvent
@@ -18586,7 +31980,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 150 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18602,7 +31996,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(28);
 
 /**
  * @interface Event
@@ -18628,7 +32022,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 151 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18644,11 +32038,11 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(55);
 
-var getEventCharCode = __webpack_require__(41);
-var getEventKey = __webpack_require__(160);
-var getEventModifierState = __webpack_require__(42);
+var getEventCharCode = __webpack_require__(105);
+var getEventKey = __webpack_require__(482);
+var getEventModifierState = __webpack_require__(106);
 
 /**
  * @interface KeyboardEvent
@@ -18717,7 +32111,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 152 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18733,9 +32127,9 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(24);
+var SyntheticUIEvent = __webpack_require__(55);
 
-var getEventModifierState = __webpack_require__(42);
+var getEventModifierState = __webpack_require__(106);
 
 /**
  * @interface TouchEvent
@@ -18767,7 +32161,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 153 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18783,7 +32177,7 @@ module.exports = SyntheticTouchEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(12);
+var SyntheticEvent = __webpack_require__(28);
 
 /**
  * @interface Event
@@ -18811,7 +32205,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 154 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18827,7 +32221,7 @@ module.exports = SyntheticTransitionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(27);
+var SyntheticMouseEvent = __webpack_require__(75);
 
 /**
  * @interface WheelEvent
@@ -18870,7 +32264,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 155 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18919,7 +32313,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 156 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18935,13 +32329,13 @@ module.exports = adler32;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var ReactPropTypeLocationNames = __webpack_require__(136);
-var ReactPropTypesSecret = __webpack_require__(67);
+var ReactPropTypeLocationNames = __webpack_require__(458);
+var ReactPropTypesSecret = __webpack_require__(189);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 var ReactComponentTreeHook;
 
@@ -18951,7 +32345,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(7);
+  ReactComponentTreeHook = __webpack_require__(17);
 }
 
 var loggedTypeFailures = {};
@@ -18993,7 +32387,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(7);
+            ReactComponentTreeHook = __webpack_require__(17);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -19009,10 +32403,10 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 }
 
 module.exports = checkReactTypeSpec;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 157 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19028,8 +32422,8 @@ module.exports = checkReactTypeSpec;
 
 
 
-var CSSProperty = __webpack_require__(56);
-var warning = __webpack_require__(2);
+var CSSProperty = __webpack_require__(178);
+var warning = __webpack_require__(6);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 var styleWarnings = {};
@@ -19094,10 +32488,10 @@ function dangerousStyleValue(name, value, component) {
 }
 
 module.exports = dangerousStyleValue;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 158 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19113,15 +32507,15 @@ module.exports = dangerousStyleValue;
 
 
 
-var _prodInvariant = __webpack_require__(3);
+var _prodInvariant = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInstanceMap = __webpack_require__(23);
+var ReactCurrentOwner = __webpack_require__(27);
+var ReactDOMComponentTree = __webpack_require__(11);
+var ReactInstanceMap = __webpack_require__(54);
 
-var getHostComponentFromComposite = __webpack_require__(71);
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var getHostComponentFromComposite = __webpack_require__(193);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 /**
  * Returns the DOM node rendered by this element.
@@ -19160,10 +32554,10 @@ function findDOMNode(componentOrElement) {
 }
 
 module.exports = findDOMNode;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 159 */
+/* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19180,9 +32574,9 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(35);
-var traverseAllChildren = __webpack_require__(76);
-var warning = __webpack_require__(2);
+var KeyEscapeUtils = __webpack_require__(99);
+var traverseAllChildren = __webpack_require__(198);
+var warning = __webpack_require__(6);
 
 var ReactComponentTreeHook;
 
@@ -19192,7 +32586,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(7);
+  ReactComponentTreeHook = __webpack_require__(17);
 }
 
 /**
@@ -19208,7 +32602,7 @@ function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID
     var keyUnique = result[name] === undefined;
     if (process.env.NODE_ENV !== 'production') {
       if (!ReactComponentTreeHook) {
-        ReactComponentTreeHook = __webpack_require__(7);
+        ReactComponentTreeHook = __webpack_require__(17);
       }
       if (!keyUnique) {
         process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -19242,10 +32636,10 @@ function flattenChildren(children, selfDebugID) {
 }
 
 module.exports = flattenChildren;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 160 */
+/* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19261,7 +32655,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(41);
+var getEventCharCode = __webpack_require__(105);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -19352,7 +32746,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 161 */
+/* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19398,7 +32792,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 162 */
+/* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19424,7 +32818,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 163 */
+/* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19503,7 +32897,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 164 */
+/* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19519,7 +32913,7 @@ module.exports = getNodeForCharacterOffset;
 
 
 
-var ExecutionEnvironment = __webpack_require__(6);
+var ExecutionEnvironment = __webpack_require__(13);
 
 /**
  * Generate a mapping of standard vendor prefixes using the defined style property and event name.
@@ -19609,7 +33003,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 165 */
+/* 487 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19625,7 +33019,7 @@ module.exports = getVendorPrefixedEventName;
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(29);
+var escapeTextContentForBrowser = __webpack_require__(77);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -19640,7 +33034,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 166 */
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19656,12 +33050,3487 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var ReactMount = __webpack_require__(65);
+var ReactMount = __webpack_require__(187);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 167 */
+/* 489 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var Badge = function Badge(_ref) {
+  var className = _ref.className,
+      newIcon = _ref.newIcon,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ['className', 'newIcon', 'children']);
+
+  var classes = {
+    badge: true,
+    'new': newIcon
+  };
+  return _react2.default.createElement(
+    'span',
+    _extends({}, props, { className: (0, _classnames2.default)(classes, className) }),
+    children
+  );
+};
+
+Badge.propTypes = {
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  /**
+   * Add the <b>new</b> class name
+   */
+  newIcon: _react.PropTypes.bool
+};
+
+exports.default = Badge;
+
+/***/ }),
+/* 490 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Col = __webpack_require__(56);
+
+var _Col2 = _interopRequireDefault(_Col);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Breadcrumb = function Breadcrumb(_ref) {
+  var children = _ref.children;
+  return _react2.default.createElement(
+    'nav',
+    { className: 'row' },
+    _react2.default.createElement(
+      'div',
+      { className: 'nav-wrapper' },
+      _react2.default.createElement(
+        _Col2.default,
+        { s: 12 },
+        renderChildren(children)
+      )
+    )
+  );
+};
+
+var renderChildren = function renderChildren(children) {
+  return _react2.default.Children.map(children, function (item) {
+    return _react2.default.cloneElement(item, { className: 'breadcrumb' });
+  });
+};
+
+Breadcrumb.propTypes = {
+  children: _react2.default.PropTypes.node,
+  cols: _react2.default.PropTypes.number
+};
+
+exports.default = Breadcrumb;
+
+/***/ }),
+/* 491 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Card = function (_Component) {
+  _inherits(Card, _Component);
+
+  function Card(props) {
+    _classCallCheck(this, Card);
+
+    var _this = _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
+
+    _this.renderTitle = _this.renderTitle.bind(_this);
+    return _this;
+  }
+
+  _createClass(Card, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          title = _props.title,
+          header = _props.header,
+          className = _props.className,
+          textClassName = _props.textClassName,
+          actions = _props.actions,
+          reveal = _props.reveal,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['title', 'header', 'className', 'textClassName', 'actions', 'reveal', 'children']);
+
+      var classes = { card: true };
+      return _react2.default.createElement(
+        'div',
+        _extends({}, props, {
+          className: (0, _classnames2.default)(className, classes) }),
+        header,
+        _react2.default.createElement(
+          'div',
+          { className: (0, _classnames2.default)('card-content', textClassName) },
+          title ? this.renderTitle(title, reveal) : null,
+          _react2.default.createElement(
+            'div',
+            null,
+            children
+          )
+        ),
+        this.renderReveal(title, reveal),
+        actions ? this.renderAction(actions) : null
+      );
+    }
+  }, {
+    key: 'renderTitle',
+    value: function renderTitle(title, reveal) {
+      var revealIcon = null;
+      if (reveal) {
+        revealIcon = _react2.default.createElement(
+          _Icon2.default,
+          { right: true },
+          'more_vert'
+        );
+      }
+      var classes = {
+        'card-title': true,
+        'grey-text': true,
+        'text-darken-4': true,
+        'activator': reveal
+      };
+      return _react2.default.createElement(
+        'span',
+        { className: (0, _classnames2.default)(classes) },
+        title,
+        revealIcon
+      );
+    }
+  }, {
+    key: 'renderReveal',
+    value: function renderReveal(title, reveal) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'card-reveal' },
+        _react2.default.createElement(
+          'span',
+          { className: 'card-title grey-text text-darken-4' },
+          title,
+          _react2.default.createElement(
+            _Icon2.default,
+            { right: true },
+            'close'
+          )
+        ),
+        reveal
+      );
+    }
+  }, {
+    key: 'renderAction',
+    value: function renderAction(actions) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'card-action' },
+        actions
+      );
+    }
+  }]);
+
+  return Card;
+}(_react.Component);
+
+Card.propTypes = {
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  title: _react.PropTypes.string,
+  textClassName: _react.PropTypes.string,
+  reveal: _react.PropTypes.element,
+  header: _react.PropTypes.element,
+  // The buttons to be displayed at the action area
+  actions: _react.PropTypes.arrayOf(_react2.default.PropTypes.element)
+};
+
+exports.default = Card;
+
+/***/ }),
+/* 492 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var CardPanel = function CardPanel(_ref) {
+  var className = _ref.className,
+      children = _ref.children,
+      props = _objectWithoutProperties(_ref, ['className', 'children']);
+
+  var classes = {
+    'card-panel': true
+  };
+
+  return _react2.default.createElement(
+    'div',
+    _extends({ className: (0, _classnames2.default)(classes, className) }, props),
+    children
+  );
+};
+
+CardPanel.propTypes = {
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node
+};
+
+exports.default = CardPanel;
+
+/***/ }),
+/* 493 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _constants = __webpack_require__(42);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CardTitle = function (_Component) {
+  _inherits(CardTitle, _Component);
+
+  function CardTitle() {
+    _classCallCheck(this, CardTitle);
+
+    return _possibleConstructorReturn(this, (CardTitle.__proto__ || Object.getPrototypeOf(CardTitle)).apply(this, arguments));
+  }
+
+  _createClass(CardTitle, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          image = _props.image,
+          reveal = _props.reveal,
+          waves = _props.waves,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['image', 'reveal', 'waves', 'children']);
+
+      var classes = {
+        'card-image': true
+      };
+      if (waves) {
+        classes['waves-effect'] = true;
+        classes['waves-' + waves] = true;
+        classes['waves-block'] = true;
+      }
+      var imgClasses = { 'activator': reveal };
+      var titleClasses = {
+        'card-title': true
+      };
+      return _react2.default.createElement(
+        'div',
+        _extends({ className: (0, _classnames2.default)(classes) }, props),
+        _react2.default.createElement('img', { className: (0, _classnames2.default)(imgClasses), src: image }),
+        _react2.default.createElement(
+          'span',
+          { className: (0, _classnames2.default)(titleClasses) },
+          children
+        )
+      );
+    }
+  }]);
+
+  return CardTitle;
+}(_react.Component);
+
+CardTitle.propTypes = {
+  children: _react.PropTypes.node,
+  // Whether the image serves as activator for the reveal
+  reveal: _react.PropTypes.bool,
+  // the waves effect
+  waves: _react.PropTypes.oneOf(_constants2.default.WAVES),
+  // The path to the image
+  image: _react.PropTypes.string.isRequired
+};
+
+exports.default = CardTitle;
+
+/***/ }),
+/* 494 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Collapsible = function (_Component) {
+  _inherits(Collapsible, _Component);
+
+  function Collapsible(props) {
+    _classCallCheck(this, Collapsible);
+
+    var _this = _possibleConstructorReturn(this, (Collapsible.__proto__ || Object.getPrototypeOf(Collapsible)).call(this, props));
+
+    _this.renderItem = _this.renderItem.bind(_this);
+    _this.handleSelect = _this.handleSelect.bind(_this);
+    _this.state = {
+      activeKey: _this.props.defaultActiveKey
+    };
+    return _this;
+  }
+
+  _createClass(Collapsible, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          accordion = _props.accordion,
+          popout = _props.popout,
+          className = _props.className,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['accordion', 'popout', 'className', 'children']);
+
+      delete props.defaultActiveKey;
+
+      var classes = {
+        collapsible: true,
+        popout: popout
+      };
+      var collapsible = accordion ? 'accordion' : 'expandable';
+
+      return _react2.default.createElement(
+        'ul',
+        _extends({ className: (0, _classnames2.default)(className, classes) }, props, { 'data-collapsible': collapsible }),
+        _react2.default.Children.map(children, this.renderItem)
+      );
+    }
+  }, {
+    key: 'renderItem',
+    value: function renderItem(child) {
+      if (!child) return null;
+
+      var props = {};
+
+      if (this.props.accordion) {
+        props.expanded = child.props.eventKey === this.state.activeKey;
+        props.onSelect = this.handleSelect;
+      }
+
+      return _react2.default.cloneElement(child, props);
+    }
+  }, {
+    key: 'handleSelect',
+    value: function handleSelect(key) {
+      var onSelect = this.props.onSelect;
+
+
+      if (onSelect) {
+        onSelect(key);
+      }
+      if (this.state.activeKey === key) {
+        key = null;
+      }
+
+      this.setState({ activeKey: key });
+    }
+  }]);
+
+  return Collapsible;
+}(_react.Component);
+
+Collapsible.propTypes = {
+  /**
+   * There are two ways a collapsible can behave. It can either allow multiple sections to stay open,
+   * or it can only allow one section to stay open at a time, which is called an accordion.
+   * @default false
+   */
+  accordion: _react.PropTypes.bool,
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  /**
+   * Enable popout style
+   */
+  popout: _react.PropTypes.bool,
+  /**
+   * The default CollapsibleItem that should be expanded. This value should match the specified
+   * item's eventKey value. Ignored if accordion is false.
+   */
+  defaultActiveKey: _react.PropTypes.any,
+  onSelect: _react.PropTypes.func
+};
+
+Collapsible.defaultProps = {
+  accordion: false
+};
+
+exports.default = Collapsible;
+
+/***/ }),
+/* 495 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(79);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CollapsibleItem = function (_Component) {
+  _inherits(CollapsibleItem, _Component);
+
+  function CollapsibleItem(props) {
+    _classCallCheck(this, CollapsibleItem);
+
+    var _this = _possibleConstructorReturn(this, (CollapsibleItem.__proto__ || Object.getPrototypeOf(CollapsibleItem)).call(this, props));
+
+    _this.state = {
+      expanded: props.expanded
+    };
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.renderBody = _this.renderBody.bind(_this);
+    _this.renderIcon = _this.renderIcon.bind(_this);
+    return _this;
+  }
+
+  _createClass(CollapsibleItem, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      var _props = this.props,
+          scroll = _props.scroll,
+          expanded = _props.expanded;
+
+
+      if (expanded) {
+        _reactDom2.default.findDOMNode(this).scrollIntoView({ behavior: scroll });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props,
+          node = _props2.node,
+          header = _props2.header,
+          icon = _props2.icon,
+          iconClassName = _props2.iconClassName,
+          className = _props2.className,
+          props = _objectWithoutProperties(_props2, ['node', 'header', 'icon', 'iconClassName', 'className']);
+
+      var expanded = this.state.expanded;
+
+
+      delete props.expanded;
+      delete props.eventKey;
+
+      var C = node;
+      var liClasses = {
+        active: expanded
+      };
+      var headerClasses = {
+        'collapsible-header': true,
+        active: expanded
+      };
+
+      return _react2.default.createElement(
+        'li',
+        _extends({ className: (0, _classnames2.default)(liClasses, className) }, props),
+        _react2.default.createElement(
+          C,
+          { className: (0, _classnames2.default)(headerClasses), onClick: this.handleClick },
+          icon && this.renderIcon(icon, iconClassName),
+          header
+        ),
+        expanded && this.renderBody()
+      );
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {
+      var _props3 = this.props,
+          onSelect = _props3.onSelect,
+          eventKey = _props3.eventKey;
+
+
+      if (onSelect) {
+        onSelect(eventKey);
+      } else {
+        this.setState({ expanded: !this.state.expanded });
+      }
+    }
+  }, {
+    key: 'renderBody',
+    value: function renderBody() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'collapsible-body', style: { display: 'block' } },
+        this.props.children
+      );
+    }
+  }, {
+    key: 'renderIcon',
+    value: function renderIcon(icon, iconClassName) {
+      return _react2.default.createElement(
+        _Icon2.default,
+        { className: iconClassName },
+        icon
+      );
+    }
+  }]);
+
+  return CollapsibleItem;
+}(_react.Component);
+
+CollapsibleItem.propTypes = {
+  header: _react.PropTypes.string.isRequired,
+  icon: _react.PropTypes.string,
+  iconClassName: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  onSelect: _react.PropTypes.func,
+  /**
+   * If the item is expanded by default. Overridden if the parent Collapsible is an accordion.
+   * @default false
+   */
+  expanded: _react.PropTypes.bool,
+  /**
+   * The value to pass to the onSelect callback.
+   */
+  eventKey: _react.PropTypes.any,
+  className: _react.PropTypes.string,
+  /**
+   * The node type of the header
+   * @default a
+   */
+  node: _react.PropTypes.node,
+  /**
+   * The scroll behavior for scrollIntoView
+   */
+  scroll: _react.PropTypes.oneOf(['auto', 'instant', 'smooth'])
+};
+
+CollapsibleItem.defaultProps = {
+  expanded: false,
+  node: 'a'
+};
+
+exports.default = CollapsibleItem;
+
+/***/ }),
+/* 496 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Collection = function (_Component) {
+  _inherits(Collection, _Component);
+
+  function Collection(props) {
+    _classCallCheck(this, Collection);
+
+    var _this = _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(this, props));
+
+    _this.renderHeader = _this.renderHeader.bind(_this);
+    return _this;
+  }
+
+  _createClass(Collection, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          header = _props.header;
+
+
+      var classes = {
+        collection: true,
+        'with-header': !!header
+      };
+      var C = 'ul';
+      _react2.default.Children.forEach(children, function (child) {
+        if (child.props.href) {
+          C = 'div';
+        }
+      });
+      return _react2.default.createElement(
+        C,
+        { className: (0, _classnames2.default)(classes) },
+        header ? this.renderHeader() : null,
+        children
+      );
+    }
+  }, {
+    key: 'renderHeader',
+    value: function renderHeader() {
+      var header = void 0;
+      if (this.props.header) {
+        if (_react2.default.isValidElement(this.props.header)) {
+          header = this.props.header;
+        } else {
+          header = _react2.default.createElement(
+            'h4',
+            null,
+            this.props.header
+          );
+        }
+        return _react2.default.createElement(
+          'li',
+          { className: 'collection-header' },
+          header
+        );
+      }
+    }
+  }]);
+
+  return Collection;
+}(_react.Component);
+
+Collection.propTypes = {
+  children: _react.PropTypes.node,
+  header: _react.PropTypes.node
+};
+
+exports.default = Collection;
+
+/***/ }),
+/* 497 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CollectionItem = function (_Component) {
+  _inherits(CollectionItem, _Component);
+
+  function CollectionItem() {
+    _classCallCheck(this, CollectionItem);
+
+    return _possibleConstructorReturn(this, (CollectionItem.__proto__ || Object.getPrototypeOf(CollectionItem)).apply(this, arguments));
+  }
+
+  _createClass(CollectionItem, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          active = _props.active,
+          children = _props.children,
+          className = _props.className,
+          other = _objectWithoutProperties(_props, ['active', 'children', 'className']);
+
+      var classes = {
+        'collection-item': true,
+        active: active
+      };
+
+      var C = this.props.href ? 'a' : 'li';
+
+      return _react2.default.createElement(
+        C,
+        _extends({}, other, { className: (0, _classnames2.default)(className, classes) }),
+        children
+      );
+    }
+  }]);
+
+  return CollectionItem;
+}(_react.Component);
+
+CollectionItem.propTypes = {
+  active: _react.PropTypes.bool,
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  href: _react.PropTypes.string
+};
+
+exports.default = CollectionItem;
+
+/***/ }),
+/* 498 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _idgen = __webpack_require__(57);
+
+var _idgen2 = _interopRequireDefault(_idgen);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var classes = {
+  'dropdown-content': true
+};
+
+var Dropdown = function (_Component) {
+  _inherits(Dropdown, _Component);
+
+  function Dropdown(props) {
+    _classCallCheck(this, Dropdown);
+
+    var _this = _possibleConstructorReturn(this, (Dropdown.__proto__ || Object.getPrototypeOf(Dropdown)).call(this, props));
+
+    _this.renderTrigger = _this.renderTrigger.bind(_this);
+    return _this;
+  }
+
+  _createClass(Dropdown, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var options = this.props.options || {};
+
+      $(this._trigger).dropdown(options);
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      $(this._trigger).off();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className,
+          props = _objectWithoutProperties(_props, ['children', 'className']);
+
+      this.idx = 'dropdown_' + (0, _idgen2.default)();
+      delete props.trigger;
+      delete props.options;
+
+      return _react2.default.createElement(
+        'span',
+        null,
+        this.renderTrigger(),
+        _react2.default.createElement(
+          'ul',
+          _extends({}, props, { className: (0, _classnames2.default)(classes, className), id: this.idx }),
+          children
+        )
+      );
+    }
+  }, {
+    key: 'renderTrigger',
+    value: function renderTrigger() {
+      var _this2 = this;
+
+      var trigger = this.props.trigger;
+
+
+      return _react2.default.cloneElement(trigger, {
+        ref: function ref(t) {
+          return _this2._trigger = '[data-activates=' + _this2.idx + ']';
+        },
+        className: 'dropdown-button',
+        'data-activates': this.idx
+      });
+    }
+  }]);
+
+  return Dropdown;
+}(_react.Component);
+
+Dropdown.propTypes = {
+  /**
+   * The node to trigger the dropdown
+   */
+  trigger: _react.PropTypes.node.isRequired,
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  /**
+   * Options hash for the dropdown
+   * more info: http://materializecss.com/dropdown.html#options
+   */
+  options: _react.PropTypes.shape({
+    inDuration: _react.PropTypes.number,
+    outDuration: _react.PropTypes.number,
+    constrain_width: _react.PropTypes.bool,
+    hover: _react.PropTypes.bool,
+    gutter: _react.PropTypes.number,
+    belowOrigin: _react.PropTypes.bool,
+    alignment: _react.PropTypes.oneOf(['left', 'right'])
+  })
+};
+
+exports.default = Dropdown;
+
+/***/ }),
+/* 499 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Row = __webpack_require__(112);
+
+var _Row2 = _interopRequireDefault(_Row);
+
+var _Col = __webpack_require__(56);
+
+var _Col2 = _interopRequireDefault(_Col);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className,
+          copyrights = _props.copyrights,
+          links = _props.links,
+          moreLinks = _props.moreLinks,
+          props = _objectWithoutProperties(_props, ['children', 'className', 'copyrights', 'links', 'moreLinks']);
+
+      var classes = {
+        'page-footer': true
+      };
+
+      return _react2.default.createElement(
+        'footer',
+        _extends({ className: (0, _classnames2.default)(classes, className) }, props),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            _Row2.default,
+            null,
+            _react2.default.createElement(
+              _Col2.default,
+              { l: 6, s: 12 },
+              children
+            ),
+            _react2.default.createElement(
+              _Col2.default,
+              { l: 4, s: 12, offset: 'l2' },
+              links
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'footer-copyright' },
+          _react2.default.createElement(
+            'div',
+            { className: 'container' },
+            copyrights,
+            moreLinks
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+Footer.propTypes = {
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  copyrights: _react.PropTypes.string,
+  links: _react.PropTypes.node,
+  moreLinks: _react.PropTypes.node
+};
+
+exports.default = Footer;
+
+/***/ }),
+/* 500 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _idgen = __webpack_require__(57);
+
+var _idgen2 = _interopRequireDefault(_idgen);
+
+var _constants = __webpack_require__(42);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Input = function (_Component) {
+  _inherits(Input, _Component);
+
+  function Input(props) {
+    _classCallCheck(this, Input);
+
+    var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));
+
+    _this.state = {
+      value: props.defaultValue
+    };
+
+    _this._onChange = _this._onChange.bind(_this);
+    _this.getMultipleValues = _this.getMultipleValues.bind(_this);
+    _this.isSelect = _this.isSelect.bind(_this);
+    return _this;
+  }
+
+  _createClass(Input, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (this.isMaterialSelect()) {
+        $(this.selectInput).material_select();
+        $(this.selectInput).on('change', this._onChange);
+      }
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (this.isMaterialSelect() && !this.props.multiple) {
+        $(this.selectInput).material_select();
+      }
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var _this2 = this;
+
+      if (this.isMaterialSelect()) {
+        this.setState({
+          value: nextProps.defaultValue
+        }, function () {
+          return $(_this2.selectInput).material_select();
+        });
+      }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      if (this.isMaterialSelect()) {
+        $(this.selectInput).off('change', this._onChange);
+      }
+    }
+  }, {
+    key: 'getMultipleValues',
+    value: function getMultipleValues(_ref) {
+      var options = _ref.options;
+
+      if (!options) {
+        return;
+      }
+
+      return Array.from(options).filter(function (opt) {
+        return opt.selected;
+      }).map(function (opt) {
+        return opt.value;
+      });
+    }
+  }, {
+    key: '_onChange',
+    value: function _onChange(e) {
+      var onChange = this.props.onChange;
+
+      var types = {
+        'checkbox': e.target.checked,
+        'select-multiple': this.getMultipleValues(e.target),
+        'default': e.target.value
+      };
+      var value = types[e.target.type] || types['default'];
+      if (onChange) {
+        onChange(e);
+      }
+
+      this.setState({ value: value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          browserDefault = _props.browserDefault,
+          children = _props.children,
+          className = _props.className,
+          defaultValue = _props.defaultValue,
+          error = _props.error,
+          label = _props.label,
+          multiple = _props.multiple,
+          placeholder = _props.placeholder,
+          success = _props.success,
+          s = _props.s,
+          m = _props.m,
+          l = _props.l,
+          type = _props.type,
+          validate = _props.validate,
+          onLabel = _props.onLabel,
+          offLabel = _props.offLabel,
+          other = _objectWithoutProperties(_props, ['browserDefault', 'children', 'className', 'defaultValue', 'error', 'label', 'multiple', 'placeholder', 'success', 's', 'm', 'l', 'type', 'validate', 'onLabel', 'offLabel']);
+
+      var sizes = { s: s, m: m, l: l };
+      this._id = this._id || this.props.id || 'input_' + (0, _idgen2.default)();
+      var classes = {
+        col: true,
+        'input-field': type !== 'checkbox' && type !== 'radio'
+      };
+      _constants2.default.SIZES.forEach(function (size) {
+        classes[size + sizes[size]] = sizes[size];
+      });
+      var inputClasses = {
+        validate: validate,
+        invalid: error,
+        valid: success,
+        'browser-default': browserDefault && this.isSelect()
+      };
+      var C = void 0,
+          inputType = void 0;
+      switch (type) {
+        case 'textarea':
+          C = 'textarea';
+          inputClasses['materialize-textarea'] = true;
+          break;
+        case 'switch':
+          C = 'input';
+          inputType = 'checkbox';
+          break;
+        default:
+          C = 'input';
+          inputType = type || 'text';
+      }
+      var labelClasses = {
+        active: this.state.value || this.isSelect()
+      };
+
+      var htmlLabel = label || inputType === 'radio' ? _react2.default.createElement(
+        'label',
+        {
+          className: (0, _classnames2.default)(labelClasses),
+          'data-success': success,
+          'data-error': error,
+          htmlFor: this._id
+        },
+        label
+      ) : null;
+
+      if (this.isSelect()) {
+        var options = placeholder && !defaultValue ? [_react2.default.createElement(
+          'option',
+          { disabled: true, key: (0, _idgen2.default)() },
+          placeholder
+        )] : [];
+        options = options.concat(_react2.default.Children.map(children, function (child) {
+          return _react2.default.cloneElement(child, { 'key': child.props.value });
+        }));
+
+        return _react2.default.createElement(
+          'div',
+          { className: (0, _classnames2.default)(classes) },
+          htmlLabel,
+          _react2.default.createElement(
+            'select',
+            _extends({}, other, {
+              multiple: multiple,
+              id: this._id,
+              className: (0, _classnames2.default)(className, inputClasses),
+              ref: function ref(_ref2) {
+                return _this3.selectInput = _ref2;
+              },
+              defaultValue: defaultValue
+            }),
+            options
+          )
+        );
+      } else if (type === 'switch') {
+        return _react2.default.createElement(
+          'div',
+          { className: 'switch' },
+          _react2.default.createElement(
+            'label',
+            null,
+            offLabel || 'Off',
+            _react2.default.createElement('input', _extends({}, other, {
+              onChange: this._onChange,
+              type: 'checkbox'
+            })),
+            _react2.default.createElement('span', { className: 'lever' }),
+            onLabel || 'On'
+          )
+        );
+      } else {
+        var _defaultValue = inputType !== 'checkbox' && inputType !== 'radio' ? this.state.value : _defaultValue;
+
+        return _react2.default.createElement(
+          'div',
+          { className: (0, _classnames2.default)(classes) },
+          this.renderIcon(),
+          _react2.default.createElement(C, _extends({}, other, {
+            className: (0, _classnames2.default)(className, inputClasses),
+            defaultValue: _defaultValue,
+            id: this._id,
+            onChange: this._onChange,
+            placeholder: placeholder,
+            type: inputType
+          })),
+          htmlLabel
+        );
+      }
+    }
+  }, {
+    key: 'renderIcon',
+    value: function renderIcon() {
+      var _props2 = this.props,
+          icon = _props2.icon,
+          children = _props2.children;
+
+      if (icon) {
+        return _react2.default.createElement(
+          _Icon2.default,
+          { className: 'prefix' },
+          icon
+        );
+      } else {
+        var _icon = null;
+        if (_react2.default.Children.count(children) === 1) {
+          _icon = _react2.default.Children.only(children);
+        }
+        return _icon === null ? null : _react2.default.cloneElement(_icon, { className: 'prefix' });
+      }
+    }
+  }, {
+    key: 'isSelect',
+    value: function isSelect() {
+      return this.props.type === 'select';
+    }
+  }, {
+    key: 'isMaterialSelect',
+    value: function isMaterialSelect() {
+      return this.props.type === 'select' && !this.props.browserDefault && typeof $ !== 'undefined';
+    }
+  }]);
+
+  return Input;
+}(_react.Component);
+
+Input.propTypes = {
+  s: _react.PropTypes.number,
+  m: _react.PropTypes.number,
+  l: _react.PropTypes.number,
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  label: _react.PropTypes.node,
+  error: _react.PropTypes.string,
+  success: _react.PropTypes.string,
+  /**
+   * Input field type, e.g. select, checkbox, radio, text, tel, email
+   * @default 'text'
+   */
+  type: _react.PropTypes.string,
+  defaultValue: _react.PropTypes.any,
+  placeholder: _react.PropTypes.string,
+  id: _react.PropTypes.string,
+  icon: _react.PropTypes.string,
+  name: _react.PropTypes.string,
+  validate: _react.PropTypes.bool,
+  multiple: _react.PropTypes.bool,
+  browserDefault: _react.PropTypes.bool,
+  onLabel: _react.PropTypes.string,
+  offLabel: _react.PropTypes.string,
+  onChange: _react.PropTypes.func
+};
+
+Input.defaultProps = { type: 'text' };
+
+exports.default = Input;
+
+/***/ }),
+/* 501 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+var MediaBox = function MediaBox(_ref) {
+  var src = _ref.src,
+      className = _ref.className,
+      caption = _ref.caption,
+      props = _objectWithoutProperties(_ref, ['src', 'className', 'caption']);
+
+  return _react2.default.createElement('img', _extends({ className: (0, _classnames2.default)('materialboxed', className), 'data-caption': caption, src: src }, props));
+};
+
+MediaBox.propTypes = {
+  className: _react.PropTypes.string,
+  /**
+   * The caption shown below the image when opened
+   */
+  caption: _react.PropTypes.string,
+  /**
+   * The path to the image
+   */
+  src: _react.PropTypes.string.isRequired
+};
+
+exports.default = MediaBox;
+
+/***/ }),
+/* 502 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// This should be used within any component that has a menu like interface
+var MenuItem = function (_Component) {
+  _inherits(MenuItem, _Component);
+
+  function MenuItem() {
+    _classCallCheck(this, MenuItem);
+
+    return _possibleConstructorReturn(this, (MenuItem.__proto__ || Object.getPrototypeOf(MenuItem)).apply(this, arguments));
+  }
+
+  _createClass(MenuItem, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          href = _props.href,
+          breadcrumbItem = _props.breadcrumbItem,
+          children = _props.children,
+          className = _props.className,
+          props = _objectWithoutProperties(_props, ['href', 'breadcrumbItem', 'children', 'className']);
+
+      var classes = {
+        breadcrumb: breadcrumbItem
+      };
+      return _react2.default.createElement(
+        'a',
+        _extends({ href: href }, props, { className: (0, _classnames2.default)(classes, className) }),
+        children
+      );
+    }
+  }]);
+
+  return MenuItem;
+}(_react.Component);
+
+MenuItem.propTypes = {
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  // internal
+  breadcrumbItem: _react.PropTypes.bool,
+  /**
+   * The link for the anchor
+   */
+  href: _react.PropTypes.string
+};
+
+exports.default = MenuItem;
+
+/***/ }),
+/* 503 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Button = __webpack_require__(111);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _OverlayTrigger = __webpack_require__(201);
+
+var _OverlayTrigger2 = _interopRequireDefault(_OverlayTrigger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Modal = function (_Component) {
+  _inherits(Modal, _Component);
+
+  function Modal() {
+    _classCallCheck(this, Modal);
+
+    return _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).apply(this, arguments));
+  }
+
+  _createClass(Modal, [{
+    key: 'renderOverlay',
+    value: function renderOverlay() {
+      var _props = this.props,
+          actions = _props.actions,
+          bottomSheet = _props.bottomSheet,
+          children = _props.children,
+          fixedFooter = _props.fixedFooter,
+          header = _props.header,
+          other = _objectWithoutProperties(_props, ['actions', 'bottomSheet', 'children', 'fixedFooter', 'header']);
+
+      delete other.modalOptions;
+      delete other.trigger;
+
+      var classes = (0, _classnames2.default)({
+        'modal': true,
+        'modal-fixed-footer': fixedFooter,
+        'bottom-sheet': bottomSheet
+      });
+
+      return _react2.default.createElement(
+        'div',
+        _extends({}, other, { className: classes }),
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-content' },
+          _react2.default.createElement(
+            'h4',
+            null,
+            header
+          ),
+          children
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-footer' },
+          _react2.default.Children.toArray(actions)
+        )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props,
+          modalOptions = _props2.modalOptions,
+          trigger = _props2.trigger;
+
+
+      return _react2.default.createElement(
+        _OverlayTrigger2.default,
+        {
+          modalOptions: modalOptions,
+          overlay: this.renderOverlay()
+        },
+        trigger
+      );
+    }
+  }]);
+
+  return Modal;
+}(_react.Component);
+
+Modal.propTypes = {
+  modalOptions: _react.PropTypes.object,
+  /**
+  * BottomSheet styled modal
+  * @default false
+  */
+  bottomSheet: _react.PropTypes.bool,
+  /**
+   * Component children
+   */
+  children: _react.PropTypes.node,
+  /**
+  * FixedFooter styled modal
+  * @default false
+  */
+  fixedFooter: _react.PropTypes.bool,
+  /**
+   * Text to shown in the header of the modal
+   */
+  header: _react.PropTypes.string,
+  /**
+   * The button to trigger the display of the modal
+   */
+  trigger: _react.PropTypes.node.isRequired,
+  /**
+   * The buttons to show in the footer of the modal
+   */
+  actions: _react.PropTypes.node
+};
+
+Modal.defaultProps = {
+  fixedFooter: false,
+  bottomSheet: false,
+  actions: [_react2.default.createElement(
+    _Button2.default,
+    { waves: 'light', modal: 'close', flat: true },
+    'Close'
+  )]
+};
+
+exports.default = Modal;
+
+/***/ }),
+/* 504 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NavItem = function (_Component) {
+  _inherits(NavItem, _Component);
+
+  function NavItem() {
+    _classCallCheck(this, NavItem);
+
+    return _possibleConstructorReturn(this, (NavItem.__proto__ || Object.getPrototypeOf(NavItem)).apply(this, arguments));
+  }
+
+  _createClass(NavItem, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          divider = _props.divider,
+          href = _props.href,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['divider', 'href', 'children']);
+
+      if (divider) {
+        return _react2.default.createElement('li', { className: 'divider' });
+      } else {
+        return _react2.default.createElement(
+          'li',
+          props,
+          _react2.default.createElement(
+            'a',
+            { href: href },
+            children
+          )
+        );
+      }
+    }
+  }]);
+
+  return NavItem;
+}(_react.Component);
+
+NavItem.propTypes = {
+  children: _react.PropTypes.node,
+  divider: _react.PropTypes.bool,
+  href: _react.PropTypes.string
+};
+
+exports.default = NavItem;
+
+/***/ }),
+/* 505 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Col = __webpack_require__(56);
+
+var _Col2 = _interopRequireDefault(_Col);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Navbar = function (_Component) {
+  _inherits(Navbar, _Component);
+
+  function Navbar(props) {
+    _classCallCheck(this, Navbar);
+
+    var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
+
+    _this.renderSideNav = _this.renderSideNav.bind(_this);
+    return _this;
+  }
+
+  _createClass(Navbar, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if ($ !== undefined) {
+        $('.button-collapse').sideNav();
+      }
+    }
+  }, {
+    key: 'renderSideNav',
+    value: function renderSideNav() {
+      return _react2.default.createElement(
+        'ul',
+        { id: 'nav-mobile', className: 'side-nav' },
+        this.props.children
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          brand = _props.brand,
+          className = _props.className,
+          left = _props.left,
+          right = _props.right,
+          href = _props.href,
+          other = _objectWithoutProperties(_props, ['brand', 'className', 'left', 'right', 'href']);
+
+      var classes = {
+        right: right,
+        'hide-on-med-and-down': true
+      };
+
+      var brandClasses = {
+        'brand-logo': true,
+        right: left
+      };
+
+      return _react2.default.createElement(
+        'nav',
+        _extends({}, other, { className: className }),
+        _react2.default.createElement(
+          'div',
+          { className: 'nav-wrapper' },
+          _react2.default.createElement(
+            _Col2.default,
+            { s: 12 },
+            _react2.default.createElement(
+              'a',
+              { href: href, className: (0, _classnames2.default)(brandClasses) },
+              brand
+            ),
+            _react2.default.createElement(
+              'ul',
+              { className: (0, _classnames2.default)(className, classes) },
+              this.props.children
+            ),
+            this.renderSideNav(),
+            _react2.default.createElement(
+              'a',
+              { className: 'button-collapse', href: '#', 'data-activates': 'nav-mobile' },
+              _react2.default.createElement(
+                _Icon2.default,
+                null,
+                'view_headline'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Navbar;
+}(_react.Component);
+
+Navbar.propTypes = {
+  brand: _react.PropTypes.node,
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  left: _react.PropTypes.bool,
+  right: _react.PropTypes.bool,
+  href: _react.PropTypes.string
+};
+
+Navbar.defaultProps = {
+  href: '/'
+};
+
+exports.default = Navbar;
+
+/***/ }),
+/* 506 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+var _PaginationButton = __webpack_require__(202);
+
+var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Pagination = function (_Component) {
+  _inherits(Pagination, _Component);
+
+  function Pagination(props) {
+    _classCallCheck(this, Pagination);
+
+    var _this = _possibleConstructorReturn(this, (Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call(this, props));
+
+    var activePage = props.activePage,
+        items = props.items;
+
+
+    _this.state = {
+      activePage: activePage > 0 && activePage <= items ? activePage : 1
+    };
+
+    _this.renderButtons = _this.renderButtons.bind(_this);
+    _this._onClick = _this._onClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Pagination, [{
+    key: '_onClick',
+    value: function _onClick(i) {
+      var _this2 = this;
+
+      var _props = this.props,
+          items = _props.items,
+          onSelect = _props.onSelect;
+
+
+      return function () {
+        if (i > 0 && i <= items) {
+          if (onSelect) {
+            onSelect(i);
+          }
+          _this2.setState({ activePage: i });
+        }
+      };
+    }
+  }, {
+    key: 'renderButtons',
+    value: function renderButtons() {
+      var _props2 = this.props,
+          items = _props2.items,
+          children = _props2.children,
+          _props2$maxButtons = _props2.maxButtons,
+          maxButtons = _props2$maxButtons === undefined ? items : _props2$maxButtons;
+      var activePage = this.state.activePage;
+
+
+      if (children) return children;
+
+      var buttonsCount = Math.min(maxButtons, items);
+
+      var maxPos = items - buttonsCount;
+      var halfButtons = parseInt(buttonsCount / 2, 10);
+
+      var hiddenPagesBefore = activePage - halfButtons;
+      if (hiddenPagesBefore > maxPos) {
+        hiddenPagesBefore = maxPos + 1;
+      }
+
+      var from = Math.max(hiddenPagesBefore, 1);
+      var to = Math.min(items, from + maxButtons - 1);
+
+      var buttons = [_react2.default.createElement(
+        _PaginationButton2.default,
+        {
+          disabled: activePage === 1,
+          key: 'pagination-0',
+          onSelect: this._onClick(activePage - 1)
+        },
+        _react2.default.createElement(
+          _Icon2.default,
+          null,
+          'chevron_left'
+        )
+      )];
+
+      for (var i = from; i <= to; i++) {
+        buttons.push(_react2.default.createElement(
+          _PaginationButton2.default,
+          {
+            active: i === activePage,
+            key: 'pagination-' + i,
+            onSelect: this._onClick(i)
+          },
+          i
+        ));
+      }
+
+      buttons.push(_react2.default.createElement(
+        _PaginationButton2.default,
+        {
+          key: 'pagination-' + (items + 1),
+          disabled: activePage === items,
+          onSelect: this._onClick(activePage + 1)
+        },
+        _react2.default.createElement(
+          _Icon2.default,
+          null,
+          'chevron_right'
+        )
+      ));
+
+      return buttons;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'ul',
+        { className: (0, _classnames2.default)('pagination', this.props.className) },
+        this.renderButtons()
+      );
+    }
+  }]);
+
+  return Pagination;
+}(_react.Component);
+
+Pagination.propTypes = {
+  /**
+   * Number of items in the component
+   */
+  items: _react.PropTypes.number.isRequired,
+  /**
+   * The initial activePage
+   */
+  activePage: _react.PropTypes.number,
+  children: _react.PropTypes.node,
+  className: _react.PropTypes.string,
+  maxButtons: _react.PropTypes.number,
+  onSelect: _react.PropTypes.func
+};
+
+Pagination.defaultProps = {
+  activePage: 1,
+  items: 10
+};
+
+exports.default = Pagination;
+
+/***/ }),
+/* 507 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Parallax = function (_Component) {
+  _inherits(Parallax, _Component);
+
+  function Parallax() {
+    _classCallCheck(this, Parallax);
+
+    return _possibleConstructorReturn(this, (Parallax.__proto__ || Object.getPrototypeOf(Parallax)).apply(this, arguments));
+  }
+
+  _createClass(Parallax, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      $('.parallax').parallax();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          className = _props.className,
+          imageSrc = _props.imageSrc;
+
+      return _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)('parallax-container', className) },
+        _react2.default.createElement(
+          'div',
+          { className: 'parallax' },
+          _react2.default.createElement('img', { src: imageSrc })
+        )
+      );
+    }
+  }]);
+
+  return Parallax;
+}(_react.Component);
+
+Parallax.propTypes = {
+  className: _react.PropTypes.string,
+  /**
+  * The image path which will be used for the background of the parallax
+  */
+  imageSrc: _react.PropTypes.string
+};
+exports.default = Parallax;
+
+/***/ }),
+/* 508 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Spinner = __webpack_require__(515);
+
+var _Spinner2 = _interopRequireDefault(_Spinner);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var colors = ['blue', 'red', 'yellow', 'green'];
+
+var Preloader = function (_Component) {
+  _inherits(Preloader, _Component);
+
+  function Preloader() {
+    _classCallCheck(this, Preloader);
+
+    return _possibleConstructorReturn(this, (Preloader.__proto__ || Object.getPrototypeOf(Preloader)).apply(this, arguments));
+  }
+
+  _createClass(Preloader, [{
+    key: 'render',
+    value: function render() {
+      var classes = {
+        'preloader-wrapper': true,
+        active: this.props.active
+      };
+
+      if (this.props.size) {
+        classes[this.props.size] = true;
+      }
+
+      var spinners = void 0;
+      if (this.props.flashing) {
+        spinners = [];
+        colors.map(function (color) {
+          spinners.push(_react2.default.createElement(_Spinner2.default, { color: color, only: false, key: color }));
+        });
+      } else {
+        spinners = _react2.default.createElement(_Spinner2.default, { color: this.props.color });
+      }
+      return _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)(this.props.className, classes) },
+        spinners
+      );
+    }
+  }]);
+
+  return Preloader;
+}(_react.Component);
+
+Preloader.propTypes = {
+  className: _react.PropTypes.string,
+  /**
+   * The scale of the circle
+   * @default 'medium'
+   */
+  size: _react.PropTypes.oneOf(['big', 'small', 'medium']),
+  /**
+   * Whether to spin
+   * @default true
+   */
+  active: _react.PropTypes.bool,
+  /**
+   * The color of the circle, if not flashing
+   * @default 'blue'
+   */
+  color: _react.PropTypes.oneOf(['blue', 'red', 'yellow', 'green']),
+  /**
+   * Wheter to circle four different colors
+   * @default false
+   */
+  flashing: _react.PropTypes.bool
+};
+
+Preloader.defaultProps = {
+  active: true,
+  flashing: false,
+  color: 'blue'
+};
+
+exports.default = Preloader;
+
+/***/ }),
+/* 509 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ProgressBar = function ProgressBar(_ref) {
+  var progress = _ref.progress,
+      className = _ref.className;
+
+  var style = void 0;
+  var classes = {
+    indeterminate: progress === undefined,
+    determinate: !!progress
+  };
+  if (progress) {
+    style = {
+      width: progress + '%'
+    };
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { className: (0, _classnames2.default)('progress lighten-5', className) },
+    _react2.default.createElement('div', { className: (0, _classnames2.default)(classes, className), style: style })
+  );
+};
+
+ProgressBar.propTypes = {
+  className: _react.PropTypes.string,
+  /**
+   * A number between 0..100 that indicates the current progress,
+   * when provided, a determinate bar with the progress is displayed,
+   * otherwise a indeterminate bar is shown
+   */
+  progress: _react.PropTypes.number
+};
+
+exports.default = ProgressBar;
+
+/***/ }),
+/* 510 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Icon = __webpack_require__(32);
+
+var _Icon2 = _interopRequireDefault(_Icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SearchForm = function SearchForm() {
+  return _react2.default.createElement(
+    'form',
+    null,
+    _react2.default.createElement(
+      'div',
+      { className: 'input-field' },
+      _react2.default.createElement('input', { id: 'search', type: 'search', required: true }),
+      _react2.default.createElement(
+        'label',
+        { htmlFor: 'search' },
+        _react2.default.createElement(
+          _Icon2.default,
+          null,
+          'search'
+        )
+      ),
+      _react2.default.createElement(
+        _Icon2.default,
+        null,
+        'close'
+      )
+    )
+  );
+};
+
+exports.default = SearchForm;
+
+/***/ }),
+/* 511 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _idgen = __webpack_require__(57);
+
+var _idgen2 = _interopRequireDefault(_idgen);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SideNav = function (_Component) {
+  _inherits(SideNav, _Component);
+
+  function SideNav(props) {
+    _classCallCheck(this, SideNav);
+
+    var _this = _possibleConstructorReturn(this, (SideNav.__proto__ || Object.getPrototypeOf(SideNav)).call(this, props));
+
+    _this.id = props.id || 'sidenav_' + (0, _idgen2.default)();
+    return _this;
+  }
+
+  _createClass(SideNav, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props$options = this.props.options,
+          options = _props$options === undefined ? {} : _props$options;
+
+      $(this._trigger).sideNav(options);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['children']);
+
+      delete props.id;
+      delete props.trigger;
+      delete props.options;
+      return _react2.default.createElement(
+        'span',
+        null,
+        this.renderTrigger(),
+        _react2.default.createElement(
+          'ul',
+          _extends({ id: this.id, className: 'side-nav' }, props),
+          children
+        )
+      );
+    }
+  }, {
+    key: 'renderTrigger',
+    value: function renderTrigger() {
+      var _this2 = this;
+
+      var trigger = this.props.trigger;
+
+      return _react2.default.cloneElement(trigger, {
+        ref: function ref(t) {
+          return _this2._trigger = '[data-activates=' + _this2.id + ']';
+        },
+        'data-activates': this.id
+      });
+    }
+  }]);
+
+  return SideNav;
+}(_react.Component);
+
+SideNav.propTypes = {
+  /**
+   * sidenav id. If none is passed, an id will be generated.
+   */
+  id: _react.PropTypes.string,
+  /**
+   * Component that is rendered to trigger the sidenav
+   */
+  trigger: _react.PropTypes.node.isRequired,
+  /**
+   * Options hash for the sidenav.
+   * More info: http://materializecss.com/side-nav.html#options
+   */
+  options: _react.PropTypes.shape({
+    menuWidth: _react.PropTypes.number,
+    edge: _react.PropTypes.oneOf(['left', 'right']),
+    closeOnClick: _react.PropTypes.bool,
+    draggable: _react.PropTypes.bool
+  }),
+  children: _react.PropTypes.node
+};
+
+exports.default = SideNav;
+
+/***/ }),
+/* 512 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _UserView = __webpack_require__(521);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SideNavItem = function (_Component) {
+  _inherits(SideNavItem, _Component);
+
+  function SideNavItem() {
+    _classCallCheck(this, SideNavItem);
+
+    return _possibleConstructorReturn(this, (SideNavItem.__proto__ || Object.getPrototypeOf(SideNavItem)).apply(this, arguments));
+  }
+
+  _createClass(SideNavItem, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          divider = _props.divider,
+          subheader = _props.subheader,
+          userView = _props.userView,
+          icon = _props.icon,
+          _props$href = _props.href,
+          href = _props$href === undefined ? '#!' : _props$href,
+          waves = _props.waves,
+          _props$user = _props.user,
+          user = _props$user === undefined ? {} : _props$user,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['divider', 'subheader', 'userView', 'icon', 'href', 'waves', 'user', 'children']);
+
+      var itemClasses = {
+        'divider': divider
+      };
+      var linkClasses = {
+        'subheader': subheader,
+        'waves-effect': waves
+      };
+
+      return _react2.default.createElement(
+        'li',
+        _extends({ className: (0, _classnames2.default)(itemClasses) }, props),
+        userView && user && _react2.default.createElement(_UserView.UserView, user),
+        !userView && _react2.default.createElement(
+          'a',
+          { className: (0, _classnames2.default)(linkClasses), href: href },
+          icon && _react2.default.createElement(
+            'i',
+            { className: 'material-icons' },
+            icon
+          ),
+          children
+        )
+      );
+    }
+  }]);
+
+  return SideNavItem;
+}(_react.Component);
+
+SideNavItem.propTypes = {
+  children: _react.PropTypes.node,
+  divider: _react.PropTypes.bool,
+  subheader: _react.PropTypes.bool,
+  userView: _react.PropTypes.bool,
+  waves: _react.PropTypes.bool,
+  href: _react.PropTypes.string,
+  icon: _react.PropTypes.string,
+  user: _react.PropTypes.shape(_UserView.UserShape)
+};
+
+exports.default = SideNavItem;
+
+/***/ }),
+/* 513 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _constants = __webpack_require__(42);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Slide = function (_Component) {
+  _inherits(Slide, _Component);
+
+  function Slide(props) {
+    _classCallCheck(this, Slide);
+
+    var _this = _possibleConstructorReturn(this, (Slide.__proto__ || Object.getPrototypeOf(Slide)).call(this, props));
+
+    _this.renderCaption = _this.renderCaption.bind(_this);
+    return _this;
+  }
+
+  _createClass(Slide, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'li',
+        null,
+        _react2.default.createElement('img', { src: this.props.src }),
+        this.renderCaption()
+      );
+    }
+  }, {
+    key: 'renderCaption',
+    value: function renderCaption() {
+      var _props = this.props,
+          title = _props.title,
+          className = _props.className,
+          alignment = _props.alignment,
+          children = _props.children,
+          props = _objectWithoutProperties(_props, ['title', 'className', 'alignment', 'children']);
+
+      delete props.placement;
+
+      var classes = _defineProperty({
+        caption: true
+      }, alignment + '-align', alignment);
+
+      if (typeof title !== 'undefined' || typeof children !== 'undefined') {
+        return _react2.default.createElement(
+          'div',
+          _extends({ className: (0, _classnames2.default)(classes) }, props),
+          _react2.default.createElement(
+            'h3',
+            null,
+            title
+          ),
+          _react2.default.createElement(
+            'h5',
+            { className: className },
+            children
+          )
+        );
+      } else return null;
+    }
+  }]);
+
+  return Slide;
+}(_react.Component);
+
+Slide.propTypes = {
+  /**
+  * Aliment of the caption
+  * @default 'center'
+  */
+  alignment: _react.PropTypes.oneOf(_constants2.default.PLACEMENTS),
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  /**
+  * The tagline of the caption
+  */
+  title: _react.PropTypes.string,
+  /**
+   * The path of the background image
+   */
+  src: _react.PropTypes.string.isRequired
+};
+
+Slide.defaultProps = {
+  placement: 'center'
+};
+
+exports.default = Slide;
+
+/***/ }),
+/* 514 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Slider = function (_Component) {
+  _inherits(Slider, _Component);
+
+  function Slider() {
+    _classCallCheck(this, Slider);
+
+    return _possibleConstructorReturn(this, (Slider.__proto__ || Object.getPrototypeOf(Slider)).apply(this, arguments));
+  }
+
+  _createClass(Slider, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _props = this.props,
+          fullscreen = _props.fullscreen,
+          indicators = _props.indicators,
+          interval = _props.interval,
+          transition = _props.transition;
+
+
+      $('.slider').slider({
+        full_width: fullscreen,
+        indicators: indicators,
+        interval: interval,
+        transition: transition
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props,
+          fullscreen = _props2.fullscreen,
+          children = _props2.children,
+          className = _props2.className;
+
+      var classes = {
+        fullscreen: fullscreen,
+        slider: true
+      };
+
+      return _react2.default.createElement(
+        'div',
+        { className: (0, _classnames2.default)(classes, className) },
+        _react2.default.createElement(
+          'ul',
+          { className: 'slides' },
+          children
+        )
+      );
+    }
+  }]);
+
+  return Slider;
+}(_react.Component);
+
+Slider.propTypes = {
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  fullscreen: _react.PropTypes.bool,
+  /**
+  * Set to false to hide slide indicators
+  * @default true
+  */
+  indicators: _react.PropTypes.bool,
+  /**
+  * The interval between transitions in ms
+  * @default 6000
+  */
+  interval: _react.PropTypes.number,
+  /**
+  * The duration of the transation animation in ms
+  * @default 500
+  */
+  transition: _react.PropTypes.number
+};
+
+Slider.defaultProps = {
+  fullscreen: false,
+  indicators: true,
+  interval: 6000
+};
+
+exports.default = Slider;
+
+/***/ }),
+/* 515 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Spinner = function Spinner(_ref) {
+  var color = _ref.color,
+      only = _ref.only;
+
+  var spinnerClasses = {
+    'spinner-layer': true
+  };
+  if (only) {
+    spinnerClasses['spinner-' + color + '-only'] = true;
+  } else {
+    spinnerClasses['spinner-' + color] = true;
+  }
+  return _react2.default.createElement(
+    'div',
+    { className: (0, _classnames2.default)(spinnerClasses) },
+    _react2.default.createElement(
+      'div',
+      { className: 'circle-clipper left' },
+      _react2.default.createElement('div', { className: 'circle' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'gap-patch' },
+      _react2.default.createElement('div', { className: 'circle' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'circle-clipper right' },
+      _react2.default.createElement('div', { className: 'circle' })
+    )
+  );
+};
+
+Spinner.defaultProps = {
+  only: true
+};
+
+Spinner.propTypes = {
+  color: _react.PropTypes.string,
+  only: _react.PropTypes.bool
+};
+
+exports.default = Spinner;
+
+/***/ }),
+/* 516 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// This is just a holder for the props and children for tab, thus
+// there is no logic here.
+var Tab = function (_React$Component) {
+  _inherits(Tab, _React$Component);
+
+  function Tab() {
+    _classCallCheck(this, Tab);
+
+    return _possibleConstructorReturn(this, (Tab.__proto__ || Object.getPrototypeOf(Tab)).apply(this, arguments));
+  }
+
+  _createClass(Tab, [{
+    key: 'render',
+    value: function render() {
+      return null;
+    }
+  }]);
+
+  return Tab;
+}(_react2.default.Component);
+
+Tab.propTypes = {
+  /**
+  * The title shown in the tabs list
+  */
+  title: _react2.default.PropTypes.node.isRequired,
+  /**
+  * The width of the Tab
+  */
+  tabWidth: _react2.default.PropTypes.number,
+  /**
+  * Pre-select the tab
+  * @default false
+  */
+  active: _react2.default.PropTypes.bool,
+  /**
+  * Disable the tab
+  * @default false
+  */
+  disabled: _react2.default.PropTypes.bool
+};
+
+Tab.defaultProps = {
+  active: false,
+  disabled: false
+};
+
+exports.default = Tab;
+
+/***/ }),
+/* 517 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Table = function (_Component) {
+  _inherits(Table, _Component);
+
+  function Table() {
+    _classCallCheck(this, Table);
+
+    return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).apply(this, arguments));
+  }
+
+  _createClass(Table, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          bordered = _props.bordered,
+          centered = _props.centered,
+          children = _props.children,
+          className = _props.className,
+          hoverable = _props.hoverable,
+          responsive = _props.responsive,
+          stripped = _props.stripped,
+          props = _objectWithoutProperties(_props, ['bordered', 'centered', 'children', 'className', 'hoverable', 'responsive', 'stripped']);
+
+      var classes = {
+        centered: centered,
+        highlight: hoverable,
+        'responsive-table': responsive,
+        stripped: stripped,
+        bordered: bordered
+      };
+
+      return _react2.default.createElement(
+        'table',
+        _extends({ className: (0, _classnames2.default)(classes, className) }, props),
+        children
+      );
+    }
+  }]);
+
+  return Table;
+}(_react.Component);
+
+Table.propTypes = {
+  className: _react.PropTypes.string,
+  children: _react.PropTypes.node,
+  /**
+  * Center align all the text in the table
+  * @default false
+  */
+  centered: _react.PropTypes.bool,
+  /**
+  * Highlight the row that's hovered
+  * @default false
+  */
+  hoverable: _react.PropTypes.bool,
+  /**
+  * Enable response to make the table horizontally scrollable on smaller screens
+  * @default false
+  */
+  responsive: _react.PropTypes.bool,
+  /**
+  * Stripped style
+  * @default false
+  */
+  stripped: _react.PropTypes.bool,
+  /**
+  * Add border to each row
+  * @default false
+  */
+  bordered: _react.PropTypes.bool
+};
+
+exports.default = Table;
+
+/***/ }),
+/* 518 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Row = __webpack_require__(112);
+
+var _Row2 = _interopRequireDefault(_Row);
+
+var _Col = __webpack_require__(56);
+
+var _Col2 = _interopRequireDefault(_Col);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Tabs = function (_Component) {
+  _inherits(Tabs, _Component);
+
+  function Tabs() {
+    _classCallCheck(this, Tabs);
+
+    return _possibleConstructorReturn(this, (Tabs.__proto__ || Object.getPrototypeOf(Tabs)).apply(this, arguments));
+  }
+
+  _createClass(Tabs, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (typeof $ !== 'undefined') {
+        $(this._tabsEl).tabs();
+      }
+    }
+  }, {
+    key: '_onSelect',
+    value: function _onSelect(idx, e) {
+      var onChange = this.props.onChange;
+
+
+      if (onChange) onChange(idx, e);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          children = _props.children,
+          className = _props.className,
+          defaultValue = _props.defaultValue;
+
+
+      return _react2.default.createElement(
+        _Row2.default,
+        null,
+        _react2.default.createElement(
+          _Col2.default,
+          { s: 12 },
+          _react2.default.createElement(
+            'ul',
+            { className: (0, _classnames2.default)('tabs', className), ref: function ref(el) {
+                return _this2._tabsEl = el;
+              } },
+            _react2.default.Children.map(children, function (child, idx) {
+              var _classes;
+
+              var _child$props = child.props,
+                  active = _child$props.active,
+                  className = _child$props.className,
+                  disabled = _child$props.disabled,
+                  tabWidth = _child$props.tabWidth,
+                  title = _child$props.title;
+
+
+              var classes = (_classes = {}, _defineProperty(_classes, 's' + tabWidth, tabWidth), _defineProperty(_classes, 'tab', true), _defineProperty(_classes, 'disabled', disabled), _defineProperty(_classes, 'col', true), _classes);
+
+              return _react2.default.createElement(
+                'li',
+                { className: (0, _classnames2.default)(classes, className), key: idx },
+                _react2.default.createElement(
+                  'a',
+                  _extends({ href: '#tab_' + idx, className: active || defaultValue === idx ? 'active' : ''
+                  }, disabled ? {} : { onClick: _this2._onSelect.bind(_this2, idx) }),
+                  title
+                )
+              );
+            })
+          )
+        ),
+        _react2.default.Children.map(children, function (child, idx) {
+          return _react2.default.createElement(
+            _Col2.default,
+            { id: 'tab_' + idx, s: 12, key: 'tab' + idx,
+              style: { 'display': child.props.active || defaultValue === idx ? 'block' : 'none' } },
+            child.props.children
+          );
+        })
+      );
+    }
+  }]);
+
+  return Tabs;
+}(_react.Component);
+
+Tabs.propTypes = {
+  children: _react.PropTypes.node.isRequired,
+  className: _react.PropTypes.string,
+  defaultValue: _react.PropTypes.string,
+  onChange: _react.PropTypes.func
+};
+
+exports.default = Tabs;
+
+/***/ }),
+/* 519 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Chip = __webpack_require__(199);
+
+var _Chip2 = _interopRequireDefault(_Chip);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Tag = function Tag(_ref) {
+  var children = _ref.children;
+  return _react2.default.createElement(
+    _Chip2.default,
+    { close: true },
+    children
+  );
+};
+
+Tag.propTypes = {
+  children: _react.PropTypes.node
+};
+
+exports.default = Tag;
+
+/***/ }),
+/* 520 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(7);
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Button = __webpack_require__(111);
+
+var _Button2 = _interopRequireDefault(_Button);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Toast = function (_Component) {
+  _inherits(Toast, _Component);
+
+  function Toast(props) {
+    _classCallCheck(this, Toast);
+
+    var _this = _possibleConstructorReturn(this, (Toast.__proto__ || Object.getPrototypeOf(Toast)).call(this, props));
+
+    _this.onClick = _this.onClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Toast, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          children = _props.children,
+          rounded = _props.rounded;
+
+      var classes = { toast: true, rounded: rounded };
+
+      return _react2.default.createElement(
+        _Button2.default,
+        { onClick: this.onClick, className: (0, _classnames2.default)(classes) },
+        children
+      );
+    }
+  }, {
+    key: 'onClick',
+    value: function onClick() {
+      Materialize.toast(this.props.toast, 1000);
+    }
+  }]);
+
+  return Toast;
+}(_react.Component);
+
+Toast.propTypes = {
+  toast: _react.PropTypes.string.isRequired,
+  children: _react.PropTypes.node,
+  rounded: _react.PropTypes.bool
+};
+
+exports.default = Toast;
+
+/***/ }),
+/* 521 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.UserView = exports.UserShape = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserShape = exports.UserShape = {
+  background: _react.PropTypes.string,
+  image: _react.PropTypes.string,
+  name: _react.PropTypes.string,
+  email: _react.PropTypes.string
+};
+
+var UserView = exports.UserView = function (_Component) {
+  _inherits(UserView, _Component);
+
+  function UserView() {
+    _classCallCheck(this, UserView);
+
+    return _possibleConstructorReturn(this, (UserView.__proto__ || Object.getPrototypeOf(UserView)).apply(this, arguments));
+  }
+
+  _createClass(UserView, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          background = _props.background,
+          image = _props.image,
+          name = _props.name,
+          email = _props.email;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'userView' },
+        background && _react2.default.createElement(
+          'div',
+          { className: 'background' },
+          _react2.default.createElement('img', { src: background })
+        ),
+        image && _react2.default.createElement(
+          'a',
+          { href: '#!user' },
+          _react2.default.createElement('img', { className: 'circle', src: image })
+        ),
+        name && _react2.default.createElement(
+          'a',
+          { href: '#!name' },
+          _react2.default.createElement(
+            'span',
+            { className: 'white-text name' },
+            name
+          )
+        ),
+        email && _react2.default.createElement(
+          'a',
+          { href: '#!email' },
+          _react2.default.createElement(
+            'span',
+            { className: 'white-text email' },
+            email
+          )
+        )
+      );
+    }
+  }]);
+
+  return UserView;
+}(_react.Component);
+
+;
+
+UserView.propTypes = UserShape;
+
+exports.default = UserView;
+
+/***/ }),
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19725,7 +36594,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 168 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19742,9 +36611,9 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(16);
+var _prodInvariant = __webpack_require__(37);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Static poolers. Several custom versions for each potential number of
@@ -19840,10 +36709,10 @@ var PooledClass = {
 };
 
 module.exports = PooledClass;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 169 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19859,11 +36728,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(168);
-var ReactElement = __webpack_require__(15);
+var PooledClass = __webpack_require__(523);
+var ReactElement = __webpack_require__(36);
 
-var emptyFunction = __webpack_require__(9);
-var traverseAllChildren = __webpack_require__(177);
+var emptyFunction = __webpack_require__(21);
+var traverseAllChildren = __webpack_require__(532);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -20039,7 +36908,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 170 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20055,17 +36924,17 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(16),
-    _assign = __webpack_require__(4);
+var _prodInvariant = __webpack_require__(37),
+    _assign = __webpack_require__(9);
 
-var ReactComponent = __webpack_require__(47);
-var ReactElement = __webpack_require__(15);
-var ReactPropTypeLocationNames = __webpack_require__(49);
-var ReactNoopUpdateQueue = __webpack_require__(48);
+var ReactComponent = __webpack_require__(113);
+var ReactElement = __webpack_require__(36);
+var ReactPropTypeLocationNames = __webpack_require__(115);
+var ReactNoopUpdateQueue = __webpack_require__(114);
 
-var emptyObject = __webpack_require__(20);
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var emptyObject = __webpack_require__(51);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 var MIXINS_KEY = 'mixins';
 
@@ -20759,10 +37628,10 @@ var ReactClass = {
 };
 
 module.exports = ReactClass;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 171 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20778,7 +37647,7 @@ module.exports = ReactClass;
 
 
 
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(36);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -20787,7 +37656,7 @@ var ReactElement = __webpack_require__(15);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(78);
+  var ReactElementValidator = __webpack_require__(204);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -20935,10 +37804,10 @@ var ReactDOMFactories = {
 };
 
 module.exports = ReactDOMFactories;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 172 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20954,13 +37823,13 @@ module.exports = ReactDOMFactories;
 
 
 
-var ReactElement = __webpack_require__(15);
-var ReactPropTypeLocationNames = __webpack_require__(49);
-var ReactPropTypesSecret = __webpack_require__(79);
+var ReactElement = __webpack_require__(36);
+var ReactPropTypeLocationNames = __webpack_require__(115);
+var ReactPropTypesSecret = __webpack_require__(205);
 
-var emptyFunction = __webpack_require__(9);
-var getIteratorFn = __webpack_require__(51);
-var warning = __webpack_require__(2);
+var emptyFunction = __webpack_require__(21);
+var getIteratorFn = __webpack_require__(117);
+var warning = __webpack_require__(6);
 
 /**
  * Collection of methods that allow declaration and validation of props that are
@@ -21375,10 +38244,10 @@ function getClassName(propValue) {
 }
 
 module.exports = ReactPropTypes;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 173 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21394,12 +38263,12 @@ module.exports = ReactPropTypes;
 
 
 
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(9);
 
-var ReactComponent = __webpack_require__(47);
-var ReactNoopUpdateQueue = __webpack_require__(48);
+var ReactComponent = __webpack_require__(113);
+var ReactNoopUpdateQueue = __webpack_require__(114);
 
-var emptyObject = __webpack_require__(20);
+var emptyObject = __webpack_require__(51);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -21425,7 +38294,7 @@ ReactPureComponent.prototype.isPureReactComponent = true;
 module.exports = ReactPureComponent;
 
 /***/ }),
-/* 174 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21444,7 +38313,7 @@ module.exports = ReactPureComponent;
 module.exports = '15.4.2';
 
 /***/ }),
-/* 175 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21460,13 +38329,13 @@ module.exports = '15.4.2';
 
 
 
-var _prodInvariant = __webpack_require__(16);
+var _prodInvariant = __webpack_require__(37);
 
-var ReactPropTypeLocationNames = __webpack_require__(49);
-var ReactPropTypesSecret = __webpack_require__(79);
+var ReactPropTypeLocationNames = __webpack_require__(115);
+var ReactPropTypesSecret = __webpack_require__(205);
 
-var invariant = __webpack_require__(1);
-var warning = __webpack_require__(2);
+var invariant = __webpack_require__(5);
+var warning = __webpack_require__(6);
 
 var ReactComponentTreeHook;
 
@@ -21476,7 +38345,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(7);
+  ReactComponentTreeHook = __webpack_require__(17);
 }
 
 var loggedTypeFailures = {};
@@ -21518,7 +38387,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(7);
+            ReactComponentTreeHook = __webpack_require__(17);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -21534,10 +38403,10 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 }
 
 module.exports = checkReactTypeSpec;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 176 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21552,11 +38421,11 @@ module.exports = checkReactTypeSpec;
  */
 
 
-var _prodInvariant = __webpack_require__(16);
+var _prodInvariant = __webpack_require__(37);
 
-var ReactElement = __webpack_require__(15);
+var ReactElement = __webpack_require__(36);
 
-var invariant = __webpack_require__(1);
+var invariant = __webpack_require__(5);
 
 /**
  * Returns the first child in a collection of children and verifies that there
@@ -21578,10 +38447,10 @@ function onlyChild(children) {
 }
 
 module.exports = onlyChild;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 177 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21597,15 +38466,15 @@ module.exports = onlyChild;
 
 
 
-var _prodInvariant = __webpack_require__(16);
+var _prodInvariant = __webpack_require__(37);
 
-var ReactCurrentOwner = __webpack_require__(11);
-var REACT_ELEMENT_TYPE = __webpack_require__(77);
+var ReactCurrentOwner = __webpack_require__(27);
+var REACT_ELEMENT_TYPE = __webpack_require__(203);
 
-var getIteratorFn = __webpack_require__(51);
-var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(167);
-var warning = __webpack_require__(2);
+var getIteratorFn = __webpack_require__(117);
+var invariant = __webpack_require__(5);
+var KeyEscapeUtils = __webpack_require__(522);
+var warning = __webpack_require__(6);
 
 var SEPARATOR = '.';
 var SUBSEPARATOR = ':';
@@ -21760,141 +38629,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 }
 
 module.exports = traverseAllChildren;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var React = __webpack_require__(52);
-var ReactDOM = __webpack_require__(81);
-
-var Cell = __webpack_require__(80);
-
-var Grid = React.createClass({
-	displayName: 'Grid',
-
-	applyNextState: function applyNextState() {
-		var _this = this;
-
-		Object.keys(this.refs).forEach(function (cellId) {
-			_this.refs[cellId].setNextState();
-		});
-
-		this.setState({
-			nextStateSet: true
-		});
-	},
-	componentDidMount: function componentDidMount() {
-		var _this2 = this;
-
-		setInterval(function () {
-			if (_this2.state.isRunning) {
-				_this2.applyNextState();
-			}
-		}, 2000);
-	},
-	componentDidUpdate: function componentDidUpdate() {
-		var _this3 = this;
-
-		if (this.state.isRunning && this.state.nextStateSet) {
-			Object.keys(this.refs).forEach(function (cellId) {
-				_this3.refs[cellId].applyNextState();
-			});
-
-			this.setState({
-				nextStateSet: false
-			});
-		}
-	},
-	getInitialState: function getInitialState() {
-		return {
-			grid: this.generateGrid(),
-			isRunning: false
-		};
-	},
-	getSiblingsCount: function getSiblingsCount(row, col, cell) {
-		var _this4 = this;
-
-		var liveSiblings = 0;
-		var siblings = ['row-' + (row - 1) + '--col-' + (col - 1), 'row-' + (row - 1) + '--col-' + col, 'row-' + (row - 1) + '--col-' + (col + 1), 'row-' + row + '--col-' + (col - 1), 'row-' + row + '--col-' + (col + 1), 'row-' + (row + 1) + '--col-' + (col - 1), 'row-' + (row + 1) + '--col-' + col, 'row-' + (row + 1) + '--col-' + (col + 1)];
-
-		siblings.forEach(function (sibling) {
-			if (_this4.refs[sibling]) {
-				liveSiblings += _this4.refs[sibling].state.isAlive ? 1 : 0;
-			}
-		});
-
-		return liveSiblings;
-	},
-	generateColumns: function generateColumns(rowNum) {
-		var cols = [];
-		for (var i = 0; i < this.props.cols; i++) {
-			var id = 'row-' + rowNum + '--col-' + i;
-			cols.push(React.createElement(Cell, {
-				rowNum: rowNum,
-				col: i,
-				ref: id,
-				key: id,
-				getSiblingsCount: this.getSiblingsCount
-			}));
-		}
-
-		return cols;
-	},
-	generateGrid: function generateGrid() {
-		var grid = [];
-
-		for (var i = 0; i < this.props.rows; i++) {
-			var id = 'row-' + i;
-			grid.push(React.createElement(
-				'div',
-				{ className: 'row', key: id },
-				this.generateColumns(i)
-			));
-		}
-
-		return grid;
-	},
-	togglePlayPause: function togglePlayPause() {
-		this.setState({
-			isRunning: !this.state.isRunning
-		});
-	},
-	render: function render() {
-		return React.createElement(
-			'div',
-			null,
-			React.createElement(
-				'div',
-				{ id: 'grid' },
-				this.state.grid
-			),
-			React.createElement(
-				'div',
-				{ className: 'menu' },
-				React.createElement(
-					'ul',
-					null,
-					React.createElement(
-						'li',
-						null,
-						React.createElement(
-							'button',
-							{ onClick: this.togglePlayPause },
-							this.state.isRunning ? 'Pause' : 'Play'
-						)
-					)
-				)
-			)
-		);
-	}
-});
-
-ReactDOM.render(React.createElement(Grid, { rows: 10, cols: 10 }), document.getElementById('container'));
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ })
 /******/ ]);
