@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var R = require('ramda');
+var ReactMaterialize = require('react-materialize');
 
 var Cell = require('./components/Cell.jsx');
 
@@ -42,10 +43,20 @@ var Grid = React.createClass({
 				this.applyNextState();
 			}
 		}, 2000);
+
+		var banner = document.getElementsByTagName('h1')[0];
+		var heightAboveRow = banner.getBoundingClientRect().top;
+		var bannerRowHeight = banner.parentElement.getBoundingClientRect().bottom;
+		var gridHeight = window.innerHeight - bannerRowHeight - heightAboveRow;
+
+		this.setState({
+			height: gridHeight
+		});
 	},
 
 	getInitialState: function() {
 		return {
+			height: 0,
 			cols: this.props.cols,
 			rows: this.props.rows,
 			grid: this.generateGrid(),
@@ -144,7 +155,7 @@ var Grid = React.createClass({
 			prev.push((
 				<div
 					style={{height: `${height}%`}}
-					className="row"
+					className="gridRow"
 					key={`row-${idx}`}>
 					{this.renderRow(curr, idx)}
 				</div>
@@ -224,16 +235,56 @@ var Grid = React.createClass({
 
 	render: function() {
 		return <div>
-			<div id="grid" >
-				{this.renderGrid()}
-			</div>
-			<div className="menu">
-				<ul>
-					<li><button onClick={this.togglePlayPause}>{this.state.isRunning ? 'Pause' : 'Play'}</button></li>
-					<li>Cols: <input type="number" value={this.state.cols} onChange={this.updateCols} /></li>
-					<li>Rows: <input type="number" value={this.state.rows} onChange={this.updateRows} /></li>
-				</ul>
-			</div>
+			<ReactMaterialize.Row>
+				<h1><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target="_blank">Kanye's Game of Life</a></h1>
+			</ReactMaterialize.Row>
+			<ReactMaterialize.Row>
+				<ReactMaterialize.Col s={2}>
+					<ReactMaterialize.Row className="menu">
+						<div>
+							<ul>
+								<li className="right-align">
+									<ReactMaterialize.Button
+										floating
+										large
+										icon={this.state.isRunning ? 'pause' : 'play_arrow'}
+										onClick={this.togglePlayPause} >
+									</ReactMaterialize.Button>
+								</li>
+								<li>
+									<label for="numberCols">Cols:</label>
+									<div className="card">
+										<input type="number"
+											id="numberCols"
+											value={this.state.cols}
+											onChange={this.updateCols} />
+									</div>
+								</li>
+								<li>
+									<label for="numberRows">Rows:</label>
+									<div className="card">
+										<input type="number"
+											id="numberRows"
+											value={this.state.rows}
+											className="card"
+											onChange={this.updateRows} />
+									</div>
+								</li>
+							</ul>
+						</div>
+					</ReactMaterialize.Row>
+					<ReactMaterialize.Row>
+						<ReactMaterialize.Col s={12}>
+							<h4>Rules</h4>
+						</ReactMaterialize.Col>
+					</ReactMaterialize.Row>
+				</ReactMaterialize.Col>
+				<ReactMaterialize.Col s={10}>
+					<div id="grid" style={{height: `${this.state.height}px`}}>
+						{this.renderGrid()}
+					</div>
+				</ReactMaterialize.Col>
+			</ReactMaterialize.Row>
 		</div>
 	}
 });
