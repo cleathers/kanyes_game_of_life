@@ -241,17 +241,28 @@ var Grid = React.createClass({
 			<ReactMaterialize.Row>
 				<ReactMaterialize.Col s={2}>
 					<ReactMaterialize.Row className="menu">
-						<div>
-							<ul>
-								<li className="right-align">
-									<ReactMaterialize.Button
-										floating
-										large
-										icon={this.state.isRunning ? 'pause' : 'play_arrow'}
-										onClick={this.togglePlayPause} >
-									</ReactMaterialize.Button>
-								</li>
-								<li>
+						<ReactMaterialize.Col s={12}>
+							<ReactMaterialize.Row>
+								<ReactMaterialize.Col s={6}>
+									<label htmlFor="speed">Speed:</label>
+									<div className="card">
+										<input type="number"
+											id="speed"
+											value={30} />
+									</div>
+								</ReactMaterialize.Col>
+								<ReactMaterialize.Col s={6}>
+									<label>{this.state.isRunning ? 'Pause' : 'Play'}</label>
+										<ReactMaterialize.Button
+											className="playBtn"
+											large
+											icon={this.state.isRunning ? 'pause' : 'play_arrow'}
+											onClick={this.togglePlayPause} >
+										</ReactMaterialize.Button>
+								</ReactMaterialize.Col>
+							</ReactMaterialize.Row>
+							<ReactMaterialize.Row>
+								<ReactMaterialize.Col s={6}>
 									<label htmlFor="numberCols">Cols:</label>
 									<div className="card">
 										<input type="number"
@@ -259,8 +270,8 @@ var Grid = React.createClass({
 											value={this.state.cols}
 											onChange={this.updateCols} />
 									</div>
-								</li>
-								<li>
+								</ReactMaterialize.Col>
+								<ReactMaterialize.Col s={6}>
 									<label htmlFor="numberRows">Rows:</label>
 									<div className="card">
 										<input type="number"
@@ -269,9 +280,9 @@ var Grid = React.createClass({
 											className="card"
 											onChange={this.updateRows} />
 									</div>
-								</li>
-							</ul>
-						</div>
+								</ReactMaterialize.Col>
+							</ReactMaterialize.Row>
+						</ReactMaterialize.Col>
 					</ReactMaterialize.Row>
 					<ReactMaterialize.Row>
 						<ReactMaterialize.Col s={12}>

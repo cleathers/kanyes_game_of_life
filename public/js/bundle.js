@@ -22844,23 +22844,48 @@ var Grid = React.createClass({
 						ReactMaterialize.Row,
 						{ className: 'menu' },
 						React.createElement(
-							'div',
-							null,
+							ReactMaterialize.Col,
+							{ s: 12 },
 							React.createElement(
-								'ul',
+								ReactMaterialize.Row,
 								null,
 								React.createElement(
-									'li',
-									{ className: 'right-align' },
+									ReactMaterialize.Col,
+									{ s: 6 },
+									React.createElement(
+										'label',
+										{ htmlFor: 'speed' },
+										'Speed:'
+									),
+									React.createElement(
+										'div',
+										{ className: 'card' },
+										React.createElement('input', { type: 'number',
+											id: 'speed',
+											value: 30 })
+									)
+								),
+								React.createElement(
+									ReactMaterialize.Col,
+									{ s: 6 },
+									React.createElement(
+										'label',
+										null,
+										this.state.isRunning ? 'Pause' : 'Play'
+									),
 									React.createElement(ReactMaterialize.Button, {
-										floating: true,
+										className: 'playBtn',
 										large: true,
 										icon: this.state.isRunning ? 'pause' : 'play_arrow',
 										onClick: this.togglePlayPause })
-								),
+								)
+							),
+							React.createElement(
+								ReactMaterialize.Row,
+								null,
 								React.createElement(
-									'li',
-									null,
+									ReactMaterialize.Col,
+									{ s: 6 },
 									React.createElement(
 										'label',
 										{ htmlFor: 'numberCols' },
@@ -22876,8 +22901,8 @@ var Grid = React.createClass({
 									)
 								),
 								React.createElement(
-									'li',
-									null,
+									ReactMaterialize.Col,
+									{ s: 6 },
 									React.createElement(
 										'label',
 										{ htmlFor: 'numberRows' },
