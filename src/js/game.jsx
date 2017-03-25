@@ -276,6 +276,12 @@ var Grid = React.createClass({
 					<ReactMaterialize.Row>
 						<ReactMaterialize.Col s={12}>
 							<h4>Rules</h4>
+							<ol>
+								<li>Any Kanye with fewer than two neighbours dies.</li>
+								<li>Any Kanye with two or three neighbours lives on.</li>
+								<li>Any Kanye with more than three live neighbours dies, as if he looked and looked around and there were too many Kanyes.</li>
+								<li>A Kanye will move into an empty mansion with exactly three neighbour Kanyes.</li>
+							</ol>
 						</ReactMaterialize.Col>
 					</ReactMaterialize.Row>
 				</ReactMaterialize.Col>

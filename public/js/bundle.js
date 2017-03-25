@@ -22906,6 +22906,30 @@ var Grid = React.createClass({
 								'h4',
 								null,
 								'Rules'
+							),
+							React.createElement(
+								'ol',
+								null,
+								React.createElement(
+									'li',
+									null,
+									'Any Kanye with fewer than two neighbours dies.'
+								),
+								React.createElement(
+									'li',
+									null,
+									'Any Kanye with two or three neighbours lives on.'
+								),
+								React.createElement(
+									'li',
+									null,
+									'Any Kanye with more than three live neighbours dies, as if he looked and looked around and there were too many Kanyes.'
+								),
+								React.createElement(
+									'li',
+									null,
+									'A Kanye will move into an empty mansion with exactly three neighbour Kanyes.'
+								)
 							)
 						)
 					)
