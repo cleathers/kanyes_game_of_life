@@ -22668,7 +22668,14 @@ var Grid = React.createClass({
 		var cols = state.cols || this.props.cols;
 
 		R.times(function () {
-			cells.push(_this3.getNewKanye());
+			var ye = _this3.getNewKanye();
+
+			if (Math.random() > .6081977) {
+				ye.isAlive = true;
+				ye.kanye = _this3.getNewKanyeImg();
+			}
+
+			cells.push(ye);
 		}, cols);
 
 		return cells;

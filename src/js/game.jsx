@@ -92,7 +92,14 @@ var Grid = React.createClass({
 		let cols = state.cols || this.props.cols;
 
 		R.times(() => {
-			cells.push(this.getNewKanye());
+			let ye = this.getNewKanye();
+
+			if (Math.random() > .6081977) {
+				ye.isAlive = true;
+				ye.kanye = this.getNewKanyeImg();
+			}
+
+			cells.push(ye);
 		}, cols);
 
 		return cells;
