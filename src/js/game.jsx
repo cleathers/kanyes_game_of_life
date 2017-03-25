@@ -252,7 +252,7 @@ var Grid = React.createClass({
 									</ReactMaterialize.Button>
 								</li>
 								<li>
-									<label for="numberCols">Cols:</label>
+									<label htmlFor="numberCols">Cols:</label>
 									<div className="card">
 										<input type="number"
 											id="numberCols"
@@ -261,7 +261,7 @@ var Grid = React.createClass({
 									</div>
 								</li>
 								<li>
-									<label for="numberRows">Rows:</label>
+									<label htmlFor="numberRows">Rows:</label>
 									<div className="card">
 										<input type="number"
 											id="numberRows"

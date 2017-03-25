@@ -22863,7 +22863,7 @@ var Grid = React.createClass({
 									null,
 									React.createElement(
 										'label',
-										{ 'for': 'numberCols' },
+										{ htmlFor: 'numberCols' },
 										'Cols:'
 									),
 									React.createElement(
@@ -22880,7 +22880,7 @@ var Grid = React.createClass({
 									null,
 									React.createElement(
 										'label',
-										{ 'for': 'numberRows' },
+										{ htmlFor: 'numberRows' },
 										'Rows:'
 									),
 									React.createElement(
