@@ -1,13 +1,25 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var R = require('ramda');
-var ReactMaterialize = require('react-materialize');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import R from 'ramda';
+import { Button, Col, Row } from 'react-materialize';
 
-var Cell = require('./components/Cell.jsx');
+import Cell from './components/Cell.jsx';
 
 
-var Grid = React.createClass({
-	applyNextState: function() {
+class Grid extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			height: 0,
+			cols: this.props.cols,
+			rows: this.props.rows,
+			grid: this.generateGrid(),
+			isRunning: false
+		};
+	}
+
+	applyNextState() {
 		let newGrid = R.clone(this.state.grid);
 		newGrid.forEach((row, rowNum) => {
 			row.forEach((cell, colNum) => {
@@ -35,9 +47,9 @@ var Grid = React.createClass({
 		this.setState({
 			grid: newGrid
 		});
-	},
+	}
 
-	componentDidMount: function () {
+	componentDidMount () {
 		setInterval(() => {
 			if (this.state.isRunning) {
 				this.applyNextState();
@@ -52,19 +64,9 @@ var Grid = React.createClass({
 		this.setState({
 			height: gridHeight
 		});
-	},
+	}
 
-	getInitialState: function() {
-		return {
-			height: 0,
-			cols: this.props.cols,
-			rows: this.props.rows,
-			grid: this.generateGrid(),
-			isRunning: false
-		};
-	},
-
-	getSiblingCount: function (row, col) {
+	getSiblingCount(row, col) {
 		let liveSiblings = 0;
 		let grid = this.state.grid;
 		let row1 = grid[row-1] || [];
@@ -84,9 +86,9 @@ var Grid = React.createClass({
 		});
 
 		return liveSiblings;
-	},
+	}
 
-	generateColumns: function() {
+	generateColumns() {
 		let cells = [];
 		let state = this.state || {};
 		let cols = state.cols || this.props.cols;
@@ -96,9 +98,9 @@ var Grid = React.createClass({
 		}, cols);
 
 		return cells;
-	},
+	}
 
-	generateGrid: function() {
+	generateGrid() {
 		let grid = [];
 		let state = this.state || {};
 		let rows = state.rows || this.props.rows;
@@ -108,21 +110,21 @@ var Grid = React.createClass({
 		}
 
 		return grid;
-	},
+	}
 
-	getNewKanye: function() {
+	getNewKanye() {
 		return {
 				isAlive: false,
 				kanye: ''
 		};
-	},
+	}
 
-	getNewKanyeImg: function() {
+	getNewKanyeImg() {
 		let num = Math.ceil(Math.random() * 5);
 		return `public/img/kw${num}.jpg`;
-	},
+	}
 
-	toggleCell: function(rowNum, col) {
+	toggleCell(rowNum, col) {
 		let newGrid = R.clone(this.state.grid);
 
 		newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
@@ -136,15 +138,15 @@ var Grid = React.createClass({
 		this.setState({
 			grid: newGrid
 		});
-	},
+	}
 
-	togglePlayPause: function() {
+	togglePlayPause() {
 		this.setState({
 			isRunning: !this.state.isRunning,
 		});
-	},
+	}
 
-	renderGrid: function() {
+	renderGrid() {
 		let state = this.state || {};
 		let rows = this.state.grid.length;
 		let height = 100 / rows;
@@ -165,9 +167,9 @@ var Grid = React.createClass({
 		}, []);
 
 		return grid;
-	},
+	}
 
-	renderRow: function(row, rowNum) {
+	renderRow(row, rowNum) {
 		let state = this.state || {};
 		let cols = state.cols || this.props.cols;
 		let width = 100 / cols;
@@ -185,9 +187,9 @@ var Grid = React.createClass({
 
 			return prev;
 		}, []);
-	},
+	}
 
-	updateRows: function(event) {
+	updateRows(event) {
 		let rows = event.target.value;
 		let newGrid = R.clone(this.state.grid);
 		// reverse sign to use in R.times and curr.slice properly
@@ -205,9 +207,9 @@ var Grid = React.createClass({
 			rows,
 			grid: newGrid
 		});
-	},
+	}
 
-	updateCols: function(event) {
+	updateCols(event) {
 		let cols = event.target.value;
 		let newGrid = R.clone(this.state.grid);
 		// reverse sign to use in R.times and curr.slice properly
@@ -231,38 +233,38 @@ var Grid = React.createClass({
 			cols,
 			grid: newGrid
 		});
-	},
+	}
 
-	render: function() {
+	render() {
 		return <div>
-			<ReactMaterialize.Row>
+			<Row>
 				<h1><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target="_blank">Kanye's Game of Life</a></h1>
-			</ReactMaterialize.Row>
-			<ReactMaterialize.Row>
-				<ReactMaterialize.Col s={2}>
-					<ReactMaterialize.Row className="menu">
-						<ReactMaterialize.Col s={12}>
-							<ReactMaterialize.Row>
-								<ReactMaterialize.Col s={6}>
+			</Row>
+			<Row>
+				<Col s={2}>
+					<Row className="menu">
+						<Col s={12}>
+							<Row>
+								<Col s={6}>
 									<label htmlFor="speed">Speed:</label>
 									<div className="card">
 										<input type="number"
 											id="speed"
 											value={30} />
 									</div>
-								</ReactMaterialize.Col>
-								<ReactMaterialize.Col s={6}>
+								</Col>
+								<Col s={6}>
 									<label>{this.state.isRunning ? 'Pause' : 'Play'}</label>
-										<ReactMaterialize.Button
+										<Button
 											className="playBtn"
 											large
 											icon={this.state.isRunning ? 'pause' : 'play_arrow'}
 											onClick={this.togglePlayPause} >
-										</ReactMaterialize.Button>
-								</ReactMaterialize.Col>
-							</ReactMaterialize.Row>
-							<ReactMaterialize.Row>
-								<ReactMaterialize.Col s={6}>
+										</Button>
+								</Col>
+							</Row>
+							<Row>
+								<Col s={6}>
 									<label htmlFor="numberCols">Cols:</label>
 									<div className="card">
 										<input type="number"
@@ -270,8 +272,8 @@ var Grid = React.createClass({
 											value={this.state.cols}
 											onChange={this.updateCols} />
 									</div>
-								</ReactMaterialize.Col>
-								<ReactMaterialize.Col s={6}>
+								</Col>
+								<Col s={6}>
 									<label htmlFor="numberRows">Rows:</label>
 									<div className="card">
 										<input type="number"
@@ -280,12 +282,12 @@ var Grid = React.createClass({
 											className="card"
 											onChange={this.updateRows} />
 									</div>
-								</ReactMaterialize.Col>
-							</ReactMaterialize.Row>
-						</ReactMaterialize.Col>
-					</ReactMaterialize.Row>
-					<ReactMaterialize.Row>
-						<ReactMaterialize.Col s={12}>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+					<Row>
+						<Col s={12}>
 							<h4>Rules</h4>
 							<ol>
 								<li>Any Kanye with fewer than two neighbours dies.</li>
@@ -293,18 +295,18 @@ var Grid = React.createClass({
 								<li>Any Kanye with more than three live neighbours dies, as if he looked and looked around and there were too many Kanyes.</li>
 								<li>A Kanye will move into an empty mansion with exactly three neighbour Kanyes.</li>
 							</ol>
-						</ReactMaterialize.Col>
-					</ReactMaterialize.Row>
-				</ReactMaterialize.Col>
-				<ReactMaterialize.Col s={10}>
+						</Col>
+					</Row>
+				</Col>
+				<Col s={10}>
 					<div id="grid" style={{height: `${this.state.height}px`}}>
 						{this.renderGrid()}
 					</div>
-				</ReactMaterialize.Col>
-			</ReactMaterialize.Row>
+				</Col>
+			</Row>
 		</div>
 	}
-});
+}
 
 ReactDOM.render(
 	  <Grid rows={30} cols={30}/>,
