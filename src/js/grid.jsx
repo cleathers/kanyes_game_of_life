@@ -17,6 +17,19 @@ export default class Grid extends Component {
 			grid: this.generateGrid(),
 			isRunning: false
 		};
+
+		this.applyNextState = this.applyNextState.bind(this);
+		this.getSiblingCount = this.getSiblingCount.bind(this);
+		this.generateColumns = this.generateColumns.bind(this);
+		this.generateGrid = this.generateGrid.bind(this);
+		this.getNewKanye = this.getNewKanye.bind(this);
+		this.getNewKanyeImg = this.getNewKanyeImg.bind(this);
+		this.toggleCell = this.toggleCell.bind(this);
+		this.togglePlayPause = this.togglePlayPause.bind(this);
+		this.renderGrid = this.renderGrid.bind(this);
+		this.renderRow = this.renderRow.bind(this);
+		this.updateRows = this.updateRows.bind(this);
+		this.updateCols = this.updateCols.bind(this);
 	}
 
 	applyNextState() {
@@ -237,9 +250,6 @@ export default class Grid extends Component {
 
 	render() {
 		return <div>
-			<Row>
-				<h1><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life" target="_blank">Kanye's Game of Life</a></h1>
-			</Row>
 			<Row>
 				<Col s={2}>
 					<Row className="menu">
