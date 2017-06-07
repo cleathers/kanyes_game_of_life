@@ -6,7 +6,7 @@ import { Button, Col, Row } from 'react-materialize';
 import Cell from './components/Cell.jsx';
 
 
-export default class Grid extends Component {
+class Grid extends Component {
 	constructor(props) {
 		super(props);
 
@@ -307,3 +307,8 @@ export default class Grid extends Component {
 		</div>
 	}
 }
+
+ReactDOM.render(
+	  <Grid rows={30} cols={30}/>,
+		document.getElementById('container')
+);
