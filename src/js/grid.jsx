@@ -18,155 +18,157 @@ export default class Grid extends Component {
 			isRunning: false
 		};
 
-		this.applyNextState = this.applyNextState.bind(this);
-		this.getSiblingCount = this.getSiblingCount.bind(this);
-		this.generateColumns = this.generateColumns.bind(this);
-		this.generateGrid = this.generateGrid.bind(this);
-		this.getNewKanye = this.getNewKanye.bind(this);
-		this.getNewKanyeImg = this.getNewKanyeImg.bind(this);
-		this.toggleCell = this.toggleCell.bind(this);
-		this.togglePlayPause = this.togglePlayPause.bind(this);
+		// this.applyNextState = this.applyNextState.bind(this);
+		// this.getSiblingCount = this.getSiblingCount.bind(this);
+		// this.generateColumns = this.generateColumns.bind(this);
+		// this.generateGrid = this.generateGrid.bind(this);
+		// this.getNewKanye = this.getNewKanye.bind(this);
+		// this.getNewKanyeImg = this.getNewKanyeImg.bind(this);
+		// this.toggleCell = this.toggleCell.bind(this);
+		// this.togglePlayPause = this.togglePlayPause.bind(this);
 		this.renderGrid = this.renderGrid.bind(this);
-		this.renderRow = this.renderRow.bind(this);
-		this.updateRows = this.updateRows.bind(this);
-		this.updateCols = this.updateCols.bind(this);
+		// this.renderRow = this.renderRow.bind(this);
+		// this.updateRows = this.updateRows.bind(this);
+		// this.updateCols = this.updateCols.bind(this);
 	}
 
-	applyNextState() {
-		let newGrid = R.clone(this.state.grid);
-		newGrid.forEach((row, rowNum) => {
-			row.forEach((cell, colNum) => {
-				let siblingCount = this.getSiblingCount(rowNum, colNum);
-				let isAlive = false;
+	// applyNextState() {
+	// 	let newGrid = R.clone(this.state.grid);
+	// 	newGrid.forEach((row, rowNum) => {
+	// 		row.forEach((cell, colNum) => {
+	// 			let siblingCount = this.getSiblingCount(rowNum, colNum);
+	// 			let isAlive = false;
 
-				if (cell.isAlive) {
-					if (siblingCount === 2 || siblingCount === 3) {
-						isAlive = true;
-					}
-				} else {
-					if (siblingCount === 3) {
-						isAlive = true;
-					}
-				}
+	// 			if (cell.isAlive) {
+	// 				if (siblingCount === 2 || siblingCount === 3) {
+	// 					isAlive = true;
+	// 				}
+	// 			} else {
+	// 				if (siblingCount === 3) {
+	// 					isAlive = true;
+	// 				}
+	// 			}
 
-				if (isAlive && !cell.isAlive) {
-					cell.kanye = this.getNewKanyeImg();
-				}
+	// 			if (isAlive && !cell.isAlive) {
+	// 				cell.kanye = this.getNewKanyeImg();
+	// 			}
 
-				cell.isAlive = isAlive;
-			});
-		});
+	// 			cell.isAlive = isAlive;
+	// 		});
+	// 	});
 
-		this.setState({
-			grid: newGrid
-		});
+	// 	this.setState({
+	// 		grid: newGrid
+	// 	});
+	// }
+
+	// componentDidMount() {
+	// 	// setInterval(() => {
+	// 	// 	if (this.state.isRunning) {
+	// 	// 		this.applyNextState();
+	// 	// 	}
+	// 	// }, 2000);
+
+	// 	var banner = document.getElementsByTagName('h1')[0];
+	// 	var heightAboveRow = banner.getBoundingClientRect().top;
+	// 	var bannerRowHeight = banner.parentElement.getBoundingClientRect().bottom;
+	// 	var gridHeight = window.innerHeight - bannerRowHeight - heightAboveRow;
+
+	// 	this.setState({
+	// 		height: gridHeight
+	// 	});
+	// }
+
+	componentDidUpdate(prevProps) {
+
 	}
 
-	componentDidMount () {
-		setInterval(() => {
-			if (this.state.isRunning) {
-				this.applyNextState();
-			}
-		}, 2000);
+	// getSiblingCount(row, col) {
+	// 	let liveSiblings = 0;
+	// 	let grid = this.state.grid;
+	// 	let row1 = grid[row-1] || [];
+	// 	let row2 = grid[row];
+	// 	let row3 = grid[row+1] || [];
 
-		var banner = document.getElementsByTagName('h1')[0];
-		var heightAboveRow = banner.getBoundingClientRect().top;
-		var bannerRowHeight = banner.parentElement.getBoundingClientRect().bottom;
-		var gridHeight = window.innerHeight - bannerRowHeight - heightAboveRow;
+	// 	var siblings = [
+	// 		row1[col-1], row1[col], row1[col+1],
+	// 		row2[col-1],					  row2[col+1],
+	// 		row3[col-1], row3[col], row3[col+1],
+	// 	];
 
-		this.setState({
-			height: gridHeight
-		});
-	}
+	// 	siblings.forEach((sibling) => {
+	// 		if (sibling) {
+	// 			liveSiblings += sibling.isAlive ? 1 : 0;
+	// 		}
+	// 	});
 
-	getSiblingCount(row, col) {
-		let liveSiblings = 0;
-		let grid = this.state.grid;
-		let row1 = grid[row-1] || [];
-		let row2 = grid[row];
-		let row3 = grid[row+1] || [];
+	// 	return liveSiblings;
+	// }
 
-		var siblings = [
-			row1[col-1], row1[col], row1[col+1],
-			row2[col-1],					  row2[col+1],
-			row3[col-1], row3[col], row3[col+1],
-		];
+	// generateColumns() {
+	// 	let cells = [];
+	// 	let state = this.state || {};
+	// 	let cols = state.cols || this.props.cols;
 
-		siblings.forEach((sibling) => {
-			if (sibling) {
-				liveSiblings += sibling.isAlive ? 1 : 0;
-			}
-		});
+	// 	R.times(() => {
+	// 		cells.push(this.getNewKanye());
+	// 	}, cols);
 
-		return liveSiblings;
-	}
+	// 	return cells;
+	// }
 
-	generateColumns() {
-		let cells = [];
-		let state = this.state || {};
-		let cols = state.cols || this.props.cols;
+	// generateGrid() {
+	// 	let grid = [];
+	// 	let state = this.state || {};
+	// 	let rows = state.rows || this.props.rows;
 
-		R.times(() => {
-			cells.push(this.getNewKanye());
-		}, cols);
+	// 	for (var i = 0; i < rows; i++) {
+	// 		grid.push(this.generateColumns(i));
+	// 	}
 
-		return cells;
-	}
+	// 	return grid;
+	// }
 
-	generateGrid() {
-		let grid = [];
-		let state = this.state || {};
-		let rows = state.rows || this.props.rows;
+	// getNewKanye() {
+	// 	return {
+	// 			isAlive: false,
+	// 			kanye: ''
+	// 	};
+	// }
 
-		for (var i = 0; i < rows; i++) {
-			grid.push(this.generateColumns(i));
-		}
+	// getNewKanyeImg() {
+	// 	let num = Math.ceil(Math.random() * 5);
+	// 	return `public/img/kw${num}.jpg`;
+	// }
 
-		return grid;
-	}
+	// toggleCell(rowNum, col) {
+	// 	let newGrid = R.clone(this.state.grid);
 
-	getNewKanye() {
-		return {
-				isAlive: false,
-				kanye: ''
-		};
-	}
+	// 	newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
 
-	getNewKanyeImg() {
-		let num = Math.ceil(Math.random() * 5);
-		return `public/img/kw${num}.jpg`;
-	}
+	// 	if (newGrid[rowNum][col].isAlive) {
+	// 		newGrid[rowNum][col].kanye = this.getNewKanyeImg();
+	// 	} else {
+	// 		newGrid[rowNum][col].kanye = '';
+	// 	}
 
-	toggleCell(rowNum, col) {
-		let newGrid = R.clone(this.state.grid);
+	// 	this.setState({
+	// 		grid: newGrid
+	// 	});
+	// }
 
-		newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
-
-		if (newGrid[rowNum][col].isAlive) {
-			newGrid[rowNum][col].kanye = this.getNewKanyeImg();
-		} else {
-			newGrid[rowNum][col].kanye = '';
-		}
-
-		this.setState({
-			grid: newGrid
-		});
-	}
-
-	togglePlayPause() {
-		this.setState({
-			isRunning: !this.state.isRunning,
-		});
-	}
+	// togglePlayPause() {
+	// 	this.setState({
+	// 		isRunning: !this.state.isRunning,
+	// 	});
+	// }
 
 	renderGrid() {
-		let state = this.state || {};
-		let rows = this.state.grid.length;
+		let rows = this.props.rows;
+		let grid = this.props.grid;
 		let height = 100 / rows;
-		var tots = 0;
 
-		let grid = this.state.grid.reduce((prev, curr, idx) => {
-
+		let grid = grid.reduce((prev, curr, idx) => {
 			prev.push((
 				<div
 					style={{height: `${height}%`}}
@@ -183,14 +185,14 @@ export default class Grid extends Component {
 	}
 
 	renderRow(row, rowNum) {
-		let state = this.state || {};
-		let cols = state.cols || this.props.cols;
+		let cols = this.props.cols;
 		let width = 100 / cols;
 
 		return row.reduce((prev, curr, idx) => {
 			prev.push(<Cell
 				width={width}
 				rowNum={rowNum}
+				{...curr}
 				isAlive={curr.isAlive}
 				kanye={curr.kanye}
 				col={idx}
@@ -202,118 +204,55 @@ export default class Grid extends Component {
 		}, []);
 	}
 
-	updateRows(event) {
-		let rows = event.target.value;
-		let newGrid = R.clone(this.state.grid);
-		// reverse sign to use in R.times and curr.slice properly
-		let lenDiff = (newGrid.length - rows) * -1;
+	// updateRows(event) {
+	// 	let rows = event.target.value;
+	// 	let newGrid = R.clone(this.state.grid);
+	// 	// reverse sign to use in R.times and curr.slice properly
+	// 	let lenDiff = (newGrid.length - rows) * -1;
 
-		if (lenDiff > 0) {
-			R.times(() => {
-				newGrid.push(this.generateColumns());
-			}, lenDiff);
-		} else if (lenDiff < 0) {
-			newGrid = newGrid.slice(0, lenDiff);
-		}
+	// 	if (lenDiff > 0) {
+	// 		R.times(() => {
+	// 			newGrid.push(this.generateColumns());
+	// 		}, lenDiff);
+	// 	} else if (lenDiff < 0) {
+	// 		newGrid = newGrid.slice(0, lenDiff);
+	// 	}
 
-		this.setState({
-			rows,
-			grid: newGrid
-		});
-	}
+	// 	this.setState({
+	// 		rows,
+	// 		grid: newGrid
+	// 	});
+	// }
 
-	updateCols(event) {
-		let cols = event.target.value;
-		let newGrid = R.clone(this.state.grid);
-		// reverse sign to use in R.times and curr.slice properly
-		let lenDiff = (newGrid[0].length - cols) * -1;
+	// updateCols(event) {
+	// 	let cols = event.target.value;
+	// 	let newGrid = R.clone(this.state.grid);
+	// 	// reverse sign to use in R.times and curr.slice properly
+	// 	let lenDiff = (newGrid[0].length - cols) * -1;
 
-		if (lenDiff > 0) {
-			newGrid = newGrid.map((curr) => {
-				R.times(() => {
-					curr.push(this.getNewKanye());
-				}, lenDiff);
+	// 	if (lenDiff > 0) {
+	// 		newGrid = newGrid.map((curr) => {
+	// 			R.times(() => {
+	// 				curr.push(this.getNewKanye());
+	// 			}, lenDiff);
 
-				return curr;
-			});
-		} else if (lenDiff < 0) {
-			newGrid = newGrid.map((curr) => {
-				return curr.slice(0, lenDiff);
-			});
-		}
+	// 			return curr;
+	// 		});
+	// 	} else if (lenDiff < 0) {
+	// 		newGrid = newGrid.map((curr) => {
+	// 			return curr.slice(0, lenDiff);
+	// 		});
+	// 	}
 
-		this.setState({
-			cols,
-			grid: newGrid
-		});
-	}
+	// 	this.setState({
+	// 		cols,
+	// 		grid: newGrid
+	// 	});
+	// }
 
 	render() {
-		return <div>
-			<Row>
-				<Col s={2}>
-					<Row className="menu">
-						<Col s={12}>
-							<Row>
-								<Col s={6}>
-									<label htmlFor="speed">Speed:</label>
-									<div className="card">
-										<input type="number"
-											id="speed"
-											value={30} />
-									</div>
-								</Col>
-								<Col s={6}>
-									<label>{this.state.isRunning ? 'Pause' : 'Play'}</label>
-										<Button
-											className="playBtn"
-											large
-											icon={this.state.isRunning ? 'pause' : 'play_arrow'}
-											onClick={this.togglePlayPause} >
-										</Button>
-								</Col>
-							</Row>
-							<Row>
-								<Col s={6}>
-									<label htmlFor="numberCols">Cols:</label>
-									<div className="card">
-										<input type="number"
-											id="numberCols"
-											value={this.state.cols}
-											onChange={this.updateCols} />
-									</div>
-								</Col>
-								<Col s={6}>
-									<label htmlFor="numberRows">Rows:</label>
-									<div className="card">
-										<input type="number"
-											id="numberRows"
-											value={this.state.rows}
-											className="card"
-											onChange={this.updateRows} />
-									</div>
-								</Col>
-							</Row>
-						</Col>
-					</Row>
-					<Row>
-						<Col s={12}>
-							<h4>Rules</h4>
-							<ol>
-								<li>Any Kanye with fewer than two neighbours dies.</li>
-								<li>Any Kanye with two or three neighbours lives on.</li>
-								<li>Any Kanye with more than three live neighbours dies, as if he looked and looked around and there were too many Kanyes.</li>
-								<li>A Kanye will move into an empty mansion with exactly three neighbour Kanyes.</li>
-							</ol>
-						</Col>
-					</Row>
-				</Col>
-				<Col s={10}>
-					<div id="grid" style={{height: `${this.state.height}px`}}>
-						{this.renderGrid()}
-					</div>
-				</Col>
-			</Row>
-		</div>
+		return <div id="grid" style={{height: `${this.state.height}px`}}>
+			{this.renderGrid()}
+		</div>;
 	}
 }

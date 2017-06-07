@@ -1,10 +1,6 @@
 var React = require('react');
 
 var Cell = React.createClass({
-	getNewKanye: function() {
-		let num = Math.ceil(Math.random() * 5);
-		return `public/img/kw${num}.jpg`;
-	},
 	handleClick: function() {
 		this.props.onClick(this.props.rowNum, this.props.col);
 	},
