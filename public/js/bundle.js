@@ -22571,453 +22571,409 @@ module.exports = _curry3(function zipWith(fn, a, b) {
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var React = __webpack_require__(3);
+var ReactDOM = __webpack_require__(79);
+var R = __webpack_require__(207);
+var ReactMaterialize = __webpack_require__(208);
 
-var _react = __webpack_require__(3);
+var Cell = __webpack_require__(206);
 
-var _react2 = _interopRequireDefault(_react);
+var Grid = React.createClass({
+	displayName: 'Grid',
 
-var _reactDom = __webpack_require__(79);
+	applyNextState: function applyNextState() {
+		var _this = this;
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
+		var newGrid = R.clone(this.state.grid);
+		newGrid.forEach(function (row, rowNum) {
+			row.forEach(function (cell, colNum) {
+				var siblingCount = _this.getSiblingCount(rowNum, colNum);
+				var isAlive = false;
 
-var _ramda = __webpack_require__(207);
+				if (cell.isAlive) {
+					if (siblingCount === 2 || siblingCount === 3) {
+						isAlive = true;
+					}
+				} else {
+					if (siblingCount === 3) {
+						isAlive = true;
+					}
+				}
 
-var _ramda2 = _interopRequireDefault(_ramda);
+				if (isAlive && !cell.isAlive) {
+					cell.kanye = _this.getNewKanyeImg();
+				}
 
-var _reactMaterialize = __webpack_require__(208);
+				cell.isAlive = isAlive;
+			});
+		});
 
-var _Cell = __webpack_require__(206);
+		this.setState({
+			grid: newGrid
+		});
+	},
 
-var _Cell2 = _interopRequireDefault(_Cell);
+	componentDidMount: function componentDidMount() {
+		var _this2 = this;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+		setInterval(function () {
+			if (_this2.state.isRunning) {
+				_this2.applyNextState();
+			}
+		}, 2000);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+		var banner = document.getElementsByTagName('h1')[0];
+		var heightAboveRow = banner.getBoundingClientRect().top;
+		var bannerRowHeight = banner.parentElement.getBoundingClientRect().bottom;
+		var gridHeight = window.innerHeight - bannerRowHeight - heightAboveRow;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+		this.setState({
+			height: gridHeight
+		});
+	},
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Grid = function (_Component) {
-	_inherits(Grid, _Component);
-
-	function Grid(props) {
-		_classCallCheck(this, Grid);
-
-		var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
-
-		_this.state = {
+	getInitialState: function getInitialState() {
+		return {
 			height: 0,
-			cols: _this.props.cols,
-			rows: _this.props.rows,
-			grid: _this.generateGrid(),
+			cols: this.props.cols,
+			rows: this.props.rows,
+			grid: this.generateGrid(),
 			isRunning: false
 		};
-		return _this;
-	}
+	},
 
-	_createClass(Grid, [{
-		key: 'applyNextState',
-		value: function applyNextState() {
-			var _this2 = this;
+	getSiblingCount: function getSiblingCount(row, col) {
+		var liveSiblings = 0;
+		var grid = this.state.grid;
+		var row1 = grid[row - 1] || [];
+		var row2 = grid[row];
+		var row3 = grid[row + 1] || [];
 
-			var newGrid = _ramda2.default.clone(this.state.grid);
-			newGrid.forEach(function (row, rowNum) {
-				row.forEach(function (cell, colNum) {
-					var siblingCount = _this2.getSiblingCount(rowNum, colNum);
-					var isAlive = false;
+		var siblings = [row1[col - 1], row1[col], row1[col + 1], row2[col - 1], row2[col + 1], row3[col - 1], row3[col], row3[col + 1]];
 
-					if (cell.isAlive) {
-						if (siblingCount === 2 || siblingCount === 3) {
-							isAlive = true;
-						}
-					} else {
-						if (siblingCount === 3) {
-							isAlive = true;
-						}
-					}
-
-					if (isAlive && !cell.isAlive) {
-						cell.kanye = _this2.getNewKanyeImg();
-					}
-
-					cell.isAlive = isAlive;
-				});
-			});
-
-			this.setState({
-				grid: newGrid
-			});
-		}
-	}, {
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			var _this3 = this;
-
-			setInterval(function () {
-				if (_this3.state.isRunning) {
-					_this3.applyNextState();
-				}
-			}, 2000);
-
-			var banner = document.getElementsByTagName('h1')[0];
-			var heightAboveRow = banner.getBoundingClientRect().top;
-			var bannerRowHeight = banner.parentElement.getBoundingClientRect().bottom;
-			var gridHeight = window.innerHeight - bannerRowHeight - heightAboveRow;
-
-			this.setState({
-				height: gridHeight
-			});
-		}
-	}, {
-		key: 'getSiblingCount',
-		value: function getSiblingCount(row, col) {
-			var liveSiblings = 0;
-			var grid = this.state.grid;
-			var row1 = grid[row - 1] || [];
-			var row2 = grid[row];
-			var row3 = grid[row + 1] || [];
-
-			var siblings = [row1[col - 1], row1[col], row1[col + 1], row2[col - 1], row2[col + 1], row3[col - 1], row3[col], row3[col + 1]];
-
-			siblings.forEach(function (sibling) {
-				if (sibling) {
-					liveSiblings += sibling.isAlive ? 1 : 0;
-				}
-			});
-
-			return liveSiblings;
-		}
-	}, {
-		key: 'generateColumns',
-		value: function generateColumns() {
-			var _this4 = this;
-
-			var cells = [];
-			var state = this.state || {};
-			var cols = state.cols || this.props.cols;
-
-			_ramda2.default.times(function () {
-				cells.push(_this4.getNewKanye());
-			}, cols);
-
-			return cells;
-		}
-	}, {
-		key: 'generateGrid',
-		value: function generateGrid() {
-			var grid = [];
-			var state = this.state || {};
-			var rows = state.rows || this.props.rows;
-
-			for (var i = 0; i < rows; i++) {
-				grid.push(this.generateColumns(i));
+		siblings.forEach(function (sibling) {
+			if (sibling) {
+				liveSiblings += sibling.isAlive ? 1 : 0;
 			}
+		});
 
-			return grid;
+		return liveSiblings;
+	},
+
+	generateColumns: function generateColumns() {
+		var _this3 = this;
+
+		var cells = [];
+		var state = this.state || {};
+		var cols = state.cols || this.props.cols;
+
+		R.times(function () {
+			cells.push(_this3.getNewKanye());
+		}, cols);
+
+		return cells;
+	},
+
+	generateGrid: function generateGrid() {
+		var grid = [];
+		var state = this.state || {};
+		var rows = state.rows || this.props.rows;
+
+		for (var i = 0; i < rows; i++) {
+			grid.push(this.generateColumns(i));
 		}
-	}, {
-		key: 'getNewKanye',
-		value: function getNewKanye() {
-			return {
-				isAlive: false,
-				kanye: ''
-			};
+
+		return grid;
+	},
+
+	getNewKanye: function getNewKanye() {
+		return {
+			isAlive: false,
+			kanye: ''
+		};
+	},
+
+	getNewKanyeImg: function getNewKanyeImg() {
+		var num = Math.ceil(Math.random() * 5);
+		return 'public/img/kw' + num + '.jpg';
+	},
+
+	toggleCell: function toggleCell(rowNum, col) {
+		var newGrid = R.clone(this.state.grid);
+
+		newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
+
+		if (newGrid[rowNum][col].isAlive) {
+			newGrid[rowNum][col].kanye = this.getNewKanyeImg();
+		} else {
+			newGrid[rowNum][col].kanye = '';
 		}
-	}, {
-		key: 'getNewKanyeImg',
-		value: function getNewKanyeImg() {
-			var num = Math.ceil(Math.random() * 5);
-			return 'public/img/kw' + num + '.jpg';
-		}
-	}, {
-		key: 'toggleCell',
-		value: function toggleCell(rowNum, col) {
-			var newGrid = _ramda2.default.clone(this.state.grid);
 
-			newGrid[rowNum][col].isAlive = !newGrid[rowNum][col].isAlive;
+		this.setState({
+			grid: newGrid
+		});
+	},
 
-			if (newGrid[rowNum][col].isAlive) {
-				newGrid[rowNum][col].kanye = this.getNewKanyeImg();
-			} else {
-				newGrid[rowNum][col].kanye = '';
-			}
+	togglePlayPause: function togglePlayPause() {
+		this.setState({
+			isRunning: !this.state.isRunning
+		});
+	},
 
-			this.setState({
-				grid: newGrid
-			});
-		}
-	}, {
-		key: 'togglePlayPause',
-		value: function togglePlayPause() {
-			this.setState({
-				isRunning: !this.state.isRunning
-			});
-		}
-	}, {
-		key: 'renderGrid',
-		value: function renderGrid() {
-			var _this5 = this;
+	renderGrid: function renderGrid() {
+		var _this4 = this;
 
-			var state = this.state || {};
-			var rows = this.state.grid.length;
-			var height = 100 / rows;
-			var tots = 0;
+		var state = this.state || {};
+		var rows = this.state.grid.length;
+		var height = 100 / rows;
+		var tots = 0;
 
-			var grid = this.state.grid.reduce(function (prev, curr, idx) {
+		var grid = this.state.grid.reduce(function (prev, curr, idx) {
 
-				prev.push(_react2.default.createElement(
-					'div',
-					{
-						style: { height: height + '%' },
-						className: 'gridRow',
-						key: 'row-' + idx },
-					_this5.renderRow(curr, idx)
-				));
-
-				return prev;
-			}, []);
-
-			return grid;
-		}
-	}, {
-		key: 'renderRow',
-		value: function renderRow(row, rowNum) {
-			var _this6 = this;
-
-			var state = this.state || {};
-			var cols = state.cols || this.props.cols;
-			var width = 100 / cols;
-
-			return row.reduce(function (prev, curr, idx) {
-				prev.push(_react2.default.createElement(_Cell2.default, {
-					width: width,
-					rowNum: rowNum,
-					isAlive: curr.isAlive,
-					kanye: curr.kanye,
-					col: idx,
-					key: rowNum + '-' + idx,
-					onClick: _this6.toggleCell
-				}));
-
-				return prev;
-			}, []);
-		}
-	}, {
-		key: 'updateRows',
-		value: function updateRows(event) {
-			var _this7 = this;
-
-			var rows = event.target.value;
-			var newGrid = _ramda2.default.clone(this.state.grid);
-			// reverse sign to use in R.times and curr.slice properly
-			var lenDiff = (newGrid.length - rows) * -1;
-
-			if (lenDiff > 0) {
-				_ramda2.default.times(function () {
-					newGrid.push(_this7.generateColumns());
-				}, lenDiff);
-			} else if (lenDiff < 0) {
-				newGrid = newGrid.slice(0, lenDiff);
-			}
-
-			this.setState({
-				rows: rows,
-				grid: newGrid
-			});
-		}
-	}, {
-		key: 'updateCols',
-		value: function updateCols(event) {
-			var _this8 = this;
-
-			var cols = event.target.value;
-			var newGrid = _ramda2.default.clone(this.state.grid);
-			// reverse sign to use in R.times and curr.slice properly
-			var lenDiff = (newGrid[0].length - cols) * -1;
-
-			if (lenDiff > 0) {
-				newGrid = newGrid.map(function (curr) {
-					_ramda2.default.times(function () {
-						curr.push(_this8.getNewKanye());
-					}, lenDiff);
-
-					return curr;
-				});
-			} else if (lenDiff < 0) {
-				newGrid = newGrid.map(function (curr) {
-					return curr.slice(0, lenDiff);
-				});
-			}
-
-			this.setState({
-				cols: cols,
-				grid: newGrid
-			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
+			prev.push(React.createElement(
 				'div',
+				{
+					style: { height: height + '%' },
+					className: 'gridRow',
+					key: 'row-' + idx },
+				_this4.renderRow(curr, idx)
+			));
+
+			return prev;
+		}, []);
+
+		return grid;
+	},
+
+	renderRow: function renderRow(row, rowNum) {
+		var _this5 = this;
+
+		var state = this.state || {};
+		var cols = state.cols || this.props.cols;
+		var width = 100 / cols;
+
+		return row.reduce(function (prev, curr, idx) {
+			prev.push(React.createElement(Cell, {
+				width: width,
+				rowNum: rowNum,
+				isAlive: curr.isAlive,
+				kanye: curr.kanye,
+				col: idx,
+				key: rowNum + '-' + idx,
+				onClick: _this5.toggleCell
+			}));
+
+			return prev;
+		}, []);
+	},
+
+	updateRows: function updateRows(event) {
+		var _this6 = this;
+
+		var rows = event.target.value;
+		var newGrid = R.clone(this.state.grid);
+		// reverse sign to use in R.times and curr.slice properly
+		var lenDiff = (newGrid.length - rows) * -1;
+
+		if (lenDiff > 0) {
+			R.times(function () {
+				newGrid.push(_this6.generateColumns());
+			}, lenDiff);
+		} else if (lenDiff < 0) {
+			newGrid = newGrid.slice(0, lenDiff);
+		}
+
+		this.setState({
+			rows: rows,
+			grid: newGrid
+		});
+	},
+
+	updateCols: function updateCols(event) {
+		var _this7 = this;
+
+		var cols = event.target.value;
+		var newGrid = R.clone(this.state.grid);
+		// reverse sign to use in R.times and curr.slice properly
+		var lenDiff = (newGrid[0].length - cols) * -1;
+
+		if (lenDiff > 0) {
+			newGrid = newGrid.map(function (curr) {
+				R.times(function () {
+					curr.push(_this7.getNewKanye());
+				}, lenDiff);
+
+				return curr;
+			});
+		} else if (lenDiff < 0) {
+			newGrid = newGrid.map(function (curr) {
+				return curr.slice(0, lenDiff);
+			});
+		}
+
+		this.setState({
+			cols: cols,
+			grid: newGrid
+		});
+	},
+
+	render: function render() {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				ReactMaterialize.Row,
 				null,
-				_react2.default.createElement(
-					_reactMaterialize.Row,
+				React.createElement(
+					'h1',
 					null,
-					_react2.default.createElement(
-						'h1',
-						null,
-						_react2.default.createElement(
-							'a',
-							{ href: 'https://en.wikipedia.org/wiki/Conway\'s_Game_of_Life', target: '_blank' },
-							'Kanye\'s Game of Life'
-						)
+					React.createElement(
+						'a',
+						{ href: 'https://en.wikipedia.org/wiki/Conway\'s_Game_of_Life', target: '_blank' },
+						'Kanye\'s Game of Life'
 					)
-				),
-				_react2.default.createElement(
-					_reactMaterialize.Row,
-					null,
-					_react2.default.createElement(
-						_reactMaterialize.Col,
-						{ s: 2 },
-						_react2.default.createElement(
-							_reactMaterialize.Row,
-							{ className: 'menu' },
-							_react2.default.createElement(
-								_reactMaterialize.Col,
-								{ s: 12 },
-								_react2.default.createElement(
-									_reactMaterialize.Row,
-									null,
-									_react2.default.createElement(
-										_reactMaterialize.Col,
-										{ s: 6 },
-										_react2.default.createElement(
-											'label',
-											{ htmlFor: 'speed' },
-											'Speed:'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'card' },
-											_react2.default.createElement('input', { type: 'number',
-												id: 'speed',
-												value: 30 })
-										)
+				)
+			),
+			React.createElement(
+				ReactMaterialize.Row,
+				null,
+				React.createElement(
+					ReactMaterialize.Col,
+					{ s: 2 },
+					React.createElement(
+						ReactMaterialize.Row,
+						{ className: 'menu' },
+						React.createElement(
+							ReactMaterialize.Col,
+							{ s: 12 },
+							React.createElement(
+								ReactMaterialize.Row,
+								null,
+								React.createElement(
+									ReactMaterialize.Col,
+									{ s: 6 },
+									React.createElement(
+										'label',
+										{ htmlFor: 'speed' },
+										'Speed:'
 									),
-									_react2.default.createElement(
-										_reactMaterialize.Col,
-										{ s: 6 },
-										_react2.default.createElement(
-											'label',
-											null,
-											this.state.isRunning ? 'Pause' : 'Play'
-										),
-										_react2.default.createElement(_reactMaterialize.Button, {
-											className: 'playBtn',
-											large: true,
-											icon: this.state.isRunning ? 'pause' : 'play_arrow',
-											onClick: this.togglePlayPause })
+									React.createElement(
+										'div',
+										{ className: 'card' },
+										React.createElement('input', { type: 'number',
+											id: 'speed',
+											value: 30 })
 									)
 								),
-								_react2.default.createElement(
-									_reactMaterialize.Row,
-									null,
-									_react2.default.createElement(
-										_reactMaterialize.Col,
-										{ s: 6 },
-										_react2.default.createElement(
-											'label',
-											{ htmlFor: 'numberCols' },
-											'Cols:'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'card' },
-											_react2.default.createElement('input', { type: 'number',
-												id: 'numberCols',
-												value: this.state.cols,
-												onChange: this.updateCols })
-										)
+								React.createElement(
+									ReactMaterialize.Col,
+									{ s: 6 },
+									React.createElement(
+										'label',
+										null,
+										this.state.isRunning ? 'Pause' : 'Play'
 									),
-									_react2.default.createElement(
-										_reactMaterialize.Col,
-										{ s: 6 },
-										_react2.default.createElement(
-											'label',
-											{ htmlFor: 'numberRows' },
-											'Rows:'
-										),
-										_react2.default.createElement(
-											'div',
-											{ className: 'card' },
-											_react2.default.createElement('input', { type: 'number',
-												id: 'numberRows',
-												value: this.state.rows,
-												className: 'card',
-												onChange: this.updateRows })
-										)
-									)
+									React.createElement(ReactMaterialize.Button, {
+										className: 'playBtn',
+										large: true,
+										icon: this.state.isRunning ? 'pause' : 'play_arrow',
+										onClick: this.togglePlayPause })
 								)
-							)
-						),
-						_react2.default.createElement(
-							_reactMaterialize.Row,
-							null,
-							_react2.default.createElement(
-								_reactMaterialize.Col,
-								{ s: 12 },
-								_react2.default.createElement(
-									'h4',
-									null,
-									'Rules'
+							),
+							React.createElement(
+								ReactMaterialize.Row,
+								null,
+								React.createElement(
+									ReactMaterialize.Col,
+									{ s: 6 },
+									React.createElement(
+										'label',
+										{ htmlFor: 'numberCols' },
+										'Cols:'
+									),
+									React.createElement(
+										'div',
+										{ className: 'card' },
+										React.createElement('input', { type: 'number',
+											id: 'numberCols',
+											value: this.state.cols,
+											onChange: this.updateCols })
+									)
 								),
-								_react2.default.createElement(
-									'ol',
-									null,
-									_react2.default.createElement(
-										'li',
-										null,
-										'Any Kanye with fewer than two neighbours dies.'
+								React.createElement(
+									ReactMaterialize.Col,
+									{ s: 6 },
+									React.createElement(
+										'label',
+										{ htmlFor: 'numberRows' },
+										'Rows:'
 									),
-									_react2.default.createElement(
-										'li',
-										null,
-										'Any Kanye with two or three neighbours lives on.'
-									),
-									_react2.default.createElement(
-										'li',
-										null,
-										'Any Kanye with more than three live neighbours dies, as if he looked and looked around and there were too many Kanyes.'
-									),
-									_react2.default.createElement(
-										'li',
-										null,
-										'A Kanye will move into an empty mansion with exactly three neighbour Kanyes.'
+									React.createElement(
+										'div',
+										{ className: 'card' },
+										React.createElement('input', { type: 'number',
+											id: 'numberRows',
+											value: this.state.rows,
+											className: 'card',
+											onChange: this.updateRows })
 									)
 								)
 							)
 						)
 					),
-					_react2.default.createElement(
-						_reactMaterialize.Col,
-						{ s: 10 },
-						_react2.default.createElement(
-							'div',
-							{ id: 'grid', style: { height: this.state.height + 'px' } },
-							this.renderGrid()
+					React.createElement(
+						ReactMaterialize.Row,
+						null,
+						React.createElement(
+							ReactMaterialize.Col,
+							{ s: 12 },
+							React.createElement(
+								'h4',
+								null,
+								'Rules'
+							),
+							React.createElement(
+								'ol',
+								null,
+								React.createElement(
+									'li',
+									null,
+									'Any Kanye with fewer than two neighbours dies.'
+								),
+								React.createElement(
+									'li',
+									null,
+									'Any Kanye with two or three neighbours lives on.'
+								),
+								React.createElement(
+									'li',
+									null,
+									'Any Kanye with more than three live neighbours dies, as if he looked and looked around and there were too many Kanyes.'
+								),
+								React.createElement(
+									'li',
+									null,
+									'A Kanye will move into an empty mansion with exactly three neighbour Kanyes.'
+								)
+							)
 						)
 					)
+				),
+				React.createElement(
+					ReactMaterialize.Col,
+					{ s: 10 },
+					React.createElement(
+						'div',
+						{ id: 'grid', style: { height: this.state.height + 'px' } },
+						this.renderGrid()
+					)
 				)
-			);
-		}
-	}]);
+			)
+		);
+	}
+});
 
-	return Grid;
-}(_react.Component);
-
-_reactDom2.default.render(_react2.default.createElement(Grid, { rows: 30, cols: 30 }), document.getElementById('container'));
+ReactDOM.render(React.createElement(Grid, { rows: 30, cols: 30 }), document.getElementById('container'));
 
 /***/ }),
 /* 404 */
